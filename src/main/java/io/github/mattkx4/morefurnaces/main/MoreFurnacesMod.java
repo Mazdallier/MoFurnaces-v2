@@ -1,12 +1,11 @@
-package com.MoreFurnacesMod.mod;
+package io.github.mattkx4.morefurnaces.main;
 
-import com.MoreFurnacesMod.mod.blocks.MFMBlock;
-import com.MoreFurnacesMod.mod.gui.MFMGui;
-import com.MoreFurnacesMod.mod.handler.GuiHandler;
-import com.MoreFurnacesMod.mod.handler.MFMHandler;
-import com.MoreFurnacesMod.mod.lib.Strings;
-import com.MoreFurnacesMod.mod.proxy.ServerProxy;
-
+import io.github.mattkx4.morefurnaces.blocks.MFMBlock;
+import io.github.mattkx4.morefurnaces.gui.MFMGui;
+import io.github.mattkx4.morefurnaces.handler.GuiHandler;
+import io.github.mattkx4.morefurnaces.handler.MFMHandler;
+import io.github.mattkx4.morefurnaces.lib.Strings;
+import io.github.mattkx4.morefurnaces.proxy.ServerProxy;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import cpw.mods.fml.common.Mod;

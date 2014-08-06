@@ -1,16 +1,15 @@
-package com.MoreFurnacesMod.mod.gui;
+package io.github.mattkx4.morefurnaces.gui;
 
-import org.lwjgl.opengl.GL11;
-
-import com.MoreFurnacesMod.mod.container.ContainerDiamondFurnace;
-import com.MoreFurnacesMod.mod.lib.Strings;
-import com.MoreFurnacesMod.mod.tileentity.TileEntityDiamondFurnace;
-
+import io.github.mattkx4.morefurnaces.container.ContainerDiamondFurnace;
+import io.github.mattkx4.morefurnaces.lib.Strings;
+import io.github.mattkx4.morefurnaces.tileentity.TileEntityDiamondFurnace;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
+
+import org.lwjgl.opengl.GL11;
 
 public class GuiDiamondFurnace extends GuiContainer{
 	

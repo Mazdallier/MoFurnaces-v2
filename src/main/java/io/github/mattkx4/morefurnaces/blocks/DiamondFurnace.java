@@ -1,14 +1,11 @@
-package com.MoreFurnacesMod.mod.blocks;
+package io.github.mattkx4.morefurnaces.blocks;
+
+import io.github.mattkx4.morefurnaces.lib.Strings;
+import io.github.mattkx4.morefurnaces.main.MoreFurnacesMod;
+import io.github.mattkx4.morefurnaces.tileentity.TileEntityDiamondFurnace;
 
 import java.util.Random;
 
-import com.MoreFurnacesMod.mod.MoreFurnacesMod;
-import com.MoreFurnacesMod.mod.lib.Strings;
-import com.MoreFurnacesMod.mod.tileentity.TileEntityDiamondFurnace;
-
-import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -25,6 +22,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class DiamondFurnace extends BlockContainer{
 

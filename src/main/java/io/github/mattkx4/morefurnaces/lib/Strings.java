@@ -1,4 +1,4 @@
-package com.MoreFurnacesMod.mod.lib;
+package io.github.mattkx4.morefurnaces.lib;
 
 public class Strings {
 

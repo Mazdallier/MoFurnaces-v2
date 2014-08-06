@@ -1,14 +1,13 @@
-package com.MoreFurnacesMod.mod.handler;
+package io.github.mattkx4.morefurnaces.handler;
 
 
-import com.MoreFurnacesMod.mod.MoreFurnacesMod;
-import com.MoreFurnacesMod.mod.container.ContainerDiamondFurnace;
-import com.MoreFurnacesMod.mod.container.ContainerObsidianFurnace;
-import com.MoreFurnacesMod.mod.gui.GuiObsidianFurnace;
-import com.MoreFurnacesMod.mod.gui.GuiDiamondFurnace;
-import com.MoreFurnacesMod.mod.tileentity.TileEntityObsidianFurnace;
-import com.MoreFurnacesMod.mod.tileentity.TileEntityDiamondFurnace;
-
+import io.github.mattkx4.morefurnaces.container.ContainerDiamondFurnace;
+import io.github.mattkx4.morefurnaces.container.ContainerObsidianFurnace;
+import io.github.mattkx4.morefurnaces.gui.GuiDiamondFurnace;
+import io.github.mattkx4.morefurnaces.gui.GuiObsidianFurnace;
+import io.github.mattkx4.morefurnaces.main.MoreFurnacesMod;
+import io.github.mattkx4.morefurnaces.tileentity.TileEntityDiamondFurnace;
+import io.github.mattkx4.morefurnaces.tileentity.TileEntityObsidianFurnace;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;

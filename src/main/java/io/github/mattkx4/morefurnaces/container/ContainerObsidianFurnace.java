@@ -1,9 +1,6 @@
-package com.MoreFurnacesMod.mod.container;
+package io.github.mattkx4.morefurnaces.container;
 
-import com.MoreFurnacesMod.mod.tileentity.TileEntityDiamondFurnace;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import io.github.mattkx4.morefurnaces.tileentity.TileEntityObsidianFurnace;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -12,17 +9,19 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotFurnace;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
-public class ContainerDiamondFurnace extends Container{
-	
-	private TileEntityDiamondFurnace diamondFurnace;
+public class ContainerObsidianFurnace extends Container{
+
+	private TileEntityObsidianFurnace obsidianFurnace;
 
 	public int lastBurnTime;
 	public int lastCurrentItemBurnTime;
 	public int lastCookTime;
 
-	public ContainerDiamondFurnace(InventoryPlayer inventory, TileEntityDiamondFurnace tileentity) {
-		this.diamondFurnace = tileentity;
+	public ContainerObsidianFurnace(InventoryPlayer inventory, TileEntityObsidianFurnace tileentity) {
+		this.obsidianFurnace = tileentity;
 
 		this.addSlotToContainer(new Slot(tileentity, 0, 56, 17));
 		this.addSlotToContainer(new Slot(tileentity, 1, 56, 53));
@@ -41,9 +40,9 @@ public class ContainerDiamondFurnace extends Container{
 
 	public void addCraftingToCrafters (ICrafting icrafting) {
 		super.addCraftingToCrafters(icrafting);
-		icrafting.sendProgressBarUpdate(this, 0, this.diamondFurnace.cookTime);
-		icrafting.sendProgressBarUpdate(this, 1, this.diamondFurnace.burnTime);
-		icrafting.sendProgressBarUpdate(this, 2, this.diamondFurnace.currentItemBurnTime);
+		icrafting.sendProgressBarUpdate(this, 0, this.obsidianFurnace.cookTime);
+		icrafting.sendProgressBarUpdate(this, 1, this.obsidianFurnace.burnTime);
+		icrafting.sendProgressBarUpdate(this, 2, this.obsidianFurnace.currentItemBurnTime);
 	}
 
 	public void detectAndSendChanges() {
@@ -51,37 +50,37 @@ public class ContainerDiamondFurnace extends Container{
 		for(int i = 0; i < this.crafters.size(); i++) {
 			ICrafting icrafting = (ICrafting) this.crafters.get(i);
 
-			if(this.lastCookTime != this.diamondFurnace.cookTime) {
-				icrafting.sendProgressBarUpdate(this, 0, this.diamondFurnace.cookTime);
+			if(this.lastCookTime != this.obsidianFurnace.cookTime) {
+				icrafting.sendProgressBarUpdate(this, 0, this.obsidianFurnace.cookTime);
 			}
 
-			if(this.lastBurnTime != this.diamondFurnace.burnTime) {
-				icrafting.sendProgressBarUpdate(this, 1, this.diamondFurnace.burnTime);
+			if(this.lastBurnTime != this.obsidianFurnace.burnTime) {
+				icrafting.sendProgressBarUpdate(this, 1, this.obsidianFurnace.burnTime);
 			}
 
-			if(this.lastCurrentItemBurnTime != this.diamondFurnace.currentItemBurnTime) {
-				icrafting.sendProgressBarUpdate(this, 2, this.diamondFurnace.currentItemBurnTime);
+			if(this.lastCurrentItemBurnTime != this.obsidianFurnace.currentItemBurnTime) {
+				icrafting.sendProgressBarUpdate(this, 2, this.obsidianFurnace.currentItemBurnTime);
 			}
 		}
 
-		this.lastCookTime = this.diamondFurnace.cookTime;
-		this.lastBurnTime = this.diamondFurnace.burnTime;
-		this.lastCurrentItemBurnTime = this.diamondFurnace.currentItemBurnTime;
+		this.lastCookTime = this.obsidianFurnace.cookTime;
+		this.lastBurnTime = this.obsidianFurnace.burnTime;
+		this.lastCurrentItemBurnTime = this.obsidianFurnace.currentItemBurnTime;
 	}
 
 	@SideOnly(Side.CLIENT)
     public void updateProgressBar(int par1, int par2)
     {
         if (par1 == 0) {
-            this.diamondFurnace.cookTime = par2;
+            this.obsidianFurnace.cookTime = par2;
         }
 
         if (par1 == 1) {
-            this.diamondFurnace.burnTime = par2;
+            this.obsidianFurnace.burnTime = par2;
         }
 
         if (par1 == 2) {
-            this.diamondFurnace.currentItemBurnTime = par2;
+            this.obsidianFurnace.currentItemBurnTime = par2;
         }
     }
 
@@ -107,7 +106,7 @@ public class ContainerDiamondFurnace extends Container{
                     {
                         return null;
                     }
-                }else if (TileEntityDiamondFurnace.isItemFuel(itemstack1)) {
+                }else if (TileEntityObsidianFurnace.isItemFuel(itemstack1)) {
                     if (!this.mergeItemStack(itemstack1, 1, 2, false))
                     {
                         return null;

@@ -1,9 +1,8 @@
-package com.MoreFurnacesMod.mod.blocks;
+package io.github.mattkx4.morefurnaces.blocks;
 
-import com.MoreFurnacesMod.mod.MoreFurnacesMod;
-import com.MoreFurnacesMod.mod.tileentity.TileEntityObsidianFurnace;
-import com.MoreFurnacesMod.mod.tileentity.TileEntityDiamondFurnace;
-
+import io.github.mattkx4.morefurnaces.main.MoreFurnacesMod;
+import io.github.mattkx4.morefurnaces.tileentity.TileEntityDiamondFurnace;
+import io.github.mattkx4.morefurnaces.tileentity.TileEntityObsidianFurnace;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;

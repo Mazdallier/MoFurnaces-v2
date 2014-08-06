@@ -1,4 +1,4 @@
-package com.MoreFurnacesMod.mod.handler;
+package io.github.mattkx4.morefurnaces.handler;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 

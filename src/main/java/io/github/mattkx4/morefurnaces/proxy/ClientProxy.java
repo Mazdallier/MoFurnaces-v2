@@ -1,4 +1,4 @@
-package com.MoreFurnacesMod.mod.proxy;
+package io.github.mattkx4.morefurnaces.proxy;
 
 public class ClientProxy extends ServerProxy{
 

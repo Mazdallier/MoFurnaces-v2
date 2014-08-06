@@ -1,4 +1,4 @@
-package com.MoreFurnacesMod.mod.gui;
+package io.github.mattkx4.morefurnaces.gui;
 
 
 public class MFMGui {

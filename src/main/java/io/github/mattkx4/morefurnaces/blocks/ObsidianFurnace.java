@@ -1,10 +1,10 @@
-package com.MoreFurnacesMod.mod.blocks;
+package io.github.mattkx4.morefurnaces.blocks;
+
+import io.github.mattkx4.morefurnaces.lib.Strings;
+import io.github.mattkx4.morefurnaces.main.MoreFurnacesMod;
+import io.github.mattkx4.morefurnaces.tileentity.TileEntityObsidianFurnace;
 
 import java.util.Random;
-
-import com.MoreFurnacesMod.mod.MoreFurnacesMod;
-import com.MoreFurnacesMod.mod.lib.Strings;
-import com.MoreFurnacesMod.mod.tileentity.TileEntityObsidianFurnace;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
