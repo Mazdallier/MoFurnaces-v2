@@ -23,7 +23,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @Mod(modid = Strings.MODID,name = Strings.name,version = Strings.version)
 public class MoreFurnacesMod {
 	/*
-	 * 
+	 * You're so awesome....
 	 */
 	
 	//new creative tab for all new physical aspects of the mod
