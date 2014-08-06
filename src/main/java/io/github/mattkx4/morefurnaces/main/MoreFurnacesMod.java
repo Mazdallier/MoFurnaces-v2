@@ -24,6 +24,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class MoreFurnacesMod {
 	/*
 	 * You're so awesome....
+	 * No you are....
 	 */
 	
 	//new creative tab for all new physical aspects of the mod
