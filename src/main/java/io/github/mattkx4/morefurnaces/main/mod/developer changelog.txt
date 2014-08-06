@@ -1,0 +1,67 @@
+changelog 
+
+0.1 -> 0.2{
+
+	obsidian furnace
+		- added inverse fuel efficiency integer
+		- fixed furnace not returning to idle bug
+		~~unknown bug retaining to smaller valued fuels(stick)
+			- testing to see if bug's effects acts on other small items - does not
+			- fixed bug retaining to smaller valued fuels(stick) (previous bug)
+		/*
+		 *inverse fuel efficiency is dependent on furnace speed, 
+		 *	- ie. regular furnace has speed of 200 and implied efficiency of 1. 
+		 *	obsidian furnace has speed of 50 and inverse efficiency integer value of 4.
+		 *	both have the same efficiency to speed ratio of 1:200
+		 */		
+		- increased obsidian furnace inverse fuel efficiency integer to 8.
+			- this decreases the actual fuel efficiency to half that of regular furnace
+			- changing the integer to 16 would make the furnace 1/4 as efficient
+		~~halving efficiency created a bug in smaller valued fuels(stick) resuting in 4 sticks not smelting 1 item
+			- attempted solution resulted in a surprising effect of creating an evercooking furnace, 
+			will utilise effect for netherrack furnace's ability to not need fuel
+		- solved previous bug
+			- solution casts the individual calculation parts as doubles, adds 0.5 to round up, 
+			then casts result as an integer, in the very long run this may result in an extra smelt from the fuels
+			-tested, works
+
+	added new furnace: diamond furnace
+		- simple copy and paste of obsidian furnace classes with all references to obsidian furnace  changed to diamond furnace
+		- adjusted smelting speed to 3 times a regular furnace
+		- increased fuel efficiency of diamond furnace to equal that of a regular furnace
+			~~bug created, similar to previous bug, needs trial and error fine tuning of TileEntityDiamondFurnace->updateEntity->burnTime
+		- solved previous bug, however induces a rounding error that will stack with excessive amounts of item to be cooked.
+		I estimate that cooking three stacks of a single item will result in enough leftover fuel for an extra item to be cooked.
+		testing will have to confirm or deny this but it isn't a mod breaking error.		
+		 
+	changes to the custom furnace gui
+		- renamed textures/gui/obsidian_furnace.png to custom_furnace.png 
+		- Corrected calls in Gui classes to grab the custom_furnace.png gui
+		- altered colour hues to look different
+	
+	TODO 
+		- diamond furnace custom textures
+		- add in remaining furnaces with the following attributes
+			- brick furnace: speed = 1.5, efficiency = 1.5
+			- iron furnace: speed = 2, efficiency = 1
+			- quartz furnace: speed = 1, efficiency = 2
+			- netherrack furnace: speed = 0.5, efficiency = no fuel needed
+			- gold furnace: speed = 4, efficiency = 0.5, added effect of not smelting ores
+		- create/find custom textures for previous mentioned custom furnaces
+
+}
+
+Wishlist{
+
+	- fix inevitable problems with netherrack furnace and gold furnace
+		- remove netherrack furnace fuel slot
+	- multi smelting furnaces, furnaces with will individually smelt more than 1 item
+		- tiered to smelt 1, 2, 3 and 4 items simultaneously
+		- idea: replace side faces with front faces
+	- ender furnaces
+	- redesign custom furnace gui
+	- implement ability to turn ingots into blocks if enough ingots are available
+		- send to a secondary output slot, not the primary output
+	- furnace upgrades ??? not likely due to nature of mod being similar to tool tiering
+
+}
