@@ -95,9 +95,9 @@ public class ObsidianFurnace extends BlockContainer{
 	@SideOnly(Side.CLIENT)
 	//register item side textures to icons
 	public void registerBlockIcons(IIconRegister iconRegister){
-		this.blockIcon = iconRegister.registerIcon(Strings.MODID+":obsidian_furnace_side");
-		this.iconFront = iconRegister.registerIcon(Strings.MODID+":"+(this.isActive ? "obsidian_furnace_on" : "obsidian_furnace_off"));
-		this.iconTop = iconRegister.registerIcon(Strings.MODID+":obsidian_furnace_top");
+		this.blockIcon = iconRegister.registerIcon(Strings.MODID+":ObsidianFurnace_side");
+		this.iconFront = iconRegister.registerIcon(Strings.MODID+":"+(this.isActive ? "ObsidianFurnace_front_active" : "ObsidianFurnace_front_idle"));
+		this.iconTop = iconRegister.registerIcon(Strings.MODID+":ObsidianFurnace_top");
 	}
 	
 	//called upon on block activation (right click)

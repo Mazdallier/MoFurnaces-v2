@@ -95,9 +95,9 @@ private final boolean isActive;
 	@SideOnly(Side.CLIENT)
 	//register item side textures to icons
 	public void registerBlockIcons(IIconRegister iconRegister){
-		this.blockIcon = iconRegister.registerIcon(Strings.MODID + ":diamond_furnace_side");
-		this.iconFront = iconRegister.registerIcon(Strings.MODID + ":" + (this.isActive ? "diamond_furnace_on" : "diamond_furnace_off"));
-		this.iconTop = iconRegister.registerIcon(Strings.MODID + ":diamond_furnace_top");
+		this.blockIcon = iconRegister.registerIcon(Strings.MODID + ":DiamondFurnace_side");
+		this.iconFront = iconRegister.registerIcon(Strings.MODID + ":" + (this.isActive ? "DiamondFurnace_front_active" : "DiamondFurnace_front_idle"));
+		this.iconTop = iconRegister.registerIcon(Strings.MODID + ":DiamondFurnace_top");
 	}
 	
 	//called upon on block activation (right click)

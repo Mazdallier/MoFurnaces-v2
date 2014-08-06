@@ -1,0 +1,17 @@
+{
+  "modListVersion": 2,
+  "modList": [{
+    "modid": "mfm",
+    "name": "Mo' Furnaces Mod",
+    "description": "A mod that adds more furnaces.",
+    "version": "ALPHA V0.1",
+    "mcversion": "1.7.10",
+    "url": "http://mattkx4.github.io/",
+    "updateUrl": "",
+    "authorList": [ "Mattkx4", "Pr1meSh0ck" ],
+    "credits": "Authored by Mattkx4 and Pr1meSh0ck, original concept by Mattkx4.",
+    "logoFile": "",
+    "screenshots": [],
+    "parent": ""
+  }]
+}

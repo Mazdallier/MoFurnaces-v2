@@ -38,9 +38,14 @@ changelog
 		- renamed textures/gui/obsidian_furnace.png to custom_furnace.png 
 		- Corrected calls in Gui classes to grab the custom_furnace.png gui
 		- altered colour hues to look different
+		- Changed crafting recipe of Diamond Furnace to use regular diamonds
+		
+	changed custom textures to the following format:
+	   <FurnaceType>Furnace_<side>_[active/idle]. Example
+	   - ObsidianFurnace_front_active.png
 	
 	TODO 
-		- diamond furnace custom textures
+		- diamond furnace custom textures - DONE
 		- add in remaining furnaces with the following attributes
 			- brick furnace: speed = 1.5, efficiency = 1.5
 			- iron furnace: speed = 2, efficiency = 1

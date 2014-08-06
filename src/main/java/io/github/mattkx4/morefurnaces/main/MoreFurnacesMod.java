@@ -20,7 +20,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 
-@Mod(modid = Strings.MODID,name = Strings.name,version = Strings.version)
+@Mod(modid = Strings.MODID, name = Strings.name, version = Strings.version)
 public class MoreFurnacesMod {
 	
 	//new creative tab for all new physical aspects of the mod
@@ -39,7 +39,7 @@ public class MoreFurnacesMod {
 	@Instance(Strings.MODID)
 	public static MoreFurnacesMod instance;
 	
-	@SidedProxy (clientSide = "com.MoreFurnacesMod.mod.proxy.ClientProxy",serverSide = "com.MoreFurnacesMod.mod.proxy.ServerProxy")
+	@SidedProxy (clientSide = "io.github.mattkx4.morefurnaces.proxy.ClientProxy",serverSide = "io.github.mattkx4.morefurnaces.proxy.ServerProxy")
 	public static ServerProxy proxy;
 	
 	//Loads before
