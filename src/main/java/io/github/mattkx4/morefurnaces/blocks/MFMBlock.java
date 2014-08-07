@@ -1,12 +1,15 @@
 package io.github.mattkx4.morefurnaces.blocks;
 
-import io.github.mattkx4.morefurnaces.main.MoreFurnacesMod;
+import io.github.mattkx4.morefurnaces.main.MoFurnacesMod;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityDiamondFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityObsidianFurnace;
+import io.github.mattkx4.morefurnaces.tileentity.TileEntityIronFurnace;
+
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class MFMBlock {
@@ -18,7 +21,9 @@ public class MFMBlock {
     public static final Block.SoundType soundTypeObsidian = new Block.SoundType("stone", 1.0F, 1.0F);
     //Diamond furnace step sound
     public static final Block.SoundType soundTypeDiamond = new Block.SoundType("stone", 1.0F, 1.5F);
-	
+	//Iron furnace step sound
+    public static final Block.SoundType soundTypeIron = new Block.SoundType("stone", 1.0F,  1.5F);
+    
 	public static void mainRegistry(){
 		initializeBlock();
 		registerBlock();
@@ -38,6 +43,9 @@ public class MFMBlock {
 	//Diamond furnace active and idle blocks
 	public static Block DiamondFurnaceIdle;
 	public static Block DiamondFurnaceActive;
+	//Iron furnace active and idle states
+	public static Block IronFurnaceIdle;
+	public static Block IronFurnaceActive;
 	
 	//Initialize new block and include settings
 	public static void initializeBlock(){
@@ -45,11 +53,15 @@ public class MFMBlock {
 		 * Initialize the active and idle blocks and set attributes
 		 */
 		//initialize the Obsidian furnace
-		ObsidianFurnaceIdle = new ObsidianFurnace(false).setBlockName("ObsidianFurnaceIdle").setHardness(50.0F).setResistance(2000.0F).setStepSound(soundTypeObsidian).setCreativeTab(MoreFurnacesMod.MFM);
+		ObsidianFurnaceIdle = new ObsidianFurnace(false).setBlockName("ObsidianFurnaceIdle").setHardness(50.0F).setResistance(2000.0F).setStepSound(soundTypeObsidian).setCreativeTab(MoFurnacesMod.MFM);
 		ObsidianFurnaceActive = new ObsidianFurnace(true).setBlockName("ObsidianFurnaceActive").setHardness(50.0F).setResistance(2000.0F).setStepSound(soundTypeObsidian).setLightLevel(0.625F);
 		//initialize the Diamond furnace
-		DiamondFurnaceIdle = new DiamondFurnace(false).setBlockName("DiamondFurnaceIdle").setHardness(5.0F).setResistance(50.0F).setStepSound(soundTypeDiamond).setCreativeTab(MoreFurnacesMod.MFM);
+		DiamondFurnaceIdle = new DiamondFurnace(false).setBlockName("DiamondFurnaceIdle").setHardness(5.0F).setResistance(50.0F).setStepSound(soundTypeDiamond).setCreativeTab(MoFurnacesMod.MFM);
 		DiamondFurnaceActive = new DiamondFurnace(true).setBlockName("DiamondFurnaceActive").setHardness(5.0F).setResistance(10.0F).setStepSound(soundTypeDiamond).setLightLevel(0.625F);
+		//initialize the Iron Furnace
+		IronFurnaceIdle = new IronFurnace(false).setBlockName("IronFurnaceIdle").setHardness(5.0F).setResistance(10.0F).setStepSound(soundTypeIron).setCreativeTab(MoFurnacesMod.MFM);
+		IronFurnaceActive = new IronFurnace(true).setBlockName("IronFurnaceActive").setHardness(5.0F).setResistance(10.0F).setStepSound(soundTypeIron).setLightLevel(0.625F);
+		
 	}
 	
 	//Register new blocks here with game registry
@@ -65,6 +77,9 @@ public class MFMBlock {
 		//register Diamond furnace blocks
 		GameRegistry.registerBlock(DiamondFurnaceIdle, "DiamondFurnaceIdle");
 		GameRegistry.registerBlock(DiamondFurnaceActive, "DiamondFurnaceActive");
+		//register Iron furnace
+		GameRegistry.registerBlock(IronFurnaceIdle,  "IronFurnaceIdle");
+		GameRegistry.registerBlock(IronFurnaceActive, "IronFurnaceActive");
 	}
 	
 	//registry for initialization event
@@ -79,6 +94,9 @@ public class MFMBlock {
 		//register for Diamond furnace
 		GameRegistry.registerTileEntity(TileEntityDiamondFurnace.class, "Diamond Furnace");
 		GameRegistry.addRecipe(new ItemStack(DiamondFurnaceIdle), new Object[]{"OOO", "O O", "OOO", 'O', Items.diamond});
+		//register for Iron furnace
+		GameRegistry.registerTileEntity(TileEntityIronFurnace.class, "Iron Furnace");
+		GameRegistry.addRecipe(new ItemStack(IronFurnaceIdle), new Object[]{"OOO", "O O", "OOO", 'O', Items.iron_ingot});
 		
 	}
 

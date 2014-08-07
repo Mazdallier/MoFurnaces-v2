@@ -1,6 +1,7 @@
 package io.github.mattkx4.morefurnaces.handler;
 
 import net.minecraft.item.ItemStack;
+
 import cpw.mods.fml.common.IFuelHandler;
 
 public class FuelHandler implements IFuelHandler{
@@ -10,7 +11,7 @@ public class FuelHandler implements IFuelHandler{
 	@Override
 	public int getBurnTime(ItemStack fuel) {
 		
-		//formate if(fuel.getItem() == MFMItem.item'itemname') return fuel value
+		//format if(fuel.getItem() == MFMItem.item'itemname') return fuel value
 		
 		return 0;
 	}

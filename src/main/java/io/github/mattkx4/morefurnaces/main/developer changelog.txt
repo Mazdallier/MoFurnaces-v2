@@ -41,14 +41,33 @@ changelog
 		- Changed crafting recipe of Diamond Furnace to use regular diamonds
 		
 	changed custom textures to the following format:
-	   <FurnaceType>Furnace_<side>_[active/idle]. Example
-	   - ObsidianFurnace_front_active.png
+	  	 <FurnaceType>Furnace_<side>_[active/idle]. Example
+	   	- ObsidianFurnace_front_active.png
+
+	7 AUG - Pr1meSh0ck{
+		added new furnace: iron furnace
+			- created the iron furnace with 2X furnace speed and 1X fuel efficiency, no problems encountered
+			- recipes are exactly the sam as the other except it utilises iron_ingot
+			- added new iron furnace textures
+			- texture is simply the diamond texture lightened and unsaturated to look like iron
+		
+		edited en_US.lang
+			- added the iron furnace tile entity name
+			- added names for the containers:osidianFurnace, diamondFurnace,ironFurnace,Inventory 
+			to fix names not rendering in the gui
+		neatened up imports in most .java files
+
+		refactored(renamed) the main java file from More Furnace Mod to MoFurnacesMod to keep it in line with mod name
+
+		added textures/gui/custom_gui.png so the graphical user interface now renders properly
+	}
 	
+
 	TODO 
 		- diamond furnace custom textures - DONE
 		- add in remaining furnaces with the following attributes
 			- brick furnace: speed = 1.5, efficiency = 1.5
-			- iron furnace: speed = 2, efficiency = 1
+			- iron furnace: speed = 2, efficiency = 1 - DONE WITH TEXTURES
 			- quartz furnace: speed = 1, efficiency = 2
 			- netherrack furnace: speed = 0.5, efficiency = no fuel needed
 			- gold furnace: speed = 4, efficiency = 0.5, added effect of not smelting ores

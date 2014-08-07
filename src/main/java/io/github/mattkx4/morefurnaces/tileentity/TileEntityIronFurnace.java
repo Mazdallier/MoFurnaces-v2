@@ -1,6 +1,6 @@
 package io.github.mattkx4.morefurnaces.tileentity;
 
-import io.github.mattkx4.morefurnaces.blocks.DiamondFurnace;
+import io.github.mattkx4.morefurnaces.blocks.IronFurnace;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -23,9 +23,9 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class TileEntityDiamondFurnace extends TileEntity implements ISidedInventory{
-
-private String localizedName;
+public class TileEntityIronFurnace extends TileEntity implements ISidedInventory{
+	
+	private String localizedName;
 	
 	private static final int[] slots_top = new int[]{0};
 	private static final int[] slots_bottom = new int[]{2,1};
@@ -33,11 +33,11 @@ private String localizedName;
 	
 	private ItemStack[] slots = new ItemStack [3];
 	
-	//Inverse of furnace efficiency for fuels, = normal furnace speed/furnace speed
-	public int furnaceEfficiency = 3;
+	//Inverse of furnace efficiency for fuels, 
+	public int furnaceEfficiency = 2;
 
 	//speed of the furnace a lower integer means a faster speed regular furnace is 200
-	public int furnaceSpeed = 66;	//3x faster
+	public int furnaceSpeed = 100;
 	
 	//number of ticks the furnace will burn for
 	public int burnTime;
@@ -105,7 +105,7 @@ private String localizedName;
 	}
 	
 	public String getInventoryName(){
-		return this.hasCustomInventoryName() ? this.localizedName : "container.diamondFurnace";
+		return this.hasCustomInventoryName() ? this.localizedName : "container.ironFurnace";
 	}
 	
 	public boolean hasCustomInventoryName(){
@@ -197,7 +197,7 @@ private String localizedName;
 			//if the burnTime has reached zero and there is an item that can be smelted
 			if(this.burnTime == 0 && this.canSmelt()) {
 				//set currentItemBurnTime and burnTime to the fuel item burn time || add a '+1' after fuel efficiency to create an ever lasting furnace
-				this.currentItemBurnTime = this.burnTime = getItemBurnTime(this.slots[1]) / this.furnaceEfficiency;
+				this.currentItemBurnTime = this.burnTime = (int) (((double)getItemBurnTime(this.slots[1]) / (double)this.furnaceEfficiency));
 
 				if(this.isBurning()) {
 					flag1 = true;
@@ -225,7 +225,7 @@ private String localizedName;
 
 			if(flag != this.isBurning()) {
 				flag1 = true;
-				DiamondFurnace.updateDiamondFurnaceState(this.burnTime > 0, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
+				IronFurnace.updateIronFurnaceState(this.burnTime > 0, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
 			}
 		}
 		
@@ -233,7 +233,7 @@ private String localizedName;
 			this.markDirty();
 		}
 	}
-
+	
 	//check to see is the item can be smelted
 	public boolean canSmelt(){
 		if(this.slots[0] == null){
@@ -331,5 +331,4 @@ private String localizedName;
 		//yes as long as its not from slot 0, slot 1 or the item is a bucket 
 		return j != 0 || i!= 1 || itemstack.getItem() == Items.bucket;
 	}
-	
 }

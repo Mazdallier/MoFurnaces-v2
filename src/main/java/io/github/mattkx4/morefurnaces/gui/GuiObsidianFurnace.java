@@ -3,6 +3,7 @@ package io.github.mattkx4.morefurnaces.gui;
 import io.github.mattkx4.morefurnaces.container.ContainerObsidianFurnace;
 import io.github.mattkx4.morefurnaces.lib.Strings;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityObsidianFurnace;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
