@@ -4,8 +4,10 @@ import io.github.mattkx4.morefurnaces.main.MoFurnacesMod;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityDiamondFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityObsidianFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityIronFurnace;
+import io.github.mattkx4.morefurnaces.tileentity.TileEntityGoldFurnace;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.Block.SoundType;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -23,6 +25,8 @@ public class MFMBlock {
     public static final Block.SoundType soundTypeDiamond = new Block.SoundType("stone", 1.0F, 1.5F);
 	//Iron furnace step sound
     public static final Block.SoundType soundTypeIron = new Block.SoundType("stone", 1.0F,  1.5F);
+    //Gold furnace step sound
+    public static final Block.SoundType soundTypeGold = new Block.SoundType("stone", 1.0F, 1.5F);
     
 	public static void mainRegistry(){
 		initializeBlock();
@@ -46,6 +50,9 @@ public class MFMBlock {
 	//Iron furnace active and idle states
 	public static Block IronFurnaceIdle;
 	public static Block IronFurnaceActive;
+	//Gold furnace active and idle states
+	public static Block GoldFurnaceIdle;
+	public static Block GoldFurnaceActive;
 	
 	//Initialize new block and include settings
 	public static void initializeBlock(){
@@ -61,7 +68,10 @@ public class MFMBlock {
 		//initialize the Iron Furnace
 		IronFurnaceIdle = new IronFurnace(false).setBlockName("IronFurnaceIdle").setHardness(5.0F).setResistance(10.0F).setStepSound(soundTypeIron).setCreativeTab(MoFurnacesMod.MFM);
 		IronFurnaceActive = new IronFurnace(true).setBlockName("IronFurnaceActive").setHardness(5.0F).setResistance(10.0F).setStepSound(soundTypeIron).setLightLevel(0.625F);
-		
+		//initialize the Gold Furnace
+		GoldFurnaceIdle = new GoldFurnace(false).setBlockName("GoldFurnaceIdle").setHardness(5.0F).setResistance(10.0F).setStepSound(soundTypeIron).setCreativeTab(MoFurnacesMod.MFM);
+		GoldFurnaceActive = new GoldFurnace(true).setBlockName("GoldFurnaceActive").setHardness(5.0F).setResistance(10.0F).setStepSound(soundTypeIron).setLightLevel(0.625F);
+				
 	}
 	
 	//Register new blocks here with game registry
@@ -80,6 +90,9 @@ public class MFMBlock {
 		//register Iron furnace
 		GameRegistry.registerBlock(IronFurnaceIdle,  "IronFurnaceIdle");
 		GameRegistry.registerBlock(IronFurnaceActive, "IronFurnaceActive");
+		//register Gold furnace
+		GameRegistry.registerBlock(GoldFurnaceIdle,  "GoldFurnaceIdle");
+		GameRegistry.registerBlock(GoldFurnaceActive, "GoldFurnaceActive");
 	}
 	
 	//registry for initialization event
@@ -97,7 +110,9 @@ public class MFMBlock {
 		//register for Iron furnace
 		GameRegistry.registerTileEntity(TileEntityIronFurnace.class, "Iron Furnace");
 		GameRegistry.addRecipe(new ItemStack(IronFurnaceIdle), new Object[]{"OOO", "O O", "OOO", 'O', Items.iron_ingot});
-		
+		//register for Iron furnace
+		GameRegistry.registerTileEntity(TileEntityGoldFurnace.class, "Gold Furnace");
+		GameRegistry.addRecipe(new ItemStack(GoldFurnaceIdle), new Object[]{"OOO", "O O", "OOO", 'O', Items.gold_ingot});
 	}
 
 

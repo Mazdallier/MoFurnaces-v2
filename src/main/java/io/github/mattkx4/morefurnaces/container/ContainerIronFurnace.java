@@ -47,6 +47,7 @@ public class ContainerIronFurnace extends Container{
 		icrafting.sendProgressBarUpdate(this, 2, this.ironFurnace.currentItemBurnTime);
 	}
 
+	//This updates the fuel burn and item cook progress bars
 	public void detectAndSendChanges() {
 		super.detectAndSendChanges();
 		for(int i = 0; i < this.crafters.size(); i++) {

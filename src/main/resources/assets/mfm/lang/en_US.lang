@@ -1,6 +1,7 @@
 tile.ObsidianFurnaceIdle.name=Obsidian Furnace
 tile.DiamondFurnaceIdle.name=Diamond Furnace
 tile.IronFurnaceIdle.name=Iron Furnace
+tile.GoldFurnaceIdle.name=Gold Furnace
 
 itemGroup.mfm=Mo' Furnaces Mod
 
@@ -8,3 +9,4 @@ container.Inventory=Inventory
 container.obsidianFurnace=Obsidian Furnace
 container.diamondFurnace=Diamond Furnace
 container.ironFurnace=Iron Furnace
+container.goldFurnace=Gold Furnace

@@ -47,7 +47,7 @@ changelog
 	7 AUG - Pr1meSh0ck{
 		added new furnace: iron furnace
 			- created the iron furnace with 2X furnace speed and 1X fuel efficiency, no problems encountered
-			- recipes are exactly the sam as the other except it utilises iron_ingot
+			- recipes are exactly the same as the other except it utilises iron_ingot
 			- added new iron furnace textures
 			- texture is simply the diamond texture lightened and unsaturated to look like iron
 		
@@ -61,8 +61,17 @@ changelog
 
 		added textures/gui/custom_gui.png so the graphical user interface now renders properly
 	}
-	
 
+	8 AUG - Pr1meSh0ck{
+		added new furnace:gold furnace
+			- created the gold furnace with 4x furnace speed and 0.5x fuel efficiency, no problems encountered
+			- furnace ignores input items containing the substrings: "ore", "Ore", "_ore", "dust"
+			- recipe is the same as iron and diamond furnaces, except uses gold_ingots
+			- added new gold furnace textures, will change to a gold brick like texture later to avoid 'boring, constant texture patterns'
+			- added new names to en_US.lang
+	}
+	
+	
 	TODO 
 		- diamond furnace custom textures - DONE
 		- add in remaining furnaces with the following attributes
@@ -70,7 +79,7 @@ changelog
 			- iron furnace: speed = 2, efficiency = 1 - DONE WITH TEXTURES
 			- quartz furnace: speed = 1, efficiency = 2
 			- netherrack furnace: speed = 0.5, efficiency = no fuel needed
-			- gold furnace: speed = 4, efficiency = 0.5, added effect of not smelting ores
+			- gold furnace: speed = 4, efficiency = 0.5, added effect of not smelting ores - DONE WITH TEXTURES AND ADDED EFFECT
 		- create/find custom textures for previous mentioned custom furnaces
 
 }
