@@ -1,6 +1,6 @@
 package io.github.mattkx4.morefurnaces.tileentity;
 
-import io.github.mattkx4.morefurnaces.blocks.BrickFurnace;
+import io.github.mattkx4.morefurnaces.blocks.QuartzFurnace;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,7 +21,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class TileEntityBrickFurnace extends TileEntity implements ISidedInventory{
+public class TileEntityQuartzFurnace extends TileEntity implements ISidedInventory{
 	
 	private String localizedName;
 	
@@ -32,11 +32,11 @@ public class TileEntityBrickFurnace extends TileEntity implements ISidedInventor
 	private ItemStack[] slots = new ItemStack [3];
 	
 	//Inverse of furnace efficiency for fuels, 
-	public double furnaceEfficiency = 1.5D; // FIX THIS
+	public int furnaceEfficiency = 2; // FIX THIS
 
 	//speed of the furnace a lower integer means a faster speed regular furnace is 200
-	public int furnaceSpeed = 150; // FIX THIS
-	
+	public int furnaceSpeed = 100; // FIX THIS
+
 	//number of ticks the furnace will burn for
 	public int burnTime;
 	
@@ -103,7 +103,7 @@ public class TileEntityBrickFurnace extends TileEntity implements ISidedInventor
 	}
 	
 	public String getInventoryName(){
-		return this.hasCustomInventoryName() ? this.localizedName : "container.brickFurnace";
+		return this.hasCustomInventoryName() ? this.localizedName : "container.quartzFurnace";
 	}
 	
 	public boolean hasCustomInventoryName(){
@@ -195,7 +195,7 @@ public class TileEntityBrickFurnace extends TileEntity implements ISidedInventor
 			//if the burnTime has reached zero and there is an item that can be smelted
 			if(this.burnTime == 0 && this.canSmelt()) {
 				//set currentItemBurnTime and burnTime to the fuel item burn time || add a '+1' after fuel efficiency to create an ever lasting furnace
-				this.currentItemBurnTime = this.burnTime = (int) (((double)getItemBurnTime(this.slots[1]) / this.furnaceEfficiency));
+				this.currentItemBurnTime = this.burnTime = (int) (((double)getItemBurnTime(this.slots[1]) / (double)this.furnaceEfficiency));
 
 				if(this.isBurning()) {
 					flag1 = true;
@@ -223,7 +223,7 @@ public class TileEntityBrickFurnace extends TileEntity implements ISidedInventor
 
 			if(flag != this.isBurning()) {
 				flag1 = true;
-				BrickFurnace.updateBrickFurnaceState(this.burnTime > 0, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
+				QuartzFurnace.updateQuartzFurnaceState(this.burnTime > 0, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
 			}
 		}
 		
