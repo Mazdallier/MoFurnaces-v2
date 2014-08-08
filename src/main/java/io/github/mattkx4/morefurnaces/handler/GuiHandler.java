@@ -1,23 +1,24 @@
 package io.github.mattkx4.morefurnaces.handler;
 
-import io.github.mattkx4.morefurnaces.main.MoFurnacesMod;
+import io.github.mattkx4.morefurnaces.container.ContainerBrickFurnace;
 import io.github.mattkx4.morefurnaces.container.ContainerDiamondFurnace;
-import io.github.mattkx4.morefurnaces.container.ContainerObsidianFurnace;
-import io.github.mattkx4.morefurnaces.container.ContainerIronFurnace;
 import io.github.mattkx4.morefurnaces.container.ContainerGoldFurnace;
+import io.github.mattkx4.morefurnaces.container.ContainerIronFurnace;
+import io.github.mattkx4.morefurnaces.container.ContainerObsidianFurnace;
+import io.github.mattkx4.morefurnaces.gui.GuiBrickFurnace;
 import io.github.mattkx4.morefurnaces.gui.GuiDiamondFurnace;
-import io.github.mattkx4.morefurnaces.gui.GuiObsidianFurnace;
-import io.github.mattkx4.morefurnaces.gui.GuiIronFurnace;
 import io.github.mattkx4.morefurnaces.gui.GuiGoldFurnace;
+import io.github.mattkx4.morefurnaces.gui.GuiIronFurnace;
+import io.github.mattkx4.morefurnaces.gui.GuiObsidianFurnace;
+import io.github.mattkx4.morefurnaces.main.MoFurnacesMod;
+import io.github.mattkx4.morefurnaces.tileentity.TileEntityBrickFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityDiamondFurnace;
-import io.github.mattkx4.morefurnaces.tileentity.TileEntityObsidianFurnace;
-import io.github.mattkx4.morefurnaces.tileentity.TileEntityIronFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityGoldFurnace;
-
+import io.github.mattkx4.morefurnaces.tileentity.TileEntityIronFurnace;
+import io.github.mattkx4.morefurnaces.tileentity.TileEntityObsidianFurnace;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-
 import cpw.mods.fml.common.network.IGuiHandler;
 
 public class GuiHandler implements IGuiHandler {
@@ -42,6 +43,10 @@ public class GuiHandler implements IGuiHandler {
 			case MoFurnacesMod.guiIDGoldFurnace:
 				if(entity instanceof TileEntityGoldFurnace) {
 					return new ContainerGoldFurnace(player.inventory, (TileEntityGoldFurnace) entity);
+				}
+			case MoFurnacesMod.guiIDBrickFurnace:
+				if(entity instanceof TileEntityBrickFurnace) {
+					return new ContainerBrickFurnace(player.inventory, (TileEntityBrickFurnace) entity);
 				}
 				return null;
 				}
@@ -69,6 +74,10 @@ public class GuiHandler implements IGuiHandler {
 			case MoFurnacesMod.guiIDGoldFurnace:
 				if(entity instanceof TileEntityGoldFurnace) {
 					return new GuiGoldFurnace(player.inventory, (TileEntityGoldFurnace) entity);
+				}
+			case MoFurnacesMod.guiIDBrickFurnace:
+				if(entity instanceof TileEntityBrickFurnace) {
+					return new GuiBrickFurnace(player.inventory, (TileEntityBrickFurnace) entity);
 				}
 				return null;
 				}

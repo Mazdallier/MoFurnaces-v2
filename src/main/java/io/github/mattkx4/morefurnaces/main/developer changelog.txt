@@ -17,9 +17,9 @@ changelog
 		- increased obsidian furnace inverse fuel efficiency integer to 8.
 			- this decreases the actual fuel efficiency to half that of regular furnace
 			- changing the integer to 16 would make the furnace 1/4 as efficient
-		~~halving efficiency created a bug in smaller valued fuels(stick) resuting in 4 sticks not smelting 1 item
-			- attempted solution resulted in a surprising effect of creating an evercooking furnace, 
-			will utilise effect for netherrack furnace's ability to not need fuel
+		~~halving efficiency created a bug in smaller valued fuels(stick) resulting in 4 sticks not smelting 1 item
+			- attempted solution resulted in a surprising effect of creating an ever-cooking furnace, 
+			will utilize effect for netherrack furnace's ability to not need fuel
 		- solved previous bug
 			- solution casts the individual calculation parts as doubles, adds 0.5 to round up, 
 			then casts result as an integer, in the very long run this may result in an extra smelt from the fuels
@@ -36,8 +36,8 @@ changelog
 		 
 	changes to the custom furnace gui
 		- renamed textures/gui/obsidian_furnace.png to custom_furnace.png 
-		- Corrected calls in Gui classes to grab the custom_furnace.png gui
-		- altered colour hues to look different
+		- Corrected calls in GUI classes to grab the custom_furnace.png gui
+		- altered color hues to look different
 		- Changed crafting recipe of Diamond Furnace to use regular diamonds
 		
 	changed custom textures to the following format:
@@ -47,7 +47,7 @@ changelog
 	7 AUG - Pr1meSh0ck{
 		added new furnace: iron furnace
 			- created the iron furnace with 2X furnace speed and 1X fuel efficiency, no problems encountered
-			- recipes are exactly the same as the other except it utilises iron_ingot
+			- recipes are exactly the same as the other except it utilizes iron_ingot
 			- added new iron furnace textures
 			- texture is simply the diamond texture lightened and unsaturated to look like iron
 		
@@ -71,11 +71,24 @@ changelog
 			- added new names to en_US.lang
 	}
 	
+	8 AUG - Mattkx4{
+	   - changed new furnace textures (yours are still awesome by the way)
+	   - Fixed a bunch of spelling mistakes in the dev log... (Yeah...)
+	   - Changed Creative Tab Icon to GoldFurnaceActive
+	   - Corrected hardness and resistance of certain furnaces
+	       - Changed Gold Furnace specifically to hardness of 3.0F (That's hardness of Gold Block)
+	       - Also changed Iron Furnace Resistance for Idle to 10.0F (Don't know why it was at 50.0F O.o)
+	   - Added Brick Furnace with speed of 1.5 and efficiency of 1.5
+	   - Added Harvest Levels to all furnaces
+	       - Harvest levels are all pickaxes
+	       - The level is correspondant to the actual block. (Gold block, diamond block, brick block)
+	}
+	
 	
 	TODO 
 		- diamond furnace custom textures - DONE
 		- add in remaining furnaces with the following attributes
-			- brick furnace: speed = 1.5, efficiency = 1.5
+			- brick furnace: speed = 1.5, efficiency = 1.5 - DONE
 			- iron furnace: speed = 2, efficiency = 1 - DONE WITH TEXTURES
 			- quartz furnace: speed = 1, efficiency = 2
 			- netherrack furnace: speed = 0.5, efficiency = no fuel needed
@@ -96,5 +109,5 @@ Wishlist{
 	- implement ability to turn ingots into blocks if enough ingots are available
 		- send to a secondary output slot, not the primary output
 	- furnace upgrades ??? not likely due to nature of mod being similar to tool tiering
-
+    - custom particles
 }

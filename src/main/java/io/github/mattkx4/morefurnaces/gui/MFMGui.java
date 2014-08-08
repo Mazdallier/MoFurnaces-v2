@@ -24,7 +24,7 @@ public class MFMGui {
 	}
 	
 	private static void registerGui2() {
-		//TODO		
+		// TODO Auto-generated method stub
 		
 	}
 

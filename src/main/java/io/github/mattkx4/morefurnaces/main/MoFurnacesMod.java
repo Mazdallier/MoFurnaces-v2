@@ -39,8 +39,8 @@ public class MoFurnacesMod {
 	public static final int guiIDIronFurnace = 2;
 	//Gold furnace gui ID
 	public static final int guiIDGoldFurnace = 3;
-	
-	
+	//Brick Furnace gui ID
+	public static final int guiIDBrickFurnace = 4;
 	
 	@Instance(Strings.MODID)
 	public static MoFurnacesMod instance;
@@ -50,13 +50,13 @@ public class MoFurnacesMod {
 	
 	//Loads before
 	@EventHandler
-	public static void preload(FMLPreInitializationEvent PreEvent){
+	public static void preload(FMLPreInitializationEvent preEvent){
 		
 		//create new creative tab using obsidian furnace texture
 		MFM = new CreativeTabs("mfm"){
 			@SideOnly(Side.CLIENT)
 			public Item getTabIconItem(){
-				return Item.getItemFromBlock(MFMBlock.ObsidianFurnaceActive);
+				return Item.getItemFromBlock(MFMBlock.DiamondFurnaceActive);
 			}
 		};
 		

@@ -44,6 +44,7 @@ private final boolean isActive;
 		super(Material.rock);
 		
 		this.isActive = isActive;
+		this.setHarvestLevel("pickaxe", 2);
 	}
 	
 	public Item getItemDropped(int i, Random random, int j){

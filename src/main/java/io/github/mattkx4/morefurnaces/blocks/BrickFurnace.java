@@ -2,7 +2,7 @@ package io.github.mattkx4.morefurnaces.blocks;
 
 import io.github.mattkx4.morefurnaces.lib.Strings;
 import io.github.mattkx4.morefurnaces.main.MoFurnacesMod;
-import io.github.mattkx4.morefurnaces.tileentity.TileEntityDiamondFurnace;
+import io.github.mattkx4.morefurnaces.tileentity.TileEntityBrickFurnace;
 
 import java.util.Random;
 
@@ -22,14 +22,13 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-
 import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class DiamondFurnace extends BlockContainer{
+public class BrickFurnace extends BlockContainer{
 
-private final boolean isActive;
+	private final boolean isActive;
 	
 	private Random rand = new Random();
 	
@@ -41,16 +40,16 @@ private final boolean isActive;
 	
 	private static boolean keepInventory;
 	
-	public DiamondFurnace(boolean isActive) {
+	public BrickFurnace(boolean isActive) {
 		super(Material.rock);
 		
 		this.isActive = isActive;
-		this.setHarvestLevel("pickaxe", 2);
+		this.setHarvestLevel("pickaxe", 0);
 	}
 	
 	public Item getItemDropped(int i, Random random, int j){
 		
-		return Item.getItemFromBlock(MFMBlock.DiamondFurnaceIdle);	
+		return Item.getItemFromBlock(MFMBlock.BrickFurnaceIdle);	
 	}	
 	
 	//called whenever the block is added to the world
@@ -58,7 +57,7 @@ private final boolean isActive;
 		super.onBlockAdded(world, x, y, z);
 		this.setDefaultDirection(world, x, y, z);
 	}	
-
+	
 	private void setDefaultDirection(World world, int x, int y, int z) {
 		if(!world.isRemote){
 			Block b1 = world.getBlock(x, y, z-1);
@@ -97,29 +96,29 @@ private final boolean isActive;
 	@SideOnly(Side.CLIENT)
 	//register item side textures to icons
 	public void registerBlockIcons(IIconRegister iconRegister){
-		this.blockIcon = iconRegister.registerIcon(Strings.MODID + ":DiamondFurnace_side");
-		this.iconFront = iconRegister.registerIcon(Strings.MODID + ":" + (this.isActive ? "DiamondFurnace_front_active" : "DiamondFurnace_front_idle"));
-		this.iconTop = iconRegister.registerIcon(Strings.MODID + ":DiamondFurnace_top");
+		this.blockIcon = iconRegister.registerIcon(Strings.MODID+":BrickFurnace_side");
+		this.iconFront = iconRegister.registerIcon(Strings.MODID+":"+(this.isActive ? "BrickFurnace_front_active" : "BrickFurnace_front_idle"));
+		this.iconTop = iconRegister.registerIcon(Strings.MODID+":BrickFurnace_top");
 	}
 	
 	//called upon on block activation (right click)
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitx, float hity, float hitz){
 		if(!world.isRemote) {
-			FMLNetworkHandler.openGui(player, MoFurnacesMod.instance, MoFurnacesMod.guiIDDiamondFurnace, world, x, y, z);
+			FMLNetworkHandler.openGui(player, MoFurnacesMod.instance, MoFurnacesMod.guiIDBrickFurnace, world, x, y, z);
 		}
 		return true;
 	}
 
-	public static void updateDiamondFurnaceState(boolean active, World worldObj, int xCoord, int yCoord, int zCoord) {
+	public static void updateBrickFurnaceState(boolean active, World worldObj, int xCoord, int yCoord, int zCoord) {
 		int i = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
 		
 		TileEntity tileentity = worldObj.getTileEntity(xCoord, yCoord, zCoord);
 		keepInventory = true;
 		
 		if(active == true){
-			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlock.DiamondFurnaceActive);
+			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlock.BrickFurnaceActive);
 		}else{
-			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlock.DiamondFurnaceIdle);
+			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlock.BrickFurnaceIdle);
 		}
 		keepInventory = false;
 		
@@ -132,7 +131,7 @@ private final boolean isActive;
 	}
 	
 	public TileEntity createNewTileEntity(World world, int i) {
-		return new TileEntityDiamondFurnace();
+		return new TileEntityBrickFurnace();
 	}
 	
 	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entityplayer, ItemStack itemstack){
@@ -155,14 +154,14 @@ private final boolean isActive;
 		}
 		
 		if(itemstack.hasDisplayName()){
-			((TileEntityDiamondFurnace)world.getTileEntity(x, y, z)).setGuiDisplayName(itemstack.getDisplayName());
+			((TileEntityBrickFurnace)world.getTileEntity(x, y, z)).setGuiDisplayName(itemstack.getDisplayName());
 		}
 		
 	}
 
 	public void breakBlock(World world, int x, int y, int z, Block oldblock, int oldmetadata){
         if (!keepInventory){
-            TileEntityDiamondFurnace tileentity = (TileEntityDiamondFurnace)world.getTileEntity(x, y, z);
+            TileEntityBrickFurnace tileentity = (TileEntityBrickFurnace)world.getTileEntity(x, y, z);
 
             if (tileentity != null){
                 for (int i = 0; i < tileentity.getSizeInventory(); ++i){
@@ -186,7 +185,7 @@ private final boolean isActive;
                             if (itemstack.hasTagCompound()){
                                 item.getEntityItem().setTagCompound((NBTTagCompound)itemstack.getTagCompound().copy());
                             }
-                            //omit following at a later date
+                            //omit following
                             /**
                             float f3 = 0.05F;
                             item.motionX = (double)((float)this.rand.nextGaussian() * f3);
@@ -204,8 +203,10 @@ private final boolean isActive;
 
         super.breakBlock(world, x, y, z, oldblock, oldmetadata);
     }
-
-    //A randomly called display update to be able to add particles or other items for display
+	
+	/*
+     * A randomly called display update to be able to add particles or other items for display
+     */
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(World world, int x, int y, int z, Random random){
         if (this.isActive){
@@ -232,22 +233,27 @@ private final boolean isActive;
         }
     }
 
-     //If this returns true, then comparators facing away from this block will use the value from
-     //getComparatorInputOverride instead of the actual redstone signal strength.
+    /*
+     * If this returns true, then comparators facing away from this block will use the value from
+     * getComparatorInputOverride instead of the actual redstone signal strength.
+     */
     public boolean hasComparatorInputOverride(){
         return true;
     }
 
-    //If hasComparatorInputOverride returns true, the return value from this is used instead of the redstone signal
-    //strength when this block inputs to a comparator.
+    /*
+     * If hasComparatorInputOverride returns true, the return value from this is used instead of the redstone signal
+     * strength when this block inputs to a comparator.
+     */
     public int getComparatorInputOverride(World world, int x, int y, int z, int k){
         return Container.calcRedstoneFromInventory((IInventory)world.getTileEntity(x, y, z));
     }
 
-    //Gets an item for the block being called on. Args: world, x, y, z
+    /*
+     * Gets an item for the block being called on. Args: world, x, y, z
+     */
     @SideOnly(Side.CLIENT)
     public Item getItem(World world, int x, int y, int z){
-        return Item.getItemFromBlock(MFMBlock.DiamondFurnaceIdle);
+        return Item.getItemFromBlock(MFMBlock.BrickFurnaceIdle);
     }
-	
 }

@@ -45,6 +45,7 @@ public class ObsidianFurnace extends BlockContainer{
 		super(Material.rock);
 		
 		this.isActive = isActive;
+		this.setHarvestLevel("pickaxe", 3);
 	}
 	
 	public Item getItemDropped(int i, Random random, int j){

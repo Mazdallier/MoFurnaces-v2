@@ -1,7 +1,6 @@
 package io.github.mattkx4.morefurnaces.tileentity;
 
-import io.github.mattkx4.morefurnaces.blocks.IronFurnace;
-
+import io.github.mattkx4.morefurnaces.blocks.BrickFurnace;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,12 +17,11 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
-
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class TileEntityIronFurnace extends TileEntity implements ISidedInventory{
+public class TileEntityBrickFurnace extends TileEntity implements ISidedInventory{
 	
 	private String localizedName;
 	
@@ -34,11 +32,11 @@ public class TileEntityIronFurnace extends TileEntity implements ISidedInventory
 	private ItemStack[] slots = new ItemStack [3];
 	
 	//Inverse of furnace efficiency for fuels, 
-	public int furnaceEfficiency = 2;
+	public float furnaceEfficiency = 1.5F;
 
 	//speed of the furnace a lower integer means a faster speed regular furnace is 200
-	public int furnaceSpeed = 100;
-
+	public int furnaceSpeed = 150;
+	
 	//number of ticks the furnace will burn for
 	public int burnTime;
 	
@@ -105,7 +103,7 @@ public class TileEntityIronFurnace extends TileEntity implements ISidedInventory
 	}
 	
 	public String getInventoryName(){
-		return this.hasCustomInventoryName() ? this.localizedName : "container.ironFurnace";
+		return this.hasCustomInventoryName() ? this.localizedName : "container.brickFurnace";
 	}
 	
 	public boolean hasCustomInventoryName(){
@@ -225,7 +223,7 @@ public class TileEntityIronFurnace extends TileEntity implements ISidedInventory
 
 			if(flag != this.isBurning()) {
 				flag1 = true;
-				IronFurnace.updateIronFurnaceState(this.burnTime > 0, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
+				BrickFurnace.updateBrickFurnaceState(this.burnTime > 0, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
 			}
 		}
 		
