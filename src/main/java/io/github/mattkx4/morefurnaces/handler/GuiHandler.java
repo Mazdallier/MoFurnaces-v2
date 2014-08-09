@@ -1,30 +1,27 @@
 package io.github.mattkx4.morefurnaces.handler;
 
-import io.github.mattkx4.morefurnaces.container.ContainerBoneFurnace;
 import io.github.mattkx4.morefurnaces.container.ContainerBrickFurnace;
 import io.github.mattkx4.morefurnaces.container.ContainerDiamondFurnace;
 import io.github.mattkx4.morefurnaces.container.ContainerGoldFurnace;
 import io.github.mattkx4.morefurnaces.container.ContainerIronFurnace;
-import io.github.mattkx4.morefurnaces.container.ContainerNetherrackFurnace;
 import io.github.mattkx4.morefurnaces.container.ContainerObsidianFurnace;
 import io.github.mattkx4.morefurnaces.container.ContainerQuartzFurnace;
-import io.github.mattkx4.morefurnaces.gui.GuiBoneFurnace;
+import io.github.mattkx4.morefurnaces.container.ContainerNetherrackFurnace;
 import io.github.mattkx4.morefurnaces.gui.GuiBrickFurnace;
 import io.github.mattkx4.morefurnaces.gui.GuiDiamondFurnace;
 import io.github.mattkx4.morefurnaces.gui.GuiGoldFurnace;
 import io.github.mattkx4.morefurnaces.gui.GuiIronFurnace;
-import io.github.mattkx4.morefurnaces.gui.GuiNetherrackFurnace;
 import io.github.mattkx4.morefurnaces.gui.GuiObsidianFurnace;
 import io.github.mattkx4.morefurnaces.gui.GuiQuartzFurnace;
+import io.github.mattkx4.morefurnaces.gui.GuiNetherrackFurnace;
 import io.github.mattkx4.morefurnaces.main.MoFurnacesMod;
-import io.github.mattkx4.morefurnaces.tileentity.TileEntityBoneFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityBrickFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityDiamondFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityGoldFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityIronFurnace;
-import io.github.mattkx4.morefurnaces.tileentity.TileEntityNetherrackFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityObsidianFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityQuartzFurnace;
+import io.github.mattkx4.morefurnaces.tileentity.TileEntityNetherrackFurnace;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -65,10 +62,6 @@ public class GuiHandler implements IGuiHandler {
 				if(entity instanceof TileEntityNetherrackFurnace) {
 					return new ContainerNetherrackFurnace(player.inventory, (TileEntityNetherrackFurnace) entity);
 				}
-			case MoFurnacesMod.guiIDBoneFurnace:
-				if(entity instanceof TileEntityBoneFurnace) {
-					return new ContainerBoneFurnace(player.inventory, (TileEntityBoneFurnace) entity);
-				}
 				return null;
 				}
 			}
@@ -107,10 +100,6 @@ public class GuiHandler implements IGuiHandler {
 			case MoFurnacesMod.guiIDNetherrackFurnace:
 				if(entity instanceof TileEntityNetherrackFurnace) {
 					return new GuiNetherrackFurnace(player.inventory, (TileEntityNetherrackFurnace) entity);
-				}
-			case MoFurnacesMod.guiIDBoneFurnace:
-				if(entity instanceof TileEntityBoneFurnace) {
-					return new GuiBoneFurnace(player.inventory, (TileEntityBoneFurnace) entity);
 				}
 				return null;
 				}

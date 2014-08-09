@@ -1,7 +1,6 @@
 package io.github.mattkx4.morefurnaces.blocks;
 
 import io.github.mattkx4.morefurnaces.main.MoFurnacesMod;
-import io.github.mattkx4.morefurnaces.tileentity.TileEntityBoneFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityDiamondFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityGoldFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityIronFurnace;
@@ -35,8 +34,6 @@ public class MFMBlock {
     public static final Block.SoundType soundTypeQuartz = new Block.SoundType("stone", 1.0F, 1.0F);
     //Netherrack Furnace step sound
     public static final Block.SoundType soundTypeNetherrack = new Block.SoundType("stone", 1.0F, 1.0F);
-    //Bone Furnace step sound
-    public static final Block.SoundType soundTypeBone = new Block.SoundType("stone", 1.0F, 1.0F);
     
 	public static void mainRegistry(){
 		initializeBlock();
@@ -72,9 +69,6 @@ public class MFMBlock {
 	//Netherrack furnace active and idle states
 	public static Block NetherrackFurnaceIdle;
 	public static Block NetherrackFurnaceActive;
-	//Bone furnace active and idle states
-	public static Block BoneFurnaceIdle;
-	public static Block BoneFurnaceActive;
 	
 	//Initialize new block and include settings
 	public static void initializeBlock(){
@@ -102,10 +96,7 @@ public class MFMBlock {
 		//initialize the Quartz Furnace
 		NetherrackFurnaceIdle = new NetherrackFurnace(false).setBlockName("NetherrackFurnaceIdle").setHardness(0.4F).setResistance(4.0F).setStepSound(soundTypeNetherrack).setCreativeTab(MoFurnacesMod.MFM);
 		NetherrackFurnaceActive = new NetherrackFurnace(true).setBlockName("NetherrackFurnaceActive").setHardness(0.4F).setResistance(4.0F).setStepSound(soundTypeNetherrack).setLightLevel(0.625F);
-		//initialize the Bone Furnace
-		BoneFurnaceIdle = new BoneFurnace(false).setBlockName("BoneFurnaceIdle").setHardness(0.5F).setResistance(2.0F).setStepSound(soundTypeBone).setCreativeTab(MoFurnacesMod.MFM);
-		BoneFurnaceActive = new BoneFurnace(true).setBlockName("BoneFurnaceActive").setHardness(0.5F).setResistance(2.0F).setStepSound(soundTypeBone).setLightLevel(0.625F);
-	}
+			}
 	
 	//Register new blocks here with game registry
 	public static void registerBlock(){
@@ -135,9 +126,6 @@ public class MFMBlock {
 		//register Netherrack furnace
 		GameRegistry.registerBlock(NetherrackFurnaceIdle, "NetherrackFurnaceIdle");
 		GameRegistry.registerBlock(NetherrackFurnaceActive, "NetherrackFurnaceActive");
-		//register Bone furnace
-		GameRegistry.registerBlock(BoneFurnaceIdle, "BoneFurnaceIdle");
-		GameRegistry.registerBlock(BoneFurnaceActive, "BoneFurnaceActive");
 	}
 	
 	//registry for initialization event
@@ -177,8 +165,6 @@ public class MFMBlock {
 		GameRegistry.addRecipe(new ItemStack(NetherrackFurnaceIdle), new Object[]{"OOO", "O O", "OOO", 'O', Blocks.netherrack});
 		GameRegistry.addRecipe(new ItemStack(NetherrackFurnaceIdle), new Object[]{"OOO", "OIO", "OOO", 'O', Blocks.netherrack, 'I', IronFurnaceIdle});
 		GameRegistry.addRecipe(new ItemStack(NetherrackFurnaceIdle), new Object[]{"OOO", "OIO", "OOO", 'O', Blocks.netherrack, 'I', GoldFurnaceIdle});
-		GameRegistry.registerTileEntity(TileEntityBoneFurnace.class, "Bone Furnace");
-		GameRegistry.addRecipe(new ItemStack(BoneFurnaceIdle), new Object[]{"OOO", "O O", "OOO", 'O', Items.bone});
-		GameRegistry.addRecipe(new ItemStack(BoneFurnaceIdle), new Object[]{"OOO", "OIO", "OOO", 'O', Items.bone, 'I', Blocks.furnace});
+				
 	}
 }
