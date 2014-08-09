@@ -2,10 +2,14 @@ package io.github.mattkx4.morefurnaces.blocks;
 
 import io.github.mattkx4.morefurnaces.lib.Strings;
 import io.github.mattkx4.morefurnaces.main.MoFurnacesMod;
+import io.github.mattkx4.morefurnaces.tileentity.TileEntityIronFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityNetherrackFurnace;
 
 import java.util.Random;
 
+import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -22,12 +26,10 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class NetherrackFurnace extends BlockContainer{
-private final boolean isActive;
+
+	private final boolean isActive;
 	
 	private Random rand = new Random();
 	
@@ -92,9 +94,6 @@ private final boolean isActive;
 		return metadata == 0 && side == 3 ? this.iconFront : side == 1 ? this.iconTop : (side == 0 ? this.iconTop : (side != metadata ? this.blockIcon : this.iconFront));
 	}	
 	
-	/*
-	 * fix the icon register to point to the proper custom furnace textures
-	 */
 	@SideOnly(Side.CLIENT)
 	//register item side textures to icons
 	public void registerBlockIcons(IIconRegister iconRegister){

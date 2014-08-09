@@ -1,5 +1,6 @@
 package io.github.mattkx4.morefurnaces.container;
 
+import io.github.mattkx4.morefurnaces.tileentity.TileEntityIronFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityNetherrackFurnace;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -24,7 +25,7 @@ public class ContainerNetherrackFurnace extends Container{
 		this.netherrackFurnace = tileentity;
 
 		this.addSlotToContainer(new Slot(tileentity, 0, 56, 17));
-		//this.addSlotToContainer(new Slot(tileentity, 1, 56, 53));
+		this.addSlotToContainer(new Slot(tileentity, 1, 56, 53));
 		this.addSlotToContainer(new SlotFurnace(inventory.player, tileentity, 2, 116, 35));
 
 		for(int i = 0; i < 3; i++) {
@@ -107,7 +108,7 @@ public class ContainerNetherrackFurnace extends Container{
                     {
                         return null;
                     }
-                }else if (TileEntityNetherrackFurnace.isItemFuel(itemstack1)) {
+                }else if (TileEntityIronFurnace.isItemFuel(itemstack1)) {
                     if (!this.mergeItemStack(itemstack1, 1, 2, false))
                     {
                         return null;

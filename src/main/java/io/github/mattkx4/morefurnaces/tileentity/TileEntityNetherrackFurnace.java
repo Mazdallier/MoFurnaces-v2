@@ -22,8 +22,8 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileEntityNetherrackFurnace extends TileEntity implements ISidedInventory{
-
-private String localizedName;
+	
+	private String localizedName;
 	
 	private static final int[] slots_top = new int[]{0};
 	private static final int[] slots_bottom = new int[]{2,1};
@@ -31,15 +31,12 @@ private String localizedName;
 	
 	private ItemStack[] slots = new ItemStack [3];
 	
-	/*
-	 * Consider omitting the following two lines
-	 */
 	//Inverse of furnace efficiency for fuels, 
-	//public int furnaceEfficiency = ;
+	public int furnaceEfficiency = 2;
 
 	//speed of the furnace a lower integer means a faster speed regular furnace is 200
-	public int furnaceSpeed = 400;
-	
+	public int furnaceSpeed = 450;
+
 	//number of ticks the furnace will burn for
 	public int burnTime;
 	
@@ -183,29 +180,22 @@ private String localizedName;
 	}
 	
 	//check if the furnace is burning
-	public boolean isBurning() {
-        return this.burnTime > 0;
-    }
-
+	public boolean isBurning(){
+		return this.burnTime > 0;
+	}
 	
 	public void updateEntity(){
 		boolean flag = isBurning();
 		boolean flag1 = false;
 		
-		/*if(this.burnTime > 0){
+		if(this.burnTime > 0){
 			--this.burnTime;
-		}*/
+		}
 		if(!this.worldObj.isRemote) {
 			//if the burnTime has reached zero and there is an item that can be smelted
 			if(this.burnTime == 0 && this.canSmelt()) {
-				/*
-				 * Once furnace is finalized will consider changing to,
-				 * this.currentItemBurnTime = this.burnTime = 1;
-				 * this will remove the need for fuels, furthermore the gui will be altered to 
-				 * remove the fuel slot.
-				 */
-				//set currentItemBurnTime and burnTime to the fuel item burn time. Add a '+1' after fuel efficiency to create an ever lasting furnace
-				this.currentItemBurnTime = this.burnTime = (int) ((double)getItemBurnTime(this.slots[1]) + 1);
+				//set currentItemBurnTime and burnTime to the fuel item burn time || add a '+1' after fuel efficiency to create an ever lasting furnace
+				this.currentItemBurnTime = this.burnTime = (int) (((double)getItemBurnTime(this.slots[1]) / (double)this.furnaceEfficiency));
 
 				if(this.isBurning()) {
 					flag1 = true;
@@ -284,25 +274,16 @@ private String localizedName;
 		}else{
 			Item item = itemstack.getItem();
 			
-			if(item instanceof ItemBlock && Block.getBlockFromItem(item) == Blocks.air){
+			if(item instanceof ItemBlock && Block.getBlockFromItem(item) != Blocks.air){
 				Block block = Block.getBlockFromItem(item);
 							
 				//insert block based fuels
-                /*if (block == Blocks.wooden_slab) return 150;
-                if (block.getMaterial() == Material.wood)return 300;
-                if(block == Blocks.coal_block) return 14400;*/
-				if(block == Blocks.air) return 1;
+                if (block == Blocks.netherrack) return 20000;
 			}	
 			
 				//insert item based fuels
-				/*if (item instanceof ItemTool && ((ItemTool)item).getToolMaterialName().equals("WOOD")) return 200;
-	            if (item instanceof ItemSword && ((ItemSword)item).getToolMaterialName().equals("WOOD")) return 200;
-	            if (item instanceof ItemHoe && ((ItemHoe)item).getToolMaterialName().equals("WOOD")) return 200;
-	            if (item == Items.stick) return 100;
-	            if (item == Items.coal) return 1600;
-	            if (item == Items.lava_bucket) return 20000;
-	            if (item == Item.getItemFromBlock(Blocks.sapling)) return 100;
-	            if (item == Items.blaze_rod) return 2400;*/
+	            if (item == Items.lava_bucket) return 40000;
+	            if (item == Items.blaze_rod) return 4800;
 			}	            
 		return GameRegistry.getFuelValue(itemstack);
 	}
@@ -322,7 +303,7 @@ private String localizedName;
 	public void closeInventory() {}
 
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
-		return i == 2 ? false : (i == 1 ? isItemFuel(itemstack) : false);
+		return i == 2 ? false : (i == 1 ? isItemFuel(itemstack) : true);
 	}
 	
 	//what sides access which slots
@@ -340,5 +321,4 @@ private String localizedName;
 		//yes as long as its not from slot 0, slot 1 or the item is a bucket 
 		return j != 0 || i!= 1 || itemstack.getItem() == Items.bucket;
 	}
-	
 }

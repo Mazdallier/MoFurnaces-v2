@@ -97,11 +97,12 @@ changelog
 	}
 	
 	9 AUG - Mattkx4{
-	   - Fixed up the Netherrack furnace so that the fuel slot is gone ;D
-	       - You can no longer input fuel into the Netherrack furnace, but it still functions!
+	   - Edited the Netherrack Furnace a lot today. Ended up making so that it only has 3 fuel...
+	       - Fuel are:
+	           - Netherrack = 20000 (Equal a to a lava bucket on regular furnace)
+	           - Lava Bucket = 40000 (Two times a normal lava bucket)
+	           - Blaze Rod = 4800 (Two times a normal blaze rod)
 	       - Particles in the Netherrack furnace are always there, along with the active texture!
-	           - This implies a constantly burning furnace!
-	       - The furnace is a little bit buggy though. We can fix this in future updates though.
 	   - Added recipes for all the furnaces that allow you to "upgrade" them in the crafting table
 	   - Added Bone furnace
 	       - Speed of 175
@@ -121,7 +122,11 @@ changelog
 		X create/find custom textures for previous mentioned custom furnaces
         X Correct speed for Quartz and Brick Furnace
         X Custom Netherrack Furnace textures
+        X Fix Netherrack Furnace to be less buggy
+            NOTE: I changed it so it uses only netherrack, lava buckets, and blaze rod as a super efficient fuel.
+        - Add an effect so that if you light the Netherrack Furnace on fire, it's infinite fire
         - Custom Bone Furnace textures
+        - Custom GUI Textures for ALL FURNACES
         - Compile into .jar and start extensive testing
         - Create posts on MCF and PMC
         - Start next version

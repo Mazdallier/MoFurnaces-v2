@@ -3,18 +3,16 @@ package io.github.mattkx4.morefurnaces.gui;
 import io.github.mattkx4.morefurnaces.container.ContainerNetherrackFurnace;
 import io.github.mattkx4.morefurnaces.lib.Strings;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityNetherrackFurnace;
-
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
+import org.lwjgl.opengl.GL11;
+
 public class GuiNetherrackFurnace extends GuiContainer{
-	
-public static final ResourceLocation bground = new ResourceLocation(Strings.MODID + ":textures/gui/netherrack_furnace.png");
+public static final ResourceLocation bground = new ResourceLocation(Strings.MODID + ":textures/gui/custom_furnace.png");
 	
 	public TileEntityNetherrackFurnace netherrackFurnace;
 	
