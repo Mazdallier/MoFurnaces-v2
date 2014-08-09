@@ -43,6 +43,8 @@ public class MoFurnacesMod {
 	public static final int guiIDBrickFurnace = 4;
 	//Quartz Furnace gui ID
 	public static final int guiIDQuartzFurnace = 5;
+	//Netherrack Furnace gui ID
+	public static final int guiIDNetherrackFurnace = 6;
 	
 	@Instance(Strings.MODID)
 	public static MoFurnacesMod instance;

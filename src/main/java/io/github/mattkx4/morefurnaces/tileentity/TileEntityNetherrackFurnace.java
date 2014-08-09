@@ -1,6 +1,6 @@
 package io.github.mattkx4.morefurnaces.tileentity;
 
-import io.github.mattkx4.morefurnaces.blocks.QuartzFurnace;
+import io.github.mattkx4.morefurnaces.blocks.NetherrackFurnace;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,9 +21,9 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class TileEntityQuartzFurnace extends TileEntity implements ISidedInventory{
-	
-	private String localizedName;
+public class TileEntityNetherrackFurnace extends TileEntity implements ISidedInventory{
+
+private String localizedName;
 	
 	private static final int[] slots_top = new int[]{0};
 	private static final int[] slots_bottom = new int[]{2,1};
@@ -31,12 +31,15 @@ public class TileEntityQuartzFurnace extends TileEntity implements ISidedInvento
 	
 	private ItemStack[] slots = new ItemStack [3];
 	
+	/*
+	 * Consider omitting the following two lines
+	 */
 	//Inverse of furnace efficiency for fuels, 
-	public double furnaceEfficiency = 0.5D; 
+	//public int furnaceEfficiency = ;
 
 	//speed of the furnace a lower integer means a faster speed regular furnace is 200
-	public int furnaceSpeed = 200;
-
+	public int furnaceSpeed = 400;
+	
 	//number of ticks the furnace will burn for
 	public int burnTime;
 	
@@ -103,7 +106,7 @@ public class TileEntityQuartzFurnace extends TileEntity implements ISidedInvento
 	}
 	
 	public String getInventoryName(){
-		return this.hasCustomInventoryName() ? this.localizedName : "container.quartzFurnace";
+		return this.hasCustomInventoryName() ? this.localizedName : "container.netherrackFurnace";
 	}
 	
 	public boolean hasCustomInventoryName(){
@@ -194,8 +197,14 @@ public class TileEntityQuartzFurnace extends TileEntity implements ISidedInvento
 		if(!this.worldObj.isRemote) {
 			//if the burnTime has reached zero and there is an item that can be smelted
 			if(this.burnTime == 0 && this.canSmelt()) {
-				//set currentItemBurnTime and burnTime to the fuel item burn time || add a '+1' after fuel efficiency to create an ever lasting furnace
-				this.currentItemBurnTime = this.burnTime = (int) (((double)getItemBurnTime(this.slots[1]) / (double)this.furnaceEfficiency));
+				/*
+				 * Once furnace is finalized will consider changing to,
+				 * this.currentItemBurnTime = this.burnTime = 1;
+				 * this will remove the need for fuels, furthermore the gui will be altered to 
+				 * remove the fuel slot.
+				 */
+				//set currentItemBurnTime and burnTime to the fuel item burn time. Add a '+1' after fuel efficiency to create an ever lasting furnace
+				this.currentItemBurnTime = this.burnTime = (int) ((double)getItemBurnTime(this.slots[1]) + 1);
 
 				if(this.isBurning()) {
 					flag1 = true;
@@ -223,7 +232,7 @@ public class TileEntityQuartzFurnace extends TileEntity implements ISidedInvento
 
 			if(flag != this.isBurning()) {
 				flag1 = true;
-				QuartzFurnace.updateQuartzFurnaceState(this.burnTime > 0, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
+				NetherrackFurnace.updateNetherrackFurnaceState(this.burnTime > 0, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
 			}
 		}
 		
@@ -311,7 +320,7 @@ public class TileEntityQuartzFurnace extends TileEntity implements ISidedInvento
 	public void closeInventory() {}
 
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
-		return i == 2 ? false : (i == 1 ? isItemFuel(itemstack) : true);
+		return i == 2 ? false : (i == 1 ? isItemFuel(itemstack) : false);
 	}
 	
 	//what sides access which slots
@@ -329,4 +338,5 @@ public class TileEntityQuartzFurnace extends TileEntity implements ISidedInvento
 		//yes as long as its not from slot 0, slot 1 or the item is a bucket 
 		return j != 0 || i!= 1 || itemstack.getItem() == Items.bucket;
 	}
+	
 }

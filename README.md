@@ -7,7 +7,7 @@ view all the code that is used to build the Mo' Furnaces Mod!
 This mod was written by:
 
 - Mattkx4 (AkA: Mattkx10 or Mattkx9)
-- Pr1me Sh0ck
+- Pr1meSh0ck
 
 The mod textures were by:
 
@@ -27,4 +27,4 @@ Our regards,
 
 ~Mattxk4 (AKA: Mattkx10 or Mattkx9)
 
-~Pr1me Sh0ck
+~Pr1meSh0ck

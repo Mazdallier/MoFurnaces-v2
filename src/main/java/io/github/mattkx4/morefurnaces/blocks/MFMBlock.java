@@ -7,7 +7,9 @@ import io.github.mattkx4.morefurnaces.tileentity.TileEntityIronFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityObsidianFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityBrickFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityQuartzFurnace;
+import io.github.mattkx4.morefurnaces.tileentity.TileEntityNetherrackFurnace;
 import net.minecraft.block.Block;
+import net.minecraft.block.Block.SoundType;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -27,9 +29,11 @@ public class MFMBlock {
     //Gold furnace step sound
     public static final Block.SoundType soundTypeGold = new Block.SoundType("stone", 1.0F, 1.5F);
     //Brick furnace step sound
-    public static final Block.SoundType soundTypeBrick = new Block.SoundType("stone", 1.0F, 1.5F);
+    public static final Block.SoundType soundTypeBrick = new Block.SoundType("stone", 1.0F, 1.0F);
     //Quartz Furnace step sound
-    public static final Block.SoundType soundTypeQuartz = new Block.SoundType("stone", 1.0F, 1.5F);
+    public static final Block.SoundType soundTypeQuartz = new Block.SoundType("stone", 1.0F, 1.0F);
+    //Netherrack Furnace step sound
+    public static final Block.SoundType soundTypeNetherrack = new Block.SoundType("stone", 1.0F, 1.0F);
     
 	public static void mainRegistry(){
 		initializeBlock();
@@ -62,6 +66,9 @@ public class MFMBlock {
 	//Quartz furnace active and idle states
 	public static Block QuartzFurnaceIdle;
 	public static Block QuartzFurnaceActive;
+	//Netherrack furnace active and idle states
+	public static Block NetherrackFurnaceIdle;
+	public static Block NetherrackFurnaceActive;
 	
 	//Initialize new block and include settings
 	public static void initializeBlock(){
@@ -86,7 +93,10 @@ public class MFMBlock {
 		//initialize the Quartz Furnace
 		QuartzFurnaceIdle = new QuartzFurnace(false).setBlockName("QuartzFurnaceIdle").setHardness(0.8F).setResistance(4.0F).setStepSound(soundTypeQuartz).setCreativeTab(MoFurnacesMod.MFM);
 		QuartzFurnaceActive = new QuartzFurnace(true).setBlockName("QuartzFurnaceActive").setHardness(0.8F).setResistance(4.0F).setStepSound(soundTypeQuartz).setLightLevel(0.625F);
-	}
+		//initialize the Quartz Furnace
+		NetherrackFurnaceIdle = new NetherrackFurnace(false).setBlockName("NetherrackFurnaceIdle").setHardness(0.4F).setResistance(4.0F).setStepSound(soundTypeNetherrack).setCreativeTab(MoFurnacesMod.MFM);
+		NetherrackFurnaceActive = new NetherrackFurnace(true).setBlockName("NetherrackFurnaceActive").setHardness(0.4F).setResistance(4.0F).setStepSound(soundTypeNetherrack).setLightLevel(0.625F);
+			}
 	
 	//Register new blocks here with game registry
 	public static void registerBlock(){
@@ -113,6 +123,9 @@ public class MFMBlock {
 		//register Quartz furnace
 		GameRegistry.registerBlock(QuartzFurnaceIdle, "QuartzFurnaceIdle");
 		GameRegistry.registerBlock(QuartzFurnaceActive, "QuartzFurnaceActive");
+		//register Netherrack furnace
+		GameRegistry.registerBlock(NetherrackFurnaceIdle, "NetherrackFurnaceIdle");
+		GameRegistry.registerBlock(NetherrackFurnaceActive, "NetherrackFurnaceActive");
 	}
 	
 	//registry for initialization event
@@ -139,5 +152,9 @@ public class MFMBlock {
 		//register for Quartz furnace
 		GameRegistry.registerTileEntity(TileEntityQuartzFurnace.class, "Quartz Furnace");
 		GameRegistry.addRecipe(new ItemStack(QuartzFurnaceIdle), new Object[]{"OOO", "O O", "OOO", 'O', Items.quartz});
+		//register for Netherrack furnace
+		GameRegistry.registerTileEntity(TileEntityNetherrackFurnace.class, "Netherrack Furnace");
+		GameRegistry.addRecipe(new ItemStack(NetherrackFurnaceIdle), new Object[]{"OOO", "O O", "OOO", 'O', Blocks.netherrack});
+				
 	}
 }

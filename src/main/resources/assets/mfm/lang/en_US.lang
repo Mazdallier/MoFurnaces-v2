@@ -4,6 +4,7 @@ tile.IronFurnaceIdle.name=Iron Furnace
 tile.GoldFurnaceIdle.name=Gold Furnace
 tile.BrickFurnaceIdle.name=Brick Furnace
 tile.QuartzFurnaceIdle.name=Quartz Furnace
+tile.NetherrackFurnaceIdle.name=Netherrack Furnace
 
 itemGroup.mfm=Mo' Furnaces Mod
 
@@ -14,3 +15,4 @@ container.ironFurnace=Iron Furnace
 container.goldFurnace=Gold Furnace
 container.brickFurnace=Brick Furnace
 container.quartzFurnace=Quartz Furnace
+container.netherrackFurnace=Netherrack Furnace

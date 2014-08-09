@@ -87,6 +87,14 @@ changelog
 	       - Needs speed/efficiency correction. (see TODO)
 	   - Finished adding all new textures
 	}
+
+	9 AUG - Pr1meSh0ck{
+		- Fixed brick and quartz furnace speed and efficiency. (Good job by the way, very close to the real numbers).
+		- Added the netherrack furnace to specs listed and added effect of not needing fuel.
+            - Needs custom textures, current textures are a mishmash of the others.
+        - Adjusted step sounds for the quartz and brick furnaces.
+        - Fixed name in README.md
+	}
 	
 	
 	TODO 
@@ -98,7 +106,8 @@ changelog
 			X netherrack furnace: speed = 0.5, efficiency = no fuel needed
 			X gold furnace: speed = 4, efficiency = 0.5, added effect of not smelting ores
 		X create/find custom textures for previous mentioned custom furnaces
-        - Correct speed for Quartz and Brick Furnace
+        X Correct speed for Quartz and Brick Furnace
+        - Custom Netherrack Furnace textures
         - Compile into .jar and start extensive testing
         - Create posts on MCF and PMC
         - Start next version
