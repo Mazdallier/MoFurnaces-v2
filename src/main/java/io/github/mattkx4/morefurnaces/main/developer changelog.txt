@@ -74,7 +74,7 @@ changelog
 	8 AUG - Mattkx4{
 	   - Changed new furnace textures (yours are still awesome by the way)
 	   - Fixed a bunch of spelling mistakes in the dev log... (Yeah...)
-	   - Changed Creative Tab Icon to GoldFurnaceActive
+	   - Changed Creative Tab Icon to DiamondFurnaceActive
 	   - Corrected hardness and resistance of certain furnaces
 	       - Changed Gold Furnace specifically to hardness of 3.0F (That's hardness of Gold Block)
 	       - Also changed Iron Furnace Resistance for Idle to 10.0F (Don't know why it was at 50.0F O.o)
