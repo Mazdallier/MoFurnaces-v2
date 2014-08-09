@@ -103,6 +103,10 @@ changelog
 	           - This implies a constantly burning furnace!
 	       - The furnace is a little bit buggy though. We can fix this in future updates though.
 	   - Added recipes for all the furnaces that allow you to "upgrade" them in the crafting table
+	   - Added Bone furnace
+	       - Speed of 175
+	       - Fuel Efficiency 2
+	       - You can input bone as a fuel (it burns just as much coal).
 	}
 	
 	
@@ -117,6 +121,7 @@ changelog
 		X create/find custom textures for previous mentioned custom furnaces
         X Correct speed for Quartz and Brick Furnace
         X Custom Netherrack Furnace textures
+        - Custom Bone Furnace textures
         - Compile into .jar and start extensive testing
         - Create posts on MCF and PMC
         - Start next version
