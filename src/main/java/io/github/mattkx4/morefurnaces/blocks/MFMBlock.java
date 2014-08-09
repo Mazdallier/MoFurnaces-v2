@@ -137,24 +137,34 @@ public class MFMBlock {
 		//registry for Obsidian furnace
 		GameRegistry.registerTileEntity(TileEntityObsidianFurnace.class, "Obsidian Furnace");
 		GameRegistry.addRecipe(new ItemStack(ObsidianFurnaceIdle), new Object[]{"OOO", "O O", "OOO", 'O', Blocks.obsidian});
+		GameRegistry.addRecipe(new ItemStack(ObsidianFurnaceIdle), new Object[]{"OOO", "OIO", "OOO", 'O', Blocks.obsidian, 'I', DiamondFurnaceIdle});
 		//register for Diamond furnace
 		GameRegistry.registerTileEntity(TileEntityDiamondFurnace.class, "Diamond Furnace");
 		GameRegistry.addRecipe(new ItemStack(DiamondFurnaceIdle), new Object[]{"OOO", "O O", "OOO", 'O', Items.diamond});
+		GameRegistry.addRecipe(new ItemStack(DiamondFurnaceIdle), new Object[]{"OOO", "OIO", "OOO", 'O', Items.diamond, 'I', QuartzFurnaceIdle});
+		GameRegistry.addRecipe(new ItemStack(DiamondFurnaceIdle), new Object[]{"OOO", "OIO", "OOO", 'O', Items.diamond, 'I', NetherrackFurnaceIdle});
 		//register for Iron furnace
 		GameRegistry.registerTileEntity(TileEntityIronFurnace.class, "Iron Furnace");
 		GameRegistry.addRecipe(new ItemStack(IronFurnaceIdle), new Object[]{"OOO", "O O", "OOO", 'O', Items.iron_ingot});
+		GameRegistry.addRecipe(new ItemStack(IronFurnaceIdle), new Object[]{"OOO", "OIO", "OOO", 'O', Items.iron_ingot, 'I', BrickFurnaceIdle});
 		//register for Iron furnace
 		GameRegistry.registerTileEntity(TileEntityGoldFurnace.class, "Gold Furnace");
 		GameRegistry.addRecipe(new ItemStack(GoldFurnaceIdle), new Object[]{"OOO", "O O", "OOO", 'O', Items.gold_ingot});
+		GameRegistry.addRecipe(new ItemStack(GoldFurnaceIdle), new Object[]{"OOO", "OIO", "OOO", 'O', Items.gold_ingot, 'I', BrickFurnaceIdle});
 		//register for Brick furnace
 		GameRegistry.registerTileEntity(TileEntityBrickFurnace.class, "Brick Furnace");
 		GameRegistry.addRecipe(new ItemStack(BrickFurnaceIdle), new Object[]{"OOO", "O O", "OOO", 'O', Blocks.brick_block});
+		GameRegistry.addRecipe(new ItemStack(BrickFurnaceIdle), new Object[]{"OOO", "OIO", "OOO", 'O', Blocks.brick_block, 'I', Blocks.furnace});
 		//register for Quartz furnace
 		GameRegistry.registerTileEntity(TileEntityQuartzFurnace.class, "Quartz Furnace");
 		GameRegistry.addRecipe(new ItemStack(QuartzFurnaceIdle), new Object[]{"OOO", "O O", "OOO", 'O', Items.quartz});
+		GameRegistry.addRecipe(new ItemStack(QuartzFurnaceIdle), new Object[]{"OOO", "OIO", "OOO", 'O', Items.quartz, 'I', IronFurnaceIdle});
+		GameRegistry.addRecipe(new ItemStack(QuartzFurnaceIdle), new Object[]{"OOO", "OIO", "OOO", 'O', Items.quartz, 'I', GoldFurnaceIdle});
 		//register for Netherrack furnace
 		GameRegistry.registerTileEntity(TileEntityNetherrackFurnace.class, "Netherrack Furnace");
 		GameRegistry.addRecipe(new ItemStack(NetherrackFurnaceIdle), new Object[]{"OOO", "O O", "OOO", 'O', Blocks.netherrack});
+		GameRegistry.addRecipe(new ItemStack(NetherrackFurnaceIdle), new Object[]{"OOO", "OIO", "OOO", 'O', Blocks.netherrack, 'I', IronFurnaceIdle});
+		GameRegistry.addRecipe(new ItemStack(NetherrackFurnaceIdle), new Object[]{"OOO", "OIO", "OOO", 'O', Blocks.netherrack, 'I', GoldFurnaceIdle});
 				
 	}
 }

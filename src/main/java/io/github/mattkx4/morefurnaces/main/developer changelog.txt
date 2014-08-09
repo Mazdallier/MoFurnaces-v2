@@ -96,6 +96,15 @@ changelog
         - Fixed name in README.md
 	}
 	
+	9 AUG - Mattkx4{
+	   - Fixed up the Netherrack furnace so that the fuel slot is gone ;D
+	       - You can no longer input fuel into the Netherrack furnace, but it still functions!
+	       - Particles in the Netherrack furnace are always there, along with the active texture!
+	           - This implies a constantly burning furnace!
+	       - The furnace is a little bit buggy though. We can fix this in future updates though.
+	   - Added recipes for all the furnaces that allow you to "upgrade" them in the crafting table
+	}
+	
 	
 	TODO 
 		X diamond furnace custom textures 
@@ -107,7 +116,7 @@ changelog
 			X gold furnace: speed = 4, efficiency = 0.5, added effect of not smelting ores
 		X create/find custom textures for previous mentioned custom furnaces
         X Correct speed for Quartz and Brick Furnace
-        - Custom Netherrack Furnace textures
+        X Custom Netherrack Furnace textures
         - Compile into .jar and start extensive testing
         - Create posts on MCF and PMC
         - Start next version
@@ -115,8 +124,6 @@ changelog
 
 Wishlist{
 
-	- fix inevitable problems with netherrack furnace and gold furnace
-		- remove netherrack furnace fuel slot
 	- multi smelting furnaces, furnaces with will individually smelt more than 1 item
 		- tiered to smelt 1, 2, 3 and 4 items simultaneously
 		- idea: replace side faces with front faces

@@ -183,17 +183,18 @@ private String localizedName;
 	}
 	
 	//check if the furnace is burning
-	public boolean isBurning(){
-		return this.burnTime > 0;
-	}
+	public boolean isBurning() {
+        return this.burnTime > 0;
+    }
+
 	
 	public void updateEntity(){
 		boolean flag = isBurning();
 		boolean flag1 = false;
 		
-		if(this.burnTime > 0){
+		/*if(this.burnTime > 0){
 			--this.burnTime;
-		}
+		}*/
 		if(!this.worldObj.isRemote) {
 			//if the burnTime has reached zero and there is an item that can be smelted
 			if(this.burnTime == 0 && this.canSmelt()) {
@@ -283,24 +284,25 @@ private String localizedName;
 		}else{
 			Item item = itemstack.getItem();
 			
-			if(item instanceof ItemBlock && Block.getBlockFromItem(item) != Blocks.air){
+			if(item instanceof ItemBlock && Block.getBlockFromItem(item) == Blocks.air){
 				Block block = Block.getBlockFromItem(item);
 							
 				//insert block based fuels
-                if (block == Blocks.wooden_slab) return 150;
+                /*if (block == Blocks.wooden_slab) return 150;
                 if (block.getMaterial() == Material.wood)return 300;
-                if(block == Blocks.coal_block) return 14400;
+                if(block == Blocks.coal_block) return 14400;*/
+				if(block == Blocks.air) return 1;
 			}	
 			
 				//insert item based fuels
-				if (item instanceof ItemTool && ((ItemTool)item).getToolMaterialName().equals("WOOD")) return 200;
+				/*if (item instanceof ItemTool && ((ItemTool)item).getToolMaterialName().equals("WOOD")) return 200;
 	            if (item instanceof ItemSword && ((ItemSword)item).getToolMaterialName().equals("WOOD")) return 200;
 	            if (item instanceof ItemHoe && ((ItemHoe)item).getToolMaterialName().equals("WOOD")) return 200;
 	            if (item == Items.stick) return 100;
 	            if (item == Items.coal) return 1600;
 	            if (item == Items.lava_bucket) return 20000;
 	            if (item == Item.getItemFromBlock(Blocks.sapling)) return 100;
-	            if (item == Items.blaze_rod) return 2400;
+	            if (item == Items.blaze_rod) return 2400;*/
 			}	            
 		return GameRegistry.getFuelValue(itemstack);
 	}

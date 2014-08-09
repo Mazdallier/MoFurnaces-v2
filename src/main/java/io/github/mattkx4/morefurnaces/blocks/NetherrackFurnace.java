@@ -43,7 +43,7 @@ private final boolean isActive;
 		super(Material.rock);
 		
 		this.isActive = isActive;
-		this.setHarvestLevel("pickaxe", 1);
+		this.setHarvestLevel("pickaxe", 0);
 	}
 	
 	public Item getItemDropped(int i, Random random, int j){
@@ -98,9 +98,9 @@ private final boolean isActive;
 	@SideOnly(Side.CLIENT)
 	//register item side textures to icons
 	public void registerBlockIcons(IIconRegister iconRegister){
-		this.blockIcon = iconRegister.registerIcon(Strings.MODID+":ObsidianFurnace_side");
-		this.iconFront = iconRegister.registerIcon(Strings.MODID+":"+(this.isActive ? "GoldFurnace_front_active" : "GoldFurnace_front_idle"));
-		this.iconTop = iconRegister.registerIcon(Strings.MODID+":QuartzFurnace_top");
+		this.blockIcon = iconRegister.registerIcon(Strings.MODID+":NetherrackFurnace_side");
+		this.iconFront = iconRegister.registerIcon(Strings.MODID+":"+(this.isActive ? "NetherrackFurnace_front_active" : "NetherrackFurnace_front_idle"));
+		this.iconTop = iconRegister.registerIcon(Strings.MODID+":NetherrackFurnace_top");
 	}
 	
 	//called upon on block activation (right click)
@@ -211,7 +211,7 @@ private final boolean isActive;
      */
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(World world, int x, int y, int z, Random random){
-        if (this.isActive){
+        if (this.isActive || !this.isActive){
             int direction = world.getBlockMetadata(x, y, z);
             float x1 = (float)x + 0.5F;
             float y1 = (float)y + 0.0F + random.nextFloat() * 6.0F / 16.0F;
