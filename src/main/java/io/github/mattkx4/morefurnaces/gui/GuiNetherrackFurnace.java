@@ -46,9 +46,16 @@ public static final ResourceLocation bground = new ResourceLocation(Strings.MODI
 			drawTexturedModalRect(guiLeft + 57, guiTop + 36 + l, 176, 0 + l, 14, 14 - l);
 		}
 		
-		//draws the progress bar dor the item being cooked
+		//draws the progress bar for the item being cooked
 		int m = this.netherrackFurnace.getCookProgressScaled(24);
 		drawTexturedModalRect(guiLeft + 79, guiTop + 34, 176, 14, m + 1, 17);
+		
+		/*
+		 * The following code will be tested and then commented out, it should render a square in front of the 
+		 * fuel slot to make it invisible. The fuel slot is still usable.
+		 */
+		//Minecraft.getMinecraft().getTextureManager().bindTexture(bground);
+		//drawTexturedModalRect(guiLeft + 55, guiTop + 52, 176, 31, 18, 18);
 		
 	}
 }

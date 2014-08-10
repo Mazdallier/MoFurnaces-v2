@@ -6,10 +6,8 @@ import io.github.mattkx4.morefurnaces.handler.GuiHandler;
 import io.github.mattkx4.morefurnaces.handler.MFMHandler;
 import io.github.mattkx4.morefurnaces.lib.Strings;
 import io.github.mattkx4.morefurnaces.proxy.ServerProxy;
-
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -21,15 +19,16 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-
 @Mod(modid = Strings.MODID, name = Strings.name, version = Strings.version)
 public class MoFurnacesMod {
 	
-	//new creative tab for all new physical aspects of the mod
+	/*
+	 * new creative tab for all new physical aspects of the mod
+	 */
 	public static CreativeTabs MFM;
 	
-	/**
-	 * Create constants for the individual furnace ID's
+	/*
+	 * Create constants for the individual furnace GUI ID's
 	 */
 	//Obsidian furnace gui ID
 	public static final int guiIDObsidianFurnace = 0;
@@ -54,10 +53,11 @@ public class MoFurnacesMod {
 	@SidedProxy (clientSide = "io.github.mattkx4.morefurnaces.proxy.ClientProxy",serverSide = "io.github.mattkx4.morefurnaces.proxy.ServerProxy")
 	public static ServerProxy proxy;
 	
-	//Loads before
+	/*
+	 * 'Things' that will load before
+	 */
 	@EventHandler
 	public static void preload(FMLPreInitializationEvent preEvent){
-		
 		//create new creative tab using obsidian furnace texture
 		MFM = new CreativeTabs("mfm"){
 			@SideOnly(Side.CLIENT)
@@ -72,10 +72,11 @@ public class MoFurnacesMod {
 		proxy.registerRenderThings();	
 	}
 	
-	//Loads during
+	/*
+	 * 'Things' that will load during
+	 */
 	@EventHandler
 	public void load(FMLInitializationEvent Event){
-		
 		//Input secondaryRegistrys
 		MFMBlock.secondaryRegistry();
 		MFMGui.secondaryRegistry();
@@ -85,7 +86,9 @@ public class MoFurnacesMod {
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 	}
 	
-	//Loads After
+	/*
+	 * 'Things' that will load after
+	 */
 	@EventHandler
 	public static void postload(FMLPostInitializationEvent PostEvent){
 		

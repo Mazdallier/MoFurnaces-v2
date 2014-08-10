@@ -110,8 +110,18 @@ changelog
 	       - You can input bone as a fuel (it burns just as much coal).
 	}
 	
+	10 AUG - Pr1meSh0ck{
+	   - Netherrack Furnace corrections.
+	       - Corrected fuel efficiency value to 1. (1 fuel will last for the stated number of ticks)
+	       - Added fuel: Blaze Powder = 2400.
+	       - Removed possibility of ANY other fuel being used. (Can still be inserted just not burnt)
+	       - Added future code to de-render the fuel slot from the GUI.
+       - Hid Bone furnace recipe, will be a creative mode easter egg for a future release. 
+       - Polishing up of code.
+            - Polished all files in the blocks, handler, lib, main and proxy folders
+   }
 	
-	TODO 
+	TODO{
 		X diamond furnace custom textures 
 		X add in remaining furnaces with the following attributes
 			X brick furnace: speed = 1.5, efficiency = 1.5
@@ -124,16 +134,20 @@ changelog
         X Custom Netherrack Furnace textures
         X Fix Netherrack Furnace to be less buggy
             NOTE: I changed it so it uses only netherrack, lava buckets, and blaze rod as a super efficient fuel.
-        - Add an effect so that if you light the Netherrack Furnace on fire, it's infinite fire
-        - Custom Bone Furnace textures
-        - Custom GUI Textures for ALL FURNACES
+        - Polish up the code for release
+            - Polish files in the container, gui and tileentity folders
+        - Create release version change log with relevant data
         - Compile into .jar and start extensive testing
         - Create posts on MCF and PMC
         - Start next version
+    }
 }
 
 Wishlist{
 
+    - Custom GUI Textures for ALL FURNACES
+    - Add an effect so that if you light the Netherrack Furnace on fire, it's infinite fire
+    - Custom Bone Furnace textures
 	- multi smelting furnaces, furnaces with will individually smelt more than 1 item
 		- tiered to smelt 1, 2, 3 and 4 items simultaneously
 		- idea: replace side faces with front faces

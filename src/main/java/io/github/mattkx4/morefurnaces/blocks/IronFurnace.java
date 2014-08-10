@@ -3,13 +3,10 @@ package io.github.mattkx4.morefurnaces.blocks;
 import io.github.mattkx4.morefurnaces.lib.Strings;
 import io.github.mattkx4.morefurnaces.main.MoFurnacesMod;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityIronFurnace;
-
 import java.util.Random;
-
 import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -29,6 +26,9 @@ import net.minecraft.world.World;
 
 public class IronFurnace extends BlockContainer{
 
+	/*
+	 * Boolean to tell if the furnace is active
+	 */
 	private final boolean isActive;
 	
 	private Random rand = new Random();
@@ -43,22 +43,28 @@ public class IronFurnace extends BlockContainer{
 	
 	public IronFurnace(boolean isActive) {
 		super(Material.rock);
-		
 		this.isActive = isActive;
 		this.setHarvestLevel("pickaxe", 1);
 	}
 	
+	/*
+	 * What item is dropped from the block
+	 */
 	public Item getItemDropped(int i, Random random, int j){
-		
 		return Item.getItemFromBlock(MFMBlock.IronFurnaceIdle);	
 	}	
 	
-	//called whenever the block is added to the world
+	/*
+	 * Called whenever the block is added to the world
+	 */
 	public void onBlockAdded (World world, int x, int y, int z){
 		super.onBlockAdded(world, x, y, z);
 		this.setDefaultDirection(world, x, y, z);
 	}	
 
+	/*
+	 * Set the default direction of the block in the world
+	 */
 	private void setDefaultDirection(World world, int x, int y, int z) {
 		if(!world.isRemote){
 			Block b1 = world.getBlock(x, y, z-1);
@@ -88,21 +94,27 @@ public class IronFurnace extends BlockContainer{
 		}
 	}
 	
+	/*
+	 * Set different icon sides arguments:side, metadata
+	 */
 	@SideOnly(Side.CLIENT)
-	//set different icon sides arguments:side, metadata
 	public IIcon getIcon(int side, int metadata){
 		return metadata == 0 && side == 3 ? this.iconFront : side == 1 ? this.iconTop : (side == 0 ? this.iconTop : (side != metadata ? this.blockIcon : this.iconFront));
 	}	
 	
+	/*
+	 * Register item side textures to icons
+	 */
 	@SideOnly(Side.CLIENT)
-	//register item side textures to icons
 	public void registerBlockIcons(IIconRegister iconRegister){
 		this.blockIcon = iconRegister.registerIcon(Strings.MODID+":IronFurnace_side");
 		this.iconFront = iconRegister.registerIcon(Strings.MODID+":"+(this.isActive ? "IronFurnace_front_active" : "IronFurnace_front_idle"));
 		this.iconTop = iconRegister.registerIcon(Strings.MODID+":IronFurnace_top");
 	}
 	
-	//called upon on block activation (right click)
+	/*
+	 * Called upon on block activation (right click) to open the GUI
+	 */
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitx, float hity, float hitz){
 		if(!world.isRemote) {
 			FMLNetworkHandler.openGui(player, MoFurnacesMod.instance, MoFurnacesMod.guiIDIronFurnace, world, x, y, z);
@@ -131,6 +143,9 @@ public class IronFurnace extends BlockContainer{
 		}
 	}
 	
+	/*
+	 * Create the tile entity
+	 */
 	public TileEntity createNewTileEntity(World world, int i) {
 		return new TileEntityIronFurnace();
 	}
@@ -160,6 +175,9 @@ public class IronFurnace extends BlockContainer{
 		
 	}
 
+	/*
+	 * What to do to the block and it's contents when it is broken
+	 */
 	public void breakBlock(World world, int x, int y, int z, Block oldblock, int oldmetadata){
         if (!keepInventory){
             TileEntityIronFurnace tileentity = (TileEntityIronFurnace)world.getTileEntity(x, y, z);
@@ -206,7 +224,8 @@ public class IronFurnace extends BlockContainer{
     }
 	
 	/*
-     * A randomly called display update to be able to add particles or other items for display
+     * A randomly called display update to add particles or other items for display
+     * in this case it is adding smoke and flames.
      */
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(World world, int x, int y, int z, Random random){

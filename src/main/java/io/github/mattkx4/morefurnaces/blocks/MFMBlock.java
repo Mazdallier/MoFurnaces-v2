@@ -18,7 +18,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class MFMBlock {
 	
-	/**
+	/*
 	 * Set block step sounds
 	 */
 	//Obsidian furnace step sound
@@ -47,7 +47,7 @@ public class MFMBlock {
 		registerBlock2();
 	}
 	
-	/**
+	/*
 	 * Add new blocks here
 	 * format:public static Block 'NewBlockName';
 	 */
@@ -76,11 +76,10 @@ public class MFMBlock {
 	public static Block BoneFurnaceIdle;
 	public static Block BoneFurnaceActive;
 	
-	//Initialize new block and include settings
+	/*
+	 * Initialize the active and idle blocks and set attributes
+	 */
 	public static void initializeBlock(){
-		/**
-		 * Initialize the active and idle blocks and set attributes
-		 */
 		//initialize the Obsidian furnace
 		ObsidianFurnaceIdle = new ObsidianFurnace(false).setBlockName("ObsidianFurnaceIdle").setHardness(50.0F).setResistance(2000.0F).setStepSound(soundTypeObsidian).setCreativeTab(MoFurnacesMod.MFM);
 		ObsidianFurnaceActive = new ObsidianFurnace(true).setBlockName("ObsidianFurnaceActive").setHardness(50.0F).setResistance(2000.0F).setStepSound(soundTypeObsidian).setLightLevel(0.625F);
@@ -107,13 +106,11 @@ public class MFMBlock {
 		BoneFurnaceActive = new BoneFurnace(true).setBlockName("BoneFurnaceActive").setHardness(0.5F).setResistance(2.0F).setStepSound(soundTypeBone).setLightLevel(0.625F);
 	}
 	
-	//Register new blocks here with game registry
+	/*
+	 * Register the blocks in the game registry
+	 * format: GameRegistry.registerBlock('newblockname',"newblockname"); 
+	 */
 	public static void registerBlock(){
-		
-		/**
-		 * Register the blocks in the game registry
-		 * format: GameRegistry.registerBlock('newblockname',"newblockname");
-		 */
 		//register Obsidian furnace blocks
 		GameRegistry.registerBlock(ObsidianFurnaceIdle, "ObsidianFurnaceIdle");
 		GameRegistry.registerBlock(ObsidianFurnaceActive, "ObsidianFurnaceActive");
@@ -140,45 +137,47 @@ public class MFMBlock {
 		GameRegistry.registerBlock(BoneFurnaceActive, "BoneFurnaceActive");
 	}
 	
-	//registry for initialization event
+	/*
+	 * Register the tile entity and crafting recipe
+	 */
 	public static void registerBlock2(){
-		
-		/**
-		 * Register the tile entity and crafting recipe
-		 */
 		//registry for Obsidian furnace
 		GameRegistry.registerTileEntity(TileEntityObsidianFurnace.class, "Obsidian Furnace");
 		GameRegistry.addRecipe(new ItemStack(ObsidianFurnaceIdle), new Object[]{"OOO", "O O", "OOO", 'O', Blocks.obsidian});
 		GameRegistry.addRecipe(new ItemStack(ObsidianFurnaceIdle), new Object[]{"OOO", "OIO", "OOO", 'O', Blocks.obsidian, 'I', DiamondFurnaceIdle});
-		//register for Diamond furnace
+		//registry for Diamond furnace
 		GameRegistry.registerTileEntity(TileEntityDiamondFurnace.class, "Diamond Furnace");
 		GameRegistry.addRecipe(new ItemStack(DiamondFurnaceIdle), new Object[]{"OOO", "O O", "OOO", 'O', Items.diamond});
 		GameRegistry.addRecipe(new ItemStack(DiamondFurnaceIdle), new Object[]{"OOO", "OIO", "OOO", 'O', Items.diamond, 'I', QuartzFurnaceIdle});
 		GameRegistry.addRecipe(new ItemStack(DiamondFurnaceIdle), new Object[]{"OOO", "OIO", "OOO", 'O', Items.diamond, 'I', NetherrackFurnaceIdle});
-		//register for Iron furnace
+		//registry for Iron furnace
 		GameRegistry.registerTileEntity(TileEntityIronFurnace.class, "Iron Furnace");
 		GameRegistry.addRecipe(new ItemStack(IronFurnaceIdle), new Object[]{"OOO", "O O", "OOO", 'O', Items.iron_ingot});
 		GameRegistry.addRecipe(new ItemStack(IronFurnaceIdle), new Object[]{"OOO", "OIO", "OOO", 'O', Items.iron_ingot, 'I', BrickFurnaceIdle});
-		//register for Iron furnace
+		//registry for Iron furnace
 		GameRegistry.registerTileEntity(TileEntityGoldFurnace.class, "Gold Furnace");
 		GameRegistry.addRecipe(new ItemStack(GoldFurnaceIdle), new Object[]{"OOO", "O O", "OOO", 'O', Items.gold_ingot});
 		GameRegistry.addRecipe(new ItemStack(GoldFurnaceIdle), new Object[]{"OOO", "OIO", "OOO", 'O', Items.gold_ingot, 'I', BrickFurnaceIdle});
-		//register for Brick furnace
+		//registry for Brick furnace
 		GameRegistry.registerTileEntity(TileEntityBrickFurnace.class, "Brick Furnace");
 		GameRegistry.addRecipe(new ItemStack(BrickFurnaceIdle), new Object[]{"OOO", "O O", "OOO", 'O', Blocks.brick_block});
 		GameRegistry.addRecipe(new ItemStack(BrickFurnaceIdle), new Object[]{"OOO", "OIO", "OOO", 'O', Blocks.brick_block, 'I', Blocks.furnace});
-		//register for Quartz furnace
+		//registry for Quartz furnace
 		GameRegistry.registerTileEntity(TileEntityQuartzFurnace.class, "Quartz Furnace");
 		GameRegistry.addRecipe(new ItemStack(QuartzFurnaceIdle), new Object[]{"OOO", "O O", "OOO", 'O', Items.quartz});
 		GameRegistry.addRecipe(new ItemStack(QuartzFurnaceIdle), new Object[]{"OOO", "OIO", "OOO", 'O', Items.quartz, 'I', IronFurnaceIdle});
 		GameRegistry.addRecipe(new ItemStack(QuartzFurnaceIdle), new Object[]{"OOO", "OIO", "OOO", 'O', Items.quartz, 'I', GoldFurnaceIdle});
-		//register for Netherrack furnace
+		//registry for Netherrack furnace
 		GameRegistry.registerTileEntity(TileEntityNetherrackFurnace.class, "Netherrack Furnace");
 		GameRegistry.addRecipe(new ItemStack(NetherrackFurnaceIdle), new Object[]{"OOO", "O O", "OOO", 'O', Blocks.netherrack});
 		GameRegistry.addRecipe(new ItemStack(NetherrackFurnaceIdle), new Object[]{"OOO", "OIO", "OOO", 'O', Blocks.netherrack, 'I', IronFurnaceIdle});
 		GameRegistry.addRecipe(new ItemStack(NetherrackFurnaceIdle), new Object[]{"OOO", "OIO", "OOO", 'O', Blocks.netherrack, 'I', GoldFurnaceIdle});
+		/*
+		 * Hiding the Bone Furnace recipe to make it a creative only easter egg for a future release
+		 */
+		//registry for bone furnace
 		GameRegistry.registerTileEntity(TileEntityBoneFurnace.class, "Bone Furnace");
-		GameRegistry.addRecipe(new ItemStack(BoneFurnaceIdle), new Object[]{"OOO", "O O", "OOO", 'O', Items.bone});
-		GameRegistry.addRecipe(new ItemStack(BoneFurnaceIdle), new Object[]{"OOO", "OIO", "OOO", 'O', Items.bone, 'I', Blocks.furnace});
+		//GameRegistry.addRecipe(new ItemStack(BoneFurnaceIdle), new Object[]{"OOO", "O O", "OOO", 'O', Items.bone});
+		//GameRegistry.addRecipe(new ItemStack(BoneFurnaceIdle), new Object[]{"OOO", "OIO", "OOO", 'O', Items.bone, 'I', Blocks.furnace});
 	}
 }

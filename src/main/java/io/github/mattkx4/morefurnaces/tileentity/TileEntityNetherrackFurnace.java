@@ -32,7 +32,7 @@ public class TileEntityNetherrackFurnace extends TileEntity implements ISidedInv
 	private ItemStack[] slots = new ItemStack [3];
 	
 	//Inverse of furnace efficiency for fuels, 
-	public int furnaceEfficiency = 2;
+	public int furnaceEfficiency = 1;
 
 	//speed of the furnace a lower integer means a faster speed regular furnace is 200
 	public int furnaceSpeed = 450;
@@ -284,8 +284,10 @@ public class TileEntityNetherrackFurnace extends TileEntity implements ISidedInv
 				//insert item based fuels
 	            if (item == Items.lava_bucket) return 40000;
 	            if (item == Items.blaze_rod) return 4800;
+	            if (item == Items.blaze_powder) return 2400;
 			}	            
-		return GameRegistry.getFuelValue(itemstack);
+		//making this a zero will remove all other items as fuel possibilities
+		return 0;
 	}
 	
 	//determines the number of ticks a new piece of fuel will keep the furnace burning for
