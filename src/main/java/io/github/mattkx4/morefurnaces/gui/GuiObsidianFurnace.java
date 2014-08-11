@@ -14,7 +14,7 @@ import org.lwjgl.opengl.GL11;
 
 public class GuiObsidianFurnace extends GuiContainer{
 
-	public static final ResourceLocation bground = new ResourceLocation(Strings.MODID + ":textures/gui/custom_furnace.png");
+	public static final ResourceLocation bground = new ResourceLocation(Strings.MODID + ":textures/gui/obsidian_furnace.png");
 	
 	public TileEntityObsidianFurnace obsidianFurnace;
 	

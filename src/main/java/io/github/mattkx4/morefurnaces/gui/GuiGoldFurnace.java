@@ -13,7 +13,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 public class GuiGoldFurnace extends GuiContainer{
-public static final ResourceLocation bground = new ResourceLocation(Strings.MODID + ":textures/gui/custom_furnace.png");
+public static final ResourceLocation bground = new ResourceLocation(Strings.MODID + ":textures/gui/gold_furnace.png");
 	
 	public TileEntityGoldFurnace goldFurnace;
 	

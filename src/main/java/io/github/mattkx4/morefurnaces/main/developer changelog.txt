@@ -120,6 +120,10 @@ changelog
        - Polishing up of code.
             - Polished all files in the blocks, handler, lib, main and proxy folders
    }
+   
+   10 AUG - Mattkx4{
+       - Added all the custom GUIs. (Thanks to my good friend CobaltKatana)
+   }
 	
 	TODO{
 		X diamond furnace custom textures 
@@ -145,7 +149,6 @@ changelog
 
 Wishlist{
 
-    - Custom GUI Textures for ALL FURNACES
     - Add an effect so that if you light the Netherrack Furnace on fire, it's infinite fire
     - Custom Bone Furnace textures
 	- multi smelting furnaces, furnaces with will individually smelt more than 1 item

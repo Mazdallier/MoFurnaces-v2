@@ -14,7 +14,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 public class GuiQuartzFurnace extends GuiContainer{
-public static final ResourceLocation bground = new ResourceLocation(Strings.MODID + ":textures/gui/custom_furnace.png");
+public static final ResourceLocation bground = new ResourceLocation(Strings.MODID + ":textures/gui/quartz_furnace.png");
 	
 	public TileEntityQuartzFurnace quartzFurnace;
 	
