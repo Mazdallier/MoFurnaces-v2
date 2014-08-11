@@ -123,6 +123,8 @@ changelog
    
    10 AUG - Mattkx4{
        - Added all the custom GUIs. (Thanks to my good friend CobaltKatana)
+       - Refactored GuiHandler.java to MFMGuiHandler.java
+       - Refactored FuelHandler.java to MFMFuelHandler.java
    }
 	
 	TODO{
@@ -138,8 +140,8 @@ changelog
         X Custom Netherrack Furnace textures
         X Fix Netherrack Furnace to be less buggy
             NOTE: I changed it so it uses only netherrack, lava buckets, and blaze rod as a super efficient fuel.
-        - Polish up the code for release
-            - Polish files in the container, gui and tileentity folders
+        X Polish up the code for release
+            X Polish files in the container, gui and tileentity folders
         - Create release version change log with relevant data
         - Compile into .jar and start extensive testing
         - Create posts on MCF and PMC

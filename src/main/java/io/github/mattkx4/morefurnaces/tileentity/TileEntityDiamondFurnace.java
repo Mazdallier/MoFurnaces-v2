@@ -33,35 +33,35 @@ private String localizedName;
 	
 	private ItemStack[] slots = new ItemStack [3];
 	
-	//Inverse of furnace efficiency for fuels, = normal furnace speed/furnace speed
+	// Inverse of furnace efficiency for fuels, = normal furnace speed/furnace speed
 	public int furnaceEfficiency = 3;
 
-	//speed of the furnace a lower integer means a faster speed regular furnace is 200
+	// Speed of the furnace. A lower integer means a faster speed. (Regular furnace is 200)
 	public int furnaceSpeed = 66;	//3x faster
 	
-	//number of ticks the furnace will burn for
+	// Number of ticks the furnace will burn for
 	public int burnTime;
 	
-	//number of ticks a fresh piece of fuel will burn for
+	// Number of ticks a fresh piece of fuel will burn for
 	public int currentItemBurnTime;
 	
-	//number of ticks an item has been cooking for
+	// Number of ticks an item has been cooking for
 	public int cookTime;
 	
 	
-	//get the number of slots in the furnace, [3]{0,1,2}
+	// Gets the number of slots in the furnace, (example: [3])
 	public int getSizeInventory(){
 		return this.slots.length;
 	}	
 
 	@Override
-	//get the item in slot[i]
+	// Gets the items via a number that corresponds to the slot
 	public ItemStack getStackInSlot(int i){
 		return this.slots[i];
 	}
 
 	@Override
-	//picking up stacks from slots
+	// Decrease the number of items in specified slot
 	public ItemStack decrStackSize(int i, int j) {
 		if(this.slots[i] != null){
 			ItemStack itemstack;
@@ -84,7 +84,7 @@ private String localizedName;
 	}
 	
 	@Override
-	//runs past each slot on Gui closure and determines whether or not to drop an item
+	// Returns that itemstack that was in the slot before closing and clears the slot
 	public ItemStack getStackInSlotOnClosing(int i) {
 		if(this.slots[i] != null){
 			ItemStack itemstack = this.slots[i];
@@ -95,7 +95,7 @@ private String localizedName;
 	}
 
 	@Override
-	//sets the given item stack to a specified slot
+	// Sets a certain slot to the specified ItemStack
 	public void setInventorySlotContents(int i, ItemStack itemstack) {
 		this.slots[i] = itemstack;
 		
@@ -104,14 +104,17 @@ private String localizedName;
 		}
 	}
 	
+	// Gets the custom inventory name
 	public String getInventoryName(){
 		return this.hasCustomInventoryName() ? this.localizedName : "container.diamondFurnace";
 	}
 	
+	// Checks to see if inventory has custom name
 	public boolean hasCustomInventoryName(){
 		return this.localizedName != null && this.localizedName.length() > 0;
 	}
 
+	// Sets GUI Display Name
 	public void setGuiDisplayName(String displayName){
 		this.localizedName = displayName;
 	}
@@ -163,16 +166,18 @@ private String localizedName;
     }
 
     @Override
-	//what is the limit of a stack
+	// Returns inventory stack limit
 	public int getInventoryStackLimit() {
 		return 64;
 	}
 	
+    // Gets the cooking progress (Scaled)
 	@SideOnly(Side.CLIENT)
 	public int getCookProgressScaled(int i){
 		return this.cookTime * i / this.furnaceSpeed;
 	}
 	
+	// Get the remaining burn time (Scaled)
 	@SideOnly(Side.CLIENT)
 	public int getBurnTimeRemainingScaled(int i){
 		if(this.currentItemBurnTime == 0){

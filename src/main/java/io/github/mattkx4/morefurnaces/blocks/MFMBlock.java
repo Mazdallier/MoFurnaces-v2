@@ -76,7 +76,7 @@ public class MFMBlock {
 	public static Block BoneFurnaceIdle;
 	public static Block BoneFurnaceActive;
 	
-	/*
+	/**
 	 * Initialize the active and idle blocks and set attributes
 	 */
 	public static void initializeBlock(){
@@ -106,9 +106,9 @@ public class MFMBlock {
 		BoneFurnaceActive = new BoneFurnace(true).setBlockName("BoneFurnaceActive").setHardness(0.5F).setResistance(2.0F).setStepSound(soundTypeBone).setLightLevel(0.625F);
 	}
 	
-	/*
+	/**
 	 * Register the blocks in the game registry
-	 * format: GameRegistry.registerBlock('newblockname',"newblockname"); 
+	 * format: GameRegistry.registerBlock(newblockname, "newblockname"); 
 	 */
 	public static void registerBlock(){
 		//register Obsidian furnace blocks
@@ -137,7 +137,7 @@ public class MFMBlock {
 		GameRegistry.registerBlock(BoneFurnaceActive, "BoneFurnaceActive");
 	}
 	
-	/*
+	/**
 	 * Register the tile entity and crafting recipe
 	 */
 	public static void registerBlock2(){

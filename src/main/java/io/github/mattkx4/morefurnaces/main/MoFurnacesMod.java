@@ -2,7 +2,7 @@ package io.github.mattkx4.morefurnaces.main;
 
 import io.github.mattkx4.morefurnaces.blocks.MFMBlock;
 import io.github.mattkx4.morefurnaces.gui.MFMGui;
-import io.github.mattkx4.morefurnaces.handler.GuiHandler;
+import io.github.mattkx4.morefurnaces.handler.MFMGuiHandler;
 import io.github.mattkx4.morefurnaces.handler.MFMHandler;
 import io.github.mattkx4.morefurnaces.lib.Strings;
 import io.github.mattkx4.morefurnaces.proxy.ServerProxy;
@@ -58,7 +58,7 @@ public class MoFurnacesMod {
 	 */
 	@EventHandler
 	public static void preload(FMLPreInitializationEvent preEvent){
-		//create new creative tab using obsidian furnace texture
+		// Creates a new Creative Tab using the Diamond Furnace Block.
 		MFM = new CreativeTabs("mfm"){
 			@SideOnly(Side.CLIENT)
 			public Item getTabIconItem(){
@@ -66,7 +66,7 @@ public class MoFurnacesMod {
 			}
 		};
 		
-		//Input mainRegisterys
+		// Calls the mainRegistry() method
 		MFMBlock.mainRegistry();		
 		
 		proxy.registerRenderThings();	
@@ -77,13 +77,13 @@ public class MoFurnacesMod {
 	 */
 	@EventHandler
 	public void load(FMLInitializationEvent Event){
-		//Input secondaryRegistrys
+		// Calls all secondaryRegistry() methods.
 		MFMBlock.secondaryRegistry();
 		MFMGui.secondaryRegistry();
 		MFMHandler.secondaryRegistry();
 		
-		//register for gui handler, cannot place in MFMGui due to restrictions surrounding statics
-		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
+		// Registers the mods GUI Handler class
+		NetworkRegistry.INSTANCE.registerGuiHandler(this, new MFMGuiHandler());
 	}
 	
 	/*

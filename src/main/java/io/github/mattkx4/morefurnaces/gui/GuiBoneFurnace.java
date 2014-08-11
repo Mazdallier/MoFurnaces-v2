@@ -24,14 +24,21 @@ public static final ResourceLocation bground = new ResourceLocation(Strings.MODI
 		this.xSize = 176;
 		this.ySize = 166;
 	}
-	//get the name and display on the Gui
+
+	/*
+	 * Draw the Foreground Layer (everything that is in front of the items)
+	 */
 	public void drawGuiContainerForegroundLayer(int i, int j){
-		//get the name of the furnace
+		// Gets the name of the furnace and stores it String "name"
 		String name = this.boneFurnace.hasCustomInventoryName() ? this.boneFurnace.getInventoryName() : I18n.format(this.boneFurnace.getInventoryName(), new Object[0]);
-		//display the name of the furnace and the inventory on the Gui
+		// Displays the name and GUI of the furnace on the GUI Foreground Layer
 		this.fontRendererObj.drawString(name, this.xSize / 2 - this.fontRendererObj.getStringWidth(name) / 2, 6, 4210752);
 		this.fontRendererObj.drawString(I18n.format("container.Inventory", new Object[0]), 8, this.ySize - 96 + 2, 4210752);
 	}
+	
+	/*
+	 * Draws the Background Layer of the GUI
+	 */
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float i, int j, int k) {
 		GL11.glColor4f(1F, 1F, 1F, 1F);
@@ -39,14 +46,14 @@ public static final ResourceLocation bground = new ResourceLocation(Strings.MODI
 		Minecraft.getMinecraft().getTextureManager().bindTexture(bground);
 		drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
 	
-		//draw progress bar if the furnace is burning
+		// Checks if the furnace is burning. If yes, then displays the Burn Time Remaining (Fire)
 		if(this.boneFurnace.isBurning()){
 			int m = this.boneFurnace.getBurnTimeRemainingScaled(14);
 			int l = 14 - m;
 			drawTexturedModalRect(guiLeft + 57, guiTop + 36 + l, 176, 0 + l, 14, 14 - l);
 		}
 		
-		//draws the progress bar dor the item being cooked
+		// Draws the progress bar for the current item being cooked (Arrow)
 		int m = this.boneFurnace.getCookProgressScaled(24);
 		drawTexturedModalRect(guiLeft + 79, guiTop + 34, 176, 14, m + 1, 17);
 		

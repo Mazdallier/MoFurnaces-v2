@@ -22,6 +22,9 @@ public class ContainerDiamondFurnace extends Container{
 	public int lastCurrentItemBurnTime;
 	public int lastCookTime;
 
+	/*
+	 * Class constructor that adds all the slots to the Furnace GUI
+	 */
 	public ContainerDiamondFurnace(InventoryPlayer inventory, TileEntityDiamondFurnace tileentity) {
 		this.diamondFurnace = tileentity;
 
@@ -40,6 +43,9 @@ public class ContainerDiamondFurnace extends Container{
 		}
 	}
 
+	/*
+	 * Sends progress bar updates
+	 */
 	public void addCraftingToCrafters (ICrafting icrafting) {
 		super.addCraftingToCrafters(icrafting);
 		icrafting.sendProgressBarUpdate(this, 0, this.diamondFurnace.cookTime);
@@ -47,7 +53,9 @@ public class ContainerDiamondFurnace extends Container{
 		icrafting.sendProgressBarUpdate(this, 2, this.diamondFurnace.currentItemBurnTime);
 	}
 
-	//This updates the fuel burn and item cook progress bars
+	/*
+	 * Updates the Fuel and Progess Bar (Arrow and Fire) if there is any changes.
+	 */	
 	public void detectAndSendChanges() {
 		super.detectAndSendChanges();
 		for(int i = 0; i < this.crafters.size(); i++) {
@@ -71,6 +79,9 @@ public class ContainerDiamondFurnace extends Container{
 		this.lastCurrentItemBurnTime = this.diamondFurnace.currentItemBurnTime;
 	}
 
+	/*
+	 * Updates Progress Bar
+	 */
 	@SideOnly(Side.CLIENT)
     public void updateProgressBar(int par1, int par2)
     {
@@ -87,6 +98,9 @@ public class ContainerDiamondFurnace extends Container{
         }
     }
 
+	/*
+	 * Called when a player shift clicks a slot
+	 */
 	public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2)
     {
         ItemStack itemstack = null;
@@ -141,6 +155,9 @@ public class ContainerDiamondFurnace extends Container{
         return itemstack;
     }
 
+	/*
+	 * Makes it so a player can interact with it
+	 */
 	public boolean canInteractWith(EntityPlayer var1) {
 		return true;
 	}

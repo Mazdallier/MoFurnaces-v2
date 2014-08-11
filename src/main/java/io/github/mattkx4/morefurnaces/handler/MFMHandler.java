@@ -4,35 +4,41 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class MFMHandler {
 
-	/*
-	 * initialize and register items within the pre-initialization event
+	/**
+	 * Initialize and register items within the pre-initialization event
 	 */
 	public static void mainRegistry(){
 		initializeHandler();
 		registerHandler();
 	}
 
-	/*
+	/**
 	 * initialize and register items within the initialization event
 	 */
 	public static void secondaryRegistry(){
 		registerhandler2();
 	}
 	
+	/**
+	 * No use ATM
+	 */
 	private static void initializeHandler() {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub		
 	}
 
+	/**
+	 * No use ATM
+	 */
 	private static void registerHandler() {
 		// TODO Auto-generated method stub
-		
 	}
-
+	
+	/**
+	 * Secondary Handler Registry
+	 */
 	private static void registerhandler2() {
-		//register the fuel handler for any possible future fuels
-		GameRegistry.registerFuelHandler(new FuelHandler());
-		
+		// Registers the fuel handler for possible future fuels
+		GameRegistry.registerFuelHandler(new MFMFuelHandler());	
 	}
 	
 }

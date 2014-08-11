@@ -21,6 +21,9 @@ public class ContainerGoldFurnace extends Container{
 	public int lastCurrentItemBurnTime;
 	public int lastCookTime;
 
+	/*
+	 * Class constructor that adds all the slots to the Furnace GUI
+	 */
 	public ContainerGoldFurnace(InventoryPlayer inventory, TileEntityGoldFurnace tileentity) {
 		this.goldFurnace = tileentity;
 
@@ -39,6 +42,9 @@ public class ContainerGoldFurnace extends Container{
 		}
 	}
 
+	/*
+	 * Sends progress bar updates
+	 */
 	public void addCraftingToCrafters (ICrafting icrafting) {
 		super.addCraftingToCrafters(icrafting);
 		icrafting.sendProgressBarUpdate(this, 0, this.goldFurnace.cookTime);
@@ -46,7 +52,9 @@ public class ContainerGoldFurnace extends Container{
 		icrafting.sendProgressBarUpdate(this, 2, this.goldFurnace.currentItemBurnTime);
 	}
 
-	//This updates the fuel burn and item cook progress bars
+	/*
+	 * Updates the Fuel and Progess Bar (Arrow and Fire) if there is any changes.
+	 */
 	public void detectAndSendChanges() {
 		super.detectAndSendChanges();
 		for(int i = 0; i < this.crafters.size(); i++) {
@@ -70,6 +78,9 @@ public class ContainerGoldFurnace extends Container{
 		this.lastCurrentItemBurnTime = this.goldFurnace.currentItemBurnTime;
 	}
 
+	/*
+	 * Updates Progress Bar
+	 */
 	@SideOnly(Side.CLIENT)
     public void updateProgressBar(int par1, int par2)
     {
@@ -86,6 +97,9 @@ public class ContainerGoldFurnace extends Container{
         }
     }
 
+	/*
+	 * Called when a player shift clicks a slot
+	 */
 	public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2)
     {
         ItemStack itemstack = null;
@@ -140,6 +154,9 @@ public class ContainerGoldFurnace extends Container{
         return itemstack;
     }
 
+	/*
+	 * Makes it so a player can interact with it
+	 */
 	public boolean canInteractWith(EntityPlayer var1) {
 		return true;
 	}
