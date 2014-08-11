@@ -1,9 +1,7 @@
 package io.github.mattkx4.morefurnaces.gui;
 
-import io.github.mattkx4.morefurnaces.container.ContainerIronFurnace;
 import io.github.mattkx4.morefurnaces.container.ContainerQuartzFurnace;
 import io.github.mattkx4.morefurnaces.lib.Strings;
-import io.github.mattkx4.morefurnaces.tileentity.TileEntityIronFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityQuartzFurnace;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;

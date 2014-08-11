@@ -1,7 +1,6 @@
 package io.github.mattkx4.morefurnaces.container;
 
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityBrickFurnace;
-import io.github.mattkx4.morefurnaces.tileentity.TileEntityIronFurnace;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;

@@ -7,6 +7,15 @@ tile.QuartzFurnaceIdle.name=Quartz Furnace
 tile.NetherrackFurnaceIdle.name=Netherrack Furnace
 tile.BoneFurnaceIdle.name=Bone Furnace
 
+tile.ObsidianFurnaceActive.name=Obsidian Furnace
+tile.DiamondFurnaceActive.name=Diamond Furnace
+tile.IronFurnaceActive.name=Iron Furnace
+tile.GoldFurnaceActive.name=Gold Furnace
+tile.BrickFurnaceActive.name=Brick Furnace
+tile.QuartzFurnaceActive.name=Quartz Furnace
+tile.NetherrackFurnaceActive.name=Netherrack Furnace
+tile.BoneFurnaceActive.name=Bone Furnace
+
 itemGroup.mfm=Mo' Furnaces Mod
 
 container.Inventory=Inventory

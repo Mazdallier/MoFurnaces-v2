@@ -1,0 +1,49 @@
+This is the official change log for the Mo' Furnaces v2 Mod
+Its contents will be submitted in reverse chronological order starting with the release.
+
+Release: V2.1.0
+    - Recreation of the entire original mod
+    - Adds the following furnaces with the following crafting recipes, specifications and (if applicable) extra effects
+        - The specification are measured against the original furnace
+        
+        - Brick Furnace:    
+            - Recipe        XXX
+                            XFX     : X = Bricks, F = Furnace(original)
+                            XXX
+            - Specifications: 1.5 times faster, 1.5 times more fuel efficient
+            
+        - Iron Furnace:    
+            - Recipe        XXX
+                            XFX     : X = Iron Ingot, F = Furnace(Brick)
+                            XXX
+            - Specifications: 2 times faster with the same fuel efficiency
+            
+        - Gold Furnace:
+            - Recipe        XXX
+                            XFX     : X = Gold Ingot, F = Furnace(Brick)
+                            XXX
+            - Specifications: 4 times faster, half as fuel efficient, WILL NOT smelt ores or ore dusts
+        
+        - Netherrack Furnace:
+            - Recipe        XXX
+                            XFX     : X = Netherrack, F = Furnace(Iron or Gold)
+                            XXX
+            - Specifications: <half as fast, only takes nether like fuels at greatly increased efficiency
+            
+        - Quartz Furnace:    
+            - Recipe        XXX
+                            XFX     : X = Quartz Block, F = Furnace(Iron or Gold)
+                            XXX
+            - Specifications: exactly as fast, 2 times more fuel efficient
+            
+        - Diamond Furnace:    
+            - Recipe        XXX
+                            XFX     : X = Diamonds, F = Furnace(Netherrack or Quartz)
+                            XXX
+            - Specifications: 3 times faster, with the same fuel efficiency
+            
+        - Obsidian Furnace:    
+            - Recipe        XXX
+                            XFX     : X = Obsidian, F = Furnace(Diamond)
+                            XXX
+            - Specifications: 4 times faster, half as fuel efficient

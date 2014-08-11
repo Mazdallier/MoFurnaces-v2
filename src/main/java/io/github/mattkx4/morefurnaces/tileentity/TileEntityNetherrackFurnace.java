@@ -32,7 +32,7 @@ public class TileEntityNetherrackFurnace extends TileEntity implements ISidedInv
 	private ItemStack[] slots = new ItemStack [3];
 	
 	// Inverse of furnace efficiency for fuels, 
-	public int furnaceEfficiency = 1;
+	public double furnaceEfficiency = 0.5;
 
 	// Speed of the furnace. A lower integer means a faster speed (Regular furnace is 200)
 	public int furnaceSpeed = 450;

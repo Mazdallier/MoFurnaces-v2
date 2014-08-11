@@ -127,6 +127,25 @@ changelog
        - Refactored FuelHandler.java to MFMFuelHandler.java
        - Polished up the rest of the code (Wow... That TileEntity class was a lot of work...)
    }
+   
+   11 AUG - Pr1meSh0ck{
+        - Removed unneeded imports from several classes.
+        - Recipe changes.
+            - Hid the un-tiered crafting recipes for the furnaces.
+            - Altered recipes icons to be more unique.
+                - Hopefully addresses craft-ability problem.
+            - Changed quartz furnace quartz requirement from item to block.
+        ~ Gold Furnace smelts metallurgy dusts.
+            - Added extra substring to the conditional statement.
+            - Gold furnace no longer smelts metallurgy 4 dusts.
+        - Adjusted netherrack furnace fuel efficiency to appropriate values.
+        - Created checklist to test mod against.
+        - Tested a 1.7.2 build of the mod against the checklist utilizing Metallurgy 4 as a baseline
+            - Problems with crafting recipes found and corrected.
+            - Problems with netherrack furnace found and corrected
+        - Added to language file for NEI compatibility
+        - 1.7.2 release ready
+   }
 	
 	TODO{
 		X diamond furnace custom textures 
@@ -143,8 +162,11 @@ changelog
             NOTE: I changed it so it uses only netherrack, lava buckets, and blaze rod as a super efficient fuel.
         X Polish up the code for release
             X Polish files in the container, gui and tileentity folders
-        - Create release version change log with relevant data
-        - Compile into .jar and start extensive testing
+        X Create release version change log with user relevant data
+        - Compile and test mod
+            X 1.7.2
+            - 1.7.10
+        - Build final versions of mod
         - Create posts on MCF and PMC
         - Start next version
     }

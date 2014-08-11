@@ -265,7 +265,9 @@ public class TileEntityGoldFurnace extends TileEntity implements ISidedInventory
 			 */
 			
 			cookingItemName = this.slots[0].getDisplayName();
-			if(cookingItemName.contains("_ore") || cookingItemName.contains("ore") || cookingItemName.contains("Ore") || cookingItemName.contains("dust")) return false;
+			if(cookingItemName.contains("_ore") || cookingItemName.contains("ore") || 
+					cookingItemName.contains("Ore") || cookingItemName.contains("dust") || 
+					cookingItemName.contains("Dust")) return false;
 			
 			/*
 			 * A possible change to the above code in regards to compatibility with forge's ore dictionary

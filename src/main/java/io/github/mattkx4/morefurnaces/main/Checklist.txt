@@ -1,0 +1,14 @@
+Checklist
+    - Tile renders correctly in creative and NEI
+    - Crafting recipe works as described
+    - Block can be placed in the world
+    - Block can be right clicked
+    - Gui renders properly
+    - Fuels and input items can be dragged, clicked and shift clicked into furnace
+    - Fuels burn to cook items and non-fuels do not
+    - Input item cooks to proper output item
+    - Furnace Speed and Fuel Efficiency match the desired specifications
+    - Input, output and fuel items can be right clicked, dragged and shift clicked out of furnace
+    - Test harvest level of furnaces
+    - Breaking an active or idle furnace yeilds an idle block
+    - Breaking an active or idle furnace will drop the items stacked in the slots
