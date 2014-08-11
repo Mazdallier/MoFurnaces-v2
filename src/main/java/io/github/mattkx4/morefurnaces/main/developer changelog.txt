@@ -125,6 +125,7 @@ changelog
        - Added all the custom GUIs. (Thanks to my good friend CobaltKatana)
        - Refactored GuiHandler.java to MFMGuiHandler.java
        - Refactored FuelHandler.java to MFMFuelHandler.java
+       - Polished up the rest of the code (Wow... That TileEntity class was a lot of work...)
    }
 	
 	TODO{

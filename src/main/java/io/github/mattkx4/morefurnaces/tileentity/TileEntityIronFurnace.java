@@ -186,11 +186,12 @@ public class TileEntityIronFurnace extends TileEntity implements ISidedInventory
 		return this.burnTime * i / this.currentItemBurnTime;
 	}
 	
-	//check if the furnace is burning
+	// Check if the furnace is burning
 	public boolean isBurning(){
 		return this.burnTime > 0;
 	}
 	
+	// Update the Furnace
 	public void updateEntity(){
 		boolean flag = isBurning();
 		boolean flag1 = false;
@@ -239,7 +240,7 @@ public class TileEntityIronFurnace extends TileEntity implements ISidedInventory
 		}
 	}
 	
-	//check to see is the item can be smelted
+	// Check to see if item can be smelted
 	public boolean canSmelt(){
 		if(this.slots[0] == null){
 			return false;
@@ -256,7 +257,7 @@ public class TileEntityIronFurnace extends TileEntity implements ISidedInventory
 		}
 	}
 	
-	//turn one item from the input into one item of the output
+	// Smelt the input item and put the result in the output slot
 	public void smeltItem(){
 		if(this.canSmelt()){
 			ItemStack itemstack = FurnaceRecipes.smelting().getSmeltingResult(this.slots[0]);
@@ -274,7 +275,7 @@ public class TileEntityIronFurnace extends TileEntity implements ISidedInventory
 		}
 	}
 
-	//get the item burn times
+	// Get fuel burn times
 	public static int getItemBurnTime(ItemStack itemstack){
 		if(itemstack == null){
 			return 0;
@@ -303,11 +304,12 @@ public class TileEntityIronFurnace extends TileEntity implements ISidedInventory
 		return GameRegistry.getFuelValue(itemstack);
 	}
 	
-	//determines the number of ticks a new piece of fuel will keep the furnace burning for
+	// Checks if the specified item is a fuel
 	public static  boolean isItemFuel(ItemStack itemstack){
 		return getItemBurnTime(itemstack) > 0;
 	}
 	
+	// Checks to see if the Player is in range of furnace
 	@Override
 	public boolean isUseableByPlayer(EntityPlayer entityplayer) {
 		return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) != this ? false : entityplayer.getDistanceSq((double)this.xCoord + 0.5D, (double)this.yCoord + 0.5D, (double)this.zCoord + 0.5D) <= 64.0D;
@@ -317,21 +319,22 @@ public class TileEntityIronFurnace extends TileEntity implements ISidedInventory
 	
 	public void closeInventory() {}
 
+	// Checks to see if item can go in specified slot
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
 		return i == 2 ? false : (i == 1 ? isItemFuel(itemstack) : true);
 	}
 	
-	//what sides access which slots
+	// What slots are accessible from the different sides
 	public int[] getAccessibleSlotsFromSide(int i) {
 		return i == 0 ? slots_bottom : (i == 1 ? slots_top : slots_side);
 	}
 
-	//can a hopper insert an item into a slot
+	// Checks to see if hopper can insert item into specified slot
 	public boolean canInsertItem(int i, ItemStack itemstack, int j) {
 		return this.isItemValidForSlot(i, itemstack);
 	}
 
-		//can a hopper extract an item from a slot
+	// Checks to see if a hopper can extract a certain item from specified slot
 	public boolean canExtractItem(int i, ItemStack itemstack, int j) {
 		//yes as long as its not from slot 0, slot 1 or the item is a bucket 
 		return j != 0 || i!= 1 || itemstack.getItem() == Items.bucket;
