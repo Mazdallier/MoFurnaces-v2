@@ -1,12 +1,12 @@
-Mo' Furnaces v2
-===============
+Mo' Furnaces v2.1.0
+===================
 
-Welcome to the official Repository for the mod Mo' Furnaces v2! Here you can
+Welcome to the official Repository for the mod Mo' Furnaces! Here you can
 view all the code that is used to build the Mo' Furnaces Mod!
 
 This mod was written by:
 
-- Mattkx4 (AkA: Mattkx10 or Mattkx9)
+- Mattkx4 (AkA: Mattkx10, Mattkx9, or jumpyblock)
 - Pr1meSh0ck
 
 The mod textures were by:
@@ -18,6 +18,8 @@ You can download the mod at the official Planet Minecraft or Minecraft Forum
 posts! (Compiling and releasing your own version of this mod with the code in
 this repository is strictly prohibited)
 
+PMC Post = http://www.planetminecraft.com/mod/forge-172-mo-furnaces-v1/
+MCF Post = Coming Soon...
 
 If you have any questions or concerns with the mod, you can leave a comment on
 the official posts or send an email to Mattkx9@gmail.com.
