@@ -1,6 +1,77 @@
-changelog 
+Developer's Changelog
+* * *
+* * *
+* * *
+Wishlist{
 
-0.1 -> 0.2{
+    - Wacky Furnaces
+        - Glowstone furnace: Glows extra bright
+        - Bone furnace: ??
+        - Flower furnace: ??
+        - Water furnace: ?? runs off water??
+        - Cacti Furnace: is prickly and grows cacti in a 3 block radius around it
+        - Exp furnace: ??
+        - Ender furnace: acts like the ender chest
+        - Tnt furnace: boom
+        - Furnace mob:
+        - Anvil Furnace
+        - Redstone Furnace
+    - Add an effect so that if you light the Netherrack Furnace on fire, it's infinite fire
+    - Custom Bone Furnace textures
+    - multi smelting furnaces, furnaces with will individually smelt more than 1 item
+        - tiered to smelt 1, 2, 3 and 4 items simultaneously
+        - idea: replace side faces with front faces
+    - ender furnaces
+    - redesign custom furnace gui
+    - implement ability to turn ingots into blocks if enough ingots are available
+        - send to a secondary output slot, not the primary output
+    - furnace upgrades ??? not likely due to nature of mod being similar to tool tiering
+    - custom particles
+}
+* * *
+* * *
+* * *
+V2.1 -> V2.2.x (Tiered Furnaces){
+    
+    13 AUG - Pr1meSh0ck{
+        - Added Tier 2 Obsidian Furnace
+            ~ Gui name not showing up correctly. (Fixed. Complete Gui renders correctly).
+            ~ Shifting clicking fuel into fuel slot didn't work. (Fixed).
+            ~ Shift clicking fuel out of fuel slot would first increase the stack to 64 and 
+            wouldn't remove the fuel. (Fixed. Fuel now removes itself correctly).
+            ~ Cooking progress bars did not run mutually exclusively. (Fixed).
+            ~ Both input slots needed to have an item in them to initiate cooking. (Fixed).
+            ~ Shift clicking the input slots would simply toggle which input it would go to. (Fixed).
+            ~ Cooking would cook two instances of the item. (Fixed).      
+    }
+    
+    TODO{
+        - Fix T2 Obsidian Furnace 2nd input shift clicking problem
+            - Cannot shift click into second input
+        - Fix T2 Obsidian Furnace 2nd output duplication bug
+            - Only happens with shift clicking when click and placed it does not duplication
+    } 
+}
+* * *
+* * *
+* * *
+V2.1 -> V2.2.x (Wacky Furnaces){
+
+
+
+}
+* * *
+* * *
+* * *
+V2.x -> V2.3{
+
+
+
+}
+* * *
+* * *
+* * *
+ALPHA 0.1 -> V2.1{
 
 	obsidian furnace
 		- added inverse fuel efficiency integer
@@ -166,23 +237,8 @@ changelog
         - Compile and test mod
             X 1.7.2
             - 1.7.10
-        - Build final versions of mod
+        X Build final versions of mod
         - Create posts on MCF and PMC
-        - Start next version
+        X Start next version
     }
-}
-
-Wishlist{
-
-    - Add an effect so that if you light the Netherrack Furnace on fire, it's infinite fire
-    - Custom Bone Furnace textures
-	- multi smelting furnaces, furnaces with will individually smelt more than 1 item
-		- tiered to smelt 1, 2, 3 and 4 items simultaneously
-		- idea: replace side faces with front faces
-	- ender furnaces
-	- redesign custom furnace gui
-	- implement ability to turn ingots into blocks if enough ingots are available
-		- send to a secondary output slot, not the primary output
-	- furnace upgrades ??? not likely due to nature of mod being similar to tool tiering
-    - custom particles
 }

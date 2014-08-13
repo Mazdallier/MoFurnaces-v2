@@ -1,0 +1,20 @@
+Fixed:
+    - Gui name not showing up correctly
+        - Complete Gui renders correctly
+    - Shifting clicking fuel into fuel slot didn't work
+        - Fixed
+    - Shift clicking fuel out of fuel slot would first increase the stack to 64 and wouldn't remove the fuel
+        - Fixed. Fuel now removes itself correctly
+    - Cooking progress bars did not run mutually exclusively
+        - Fixed
+    - Both input slots needed to have an item in them to initiate cooking
+        - Fixed
+    - Shift clicking the input slots would simply toggle which input it would go to.
+    - Cooking would cook two instances of the item 
+        - Fixed
+
+
+ISSUES:
+    - Can't shift click into second input slot [3]
+    - Shift clicking out of second output slot [4] will double the amount in the output stack
+        - NOTE. This doesn't happen if there is an instance of the item already in the inventory
