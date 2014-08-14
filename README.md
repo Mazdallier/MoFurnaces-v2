@@ -19,7 +19,8 @@ posts! (Compiling and releasing your own version of this mod with the code in
 this repository is strictly prohibited)
 
 PMC Post = http://www.planetminecraft.com/mod/forge-172-mo-furnaces-v1/
-MCF Post = Coming Soon...
+
+MCF Post = http://minecraft.curseforge.com/mc-mods/223409-forge-1-7-10-mo-furnaces-v2-1-0
 
 If you have any questions or concerns with the mod, you can leave a comment on
 the official posts or send an email to Mattkx9@gmail.com.
