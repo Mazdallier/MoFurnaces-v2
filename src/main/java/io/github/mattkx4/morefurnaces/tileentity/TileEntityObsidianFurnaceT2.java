@@ -25,9 +25,9 @@ public class TileEntityObsidianFurnaceT2 extends TileEntity implements ISidedInv
 
 private String localizedName;
 	
-	private static final int[] slots_top = new int[]{0,3};
-	private static final int[] slots_bottom = new int[]{2,4,1};
-	private static final int[] slots_side = new int[]{1};
+	private static final int[] slots_top = new int[]{0,1};
+	private static final int[] slots_bottom = new int[]{3,4};
+	private static final int[] slots_side = new int[]{2};
 	
 	private ItemStack[] slots = new ItemStack [5];
 	
@@ -210,17 +210,17 @@ private String localizedName;
 			//if the burnTime has reached zero and there is an item that can be smelted
 			if((this.burnTime == 0 && this.canSmelt1()) || (this.burnTime == 0 && this.canSmelt2())) {
 				//set currentItemBurnTime and burnTime to the fuel item burn time || add a '+1' after fuel efficiency to create an ever lasting furnace
-				this.currentItemBurnTime = this.burnTime = (int) (((double)getItemBurnTime(this.slots[1]) / (double)this.furnaceEfficiency) + 0.5);
+				this.currentItemBurnTime = this.burnTime = (int) (((double)getItemBurnTime(this.slots[2]) / (double)this.furnaceEfficiency) + 0.5);
 
 				if(this.isBurning()) {
 					flag1 = true;
 
 					//update for fuel slot item
-					if(this.slots[1] != null) {
-						this.slots[1].stackSize--;
+					if(this.slots[2] != null) {
+						this.slots[2].stackSize--;
 
-						if(this.slots[1].stackSize == 0) {
-							this.slots[1] = this.slots[1].getItem().getContainerItem(this.slots[1]);
+						if(this.slots[2].stackSize == 0) {
+							this.slots[2] = this.slots[2].getItem().getContainerItem(this.slots[2]);
 						}
 					}
 				}
@@ -268,10 +268,10 @@ private String localizedName;
 			ItemStack itemstack = FurnaceRecipes.smelting().getSmeltingResult(this.slots[0]);
 		
 			if(itemstack == null) return false;
-			if(this.slots[2] == null) return true;
-			if(!this.slots[2].isItemEqual(itemstack)) return false;
+			if(this.slots[3] == null) return true;
+			if(!this.slots[3].isItemEqual(itemstack)) return false;
 			
-			int result = slots[2].stackSize + itemstack.stackSize;
+			int result = slots[3].stackSize + itemstack.stackSize;
 			
 			return result <= getInventoryStackLimit() && result <= itemstack.getMaxStackSize();
 		}
@@ -279,10 +279,10 @@ private String localizedName;
 	
 	//Check to see if item in slot 3 can be smelted into slot 4
 	public boolean canSmelt2(){
-		if(this.slots[3] == null){
+		if(this.slots[1] == null){
 			return false;
 		}else{
-			ItemStack itemstack = FurnaceRecipes.smelting().getSmeltingResult(this.slots[3]);
+			ItemStack itemstack = FurnaceRecipes.smelting().getSmeltingResult(this.slots[1]);
 			
 			if(itemstack == null) return false;
 			if(this.slots[4] == null) return true;
@@ -298,10 +298,10 @@ private String localizedName;
 	public void smeltItem1(){
 		if(this.canSmelt1()){
 			ItemStack itemstack = FurnaceRecipes.smelting().getSmeltingResult(this.slots[0]);
-			if(this.slots[2] == null){
-				this.slots[2] = itemstack.copy();
-			}else if(this.slots[2].getItem() == itemstack.getItem()){
-				this.slots[2].stackSize += itemstack.stackSize;
+			if(this.slots[3] == null){
+				this.slots[3] = itemstack.copy();
+			}else if(this.slots[3].getItem() == itemstack.getItem()){
+				this.slots[3].stackSize += itemstack.stackSize;
 			}
 	
 			--this.slots[0].stackSize;
@@ -315,17 +315,17 @@ private String localizedName;
 	//Smelt the item in slot 3 and put the result into slot 4
 	public void smeltItem2(){
 		if(this.canSmelt2()){
-			ItemStack itemstack = FurnaceRecipes.smelting().getSmeltingResult(this.slots[3]);
+			ItemStack itemstack = FurnaceRecipes.smelting().getSmeltingResult(this.slots[1]);
 			if(this.slots[4] == null){
 				this.slots[4] = itemstack.copy();
 			}else if(this.slots[4].getItem() == itemstack.getItem()){
 				this.slots[4].stackSize += itemstack.stackSize;
 			}
 			
-			-- this.slots[3].stackSize;
+			-- this.slots[1].stackSize;
 			
-			if(this.slots[3].stackSize <= 0){
-				this.slots[3] = null;
+			if(this.slots[1].stackSize <= 0){
+				this.slots[1] = null;
 			}
 		}
 	}
@@ -371,17 +371,25 @@ private String localizedName;
 	}
 
 	public void openInventory() {}
-	
 	public void closeInventory() {}
 
 	// Checks to see if item can go in specified slot
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
-		return (i == 2 || i == 4) ? false : (i == 1 ? isItemFuel(itemstack) : true);
+		if(i == 3 || i == 4){
+			return false;
+		}else if(i == 2){
+			if(isItemFuel(itemstack)){
+				return true;
+			}
+		}else if(i == 0 || i == 1){
+			return true;
+			}
+		return false;
 	}
 	
 	// What slots are accessible from the different sides
 	public int[] getAccessibleSlotsFromSide(int i) {
-		return (i == 0 || i == 3) ? slots_bottom : (i == 1 ? slots_top : slots_side);
+		return (i == 0 || i == 1) ? slots_bottom : (i == 2 ? slots_top : slots_side);
 	}
 
 	// Checks to see if hopper can insert item into specified slot
@@ -392,6 +400,6 @@ private String localizedName;
 	// Checks to see if a hopper can extract a certain item from specified slot
 	public boolean canExtractItem(int i, ItemStack itemstack, int j) {
 		//yes as long as its not from slot 0, slot 1 or the item is a bucket 
-		return j != 0 || j !=2 || i!= 1 || itemstack.getItem() == Items.bucket;
+		return j != 0 || j !=1 || i!= 2 || itemstack.getItem() == Items.bucket;
 	}
 }
