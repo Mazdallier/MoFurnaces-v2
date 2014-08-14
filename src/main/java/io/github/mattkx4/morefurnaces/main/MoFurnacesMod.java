@@ -48,6 +48,8 @@ public class MoFurnacesMod {
 	public static final int guiIDBoneFurnace = 7;
 	//Tier 2 Obsidian Furnace gui ID
 	public static final int guiIDObsidianFurnaceT2 = 10;
+	//Tier 3 Obsidian Furnace gui ID
+	public static final int guiIDObsidianFurnaceT3 = 20;
 	
 	@Instance(Strings.MODID)
 	public static MoFurnacesMod instance;

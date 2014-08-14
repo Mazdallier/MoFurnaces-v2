@@ -2,10 +2,13 @@ package io.github.mattkx4.morefurnaces.blocks;
 
 import io.github.mattkx4.morefurnaces.lib.Strings;
 import io.github.mattkx4.morefurnaces.main.MoFurnacesMod;
-import io.github.mattkx4.morefurnaces.tileentity.TileEntityObsidianFurnaceT2;
+import io.github.mattkx4.morefurnaces.tileentity.TileEntityObsidianFurnaceT3;
 
 import java.util.Random;
 
+import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -22,12 +25,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
-public class ObsidianFurnaceT2 extends BlockContainer{
-
+public class ObsidianFurnaceT3 extends BlockContainer{
 	/*
 	 * Boolean to tell if the furnace is active
 	 */
@@ -43,7 +42,7 @@ public class ObsidianFurnaceT2 extends BlockContainer{
 	
 	private static boolean keepInventory;
 	
-	public ObsidianFurnaceT2(boolean isActive) {
+	public ObsidianFurnaceT3(boolean isActive) {
 		super(Material.rock);
 		this.isActive = isActive;
 		this.setHarvestLevel("pickaxe", 3);
@@ -53,7 +52,7 @@ public class ObsidianFurnaceT2 extends BlockContainer{
 	 * What item is dropped from the block
 	 */
 	public Item getItemDropped(int i, Random random, int j){
-		return Item.getItemFromBlock(MFMBlock.ObsidianFurnaceT2Idle);	
+		return Item.getItemFromBlock(MFMBlock.ObsidianFurnaceT3Idle);	
 	}	
 	
 	/*
@@ -110,7 +109,7 @@ public class ObsidianFurnaceT2 extends BlockContainer{
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister iconRegister){
 		this.blockIcon = iconRegister.registerIcon(Strings.MODID+":ObsidianFurnace_side");
-		this.iconFront = iconRegister.registerIcon(Strings.MODID+":"+(this.isActive ? "ObsidianFurnaceT2_front_active" : "ObsidianFurnaceT2_front_idle"));
+		this.iconFront = iconRegister.registerIcon(Strings.MODID+":"+(this.isActive ? "ObsidianFurnaceT3_front_active" : "ObsidianFurnaceT3_front_idle"));
 		this.iconTop = iconRegister.registerIcon(Strings.MODID+":ObsidianFurnace_top");
 	}
 	
@@ -119,21 +118,21 @@ public class ObsidianFurnaceT2 extends BlockContainer{
 	 */
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitx, float hity, float hitz){
 		if(!world.isRemote) {
-			FMLNetworkHandler.openGui(player, MoFurnacesMod.instance, MoFurnacesMod.guiIDObsidianFurnaceT2, world, x, y, z);
+			FMLNetworkHandler.openGui(player, MoFurnacesMod.instance, MoFurnacesMod.guiIDObsidianFurnaceT3, world, x, y, z);
 		}
 		return true;
 	}
 
-	public static void updateObsidianFurnaceT2State(boolean active, World worldObj, int xCoord, int yCoord, int zCoord) {
+	public static void updateObsidianFurnaceT3State(boolean active, World worldObj, int xCoord, int yCoord, int zCoord) {
 		int i = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
 		
 		TileEntity tileentity = worldObj.getTileEntity(xCoord, yCoord, zCoord);
 		keepInventory = true;
 		
 		if(active == true){
-			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlock.ObsidianFurnaceT2Active);
+			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlock.ObsidianFurnaceT3Active);
 		}else{
-			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlock.ObsidianFurnaceT2Idle);
+			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlock.ObsidianFurnaceT3Idle);
 		}
 		keepInventory = false;
 		
@@ -149,7 +148,7 @@ public class ObsidianFurnaceT2 extends BlockContainer{
 	 * Create the tile entity
 	 */
 	public TileEntity createNewTileEntity(World world, int i) {
-		return new TileEntityObsidianFurnaceT2();
+		return new TileEntityObsidianFurnaceT3();
 	}
 	
 	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entityplayer, ItemStack itemstack){
@@ -172,7 +171,7 @@ public class ObsidianFurnaceT2 extends BlockContainer{
 		}
 		
 		if(itemstack.hasDisplayName()){
-			((TileEntityObsidianFurnaceT2)world.getTileEntity(x, y, z)).setGuiDisplayName(itemstack.getDisplayName());
+			((TileEntityObsidianFurnaceT3)world.getTileEntity(x, y, z)).setGuiDisplayName(itemstack.getDisplayName());
 		}
 	}
 
@@ -181,7 +180,7 @@ public class ObsidianFurnaceT2 extends BlockContainer{
 	 */
 	public void breakBlock(World world, int x, int y, int z, Block oldblock, int oldmetadata){
         if (!keepInventory){
-            TileEntityObsidianFurnaceT2 tileentity = (TileEntityObsidianFurnaceT2)world.getTileEntity(x, y, z);
+            TileEntityObsidianFurnaceT3 tileentity = (TileEntityObsidianFurnaceT3)world.getTileEntity(x, y, z);
 
             if (tileentity != null){
                 for (int i = 0; i < tileentity.getSizeInventory(); ++i){
@@ -275,7 +274,6 @@ public class ObsidianFurnaceT2 extends BlockContainer{
      */
     @SideOnly(Side.CLIENT)
     public Item getItem(World world, int x, int y, int z){
-        return Item.getItemFromBlock(MFMBlock.ObsidianFurnaceT2Idle);
+        return Item.getItemFromBlock(MFMBlock.ObsidianFurnaceT3Idle);
     }
-	
 }

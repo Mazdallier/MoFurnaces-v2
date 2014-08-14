@@ -45,7 +45,7 @@ V2.1 -> V2.2.x (Tiered Furnaces){
             ~ Cooking would cook two instances of the item. (Fixed).      
     }
     
-    14 Aug - Pr1meSh0ck{
+    14 AUG - Pr1meSh0ck{
         - Fixed duplication bug with T2 obsidian furnace
             - Shift clicking second output no longer duplicates the item if an instance does not yet exist in the inventory
         - Found and fixed a problem where shift clicking output 1 would transfer the item into output 2 if the items matched
@@ -56,16 +56,24 @@ V2.1 -> V2.2.x (Tiered Furnaces){
         obtainability of the furnaces. (Much like ore  ratios. Extensive user testing will be needed to improve this further).
     }
     
+    14 AUG - Pr1meSh0ck{
+        - Added a Tier 3 Obsidian furnace
+            - created custom gui for tier 3 furnaces
+        - Changed T2 and T3 side and top textures to point to regular furnace textures
+            - Only the front will be different
+    }
+    
     TODO{
         X Fix T2 Obsidian Furnace 2nd input shift clicking problem
             X Cannot shift click into second input
         X Fix T2 Obsidian Furnace 2nd output duplication bug
             X Only happens with shift clicking when click and placed it does not duplication
-        - Build and test an alpha of the tiered furnace
+        - Build and test an alpha of the tiered furnaces
             - build and test in 1.7.2 environment
             - build and test in 1.7.10 environment
         - Apply tiering to the following furnaces
             - Iron, Gold, Brick, Diamond, Netherrack, Quartz
+        (I got bored, I'm going to stop now... Maybe I'll try some wacky furnaces)
     } 
 }
 * * *
