@@ -107,9 +107,9 @@ public class BoneFurnace extends BlockContainer{
 	 */
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister iconRegister){
-		this.blockIcon = iconRegister.registerIcon(Strings.MODID+":ObsidianFurnace_side");
-		this.iconFront = iconRegister.registerIcon(Strings.MODID+":"+(this.isActive ? "GoldFurnace_front_active" : "GoldFurnace_front_idle"));
-		this.iconTop = iconRegister.registerIcon(Strings.MODID+":NetherrackFurnace_top");
+		this.blockIcon = iconRegister.registerIcon(Strings.MODID+":BoneFurnace_side");
+		this.iconFront = iconRegister.registerIcon(Strings.MODID+":"+(this.isActive ? "BoneFurnace_front_active" : "BoneFurnace_front_idle"));
+		this.iconTop = iconRegister.registerIcon(Strings.MODID+":BoneFurnace_top");
 	}
 	
 	/*

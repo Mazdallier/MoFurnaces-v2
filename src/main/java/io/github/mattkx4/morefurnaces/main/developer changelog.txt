@@ -80,9 +80,10 @@ V2.1 -> V2.2.x (Wacky Furnaces){
 * * *
 * * *
 V2.x -> V2.3{
-
-
-
+    15 AUG - Mattkx4{
+        - Added Bone Furnace textures
+        - Set furnace to only take bones as fuel. Bone is the same efficiency as coal.
+    }
 }
 * * *
 * * *
