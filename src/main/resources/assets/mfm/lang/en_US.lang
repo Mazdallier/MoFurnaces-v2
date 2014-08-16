@@ -6,6 +6,8 @@ tile.BrickFurnaceIdle.name=Brick Furnace
 tile.QuartzFurnaceIdle.name=Quartz Furnace
 tile.NetherrackFurnaceIdle.name=Netherrack Furnace
 tile.BoneFurnaceIdle.name=Bone Furnace
+tile.ObsidianFurnaceT2Idle.name=Tier 2 Obsidian Furnace
+tile.ObsidianFurnaceT3Idle.name=Tier 3 Obsidian Furnace
 
 tile.ObsidianFurnaceActive.name=Obsidian Furnace
 tile.DiamondFurnaceActive.name=Diamond Furnace
@@ -15,6 +17,8 @@ tile.BrickFurnaceActive.name=Brick Furnace
 tile.QuartzFurnaceActive.name=Quartz Furnace
 tile.NetherrackFurnaceActive.name=Netherrack Furnace
 tile.BoneFurnaceActive.name=Bone Furnace
+tile.ObsidianFurnaceT2Active.name=Tier 2 Obsidian Furnace
+tile.ObsidianFurnaceT3Active.name=Tier 3 Obsidian Furnace
 
 itemGroup.mfm=Mo' Furnaces Mod
 
@@ -27,3 +31,5 @@ container.brickFurnace=Brick Furnace
 container.quartzFurnace=Quartz Furnace
 container.netherrackFurnace=Netherrack Furnace
 container.boneFurnace=Bone Furnace
+container.obsidianFurnaceT2= Tier 2 Obsidian Furnace
+container.obsidianFurnaceT3= Tier 3 Obsidian Furnace
