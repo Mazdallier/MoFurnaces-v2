@@ -12,7 +12,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 public class GuiBoneFurnace extends GuiContainer{
-public static final ResourceLocation bground = new ResourceLocation(Strings.MODID + ":textures/gui/quartz_furnace.png");
+public static final ResourceLocation bground = new ResourceLocation(Strings.MODID + ":textures/gui/bone_furnace.png");
 	
 	public TileEntityBoneFurnace boneFurnace;
 	
