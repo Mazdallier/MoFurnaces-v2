@@ -71,15 +71,9 @@ V2.1 -> V2.2{
             - build and test in 1.7.10 environment
         - Apply tiering to the following furnaces
             - Iron, Gold, Brick, Diamond, Netherrack, Quartz
+        - Organize Furnaces in their creative tab
+        - Create seperate creative tab for tiered furnaces
     } 
-}
-* * *
-* * *
-* * *
-V2.2 -> V2.3{
-
-
-
 }
 * * *
 * * *
@@ -247,11 +241,11 @@ ALPHA 0.1 -> V2.1{
         X Polish up the code for release
             X Polish files in the container, gui and tileentity folders
         X Create release version change log with user relevant data
-        - Compile and test mod
+        X Compile and test mod
             X 1.7.2
-            - 1.7.10
+            X 1.7.10
         X Build final versions of mod
-        - Create posts on MCF and PMC
+        X Create posts on MCF and PMC
         X Start next version
     }
 }
