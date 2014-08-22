@@ -14,19 +14,19 @@ Wishlist{
         - Ender furnace: acts like the ender chest
         - Tnt furnace: boom
         - Furnace mob:
-        - Anvil Furnace
-        - Redstone Furnace
+        - Anvil Furnace:
+        - Redstone Furnace: Constant strong redstone signal AND can absorb items like a hopper(thrown on top)
     - Add an effect so that if you light the Netherrack Furnace on fire, it's infinite fire
-    - Custom Bone Furnace textures
-    - multi smelting furnaces, furnaces with will individually smelt more than 1 item
-        - tiered to smelt 1, 2, 3 and 4 items simultaneously
-        - idea: replace side faces with front faces
-    - ender furnaces
+    X multi smelting furnaces, furnaces with will individually smelt more than 1 item
+        X tiered to smelt 1, 2, 3 and 4 items simultaneously (Stopped at 3 Items. Anymore is too crowded on current GUI)
+        X idea: replace side faces with front faces (SCRAPPED: Would interfere with hopper actions)
+    X Custom Bone Furnace textures
     - redesign custom furnace gui
     - implement ability to turn ingots into blocks if enough ingots are available
         - send to a secondary output slot, not the primary output
     - furnace upgrades ??? not likely due to nature of mod being similar to tool tiering
     - custom particles
+        - Attempt 1 Failed, carbon copying has limited success
 }
 * * *
 * * *
@@ -61,6 +61,22 @@ V2.1 -> V2.2{
         - Set furnace to only take bones as fuel. Bone is the same efficiency as coal.
     }
     
+    22 AUG - Pr1meSh0ck{
+        - Firstly, Merged the zh_CH.lang file created by sb023612.
+            - TODO updated to include credit to sb023612 for their contribution.
+        - Created a T3 obsidian furnace to be used as a template
+            - Same stats at an obsidian furnace but can smelt 3 items at once.
+            - Crafting recipe uses 2 diamonds, an obsidian furnace, a T2 obsidian furnace and obsidian
+        - Altered T2 and T3 Obsidian furnaces with custom active front textures to help differentiate but only when active.
+            - May / May not have all of these tiered textures completely redone by CobaltKatana.
+        - Attempted to add custom flame particles for the tiered furnaces(Failure).
+            - Created custom flame particles png files.
+            - Added carbon copy flame particles adjusting the RGB filter to alter the colour.
+        - Changed T2 and T3 furnaces to spawn their custom particles.
+        - Removed T2 side and top textures and utlised the original obsidian furnace textures instead.
+        - Removed current T2 and T3 obsidian furnace crafting recipes. 
+    }
+    
     TODO{
         X Fix T2 Obsidian Furnace 2nd input shift clicking problem
             X Cannot shift click into second input
@@ -73,6 +89,7 @@ V2.1 -> V2.2{
             - Iron, Gold, Brick, Diamond, Netherrack, Quartz
         - Organize Furnaces in their creative tab
         - Create seperate creative tab for tiered furnaces
+        - Credit sb023612 for language file contribution in user changelog.
     } 
 }
 * * *

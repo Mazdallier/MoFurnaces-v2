@@ -2,6 +2,7 @@ package io.github.mattkx4.morefurnaces.blocks;
 
 import io.github.mattkx4.morefurnaces.lib.Strings;
 import io.github.mattkx4.morefurnaces.main.MoFurnacesMod;
+import io.github.mattkx4.morefurnaces.particles.EntityTier2FlameFX;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityObsidianFurnaceT2;
 
 import java.util.Random;
@@ -9,6 +10,9 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.particle.EntityFX;
+import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -21,13 +25,15 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.renderer.Tessellator;
 
 public class ObsidianFurnaceT2 extends BlockContainer{
-
+	
 	/*
 	 * Boolean to tell if the furnace is active
 	 */
@@ -229,7 +235,8 @@ public class ObsidianFurnaceT2 extends BlockContainer{
      * in this case it is adding smoke and flames.
      */
     @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(World world, int x, int y, int z, Random random){
+    public void randomDisplayTick(World world, int x, int y, int z, Random random){ 	
+    	
         if (this.isActive){
             int direction = world.getBlockMetadata(x, y, z);
             float x1 = (float)x + 0.5F;
@@ -238,19 +245,20 @@ public class ObsidianFurnaceT2 extends BlockContainer{
             float f = 0.52F;
             float f1 = random.nextFloat() * 0.6F - 0.3F;
 
+            //spawn in the smoke and custom flame particle
             if(direction == 4){
             	world.spawnParticle("smoke", (double)(x1 - f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
-            	world.spawnParticle("flame", (double)(x1 - f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
+				Minecraft.getMinecraft().effectRenderer.addEffect(new EntityTier2FlameFX(world, (double)(x1 - f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D));
             }else if (direction == 5){
             	world.spawnParticle("smoke", (double)(x1 + f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
-            	world.spawnParticle("flame", (double)(x1 + f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
-            }else if (direction == 2){
+            	Minecraft.getMinecraft().effectRenderer.addEffect(new EntityTier2FlameFX(world, (double)(x1 + f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D));
+        	}else if (direction == 2){
             	world.spawnParticle("smoke", (double)(x1 + f1), (double)y1, (double)(z1 - f), 0.0D, 0.0D, 0.0D);
-            	world.spawnParticle("flame", (double)(x1 + f1), (double)y1, (double)(z1 - f), 0.0D, 0.0D, 0.0D);
-            }else if (direction == 3){
+            	Minecraft.getMinecraft().effectRenderer.addEffect(new EntityTier2FlameFX(world, (double)(x1 + f1), (double)y1, (double)(z1 - f), 0.0D, 0.0D, 0.0D));  
+        	}else if (direction == 3){
             	world.spawnParticle("smoke", (double)(x1 + f1), (double)y1, (double)(z1 + f), 0.0D, 0.0D, 0.0D);
-            	world.spawnParticle("flame", (double)(x1 + f1), (double)y1, (double)(z1 + f), 0.0D, 0.0D, 0.0D);
-            }
+            	Minecraft.getMinecraft().effectRenderer.addEffect(new EntityTier2FlameFX(world, (double)(x1 + f1), (double)y1, (double)(z1 + f), 0.0D, 0.0D, 0.0D));       
+        	}
         }
     }
 

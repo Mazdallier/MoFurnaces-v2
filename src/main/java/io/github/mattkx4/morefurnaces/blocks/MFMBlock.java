@@ -167,10 +167,10 @@ public class MFMBlock {
 		GameRegistry.addRecipe(new ItemStack(ObsidianFurnaceIdle), new Object[]{"ooo", "oDo", "ooo", 'o', Blocks.obsidian, 'D', DiamondFurnaceIdle});
 		//registry for Tier 2 Obsidian furnace
 		GameRegistry.registerTileEntity(TileEntityObsidianFurnaceT2.class, "Obsidian Furnace T2");
-		GameRegistry.addRecipe(new ItemStack(ObsidianFurnaceT2Idle), new Object[]{"ooo", "OdO", "ooo", 'd', Items.diamond, 'o', Blocks.obsidian, 'O', ObsidianFurnaceIdle});
+		//GameRegistry.addRecipe(new ItemStack(ObsidianFurnaceT2Idle), new Object[]{"ooo", "OdO", "ooo", 'd', Items.diamond, 'o', Blocks.obsidian, 'O', ObsidianFurnaceIdle});
 		//registry for Tier 3 Obsidian furnace
 		GameRegistry.registerTileEntity(TileEntityObsidianFurnaceT3.class, "Obsidian Furnace T3");
-		GameRegistry.addRecipe(new ItemStack(ObsidianFurnaceT3Idle), new Object[]{"ofo", "dOd", "ooo", 'd', Items.diamond, 'o', Blocks.obsidian, 'O', ObsidianFurnaceT2Idle, 'f', ObsidianFurnaceIdle});
+		//GameRegistry.addRecipe(new ItemStack(ObsidianFurnaceT3Idle), new Object[]{"ofo", "dOd", "ooo", 'd', Items.diamond, 'o', Blocks.obsidian, 'O', ObsidianFurnaceT2Idle, 'f', ObsidianFurnaceIdle});
 		//registry for Diamond furnace
 		GameRegistry.registerTileEntity(TileEntityDiamondFurnace.class, "Diamond Furnace");
 		//GameRegistry.addRecipe(new ItemStack(DiamondFurnaceIdle), new Object[]{"OOO", "O O", "OOO", 'O', Items.diamond});

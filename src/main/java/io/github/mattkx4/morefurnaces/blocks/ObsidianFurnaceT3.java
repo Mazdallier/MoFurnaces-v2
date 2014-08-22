@@ -2,6 +2,8 @@ package io.github.mattkx4.morefurnaces.blocks;
 
 import io.github.mattkx4.morefurnaces.lib.Strings;
 import io.github.mattkx4.morefurnaces.main.MoFurnacesMod;
+import io.github.mattkx4.morefurnaces.particles.EntityTier2FlameFX;
+import io.github.mattkx4.morefurnaces.particles.EntityTier3FlameFX;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityObsidianFurnaceT3;
 
 import java.util.Random;
@@ -12,6 +14,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -239,17 +242,17 @@ public class ObsidianFurnaceT3 extends BlockContainer{
 
             if(direction == 4){
             	world.spawnParticle("smoke", (double)(x1 - f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
-            	world.spawnParticle("flame", (double)(x1 - f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
+				Minecraft.getMinecraft().effectRenderer.addEffect(new EntityTier3FlameFX(world, (double)(x1 - f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D));
             }else if (direction == 5){
             	world.spawnParticle("smoke", (double)(x1 + f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
-            	world.spawnParticle("flame", (double)(x1 + f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
-            }else if (direction == 2){
+            	Minecraft.getMinecraft().effectRenderer.addEffect(new EntityTier3FlameFX(world, (double)(x1 + f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D));
+        	}else if (direction == 2){
             	world.spawnParticle("smoke", (double)(x1 + f1), (double)y1, (double)(z1 - f), 0.0D, 0.0D, 0.0D);
-            	world.spawnParticle("flame", (double)(x1 + f1), (double)y1, (double)(z1 - f), 0.0D, 0.0D, 0.0D);
-            }else if (direction == 3){
+            	Minecraft.getMinecraft().effectRenderer.addEffect(new EntityTier3FlameFX(world, (double)(x1 + f1), (double)y1, (double)(z1 - f), 0.0D, 0.0D, 0.0D));  
+        	}else if (direction == 3){
             	world.spawnParticle("smoke", (double)(x1 + f1), (double)y1, (double)(z1 + f), 0.0D, 0.0D, 0.0D);
-            	world.spawnParticle("flame", (double)(x1 + f1), (double)y1, (double)(z1 + f), 0.0D, 0.0D, 0.0D);
-            }
+            	Minecraft.getMinecraft().effectRenderer.addEffect(new EntityTier3FlameFX(world, (double)(x1 + f1), (double)y1, (double)(z1 + f), 0.0D, 0.0D, 0.0D));       
+        	}
         }
     }
 
