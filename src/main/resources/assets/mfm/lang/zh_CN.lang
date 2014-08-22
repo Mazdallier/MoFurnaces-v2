@@ -1,0 +1,35 @@
+tile.ObsidianFurnaceIdle.name=黑曜石熔炉
+tile.DiamondFurnaceIdle.name=钻石熔炉
+tile.IronFurnaceIdle.name=铁制熔炉
+tile.GoldFurnaceIdle.name=金制熔炉
+tile.BrickFurnaceIdle.name=砖头熔炉
+tile.QuartzFurnaceIdle.name=石英熔炉
+tile.NetherrackFurnaceIdle.name=地狱岩熔炉
+tile.BoneFurnaceIdle.name=骨制熔炉
+tile.ObsidianFurnaceT2Idle.name=2阶黑曜石熔炉
+tile.ObsidianFurnaceT3Idle.name=3阶黑曜石熔炉
+
+tile.ObsidianFurnaceActive.name=黑曜石熔炉
+tile.DiamondFurnaceActive.name=钻石熔炉
+tile.IronFurnaceActive.name=铁制熔炉
+tile.GoldFurnaceActive.name=金制熔炉
+tile.BrickFurnaceActive.name=砖头熔炉
+tile.QuartzFurnaceActive.name=石英熔炉
+tile.NetherrackFurnaceActive.name=地狱岩熔炉
+tile.BoneFurnaceActive.name=骨制熔炉
+tile.ObsidianFurnaceT2Active.name=2阶黑曜石熔炉
+tile.ObsidianFurnaceT3Active.name=3阶黑曜石熔炉
+
+itemGroup.mfm=更多熔炉
+
+container.Inventory=物品栏
+container.obsidianFurnace=黑曜石熔炉
+container.diamondFurnace=钻石熔炉
+container.ironFurnace=铁制熔炉
+container.goldFurnace=金制熔炉
+container.brickFurnace=砖头熔炉
+container.quartzFurnace=石英熔炉
+container.netherrackFurnace=地狱岩熔炉
+container.boneFurnace=骨制熔炉
+container.obsidianFurnaceT2= 2阶黑曜石熔炉
+container.obsidianFurnaceT3= 3阶黑曜石熔炉
