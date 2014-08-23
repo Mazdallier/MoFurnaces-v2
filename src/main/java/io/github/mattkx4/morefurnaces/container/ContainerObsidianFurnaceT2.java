@@ -124,7 +124,7 @@ public class ContainerObsidianFurnaceT2 extends Container{
 	 * 
 	 * - int slots is the slot ID created at the begining of the class
 	 * 		- 0 = input 1, 1 = input 2, 2 = fuel input, 3 = output 1, 4 = output2
-	 * 		- 5-42 are the inventory slots
+	 * 		- 5-41 are the inventory slots
 	 */
 	public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int slots)
     {

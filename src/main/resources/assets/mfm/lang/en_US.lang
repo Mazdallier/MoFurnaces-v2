@@ -8,6 +8,7 @@ tile.NetherrackFurnaceIdle.name=Netherrack Furnace
 tile.BoneFurnaceIdle.name=Bone Furnace
 tile.ObsidianFurnaceT2Idle.name=Tier 2 Obsidian Furnace
 tile.ObsidianFurnaceT3Idle.name=Tier 3 Obsidian Furnace
+tile.RedstoneFurnaceIdle.name=Redstone Furnace
 
 tile.ObsidianFurnaceActive.name=Obsidian Furnace
 tile.DiamondFurnaceActive.name=Diamond Furnace
@@ -17,6 +18,7 @@ tile.BrickFurnaceActive.name=Brick Furnace
 tile.QuartzFurnaceActive.name=Quartz Furnace
 tile.NetherrackFurnaceActive.name=Netherrack Furnace
 tile.BoneFurnaceActive.name=Bone Furnace
+tile.RedstoneFurnaceActive.name=Redstone Furnace
 tile.ObsidianFurnaceT2Active.name=Tier 2 Obsidian Furnace
 tile.ObsidianFurnaceT3Active.name=Tier 3 Obsidian Furnace
 
@@ -33,3 +35,4 @@ container.netherrackFurnace=Netherrack Furnace
 container.boneFurnace=Bone Furnace
 container.obsidianFurnaceT2= Tier 2 Obsidian Furnace
 container.obsidianFurnaceT3= Tier 3 Obsidian Furnace
+container.redstoneFurnace=Redstone Furnace

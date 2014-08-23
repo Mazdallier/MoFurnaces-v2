@@ -77,11 +77,24 @@ V2.1 -> V2.2{
         - Removed current T2 and T3 obsidian furnace crafting recipes. 
     }
     
+    23 AUG - Pr1meSh0ck{
+        - Identified unknown bug with the T2 and T3 Obsidian Furnace guis
+            - Appears as though the flame in the gui is rendering more of the texture than it needs to 
+        - Added redstone/hopper furnace
+            - currently has the same stats as the regular furnace
+            - holds five stacks of items for smelting but will only smelt one at a time
+            - no other effects yet
+       - Added redstone furnace textures
+            - Custom redstone gui
+            - retextured the diamond textures to look red (hopefully temporary)
+   }    
+    
     TODO{
         X Fix T2 Obsidian Furnace 2nd input shift clicking problem
             X Cannot shift click into second input
         X Fix T2 Obsidian Furnace 2nd output duplication bug
             X Only happens with shift clicking when click and placed it does not duplication
+        - Fix T2 and T3 gui rendering bug
         - Build and test an alpha of the tiered furnace
             - build and test in 1.7.2 environment
             - build and test in 1.7.10 environment

@@ -11,6 +11,7 @@ import io.github.mattkx4.morefurnaces.tileentity.TileEntityObsidianFurnaceT3;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityBrickFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityQuartzFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityNetherrackFurnace;
+import io.github.mattkx4.morefurnaces.tileentity.TileEntityRedstoneFurnace;
 import net.minecraft.block.Block;
 import net.minecraft.block.Block.SoundType;
 import net.minecraft.init.Blocks;
@@ -39,6 +40,8 @@ public class MFMBlock {
     public static final Block.SoundType soundTypeNetherrack = new Block.SoundType("stone", 1.0F, 1.0F);
     //Bone Furnace step sound
     public static final Block.SoundType soundTypeBone = new Block.SoundType("stone", 1.0F, 1.0F);
+    //Redstone Furnace step sound
+    public static final Block.SoundType soundTypeRedstone = new Block.SoundType("stone", 1.0F, 1.5F);
     
 	public static void mainRegistry(){
 		initializeBlock();
@@ -83,6 +86,9 @@ public class MFMBlock {
 	//Bone furnace active and idle states
 	public static Block BoneFurnaceIdle;
 	public static Block BoneFurnaceActive;
+	//Redstone furnace active and idle states
+	public static Block RedstoneFurnaceIdle;
+	public static Block RedstoneFurnaceActive;
 	
 	/**
 	 * Initialize the active and idle blocks and set attributes
@@ -118,6 +124,10 @@ public class MFMBlock {
 		//initialize the Bone Furnace
 		BoneFurnaceIdle = new BoneFurnace(false).setBlockName("BoneFurnaceIdle").setHardness(0.5F).setResistance(2.0F).setStepSound(soundTypeBone).setCreativeTab(MoFurnacesMod.MFM);
 		BoneFurnaceActive = new BoneFurnace(true).setBlockName("BoneFurnaceActive").setHardness(0.5F).setResistance(2.0F).setStepSound(soundTypeBone).setLightLevel(0.625F);
+		//initialize the Bone Furnace
+		RedstoneFurnaceIdle = new RedstoneFurnace(false).setBlockName("RedstoneFurnaceIdle").setHardness(5.0F).setResistance(10.0F).setStepSound(soundTypeRedstone).setCreativeTab(MoFurnacesMod.MFM);
+		RedstoneFurnaceActive = new RedstoneFurnace(true).setBlockName("RedstoneFurnaceActive").setHardness(5.0F).setResistance(10.0F).setStepSound(soundTypeRedstone).setLightLevel(0.625F);
+	
 	}
 	
 	/**
@@ -155,6 +165,9 @@ public class MFMBlock {
 		//register Bone furnace
 		GameRegistry.registerBlock(BoneFurnaceIdle, "BoneFurnaceIdle");
 		GameRegistry.registerBlock(BoneFurnaceActive, "BoneFurnaceActive");
+		//register Bone furnace
+		GameRegistry.registerBlock(RedstoneFurnaceIdle, "RedstoneFurnaceIdle");
+		GameRegistry.registerBlock(RedstoneFurnaceActive, "RedstoneFurnaceActive");
 	}
 	
 	/**
@@ -205,5 +218,8 @@ public class MFMBlock {
 		GameRegistry.registerTileEntity(TileEntityBoneFurnace.class, "Bone Furnace");
 		//GameRegistry.addRecipe(new ItemStack(BoneFurnaceIdle), new Object[]{"OOO", "O O", "OOO", 'O', Items.bone});
 		//GameRegistry.addRecipe(new ItemStack(BoneFurnaceIdle), new Object[]{"OOO", "OIO", "OOO", 'O', Items.bone, 'I', Blocks.furnace});
+		
+		GameRegistry.registerTileEntity(TileEntityRedstoneFurnace.class, "Redstone Furnace");
+
 	}
 }

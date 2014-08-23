@@ -16,3 +16,7 @@ Fixed:
 
 
 ISSUES:
+    22 AUG
+    - Bug found with the rendering of the GUI's.
+        - This bug appears to render the cooking flame AND the arrow above it for some unknown reason
+        - More testing is needed to see if it only effects the bigger fuel items or every fuel item
