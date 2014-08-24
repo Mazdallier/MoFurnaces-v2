@@ -87,16 +87,21 @@ V2.1 -> V2.2{
        - Added redstone furnace textures
             - Custom redstone gui
             - retextured the diamond textures to look red (hopefully temporary)
-   }    
+    }    
    
-   23 AUG - Mattkx4 {
-       - Organized the tiered packages a little bit more.
-       - Added "Tiered" Creative Tab
-       - Told my texture guy to work on the RedstoneFurnace :)
-       - Corrected the Redstone Furnace GUI to display the name slightly higher. It was being covered by the slots.
-       - Changed name of the tier2/3 gui.png files.
-       - Added Diamond Furnace Tier 2 (not enough time in the night to make Tier 3) I'll do it tomorrow.
-   }
+    23 AUG - Mattkx4 {
+        - Organized the tiered packages a little bit more.
+        - Added "Tiered" Creative Tab
+        - Told my texture guy to work on the RedstoneFurnace :)
+        - Corrected the Redstone Furnace GUI to display the name slightly higher. It was being covered by the slots.
+        - Changed name of the tier2/3 gui.png files.
+        - Added Diamond Furnace Tier 2 (not enough time in the night to make Tier 3) I'll do it tomorrow.
+    }
+     
+    24 AUG - Pr1meSh0ck{
+        - Reset the Redstone Furnace gui to display the name in previous position
+            - Altered the gui png file to move the inputs, fuel and output slots down and centered more 
+    }
     
     TODO{
         X Fix T2 Obsidian Furnace 2nd input shift clicking problem

@@ -30,14 +30,11 @@ import static org.lwjgl.opengl.GL11.*;
  *  	and simply does not and to render
  */
 
-/**
+
 public class EntityTier2FlameFX extends EntityFX{	
-	
-	
-	
-	
-	 * This attempt does not seem to work.
-	 * 
+
+	// This attempt does not seem to work.
+	  
 	public ResourceLocation flame = new ResourceLocation(Strings.MODID + ":textures/particles/tier2_flame2.png");;
 	
 	//imitate what a regular furnace flame does
@@ -53,6 +50,9 @@ public class EntityTier2FlameFX extends EntityFX{
 	@SideOnly(Side.CLIENT)
 	public void renderParticle(Tessellator tessellator, float partialTicks, float i, float j, float k, float l, float m){
 		
+		Minecraft.getMinecraft().getTextureManager().bindTexture(flame);
+
+		
 		glDepthMask(false);
 		glEnableClientState(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -60,7 +60,6 @@ public class EntityTier2FlameFX extends EntityFX{
 		
 		tessellator.startDrawingQuads();
 	
-		Minecraft.getMinecraft().getTextureManager().bindTexture(flame);
 
 		tessellator.setBrightness(200);
 		tessellator.setColorOpaque_F(0.1F, 0.1F, 0.1F);
@@ -120,7 +119,7 @@ public class EntityTier2FlameFX extends EntityFX{
 		return this;
 	}
 }
-	*/
+	
 	
 /**
  * Attempt at creating custom particles, it's bloody difficult
@@ -130,9 +129,11 @@ public class EntityTier2FlameFX extends EntityFX{
  * and moving onto wacky furnaces.
  * 
  */
+
+/**
 public class EntityTier2FlameFX extends EntityFlameFX{	
 
-	/** the scale of the flame FX */
+	/* the scale of the flame FX /
     private float flameScale;
     private static final String __OBFID = "CL_00000907";
 
@@ -188,9 +189,9 @@ public class EntityTier2FlameFX extends EntityFlameFX{
         return j | k << 16;
     }
 
-    /**
+    /*
      * Gets how bright this entity is.
-     */
+     /
     public float getBrightness(float p_70013_1_)
     {
         float f1 = ((float)this.particleAge + p_70013_1_) / (float)this.particleMaxAge;
@@ -209,9 +210,9 @@ public class EntityTier2FlameFX extends EntityFlameFX{
         return f2 * f1 + (1.0F - f1);
     }
 
-    /**
+    /*
      * Called to update the entity's position/logic.
-     */
+     /
     public void onUpdate()
     {
         this.prevPosX = this.posX;
@@ -237,3 +238,4 @@ public class EntityTier2FlameFX extends EntityFlameFX{
 	
 	
 }
+*/

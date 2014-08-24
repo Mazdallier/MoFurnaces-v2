@@ -250,6 +250,7 @@ public class ObsidianFurnaceT2 extends BlockContainer{
             if(direction == 4){
             	world.spawnParticle("smoke", (double)(x1 - f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
 				Minecraft.getMinecraft().effectRenderer.addEffect(new EntityTier2FlameFX(world, (double)(x1 - f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D));
+
             }else if (direction == 5){
             	world.spawnParticle("smoke", (double)(x1 + f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
             	Minecraft.getMinecraft().effectRenderer.addEffect(new EntityTier2FlameFX(world, (double)(x1 + f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D));

@@ -32,13 +32,13 @@ public class ContainerRedstoneFurnace extends Container{
 		 * slot 5 is fuel input
 		 * slot6 is the output
 		 */
-		this.addSlotToContainer(new Slot(tileentity, 0, 9, 13));
-		this.addSlotToContainer(new Slot(tileentity, 1, 29, 13));
-		this.addSlotToContainer(new Slot(tileentity, 2, 49, 13));
-		this.addSlotToContainer(new Slot(tileentity, 3, 69, 13));
-		this.addSlotToContainer(new Slot(tileentity, 4, 89, 13));
-		this.addSlotToContainer(new Slot(tileentity, 5, 49, 48));
-		this.addSlotToContainer(new SlotFurnace(inventory.player, tileentity, 6, 131, 38));
+		this.addSlotToContainer(new Slot(tileentity, 0, 12, 16));
+		this.addSlotToContainer(new Slot(tileentity, 1, 32, 16));
+		this.addSlotToContainer(new Slot(tileentity, 2, 52, 16));
+		this.addSlotToContainer(new Slot(tileentity, 3, 72, 16));
+		this.addSlotToContainer(new Slot(tileentity, 4, 92, 16));
+		this.addSlotToContainer(new Slot(tileentity, 5, 52, 51));
+		this.addSlotToContainer(new SlotFurnace(inventory.player, tileentity, 6, 134, 41));
 
 		for(int i = 0; i < 3; i++) {
 			for(int j = 0; j < 9; j++) {
