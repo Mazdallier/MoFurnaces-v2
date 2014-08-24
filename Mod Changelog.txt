@@ -1,6 +1,8 @@
 This is the official change log for the Mo' Furnaces v2 Mod
 Its contents will be submitted in reverse chronological order starting with the release.
 
+SPECIAL THANKS TO: sb023612 for a Chinese Language File!
+
 Release: V2.1.0
     - Recreation of the entire original mod
     - Adds the following furnaces with the following crafting recipes, specifications and (if applicable) extra effects

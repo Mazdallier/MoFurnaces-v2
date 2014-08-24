@@ -33,7 +33,7 @@ public class GuiRedstoneFurnace extends GuiContainer{
 		// Gets the name of the furnace and stores it String "name"
 		String name = this.redstoneFurnace.hasCustomInventoryName() ? this.redstoneFurnace.getInventoryName() : I18n.format(this.redstoneFurnace.getInventoryName(), new Object[0]);
 		// Displays the name and GUI of the furnace on the GUI Foreground Layer
-		this.fontRendererObj.drawString(name, this.xSize / 2 - this.fontRendererObj.getStringWidth(name) / 2, 6, 4210752);
+		this.fontRendererObj.drawString(name, this.xSize / 2 - this.fontRendererObj.getStringWidth(name) / 2, 4, 4210752);
 		this.fontRendererObj.drawString(I18n.format("container.Inventory", new Object[0]), 8, this.ySize - 96 + 2, 4210752);
 	}
 	

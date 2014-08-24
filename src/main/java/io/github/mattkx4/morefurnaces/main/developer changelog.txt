@@ -6,7 +6,7 @@ Wishlist{
 
     - Wacky Furnaces
         - Glowstone furnace: Glows extra bright
-        - Bone furnace: ??
+        X Bone furnace: ??
         - Flower furnace: ??
         - Water furnace: ?? runs off water??
         - Cacti Furnace: is prickly and grows cacti in a 3 block radius around it
@@ -88,21 +88,33 @@ V2.1 -> V2.2{
             - Custom redstone gui
             - retextured the diamond textures to look red (hopefully temporary)
    }    
+   
+   23 AUG - Mattkx4 {
+       - Organized the tiered packages a little bit more.
+       - Added "Tiered" Creative Tab
+       - Told my texture guy to work on the RedstoneFurnace :)
+       - Corrected the Redstone Furnace GUI to display the name slightly higher. It was being covered by the slots.
+       - Changed name of the tier2/3 gui.png files.
+       - Added Diamond Furnace Tier 2 (not enough time in the night to make Tier 3) I'll do it tomorrow.
+   }
     
     TODO{
         X Fix T2 Obsidian Furnace 2nd input shift clicking problem
             X Cannot shift click into second input
         X Fix T2 Obsidian Furnace 2nd output duplication bug
             X Only happens with shift clicking when click and placed it does not duplication
-        - Fix T2 and T3 gui rendering bug
-        - Build and test an alpha of the tiered furnace
-            - build and test in 1.7.2 environment
-            - build and test in 1.7.10 environment
+        - Fix T2 and T3 gui rendering bug ???
         - Apply tiering to the following furnaces
             - Iron, Gold, Brick, Diamond, Netherrack, Quartz
-        - Organize Furnaces in their creative tab
-        - Create seperate creative tab for tiered furnaces
-        - Credit sb023612 for language file contribution in user changelog.
+        - Design the following Wacky Furnace:
+            - Anvil
+            - Cacti
+            - Flower
+        X Organize Furnaces in their creative tab
+        X Create seperate creative tab for tiered furnaces
+        X Credit sb023612 for language file contribution in user changelog.
+        - Make active and idle textures for Diamond Furnace T2
+        - Fix Diamond Furnace guiID ?
     } 
 }
 * * *

@@ -1,6 +1,6 @@
-package io.github.mattkx4.morefurnaces.tileentity;
+package io.github.mattkx4.morefurnaces.tileentity.tier2;
 
-import io.github.mattkx4.morefurnaces.blocks.ObsidianFurnaceT2;
+import io.github.mattkx4.morefurnaces.blocks.tier2.ObsidianFurnaceT2;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;

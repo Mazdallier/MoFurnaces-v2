@@ -1,6 +1,6 @@
-package io.github.mattkx4.morefurnaces.container;
+package io.github.mattkx4.morefurnaces.container.tier3;
 
-import io.github.mattkx4.morefurnaces.tileentity.TileEntityObsidianFurnaceT3;
+import io.github.mattkx4.morefurnaces.tileentity.tier3.TileEntityObsidianFurnaceT3;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;

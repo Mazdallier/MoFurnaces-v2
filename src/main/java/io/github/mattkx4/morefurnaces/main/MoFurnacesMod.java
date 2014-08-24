@@ -26,6 +26,7 @@ public class MoFurnacesMod {
 	 * new creative tab for all new physical aspects of the mod
 	 */
 	public static CreativeTabs MFM;
+	public static CreativeTabs TieredMFM;
 	
 	/*
 	 * Create constants for the individual furnace GUI ID's
@@ -52,6 +53,8 @@ public class MoFurnacesMod {
 	public static final int guiIDObsidianFurnaceT3 = 30;
 	//Redstone Furnace gui ID
 	public static final int guiIDRedstoneFurnace = 8;
+	//Tier 2 Diamond Furnace gui ID
+	public static final int guiIDDiamondFurnaceT2 = 40; 
 	
 	@Instance(Strings.MODID)
 	public static MoFurnacesMod instance;
@@ -69,6 +72,13 @@ public class MoFurnacesMod {
 			@SideOnly(Side.CLIENT)
 			public Item getTabIconItem(){
 				return Item.getItemFromBlock(MFMBlock.DiamondFurnaceActive);
+			}
+		};
+		
+		TieredMFM = new CreativeTabs("tieredmfm"){
+			@SideOnly(Side.CLIENT)
+			public Item getTabIconItem() {
+				return Item.getItemFromBlock(MFMBlock.ObsidianFurnaceT3Active);
 			}
 		};
 		

@@ -1,6 +1,7 @@
-package io.github.mattkx4.morefurnaces.container;
+package io.github.mattkx4.morefurnaces.container.tier2;
 
-import io.github.mattkx4.morefurnaces.tileentity.TileEntityObsidianFurnaceT2;
+import io.github.mattkx4.morefurnaces.tileentity.tier2.TileEntityDiamondFurnaceT2;
+import io.github.mattkx4.morefurnaces.tileentity.tier2.TileEntityObsidianFurnaceT2;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -12,9 +13,9 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ContainerObsidianFurnaceT2 extends Container{
+public class ContainerDiamondFurnaceT2 extends Container{
 	
-	private TileEntityObsidianFurnaceT2 obsidianFurnaceT2;
+	private TileEntityDiamondFurnaceT2 diamondFurnaceT2;
 
 	public int lastBurnTime;
 	public int lastCurrentItemBurnTime;
@@ -24,8 +25,8 @@ public class ContainerObsidianFurnaceT2 extends Container{
 	/*
 	 * Class constructor that adds all the slots to the Furnace GUI
 	 */
-	public ContainerObsidianFurnaceT2(InventoryPlayer inventory, TileEntityObsidianFurnaceT2 tileentity) {
-		this.obsidianFurnaceT2 = tileentity;
+	public ContainerDiamondFurnaceT2(InventoryPlayer inventory, TileEntityDiamondFurnaceT2 tileentity) {
+		this.diamondFurnaceT2 = tileentity;
 
 		/**
 		 * - Slot is a new input/output slot
@@ -59,10 +60,10 @@ public class ContainerObsidianFurnaceT2 extends Container{
 	 */
 	public void addCraftingToCrafters (ICrafting icrafting) {
 		super.addCraftingToCrafters(icrafting);
-		icrafting.sendProgressBarUpdate(this, 0, this.obsidianFurnaceT2.cookTime1);
-		icrafting.sendProgressBarUpdate(this, 3, this.obsidianFurnaceT2.cookTime2);
-		icrafting.sendProgressBarUpdate(this, 1, this.obsidianFurnaceT2.burnTime);
-		icrafting.sendProgressBarUpdate(this, 2, this.obsidianFurnaceT2.currentItemBurnTime);
+		icrafting.sendProgressBarUpdate(this, 0, this.diamondFurnaceT2.cookTime1);
+		icrafting.sendProgressBarUpdate(this, 3, this.diamondFurnaceT2.cookTime2);
+		icrafting.sendProgressBarUpdate(this, 1, this.diamondFurnaceT2.burnTime);
+		icrafting.sendProgressBarUpdate(this, 2, this.diamondFurnaceT2.currentItemBurnTime);
 	}
 
 	/*
@@ -73,27 +74,27 @@ public class ContainerObsidianFurnaceT2 extends Container{
 		for(int i = 0; i < this.crafters.size(); i++) {
 			ICrafting icrafting = (ICrafting) this.crafters.get(i);
 
-			if(this.lastCookTime1 != this.obsidianFurnaceT2.cookTime1) {
-				icrafting.sendProgressBarUpdate(this, 0, this.obsidianFurnaceT2.cookTime1);
+			if(this.lastCookTime1 != this.diamondFurnaceT2.cookTime1) {
+				icrafting.sendProgressBarUpdate(this, 0, this.diamondFurnaceT2.cookTime1);
 			}
 			
-			if(this.lastCookTime2 != this.obsidianFurnaceT2.cookTime2) {
-				icrafting.sendProgressBarUpdate(this, 3, this.obsidianFurnaceT2.cookTime2);
+			if(this.lastCookTime2 != this.diamondFurnaceT2.cookTime2) {
+				icrafting.sendProgressBarUpdate(this, 3, this.diamondFurnaceT2.cookTime2);
 			}
 
-			if(this.lastBurnTime != this.obsidianFurnaceT2.burnTime) {
-				icrafting.sendProgressBarUpdate(this, 1, this.obsidianFurnaceT2.burnTime);
+			if(this.lastBurnTime != this.diamondFurnaceT2.burnTime) {
+				icrafting.sendProgressBarUpdate(this, 1, this.diamondFurnaceT2.burnTime);
 			}
 
-			if(this.lastCurrentItemBurnTime != this.obsidianFurnaceT2.currentItemBurnTime) {
-				icrafting.sendProgressBarUpdate(this, 2, this.obsidianFurnaceT2.currentItemBurnTime);
+			if(this.lastCurrentItemBurnTime != this.diamondFurnaceT2.currentItemBurnTime) {
+				icrafting.sendProgressBarUpdate(this, 2, this.diamondFurnaceT2.currentItemBurnTime);
 			}
 		}
 
-		this.lastCookTime1 = this.obsidianFurnaceT2.cookTime1;
-		this.lastCookTime2 = this.obsidianFurnaceT2.cookTime2;
-		this.lastBurnTime = this.obsidianFurnaceT2.burnTime;
-		this.lastCurrentItemBurnTime = this.obsidianFurnaceT2.currentItemBurnTime;
+		this.lastCookTime1 = this.diamondFurnaceT2.cookTime1;
+		this.lastCookTime2 = this.diamondFurnaceT2.cookTime2;
+		this.lastBurnTime = this.diamondFurnaceT2.burnTime;
+		this.lastCurrentItemBurnTime = this.diamondFurnaceT2.currentItemBurnTime;
 	}
 
 	/*
@@ -103,19 +104,19 @@ public class ContainerObsidianFurnaceT2 extends Container{
     public void updateProgressBar(int par1, int par2)
     {
         if (par1 == 0) {
-            this.obsidianFurnaceT2.cookTime1 = par2;
+            this.diamondFurnaceT2.cookTime1 = par2;
         }
         
         if (par1 == 3) {
-        	this.obsidianFurnaceT2.cookTime2 = par2;
+        	this.diamondFurnaceT2.cookTime2 = par2;
         }
 
         if (par1 == 1) {
-            this.obsidianFurnaceT2.burnTime = par2;
+            this.diamondFurnaceT2.burnTime = par2;
         }
 
         if (par1 == 2) {
-            this.obsidianFurnaceT2.currentItemBurnTime = par2;
+            this.diamondFurnaceT2.currentItemBurnTime = par2;
         }
     }
 

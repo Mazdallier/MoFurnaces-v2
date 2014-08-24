@@ -1,7 +1,7 @@
 package io.github.mattkx4.morefurnaces.container;
 
-import io.github.mattkx4.morefurnaces.tileentity.TileEntityObsidianFurnaceT3;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityRedstoneFurnace;
+import io.github.mattkx4.morefurnaces.tileentity.tier3.TileEntityObsidianFurnaceT3;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;

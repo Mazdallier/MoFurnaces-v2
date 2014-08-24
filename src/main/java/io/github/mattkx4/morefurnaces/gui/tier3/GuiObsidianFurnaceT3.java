@@ -1,8 +1,8 @@
-package io.github.mattkx4.morefurnaces.gui;
+package io.github.mattkx4.morefurnaces.gui.tier3;
 
-import io.github.mattkx4.morefurnaces.container.ContainerObsidianFurnaceT3;
+import io.github.mattkx4.morefurnaces.container.tier3.ContainerObsidianFurnaceT3;
 import io.github.mattkx4.morefurnaces.lib.Strings;
-import io.github.mattkx4.morefurnaces.tileentity.TileEntityObsidianFurnaceT3;
+import io.github.mattkx4.morefurnaces.tileentity.tier3.TileEntityObsidianFurnaceT3;
 
 import org.lwjgl.opengl.GL11;
 
@@ -13,7 +13,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
 public class GuiObsidianFurnaceT3 extends GuiContainer{
-public static final ResourceLocation bground = new ResourceLocation(Strings.MODID + ":textures/gui/custom_gui_tier3.png");
+public static final ResourceLocation bground = new ResourceLocation(Strings.MODID + ":textures/gui/obsidian_furnace_tier3.png");
 	
 	public TileEntityObsidianFurnaceT3 obsidianFurnaceT3;
 	
