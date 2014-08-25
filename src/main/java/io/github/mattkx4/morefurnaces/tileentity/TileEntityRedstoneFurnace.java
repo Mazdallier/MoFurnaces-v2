@@ -773,6 +773,7 @@ public class TileEntityRedstoneFurnace extends TileEntity implements ISidedInven
 	
 	    if (itemstack != null && canTakeFromInventory(inventory, itemstack, i, j))
 	    {
+	    	
 	        ItemStack itemstack1 = itemstack.copy();
 	        
 	        //testing a theory, changing inventory.decrStackSize(i,1) to this.decreaseStackSize
@@ -784,7 +785,10 @@ public class TileEntityRedstoneFurnace extends TileEntity implements ISidedInven
 	            return true;
 	        }
 	
+	        //original code
 	        inventory.setInventorySlotContents(i, itemstack1);
+	        
+	        
 	    }
 	
 	    return false;
@@ -852,23 +856,67 @@ public class TileEntityRedstoneFurnace extends TileEntity implements ISidedInven
 		//CHANGED inventory.getStackInSlot(i); TO this.getStackInSlot(6) AS A TEST
 	    ItemStack itemstack1 = inventory.getStackInSlot(i);
 
+	    /*
+	     * custom code for this function:
+	     * I believe this function actually does the pulling from objects into the furnace
+	     * This custom code takes only fuel and cookable items and puts them into the fuel
+	     * slot and input slots respectively.
+	     */
+
+	    if(isItemFuel(item)){
+	    	if (getStackInSlot(5) == null){
+	    		if(item.stackSize < getInventoryStackLimit()){
+	    			this.setInventorySlotContents(5, item);
+	    			item = null;
+	    		}
+	    	}else if(slots[5].getItem() == item.getItem() && slots[5].stackSize <= 64){
+	    		if(item.stackSize < getInventoryStackLimit()){
+    				slots[5].stackSize++;    			
+					item = null;
+	    		}
+	    	}
+	    }
+	    if(FurnaceRecipes.smelting().getSmeltingResult(item) != null){
+	    	if (getStackInSlot(i) == null){
+	    		if(item.stackSize < getInventoryStackLimit()){
+	    			this.setInventorySlotContents(i, item);
+	    			item = null;
+	    		}
+	    	}else if(slots[i].getItem() == item.getItem() && slots[i].stackSize <= 64){
+	    		if(item.stackSize < getInventoryStackLimit()){
+    				slots[i].stackSize++;    			
+					item = null;
+	    		}
+	    	}
+	    }
+	    
+	    
+	    /**
+	    
 	    if (func_145885_a(inventory, item, i, j))
 	    {
 	        boolean flag = false;
 	
-	        if (itemstack1 == null)
-	        {
+	        if (itemstack1 == null){
 	            //Forge: BUGFIX: Again, make things respect max stack sizes.
 	            int max = Math.min(item.getMaxStackSize(), inventory.getInventoryStackLimit());
-	            if (max >= item.stackSize)
-	            {
-	            	inventory.setInventorySlotContents(i, item);
-	                item = null;
-	            }
-	            else
-	            {
-	            	inventory.setInventorySlotContents(i, item.splitStack(max));
-	            }
+	          //custom code
+	            if(isItemFuel(item)){
+	            	if (max >= item.stackSize){
+		            	this.setInventorySlotContents(5, item);
+		                item = null;
+		            }else{
+		            	this.setInventorySlotContents(5, item.splitStack(max));
+		            }
+	            }else{
+		            if (max >= item.stackSize){
+		            	this.setInventorySlotContents(i, item);
+		                item = null;
+		            }else{
+		            	this.setInventorySlotContents(i, item.splitStack(max));
+		            }
+            	}
+
 	            flag = true;
 	        }else if (canPutInChest(itemstack1, item)){
 	           
@@ -877,8 +925,14 @@ public class TileEntityRedstoneFurnace extends TileEntity implements ISidedInven
 		            if (max > itemstack1.stackSize)
 		            {
 		                int l = Math.min(item.stackSize, max - itemstack1.stackSize);
-		                item.stackSize -= l;
-		                itemstack1.stackSize += l;
+		                //item.stackSize -= l;
+		               // itemstack1.stackSize += l;
+		                //custom code
+		              item.stackSize --;
+			          itemstack1.stackSize ++;
+		                slots[5].stackSize++;
+		                
+		                
 		                flag = l > 0;
 		            
 	        	}
@@ -896,7 +950,9 @@ public class TileEntityRedstoneFurnace extends TileEntity implements ISidedInven
 	        }
 	    }
 	
+	    */
 	    return item;
+
 	}
 
 	private IInventory func_145895_l()
@@ -968,9 +1024,10 @@ public class TileEntityRedstoneFurnace extends TileEntity implements ISidedInven
 	 */
 	private boolean func_145885_a(IInventory inventory, ItemStack itemstack, int i, int j)
 	{
-		
+	    //return !inventory.isItemValidForSlot(i, itemstack) ? false : !(inventory instanceof ISidedInventory) || ((ISidedInventory)inventory).canInsertItem(i, itemstack, j);
+
 		//changed inventory. to this.
-	    return !this.isItemValidForSlot(i, itemstack) ? false : !(inventory instanceof ISidedInventory) || ((ISidedInventory)inventory).canInsertItem(i, itemstack, j);
+	    return !this.isItemValidForSlot(i, itemstack) ? false : !(inventory instanceof ISidedInventory) || this.canInsertItem(i, itemstack, j);
 	
 		//return true;
 	}
@@ -1004,7 +1061,7 @@ public class TileEntityRedstoneFurnace extends TileEntity implements ISidedInven
 	private boolean canTakeFromInventory(IInventory inventory, ItemStack itemstack, int i, int j)
 	{
 		//original code
-	    //return !(inventory instanceof ISidedInventory) || ((ISidedInventory)inventory).canExtractItem(i, itemstack, j);
+	    return !(inventory instanceof ISidedInventory) || ((ISidedInventory)inventory).canExtractItem(i, itemstack, j);
 		
 		/*
 		 * Custom code. if the statement asks the question, is the item fuel, and returns false then the 
@@ -1012,11 +1069,19 @@ public class TileEntityRedstoneFurnace extends TileEntity implements ISidedInven
 		 * Further testing confirms. Only items with a furnace recipe are accepted.
 		 */
 		//This allows only fuel items to be inputted
+		
+		/**
 		if(!this.isItemFuel(itemstack)){
 			return false;
 		}
+		
+		//if(!(FurnaceRecipes.smelting().getSmeltingResult(itemstack) != null)){
+		//	return false;
+		//}
 		return true;
-		//return !(canExtractItem(i, itemstack, j) || (isItemValidForSlot(i, itemstack)));
+		//return !(canExtractItem(i, itemstack, j) || (isItemValidForSlot(i, itemstack))); 
+		 */
+	
 	}
 	
 	

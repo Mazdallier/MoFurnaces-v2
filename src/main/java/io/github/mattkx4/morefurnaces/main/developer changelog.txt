@@ -111,6 +111,14 @@ V2.1 -> V2.2{
             - Thinking of also making just a Tier 2 Device and a Tier 3 Device. Rather than making all the individual Diamond, brick, gold, etc. tiering devices.
     }
     
+    25 AUG - Pr1meSh0ck{
+        - Redstone Furnace coding
+            - Custom coding takes items from an inventory above the furnace and places them into the furnace
+                - Cookable Items are taken and placed in one of the five input slots
+                - Fuel Items are taken and placed in the fuel slot
+                - Anything else is ignored
+    }
+    
     TODO{
         X Fix T2 Obsidian Furnace 2nd input shift clicking problem
             X Cannot shift click into second input

@@ -11,12 +11,24 @@ Changelog:
                 - Hopper code does not differentiate between cookable, non-cookable and fuel items
     }
     
+    25 AUG - Pr1meSh0ck{
+        - Redstone Furnace coding
+            - Custom coding takes items from an inventory above the furnace and places them into the furnace
+                - Cookable Items are taken and placed in one of the five input slots
+                - Fuel Items are taken and placed in the fuel slot
+                - Anything else is ignored
+    }
+    
+    
 * * *
 * * *
 * * *
 Notes:
     - The code for the hopper part and the furnace part don't seem to be clashing. Good.
     - Heading to bed soon, this is a sticky note of what I think needs to happen.
+    
+    
+    XXXFINISHEDXXX
     1. There is a piece of code that picks an item stack from a chest or on top of the furnace
         - This code then scans through all of the slots, all of the slots that can have items inputted into them
         - The code then places the item stack and repeats the process until there are no more items in the inventory 
@@ -24,6 +36,9 @@ Notes:
     ~ This code needs to be first found and then adjusted in two ways
         ~ First the code needs to look only for cooking items and fuels
         ~ Second the code needs to place fuel ONLY in the fuel slot and cooking items into the inputs
+    XXX FINISHEDXXX
+    
+    
     2. There is a piece of code that, if an appropriate inventory is attached to the front of the furnace
         - The code will pull item stacks from the inputs and fuel slots and place them into the chest
         - The code will pull item stacks from the output slot and place them into the chest.
