@@ -1,14 +1,18 @@
-package io.github.mattkx4.morefurnaces.blocks;
+package io.github.mattkx4.morefurnaces.blocks.tier3;
 
+import io.github.mattkx4.morefurnaces.blocks.MFMBlock;
 import io.github.mattkx4.morefurnaces.lib.Strings;
 import io.github.mattkx4.morefurnaces.main.MoFurnacesMod;
-import io.github.mattkx4.morefurnaces.tileentity.TileEntityObsidianFurnace;
+import io.github.mattkx4.morefurnaces.particles.EntityTier3FlameFX;
+import io.github.mattkx4.morefurnaces.tileentity.tier3.TileEntityDiamondFurnaceT3;
+import io.github.mattkx4.morefurnaces.tileentity.tier3.TileEntityObsidianFurnaceT3;
 
 import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -26,8 +30,7 @@ import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ObsidianFurnace extends BlockContainer{
-
+public class DiamondFurnaceT3 extends BlockContainer{
 	/*
 	 * Boolean to tell if the furnace is active
 	 */
@@ -43,17 +46,17 @@ public class ObsidianFurnace extends BlockContainer{
 	
 	private static boolean keepInventory;
 	
-	public ObsidianFurnace(boolean isActive) {
+	public DiamondFurnaceT3(boolean isActive) {
 		super(Material.rock);
 		this.isActive = isActive;
-		this.setHarvestLevel("pickaxe", 3);
+		this.setHarvestLevel("pickaxe", 2);
 	}
 	
 	/*
 	 * What item is dropped from the block
 	 */
 	public Item getItemDropped(int i, Random random, int j){
-		return Item.getItemFromBlock(MFMBlock.ObsidianFurnaceIdle);	
+		return Item.getItemFromBlock(MFMBlock.DiamondFurnaceT3Idle);	
 	}	
 	
 	/*
@@ -109,36 +112,31 @@ public class ObsidianFurnace extends BlockContainer{
 	 */
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister iconRegister){
-		this.blockIcon = iconRegister.registerIcon(Strings.MODID+":ObsidianFurnace_side");
-		this.iconFront = iconRegister.registerIcon(Strings.MODID+":"+(this.isActive ? "ObsidianFurnace_front_active" : "ObsidianFurnace_front_idle"));
-		this.iconTop = iconRegister.registerIcon(Strings.MODID+":ObsidianFurnace_top");
+		this.blockIcon = iconRegister.registerIcon(Strings.MODID+":DiamondFurnace_side");
+		this.iconFront = iconRegister.registerIcon(Strings.MODID+":"+(this.isActive ? "ObsidianFurnaceT3_front_active" : "ObsidianFurnaceT3_front_idle"));
+		this.iconTop = iconRegister.registerIcon(Strings.MODID+":DiamondFurnace_top");
 	}
 	
 	/*
 	 * Called upon on block activation (right click) to open the GUI
 	 */
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitx, float hity, float hitz){
-		// Tiers the Obsidian Furnace to Tier 2
-		if(player.getCurrentEquippedItem().getItem() == MFMBlock.ObsidianTieringDevice) {
-			world.setBlock(x, y, z, MFMBlock.ObsidianFurnaceT2Idle);
-			return true;
-		}
 		if(!world.isRemote) {
-			FMLNetworkHandler.openGui(player, MoFurnacesMod.instance, MoFurnacesMod.guiIDObsidianFurnace, world, x, y, z);
+			FMLNetworkHandler.openGui(player, MoFurnacesMod.instance, MoFurnacesMod.guiIDDiamondFurnaceT3, world, x, y, z);
 		}
 		return true;
 	}
 
-	public static void updateObsidianFurnaceState(boolean active, World worldObj, int xCoord, int yCoord, int zCoord) {
+	public static void updateDiamondFurnaceT3State(boolean active, World worldObj, int xCoord, int yCoord, int zCoord) {
 		int i = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
 		
 		TileEntity tileentity = worldObj.getTileEntity(xCoord, yCoord, zCoord);
 		keepInventory = true;
 		
 		if(active == true){
-			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlock.ObsidianFurnaceActive);
+			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlock.DiamondFurnaceT3Active);
 		}else{
-			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlock.ObsidianFurnaceIdle);
+			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlock.DiamondFurnaceT3Idle);
 		}
 		keepInventory = false;
 		
@@ -154,7 +152,7 @@ public class ObsidianFurnace extends BlockContainer{
 	 * Create the tile entity
 	 */
 	public TileEntity createNewTileEntity(World world, int i) {
-		return new TileEntityObsidianFurnace();
+		return new TileEntityDiamondFurnaceT3();
 	}
 	
 	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entityplayer, ItemStack itemstack){
@@ -177,7 +175,7 @@ public class ObsidianFurnace extends BlockContainer{
 		}
 		
 		if(itemstack.hasDisplayName()){
-			((TileEntityObsidianFurnace)world.getTileEntity(x, y, z)).setGuiDisplayName(itemstack.getDisplayName());
+			((TileEntityObsidianFurnaceT3)world.getTileEntity(x, y, z)).setGuiDisplayName(itemstack.getDisplayName());
 		}
 	}
 
@@ -186,7 +184,7 @@ public class ObsidianFurnace extends BlockContainer{
 	 */
 	public void breakBlock(World world, int x, int y, int z, Block oldblock, int oldmetadata){
         if (!keepInventory){
-            TileEntityObsidianFurnace tileentity = (TileEntityObsidianFurnace)world.getTileEntity(x, y, z);
+            TileEntityDiamondFurnaceT3 tileentity = (TileEntityDiamondFurnaceT3)world.getTileEntity(x, y, z);
 
             if (tileentity != null){
                 for (int i = 0; i < tileentity.getSizeInventory(); ++i){
@@ -245,17 +243,17 @@ public class ObsidianFurnace extends BlockContainer{
 
             if(direction == 4){
             	world.spawnParticle("smoke", (double)(x1 - f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
-            	world.spawnParticle("flame", (double)(x1 - f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
+				Minecraft.getMinecraft().effectRenderer.addEffect(new EntityTier3FlameFX(world, (double)(x1 - f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D));
             }else if (direction == 5){
             	world.spawnParticle("smoke", (double)(x1 + f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
-            	world.spawnParticle("flame", (double)(x1 + f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
-            }else if (direction == 2){
+            	Minecraft.getMinecraft().effectRenderer.addEffect(new EntityTier3FlameFX(world, (double)(x1 + f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D));
+        	}else if (direction == 2){
             	world.spawnParticle("smoke", (double)(x1 + f1), (double)y1, (double)(z1 - f), 0.0D, 0.0D, 0.0D);
-            	world.spawnParticle("flame", (double)(x1 + f1), (double)y1, (double)(z1 - f), 0.0D, 0.0D, 0.0D);
-            }else if (direction == 3){
+            	Minecraft.getMinecraft().effectRenderer.addEffect(new EntityTier3FlameFX(world, (double)(x1 + f1), (double)y1, (double)(z1 - f), 0.0D, 0.0D, 0.0D));  
+        	}else if (direction == 3){
             	world.spawnParticle("smoke", (double)(x1 + f1), (double)y1, (double)(z1 + f), 0.0D, 0.0D, 0.0D);
-            	world.spawnParticle("flame", (double)(x1 + f1), (double)y1, (double)(z1 + f), 0.0D, 0.0D, 0.0D);
-            }
+            	Minecraft.getMinecraft().effectRenderer.addEffect(new EntityTier3FlameFX(world, (double)(x1 + f1), (double)y1, (double)(z1 + f), 0.0D, 0.0D, 0.0D));       
+        	}
         }
     }
 
@@ -280,6 +278,6 @@ public class ObsidianFurnace extends BlockContainer{
      */
     @SideOnly(Side.CLIENT)
     public Item getItem(World world, int x, int y, int z){
-        return Item.getItemFromBlock(MFMBlock.ObsidianFurnaceIdle);
+        return Item.getItemFromBlock(MFMBlock.DiamondFurnaceT3Idle);
     }
 }

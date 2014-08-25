@@ -103,6 +103,14 @@ V2.1 -> V2.2{
             - Altered the gui png file to move the inputs, fuel and output slots down and centered more 
     }
     
+    24 AUG - Mattkx4 {
+        - Added Diamond Furnace Tier 3
+        - Made some good headway on the Tiering Device. Gonna brainstorm ideas in bed tonight.
+            - If you have any thoughts with the tiering device tell me.
+            - Thinking of making a firework particle affect when you tier a furnace.
+            - Thinking of also making just a Tier 2 Device and a Tier 3 Device. Rather than making all the individual Diamond, brick, gold, etc. tiering devices.
+    }
+    
     TODO{
         X Fix T2 Obsidian Furnace 2nd input shift clicking problem
             X Cannot shift click into second input
@@ -110,7 +118,12 @@ V2.1 -> V2.2{
             X Only happens with shift clicking when click and placed it does not duplication
         - Fix T2 and T3 gui rendering bug ???
         - Apply tiering to the following furnaces
-            - Iron, Gold, Brick, Diamond, Netherrack, Quartz
+            - Iron
+            - Gold
+            - Brick
+            X Diamond (Needs textures (see below))
+            - Netherrack
+            - Quartz
         - Design the following Wacky Furnace:
             - Anvil
             - Cacti
@@ -118,8 +131,9 @@ V2.1 -> V2.2{
         X Organize Furnaces in their creative tab
         X Create seperate creative tab for tiered furnaces
         X Credit sb023612 for language file contribution in user changelog.
-        - Make active and idle textures for Diamond Furnace T2
+        - Make active and idle textures for Diamond Furnace T2/T3
         - Fix Diamond Furnace guiID ?
+        - Finish perfecting Tiering Device
     } 
 }
 * * *

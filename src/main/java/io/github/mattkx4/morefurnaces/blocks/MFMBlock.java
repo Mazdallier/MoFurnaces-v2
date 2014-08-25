@@ -2,7 +2,9 @@ package io.github.mattkx4.morefurnaces.blocks;
 
 import io.github.mattkx4.morefurnaces.blocks.tier2.DiamondFurnaceT2;
 import io.github.mattkx4.morefurnaces.blocks.tier2.ObsidianFurnaceT2;
+import io.github.mattkx4.morefurnaces.blocks.tier3.DiamondFurnaceT3;
 import io.github.mattkx4.morefurnaces.blocks.tier3.ObsidianFurnaceT3;
+import io.github.mattkx4.morefurnaces.items.ObsidianTieringDevice;
 import io.github.mattkx4.morefurnaces.main.MoFurnacesMod;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityBoneFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityBrickFurnace;
@@ -15,10 +17,12 @@ import io.github.mattkx4.morefurnaces.tileentity.TileEntityQuartzFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityRedstoneFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.tier2.TileEntityDiamondFurnaceT2;
 import io.github.mattkx4.morefurnaces.tileentity.tier2.TileEntityObsidianFurnaceT2;
+import io.github.mattkx4.morefurnaces.tileentity.tier3.TileEntityDiamondFurnaceT3;
 import io.github.mattkx4.morefurnaces.tileentity.tier3.TileEntityObsidianFurnaceT3;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -49,8 +53,10 @@ public class MFMBlock {
 	public static void mainRegistry(){
 		initializeBlock();
 		registerBlock();
+		initializeItem();
+		registerItem();
 	}
-	
+
 	public static void secondaryRegistry(){
 		registerBlock2();
 	}
@@ -74,6 +80,9 @@ public class MFMBlock {
 	//Tier 2 Diamond furnace active and idle blocks
 	public static Block DiamondFurnaceT2Idle;
 	public static Block DiamondFurnaceT2Active;
+	//Tier 3 Diamond furnace active and idle blocks
+	public static Block DiamondFurnaceT3Idle;
+	public static Block DiamondFurnaceT3Active;
 	//Iron furnace active and idle states
 	public static Block IronFurnaceIdle;
 	public static Block IronFurnaceActive;
@@ -112,9 +121,12 @@ public class MFMBlock {
 		//initialize the Diamond furnace
 		DiamondFurnaceIdle = new DiamondFurnace(false).setBlockName("DiamondFurnaceIdle").setHardness(5.0F).setResistance(10.0F).setStepSound(soundTypeDiamond).setCreativeTab(MoFurnacesMod.MFM);
 		DiamondFurnaceActive = new DiamondFurnace(true).setBlockName("DiamondFurnaceActive").setHardness(5.0F).setResistance(10.0F).setStepSound(soundTypeDiamond).setLightLevel(0.625F);
-		//initialize the Tier 2 Obsidian furnace
+		//initialize the Tier 2 Diamond furnace
 		DiamondFurnaceT2Idle = new DiamondFurnaceT2(false).setBlockName("DiamondFurnaceT2Idle").setHardness(5.0F).setResistance(10.0F).setStepSound(soundTypeDiamond).setCreativeTab(MoFurnacesMod.TieredMFM);
 		DiamondFurnaceT2Active = new DiamondFurnaceT2(true).setBlockName("DiamondFurnaceT2Active").setHardness(5.0F).setResistance(10.0F).setStepSound(soundTypeDiamond).setLightLevel(0.625F);
+		//initialize the Tier 3 Diamond furnace
+		DiamondFurnaceT3Idle = new DiamondFurnaceT3(false).setBlockName("DiamondFurnaceT3Idle").setHardness(5.0F).setResistance(10.0F).setStepSound(soundTypeDiamond).setCreativeTab(MoFurnacesMod.TieredMFM);
+		DiamondFurnaceT3Active = new DiamondFurnaceT3(true).setBlockName("DiamondFurnaceT3Active").setHardness(5.0F).setResistance(10.0F).setStepSound(soundTypeDiamond).setLightLevel(0.625F);
 		//initialize the Iron furnace
 		IronFurnaceIdle = new IronFurnace(false).setBlockName("IronFurnaceIdle").setHardness(5.0F).setResistance(10.0F).setStepSound(soundTypeIron).setCreativeTab(MoFurnacesMod.MFM);
 		IronFurnaceActive = new IronFurnace(true).setBlockName("IronFurnaceActive").setHardness(5.0F).setResistance(10.0F).setStepSound(soundTypeIron).setLightLevel(0.625F);
@@ -158,6 +170,9 @@ public class MFMBlock {
 		//register Tier 2 Diamond furnace
 		GameRegistry.registerBlock(DiamondFurnaceT2Idle, "DiamondFurnaceT2Idle");
 		GameRegistry.registerBlock(DiamondFurnaceT2Active, "DiamondFurnaceT2Active");
+		//register Tier 3 Diamond furnace
+		GameRegistry.registerBlock(DiamondFurnaceT3Idle, "DiamondFurnaceT3Idle");
+		GameRegistry.registerBlock(DiamondFurnaceT3Active, "DiamondFurnaceT3Active");
 		//register Iron furnace
 		GameRegistry.registerBlock(IronFurnaceIdle,  "IronFurnaceIdle");
 		GameRegistry.registerBlock(IronFurnaceActive, "IronFurnaceActive");
@@ -203,6 +218,9 @@ public class MFMBlock {
 		//registry for Tier 2 Diamond furnace
 		GameRegistry.registerTileEntity(TileEntityDiamondFurnaceT2.class, "Diamond Furnace T2");
 		// Crafting Recipe UNKNOWN. Thinking of making item that tiers the furnace.
+		//registry for Tier 3 Diamond furnace
+		GameRegistry.registerTileEntity(TileEntityDiamondFurnaceT3.class, "Diamond Furnace T3");
+		// Crafting Recipe UNKNOWN. Thinking of making item that tiers the furnace.
 		//registry for Iron furnace
 		GameRegistry.registerTileEntity(TileEntityIronFurnace.class, "Iron Furnace");
 		//GameRegistry.addRecipe(new ItemStack(IronFurnaceIdle), new Object[]{"OOO", "O O", "OOO", 'O', Items.iron_ingot});
@@ -234,6 +252,16 @@ public class MFMBlock {
 		//GameRegistry.addRecipe(new ItemStack(BoneFurnaceIdle), new Object[]{"OOO", "OIO", "OOO", 'O', Items.bone, 'I', Blocks.furnace});
 		
 		GameRegistry.registerTileEntity(TileEntityRedstoneFurnace.class, "Redstone Furnace");
-
+	}
+	
+	//initialize obsidian tiering device
+	public static Item ObsidianTieringDevice;
+	
+	public static void initializeItem() {
+		ObsidianTieringDevice = new ObsidianTieringDevice();
+	}
+	
+	public static void registerItem() {
+		GameRegistry.registerItem(ObsidianTieringDevice, "ObsidianTieringDevice");
 	}
 }
