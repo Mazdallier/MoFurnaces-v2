@@ -3,6 +3,7 @@ package io.github.mattkx4.morefurnaces.blocks;
 import io.github.mattkx4.morefurnaces.lib.Strings;
 import io.github.mattkx4.morefurnaces.main.MoFurnacesMod;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityObsidianFurnace;
+import io.github.mattkx4.morefurnaces.tileentity.tier2.TileEntityObsidianFurnaceT2;
 
 import java.util.Random;
 
@@ -13,6 +14,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
@@ -119,9 +121,37 @@ public class ObsidianFurnace extends BlockContainer{
 	 */
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitx, float hity, float hitz){
 		// Tiers the Obsidian Furnace to Tier 2
-		if(player.getCurrentEquippedItem().getItem() == MFMBlock.ObsidianTieringDevice) {
-			world.setBlock(x, y, z, MFMBlock.ObsidianFurnaceT2Idle);
-			return true;
+		if(player.getCurrentEquippedItem() != null) {
+			if(player.getCurrentEquippedItem().getItem() == MFMBlock.ObsidianTieringDevice) {
+				TileEntityObsidianFurnace tileentity = (TileEntityObsidianFurnace)world.getTileEntity(x, y, z);
+				ItemStack input;
+				ItemStack fuel;
+				ItemStack product;
+				if(tileentity.getStackInSlot(0) != null) {
+					input = tileentity.getStackInSlot(0).copy();
+				} else {
+					input = null;
+				}
+				if(tileentity.getStackInSlot(1) != null) {
+					fuel = tileentity.getStackInSlot(1).copy();
+				} else {
+					fuel = null;
+				}
+				if(tileentity.getStackInSlot(2) != null) {
+					product = tileentity.getStackInSlot(2).copy();
+				} else {
+					product = null;
+				}
+				tileentity.setInventorySlotContents(0, null);
+				tileentity.setInventorySlotContents(1, null);
+				tileentity.setInventorySlotContents(2, null);
+				world.setBlock(x, y, z, MFMBlock.ObsidianFurnaceT2Idle);
+				TileEntityObsidianFurnaceT2 tileentityT2 = (TileEntityObsidianFurnaceT2)world.getTileEntity(x, y, z);
+				if(input != null){ tileentityT2.setInventorySlotContents(0, input); }
+				if(fuel != null){ tileentityT2.setInventorySlotContents(2, fuel); }
+				if(product != null){ tileentityT2.setInventorySlotContents(3, product); }
+				return true;
+			}
 		}
 		if(!world.isRemote) {
 			FMLNetworkHandler.openGui(player, MoFurnacesMod.instance, MoFurnacesMod.guiIDObsidianFurnace, world, x, y, z);
