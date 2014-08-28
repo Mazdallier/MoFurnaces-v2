@@ -4,7 +4,7 @@ import io.github.mattkx4.morefurnaces.blocks.tier2.DiamondFurnaceT2;
 import io.github.mattkx4.morefurnaces.blocks.tier2.ObsidianFurnaceT2;
 import io.github.mattkx4.morefurnaces.blocks.tier3.DiamondFurnaceT3;
 import io.github.mattkx4.morefurnaces.blocks.tier3.ObsidianFurnaceT3;
-import io.github.mattkx4.morefurnaces.items.ObsidianTieringDevice;
+import io.github.mattkx4.morefurnaces.items.Tier2Device;
 import io.github.mattkx4.morefurnaces.main.MoFurnacesMod;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityBoneFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityBrickFurnace;
@@ -255,13 +255,13 @@ public class MFMBlock {
 	}
 	
 	//initialize obsidian tiering device
-	public static Item ObsidianTieringDevice;
+	public static Item Tier2Device;
 	
 	public static void initializeItem() {
-		ObsidianTieringDevice = new ObsidianTieringDevice();
+		Tier2Device = new Tier2Device();
 	}
 	
 	public static void registerItem() {
-		GameRegistry.registerItem(ObsidianTieringDevice, "ObsidianTieringDevice");
+		GameRegistry.registerItem(Tier2Device, "Tier2Device");
 	}
 }

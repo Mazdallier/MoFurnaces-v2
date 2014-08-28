@@ -122,7 +122,7 @@ public class ObsidianFurnace extends BlockContainer{
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitx, float hity, float hitz){
 		// Tiers the Obsidian Furnace to Tier 2
 		if(player.getCurrentEquippedItem() != null) {
-			if(player.getCurrentEquippedItem().getItem() == MFMBlock.ObsidianTieringDevice) {
+			if(player.getCurrentEquippedItem().getItem() == MFMBlock.Tier2Device) {
 				TileEntityObsidianFurnace tileentity = (TileEntityObsidianFurnace)world.getTileEntity(x, y, z);
 				ItemStack input;
 				ItemStack fuel;
@@ -142,14 +142,14 @@ public class ObsidianFurnace extends BlockContainer{
 				} else {
 					product = null;
 				}
-				tileentity.setInventorySlotContents(0, null);
+				tileentity.setInventorySlotContents(0, new ItemStack(Blocks.obsidian));
 				tileentity.setInventorySlotContents(1, null);
 				tileentity.setInventorySlotContents(2, null);
 				world.setBlock(x, y, z, MFMBlock.ObsidianFurnaceT2Idle);
 				TileEntityObsidianFurnaceT2 tileentityT2 = (TileEntityObsidianFurnaceT2)world.getTileEntity(x, y, z);
 				if(input != null){ tileentityT2.setInventorySlotContents(0, input); }
 				if(fuel != null){ tileentityT2.setInventorySlotContents(2, fuel); }
-				if(product != null){ tileentityT2.setInventorySlotContents(3, product); }
+				if(product != null){ tileentityT2.setInventorySlotContents(3, product); }	
 				return true;
 			}
 		}

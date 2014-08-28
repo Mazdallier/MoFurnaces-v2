@@ -119,6 +119,12 @@ V2.1 -> V2.2{
                 - Anything else is ignored
     }
     
+    26 AUG - Mattkx4{
+        - Almost done with Tiering Device
+            - Renamed to Tier 2 Device
+            - Got a really odd bug, where when you tier the furnace, it bugs out the fuel times...
+    }
+    
     TODO{
         X Fix T2 Obsidian Furnace 2nd input shift clicking problem
             X Cannot shift click into second input
