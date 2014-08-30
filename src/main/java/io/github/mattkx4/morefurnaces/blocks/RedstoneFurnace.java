@@ -277,4 +277,10 @@ public class RedstoneFurnace extends BlockContainer{
     public Item getItem(World world, int x, int y, int z){
         return Item.getItemFromBlock(MFMBlock.RedstoneFurnaceIdle);
     }
+    
+    //extra function utilized ONLY by the hopper aspects of the redstone furnace
+    public static int getDirectionFromMetadata(int i)
+    {
+        return i & 7;
+    }
 }

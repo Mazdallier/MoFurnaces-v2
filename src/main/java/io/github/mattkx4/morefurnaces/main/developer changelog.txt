@@ -125,12 +125,31 @@ V2.1 -> V2.2{
             - Got a really odd bug, where when you tier the furnace, it bugs out the fuel times...
     }
     
+    30 AUG - Pr1meSh0ck{
+        - Redstone Furnace Finished
+            - Identified the code which chooses where to look for inventories to pull and push things to
+                - Altered the code to output to an inventory on the right hand side of the furnace
+            - Identified the code controlling the output of the furnace
+                - Changed the code to ONLY look at the output slot for the redstone furnace
+            - Identified problem when attempting to transfer more than 5 items to be cooked into the furnace
+                - FIXED
+            - Identified problem when attempting to transfer a fuel
+                - FIXED
+            - Redstone furnace now works as intended
+            -Neatened up the code
+                
+    }
+    
     TODO{
         X Fix T2 Obsidian Furnace 2nd input shift clicking problem
             X Cannot shift click into second input
         X Fix T2 Obsidian Furnace 2nd output duplication bug
             X Only happens with shift clicking when click and placed it does not duplication
         - Fix T2 and T3 gui rendering bug ???
+        X Fix problem when attempting to transfer more than 5 items to be cooked into the furnace
+            X The furnace will attempt to transfer all the items from the attached inventory INTO the furnace
+            but when the furnace's internal inventory(for items TO BE cooked) is full the furnace just seems 
+            to delete the items in the chest
         - Apply tiering to the following furnaces
             - Iron
             - Gold

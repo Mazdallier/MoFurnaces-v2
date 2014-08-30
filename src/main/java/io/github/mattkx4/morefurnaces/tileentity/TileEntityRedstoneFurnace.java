@@ -41,9 +41,9 @@ public class TileEntityRedstoneFurnace extends TileEntity implements ISidedInven
 	private String localizedName;
     private int unknownInteger = -1;
 	
-	private static final int[] slots_top = new int[]{0,1,2,3,4};	//inputs
-	private static final int[] slots_bottom = new int[]{6,5};		//output
-	private static final int[] slots_side = new int[]{5};			//fuel
+	private static final int[] slots_input = new int[]{0,1,2,3,4};	//inputs
+	private static final int[] slots_output = new int[]{6};		//output
+	private static final int[] slots_fuel = new int[]{5};			//fuel
 	
 	private ItemStack[] slots = new ItemStack [7];
 	
@@ -208,7 +208,7 @@ public class TileEntityRedstoneFurnace extends TileEntity implements ISidedInven
 	// Update the Furnace
 	public void updateEntity(){
 		
-		//following code is from the hopper tile entity class
+		//code for the hopper part of the furnace
 		if (this.worldObj != null && !this.worldObj.isRemote){
             --this.unknownInteger;
 
@@ -217,8 +217,8 @@ public class TileEntityRedstoneFurnace extends TileEntity implements ISidedInven
                 this.func_145887_i();
             }
         }
-		//end of the hopper tile entity class code
-		
+        
+		//code for cooking part of the furnace
 		boolean flag = isBurning();
 		boolean flag1 = false;
 		
@@ -504,41 +504,23 @@ public class TileEntityRedstoneFurnace extends TileEntity implements ISidedInven
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
 		//original code
 		return i == 6 ? false : (i == 5 ? isItemFuel(itemstack) : true);
-		
-		//custom code
-		/*
-		if(i == 6){
-			return false;
-		}else if(i == 5){
-			if(isItemFuel(itemstack)){
-				return true;
-			}
-		}
-		return false;
-	*/
 	}
 		
 		
 	// What slots are accessible from the different sides
+	//bottom is 0, top is 1, sides go from 2 - 5
 	public int[] getAccessibleSlotsFromSide(int i) {
 		//original code
-		return (i == 0 || i == 1 || i == 2 || i == 3 || i == 4) ? slots_bottom : (i == 5 ? slots_top : slots_side);
-		
+		//return (i == 0 || i == 1 || i == 2 || i == 3 || i == 4) ? slots_bottom : (i == 5 ? slots_top : slots_side);
+	
 		//custom code
-		/*
-		 * if the slot is 0, 1, 2, 3 or 4 it can be accessed from the top
-		 * if the slot is 5 then it can be accessed from the side 
-		 * all other slots can be accessed from the bottom
-		 */
-		/*
-		if(i == 0 || i == 1 || i == 2 || i == 3 || i == 4){
-			return slots_top;
-		}else if(i == 5){
-			return slots_side;
+		if(i == 0){
+			return slots_output;
+		}else if(i == 1){
+			return slots_input;
 		}else{
-			return slots_bottom;
+			return slots_fuel;
 		}
-		*/
 	}
 
 	// Checks to see if hopper can insert item into specified slot
@@ -550,16 +532,15 @@ public class TileEntityRedstoneFurnace extends TileEntity implements ISidedInven
 	public boolean canExtractItem(int i, ItemStack itemstack, int j) {
 		//yes as long as its not from slot 0, slot 1 or the item is a bucket 
 		//original code
-		return j != 0 || j != 1 || j != 2 || j != 3 || j != 4 || i!= 1 || itemstack.getItem() == Items.bucket;
-		
-		//custom code
-		/*
-		if (j != 0 || j != 1 || j != 2 || j != 3 || j != 4 || i != 1 || itemstack.getItem() == Items.bucket){
+		//return j != 0 || j != 1 || j != 2 || j != 3 || j != 4 || j != 5 || i!= 1 || itemstack.getItem() == Items.bucket;
+
+		if (i == 6){
 			return true;
-		}else{
-			return false;
 		}
-		*/
+		if (i == 5){
+			return false;
+		}		
+		return j != 0 || j != 1 || j != 2 || j != 3 || j != 4 || j != 5 || i!= 1 || itemstack.getItem() == Items.bucket;
 	}
 
 	/**
@@ -580,30 +561,22 @@ public class TileEntityRedstoneFurnace extends TileEntity implements ISidedInven
 		return (double)this.zCoord;
 	}
 	
-	/*
-	 * everything after this comment is purely experimental, I am poking around to see if anything will work 
-	 */
-	
-	public boolean func_145887_i()
-    {
-        if (this.worldObj != null && !this.worldObj.isRemote)
-        {
-            if (!this.func_145888_j() && BlockHopper.func_149917_c(this.getBlockMetadata()))
-            {
+	public boolean func_145887_i(){
+        if (this.worldObj != null && !this.worldObj.isRemote){
+            if (!this.func_145888_j() && BlockHopper.func_149917_c(this.getBlockMetadata())){
                 boolean flag = false;
 
-                if (!this.func_152104_k())
-                {
-                    flag = this.func_145883_k();
+                if (!this.func_152104_k()){
+                	//this allows for items to be output from the furnace
+                	//this function leads to what allows the furnace to output items
+                	flag = this.func_145883_k();
                 }
 
-                if (!this.func_152105_l())
-                {
+                if (!this.func_152105_l()){
                     flag = func_145891_a(this) || flag;
                 }
 
-                if (flag)
-                {
+                if (flag){
                     this.func_145896_c(8);
                     this.markDirty();
                     return true;
@@ -611,149 +584,98 @@ public class TileEntityRedstoneFurnace extends TileEntity implements ISidedInven
             }
 
             return false;
-        }
-        else
-        {
+        }else{
             return false;
         }
     }
 
-    private boolean func_152104_k()
-    {
+    private boolean func_152104_k(){
+
         ItemStack[] aitemstack = this.slots;
         int i = aitemstack.length;
 
-        for (int j = 0; j < i; ++j)
-        {
+        for (int j = 0; j < i; ++j){
             ItemStack itemstack = aitemstack[j];
 
-            if (itemstack != null)
-            {
+            if (itemstack != null){
                 return false;
             }
         }
-
         return true;
     }
 
-    private boolean func_152105_l()
-    {
+    private boolean func_152105_l(){ 	
         ItemStack[] aitemstack = this.slots;
         int i = aitemstack.length;
 
-        for (int j = 0; j < i; ++j)
-        {
+        for (int j = 0; j < i; ++j){
             ItemStack itemstack = aitemstack[j];
 
-            if (itemstack == null || itemstack.stackSize != itemstack.getMaxStackSize())
-            {
+            if (itemstack == null || itemstack.stackSize != itemstack.getMaxStackSize()){
                 return false;
             }
         }
-
         return true;
     }
 
-    private boolean func_145883_k()
-    {
-        IInventory iinventory = this.func_145895_l();
+    //I am not renaming this function as I do not know its true purpose
+    //however one purpose is to transfer items from the internal inventory into another chest
+    private boolean func_145883_k(){
+    	//set a new inventory for the output
+    	IInventory iinventory = this.setOutputChest();
+		 //if there is no inventory then do nothing
+		 if (iinventory == null){
+		     return false;
+		 }else
+		 //if the inventory size isn't greater than the number of slots in the furnace then do nothing
+		 if(iinventory.getSizeInventory() < 7){
+			return false;
+		 }else
+		 //for all other outcomes
+		 {	
+		    int i = Facing.oppositeSide[RedstoneFurnace.getDirectionFromMetadata(this.getBlockMetadata())];	    
+		    if (this.func_152102_a(iinventory, i)){
+		        return false;
+		      
+		    }else{
+		        //check the internal inventory size (7 slots) theoretically this  controls which slot to output from first
+		        //by starting j at 6 we should only grab what is in slot 6
+		    	for (int j = 6; j < this.getSizeInventory(); ++j){
+		            if (this.getStackInSlot(j) != null){
+		                ItemStack itemstack = this.getStackInSlot(j).copy();
+		                ItemStack itemstack1 = func_145889_a(iinventory, this.decrStackSize(j, 1), i);
 
-        if (iinventory == null)
-        {
-            return false;
-        }
-        else
-        {
-            int i = Facing.oppositeSide[BlockHopper.getDirectionFromMetadata(this.getBlockMetadata())];
-
-            if (this.func_152102_a(iinventory, 6))
-            {
-                return false;
-            }
-            else
-            {
-                for (int j = 0; j < this.getSizeInventory(); ++j)
-                {
-                    if (this.getStackInSlot(j) != null)
-                    {
-                        ItemStack itemstack = this.getStackInSlot(j).copy();
-                        ItemStack itemstack1 = func_145889_a(iinventory, this.decrStackSize(j, 1), i);
-
-                        if (itemstack1 == null || itemstack1.stackSize == 0)
-                        {
-                            iinventory.markDirty();
-                            return true;
-                        }
-
-                        this.setInventorySlotContents(j, itemstack);
-                    }
-                }
-
-                return false;
-            }
-        }
+		                if (itemstack1 == null || itemstack1.stackSize == 0){
+		                    iinventory.markDirty();
+		                    return true;
+		                }
+		                this.setInventorySlotContents(j, itemstack);
+		            }
+		        }
+		        return false;
+		    }
+		}    	
     }
 
-    private boolean func_152102_a(IInventory inventory, int i)
-    {	//original code
-    	/*
-    	 * if (inventory instanceof ISidedInventory && i > -1)
-        {
+    private boolean func_152102_a(IInventory inventory, int i){	
+        if (inventory instanceof ISidedInventory && i > -1){
             ISidedInventory isidedinventory = (ISidedInventory)inventory;
             int[] aint = isidedinventory.getAccessibleSlotsFromSide(i);
 
-            for (int l = 0; l < aint.length; ++l)
-            {
+            for (int l = 0; l < aint.length; ++l){
                 ItemStack itemstack1 = isidedinventory.getStackInSlot(aint[l]);
 
-                if (itemstack1 == null || itemstack1.stackSize != itemstack1.getMaxStackSize())
-                {
+                if (itemstack1 == null || itemstack1.stackSize != itemstack1.getMaxStackSize()){
                     return false;
                 }
             }
-        }
-        else
-        {
+        }else{
             int j = inventory.getSizeInventory();
 
-            for (int k = 0; k < j; ++k)
-            {
+            for (int k = 0; k < j; ++k){
                 ItemStack itemstack = inventory.getStackInSlot(k);
 
-                if (itemstack == null || itemstack.stackSize != itemstack.getMaxStackSize())
-                {
-                    return false;
-                }
-            }
-        }
-
-        return true;
-    	 */
-        if (inventory instanceof ISidedInventory && i > -1)
-        {
-            ISidedInventory isidedinventory = (ISidedInventory)inventory;
-            int[] aint = isidedinventory.getAccessibleSlotsFromSide(i);
-
-            for (int l = 0; l < aint.length; ++l)
-            {
-                ItemStack itemstack1 = isidedinventory.getStackInSlot(aint[l]);
-
-                if (itemstack1 == null || itemstack1.stackSize != itemstack1.getMaxStackSize())
-                {
-                    return false;
-                }
-            }
-        }
-        else
-        {
-            int j = inventory.getSizeInventory();
-
-            for (int k = 0; k < j; ++k)
-            {
-                ItemStack itemstack = inventory.getStackInSlot(k);
-
-                if (itemstack == null || itemstack.stackSize != itemstack.getMaxStackSize())
-                {
+                if (itemstack == null || itemstack.stackSize != itemstack.getMaxStackSize()){
                     return false;
                 }
             }
@@ -761,128 +683,69 @@ public class TileEntityRedstoneFurnace extends TileEntity implements ISidedInven
         return true;
     }
 
-    private boolean func_152103_b(IInventory inventory, int i)
-    {
-    	//original code
-    	/*
-    	 *  if (inventory instanceof ISidedInventory && i > -1)
-        {
+    private boolean func_152103_b(IInventory inventory, int i){    	
+        if (inventory instanceof ISidedInventory && i > -1){
             ISidedInventory isidedinventory = (ISidedInventory)inventory;
             int[] aint = isidedinventory.getAccessibleSlotsFromSide(i);
 
-            for (int l = 0; l < aint.length; ++l)
-            {
-                if (isidedinventory.getStackInSlot(aint[l]) != null)
-                {
+            for (int l = 0; l < aint.length; ++l){
+                if (isidedinventory.getStackInSlot(aint[l]) != null){
                     return false;
                 }
             }
-        }
-        else
-        {
+        }else{
             int j = inventory.getSizeInventory();
 
-            for (int k = 0; k < j; ++k)
-            {
-                if (inventory.getStackInSlot(k) != null)
-                {
+            for (int k = 0; k < j; ++k){
+                if (inventory.getStackInSlot(k) != null){
                     return false;
                 }
             }
         }
-
-        return true;
-    }
-    	 */
-    	//custom code
-    	
-        if (inventory instanceof ISidedInventory && i > -1)
-        {
-            ISidedInventory isidedinventory = (ISidedInventory)inventory;
-            int[] aint = isidedinventory.getAccessibleSlotsFromSide(i);
-
-            for (int l = 0; l < aint.length; ++l)
-            {
-                if (isidedinventory.getStackInSlot(aint[l]) != null)
-                {
-                    return false;
-                }
-            }
-        }
-        else
-        {
-            int j = inventory.getSizeInventory();
-
-            for (int k = 0; k < j; ++k)
-            {
-                if (inventory.getStackInSlot(k) != null)
-                {
-                    return false;
-                }
-            }
-        }
-
         return true;
     }
 
-    public boolean func_145891_a(IHopper hopper)
-    {
-        IInventory iinventory = func_145884_b(hopper);
+    public boolean func_145891_a(IHopper hopper){
+        IInventory iinventory = setInputChest(hopper);
 
-        if (iinventory != null)
-        {
+        if (iinventory != null){
             byte b0 = 0;
 
-            if (func_152103_b(iinventory, b0))
-            {
+            if (func_152103_b(iinventory, b0)){
                 return false;
             }
 
-            if (iinventory instanceof ISidedInventory && b0 > -1)
-            {
+            if (iinventory instanceof ISidedInventory && b0 > -1){
                 ISidedInventory isidedinventory = (ISidedInventory)iinventory;
                 int[] aint = isidedinventory.getAccessibleSlotsFromSide(b0);
 
-                for (int k = 0; k < aint.length; ++k)
-                {
-                    if (canPullFromChest(hopper, iinventory, aint[k], b0))
-                    {
+                for (int k = 0; k < aint.length; ++k){
+                    if (pullFromChest(hopper, iinventory, aint[k], b0)){
                         return true;
                     }
                 }
-            }
-            else
-            {
+            }else{
                 int i = iinventory.getSizeInventory();
 
-                for (int j = 0; j < i; ++j)
-                {
-                    if (canPullFromChest(hopper, iinventory, j, b0))
-                    {
+                for (int j = 0; j < i; ++j){
+                    if (pullFromChest(hopper, iinventory, j, b0)){
                         return true;
                     }
                 }
             }
-        }
-        else
-        {
+        }else{
             EntityItem entityitem = func_145897_a(hopper.getWorldObj(), hopper.getXPos(), hopper.getYPos() + 1.0D, hopper.getZPos());
 
-            if (entityitem != null)
-            {
+            if (entityitem != null){
                 return pullFromEnvironment(hopper, entityitem);
             }
         }
-
         return false;
     }
 
-    //very similar to pull from environment so I'll assume that this function pulls from a chest
-    private boolean canPullFromChest(IHopper hopper, IInventory inventory, int i, int j){
-    	//original code
-        /*
-    	ItemStack itemstack = inventory.getStackInSlot(i);
-
+    private boolean pullFromChest(IHopper hopper, IInventory inventory, int i, int j){
+        ItemStack itemstack = inventory.getStackInSlot(i);
+       
         if (itemstack != null && canPullFromChest(inventory, itemstack, i, j)){
             ItemStack itemstack1 = itemstack.copy();
             ItemStack itemstack2 = func_145889_a(hopper, inventory.decrStackSize(i, 1), -1);
@@ -891,59 +754,12 @@ public class TileEntityRedstoneFurnace extends TileEntity implements ISidedInven
                 inventory.markDirty();
                 return true;
             }
-
             inventory.setInventorySlotContents(i, itemstack1);
         }
         return false;
-        */
-        //custom code
-        ItemStack itemstack = inventory.getStackInSlot(i);
-
-        if (itemstack != null && canPullFromChest(inventory, itemstack, i, j)){
-            ItemStack itemstack1 = itemstack.copy();
-            ItemStack itemstack2 = func_145889_a(hopper, inventory.decrStackSize(i, 1), -1);
-
-            if (itemstack2 == null || itemstack2.stackSize == 0){
-                inventory.markDirty();
-                return true;
-            }
-
-            this.setInventorySlotContents(i, itemstack1);
-        }
-        return false;
     }
 
-    //hypothesis: from the item.setDead() code I would imagine that this actually controls the items being dropped into furnace from the top
-    //test: remove setDead and record results of entities dropped on the furnace.
-    //result: hypothesis confirmed, this is the entity sucker function
-    public boolean pullFromEnvironment(IInventory inventory, EntityItem item)
-    {
-    	//original code
-    	/*
-        boolean flag = false;
-
-        if (item == null){
-            return false;
-        }else{
-        	
-            ItemStack itemstack = item.getEntityItem().copy();
-            ItemStack itemstack1 = func_145889_a(inventory, itemstack, -1);
-
-            if (itemstack1 != null && itemstack1.stackSize != 0)
-            {
-            	item.setEntityItemStack(itemstack1);
-            }
-            else
-            {
-                flag = true;
-                item.setDead();
-            }
-
-            return flag;
-        }
-        */
-        
-        //custom code
+    public boolean pullFromEnvironment(IInventory inventory, EntityItem item){
         boolean flag = false;
 
         if (item == null){
@@ -952,7 +768,7 @@ public class TileEntityRedstoneFurnace extends TileEntity implements ISidedInven
             ItemStack itemstack = item.getEntityItem().copy();
             ItemStack itemstack1 = func_145889_a(inventory, itemstack, -1);
             for (int i = 0; i < 6; i++){
-        		if(!(FurnaceRecipes.smelting().getSmeltingResult(itemstack) == null) || isItemFuel(itemstack)){
+        		if((FurnaceRecipes.smelting().getSmeltingResult(itemstack) != null) || isItemFuel(itemstack)){
         			if (itemstack1 != null && itemstack1.stackSize != 0){
                     	item.setEntityItemStack(itemstack1);
                     }else{
@@ -960,87 +776,49 @@ public class TileEntityRedstoneFurnace extends TileEntity implements ISidedInven
                         item.setDead();
                     }
         		}
-        	}
-            return flag;
-        }   
+            }
+        return flag;   
+        }
     }
 
-    public ItemStack func_145889_a(IInventory inventory, ItemStack itemStack, int i)
-    {
-    	//original code
-    	/*
-    	 * if (inventory instanceof ISidedInventory && i > -1)
-        {
+    public ItemStack func_145889_a(IInventory inventory, ItemStack itemStack, int i){
+    	//custom code
+        if (inventory instanceof ISidedInventory && i > -1){
             ISidedInventory isidedinventory = (ISidedInventory)inventory;
             int[] aint = isidedinventory.getAccessibleSlotsFromSide(i);
-
-            for (int l = 0; l < aint.length && itemStack != null && itemStack.stackSize > 0; ++l)
-            {
-                itemStack = func_145899_c(inventory, itemStack, aint[l], i);
-            }
-        }
-        else
-        {
-            int j = inventory.getSizeInventory();
-
-            for (int k = 0; k < j && itemStack != null && itemStack.stackSize > 0; ++k)
-            {
-                itemStack = func_145899_c(inventory, itemStack, k, i);
-            }
-        }
-
-        if (itemStack != null && itemStack.stackSize == 0)
-        {
-            itemStack = null;
-        }
-
-        return itemStack;
-    	 */
-    	
-    	//custom code
-        if (inventory instanceof ISidedInventory && i > -1)
-        {
-            ISidedInventory isidedinventory = (ISidedInventory)inventory;
-            int[] aint = this.getAccessibleSlotsFromSide(i);
-
-            for (int l = 0; l < aint.length && itemStack != null && itemStack.stackSize > 0; ++l)
-            {
+            for (int l = 0; l < aint.length && itemStack != null && itemStack.stackSize > 0; ++l){
         		itemStack = func_145899_c(inventory, itemStack, aint[l], i);
-                //itemStack = func_145899_c(inventory, itemStack, aint[l], i);
-
             }
-        //theory: this else statement control output items from hopper: FALSE
         }else{
     		int j = inventory.getSizeInventory();
-
-            for (int k = 0; k < j && itemStack != null && itemStack.stackSize > 0; ++k)
-            {
+            for (int k = 0; k < j && itemStack != null && itemStack.stackSize > 0; ++k){
             	//if the item is a fuel
             	if (isItemFuel(itemStack)){
             		//run the function func_145899_c and set the slot number as 5:fuel slot
             		itemStack = func_145899_c(inventory, itemStack, 5, i);
-            	}else if(!(FurnaceRecipes.smelting().getSmeltingResult(itemStack) == null)){
-            		//do the normal thing
-                    itemStack = func_145899_c(inventory, itemStack, k, i);
+        		//if the item has a smelting recipe
+            	}else if(FurnaceRecipes.smelting().getSmeltingResult(itemStack) != null){
+	            		//do the normal thing
+	                    itemStack = func_145899_c(inventory, itemStack, k, i);         		
+            	}else{
+            		//this pertains only to the function controlling the outputting of smelted items
+                itemStack = func_145899_c(inventory, itemStack, k, i);
             	}
             }
         }
-
-        if (itemStack != null && itemStack.stackSize == 0)
-        {
+        if (itemStack != null && itemStack.stackSize == 0){
             itemStack = null;
         }
-
         return itemStack;
     }
 
-    private boolean canPutInChest(IInventory inventory, ItemStack itemStack, int i, int j)
-    {
+    private boolean canPutInChest(IInventory inventory, ItemStack itemStack, int i, int j){
     	//original code
         //return !inventory.isItemValidForSlot(i, itemStack) ? false : !(inventory instanceof ISidedInventory) || ((ISidedInventory)inventory).canInsertItem(i, itemStack, j);
     
         //custom code
-		if (!(isItemValidForSlot(i, itemStack))){
+    	
+		if (!(inventory.isItemValidForSlot(i, itemStack))){
         	return false;
         }else if (!(inventory instanceof ISidedInventory)){
         	return true;
@@ -1049,11 +827,10 @@ public class TileEntityRedstoneFurnace extends TileEntity implements ISidedInven
         }else{
         	return false;
         }
-
     }
 
-    private boolean canPullFromChest(IInventory inventory, ItemStack itemStack, int i, int j)
-    {
+
+    private boolean canPullFromChest(IInventory inventory, ItemStack itemStack, int i, int j){
     	//original code
         //return !(inventory instanceof ISidedInventory) || ((ISidedInventory)inventory).canExtractItem(i, itemStack, j);
         //custom code
@@ -1062,7 +839,7 @@ public class TileEntityRedstoneFurnace extends TileEntity implements ISidedInven
     	if(isItemFuel(itemStack)){
     		if(!(inventory instanceof ISidedInventory)){
                 	return true;
-            }else if(((ISidedInventory) inventory).canExtractItem(i, itemStack, j)){
+            }else if(this.canExtractItem(i, itemStack, j)){
                 	return true;
             }else{
             	return false;
@@ -1070,7 +847,7 @@ public class TileEntityRedstoneFurnace extends TileEntity implements ISidedInven
     	}else if(itemCheck != null){
 			if(!(inventory instanceof ISidedInventory)){
             	return true;
-		    }else if(((ISidedInventory) inventory).canExtractItem(i, itemStack, j)){
+		    }else if(this.canExtractItem(i, itemStack, j)){
 		        	return true;
 		    }else{
 		    	return false;
@@ -1080,9 +857,8 @@ public class TileEntityRedstoneFurnace extends TileEntity implements ISidedInven
     }
 
     private ItemStack func_145899_c(IInventory inventory, ItemStack itemStack, int i, int j){
-    	//original Code
-    	/*
-    	 * ItemStack itemstack1 = inventory.getStackInSlot(i);
+
+    	ItemStack itemstack1 = inventory.getStackInSlot(i);
 
         if (canPutInChest(inventory, itemStack, i, j)){
             boolean flag = false;
@@ -1107,107 +883,85 @@ public class TileEntityRedstoneFurnace extends TileEntity implements ISidedInven
                     flag = l > 0;
                 }
             }
-
             if (flag){
                 if (inventory instanceof TileEntityHopper){
                     ((TileEntityHopper)inventory).func_145896_c(8);
                     inventory.markDirty();
                 }
-
                 inventory.markDirty();
             }
         }
-    	 */
-    	
-    	
-    	//custom code
-    		ItemStack itemstack1 = inventory.getStackInSlot(i);
-	
-
-            if (canPutInChest(inventory, itemStack, i, j)){
-                boolean flag = false;
-
-                if (itemstack1 == null){
-                    //Forge: BUGFIX: Again, make things respect max stack sizes.
-                    int max = Math.min(itemStack.getMaxStackSize(), inventory.getInventoryStackLimit());
-                    if (max >= itemStack.stackSize){
-                        inventory.setInventorySlotContents(i, itemStack);
-                        itemStack = null;
-                    }else{
-                        inventory.setInventorySlotContents(i, itemStack.splitStack(max));
-                    }
-                    flag = true;
-                }else if (isANotEqualToB(itemstack1, itemStack)){
-                    //Forge: BUGFIX: Again, make things respect max stack sizes.
-                    int max = Math.min(itemStack.getMaxStackSize(), inventory.getInventoryStackLimit());
-                    if (max > itemstack1.stackSize){
-                        int l = Math.min(itemStack.stackSize, max - itemstack1.stackSize);
-                        itemStack.stackSize -= l;
-                        itemstack1.stackSize += l;
-                        flag = l > 0;
-                    }
-                }
-
-                if (flag){
-                    if (inventory instanceof TileEntityHopper){
-                        ((TileEntityHopper)inventory).func_145896_c(8);
-                        inventory.markDirty();
-                    }
-
-                    inventory.markDirty();
-                }
-            }
-
         return itemStack;
     }
+    
+    private IInventory setOutputChest(){
+    	//original code
+    	//return func_145893_b(this.getWorldObj(), (double)(this.xCoord + Facing.offsetsXForSide[i]), (double)(this.yCoord + Facing.offsetsYForSide[i]), (double)(this.zCoord + Facing.offsetsZForSide[i]));
 
-    private IInventory func_145895_l()
-    {
+    	//grab the direction the furnace is facing from the block metadata
         int i = BlockHopper.getDirectionFromMetadata(this.getBlockMetadata());
+        //conditional statements based on the direction the block is facing: 0 = down, 2 - 5 = different side
+        //ideally the metadata will only ever be 2-5 or any one of the sides, never down or up
+        switch(i){
+        	//if facing down make use a container two blocks below standard
+        	case 0:
+                return func_145893_b(this.getWorldObj(), (double)(this.xCoord + Facing.offsetsXForSide[i]), (double)(this.yCoord + Facing.offsetsYForSide[i] - 2.0D), (double)(this.zCoord + Facing.offsetsZForSide[i]));
+	        //if the furnace is facing NORTH ie in the minus z direction
+        	case 2:
+        		//set the inventory to the right side of the furnace ie. -1x, +1z
+	            return func_145893_b(this.getWorldObj(), (double)(this.xCoord + Facing.offsetsXForSide[i] - 1.0D), (double)(this.yCoord + Facing.offsetsYForSide[i]), (double)(this.zCoord + Facing.offsetsZForSide[i] + 1.0D));
+	        //if the furnace is facing SOUTH ie in the plus z direction
+        	case 3:
+        		//set the inventory to the right side of the furnace ie. +1x, -1z
+	            return func_145893_b(this.getWorldObj(), (double)(this.xCoord + Facing.offsetsXForSide[i] + 1.0D), (double)(this.yCoord + Facing.offsetsYForSide[i]), (double)(this.zCoord + Facing.offsetsZForSide[i] - 1.0D));
+	        //if the furnace is facing WEST ie in the minus x direction
+        	case 4:
+        		//set the inventory to the right of the furnace ie. +1x, +1z
+	            return func_145893_b(this.getWorldObj(), (double)(this.xCoord + Facing.offsetsXForSide[i] + 1.0D), (double)(this.yCoord + Facing.offsetsYForSide[i]), (double)(this.zCoord + Facing.offsetsZForSide[i] + 1.0D));
+	        //if the furnace is facing EAST ie in the plus x direction
+        	case 5:
+        		//set the inventory to the right of the furnace ie. -1x, -1z
+	            return func_145893_b(this.getWorldObj(), (double)(this.xCoord + Facing.offsetsXForSide[i] - 1.0D), (double)(this.yCoord + Facing.offsetsYForSide[i]), (double)(this.zCoord + Facing.offsetsZForSide[i] - 1.0D));
+        }
         return func_145893_b(this.getWorldObj(), (double)(this.xCoord + Facing.offsetsXForSide[i]), (double)(this.yCoord + Facing.offsetsYForSide[i]), (double)(this.zCoord + Facing.offsetsZForSide[i]));
     }
 
-    public static IInventory func_145884_b(IHopper hopper)
-    {
-    	//original code
+    //this function calls the code that the furnace uses to find the position of the container to pull from
+    public static IInventory setInputChest(IHopper hopper){
+    	//original code sets the input to the block on top of the furnace
         return func_145893_b(hopper.getWorldObj(), hopper.getXPos(), hopper.getYPos() + 1.0D, hopper.getZPos());
     }
 
-    public static EntityItem func_145897_a(World p_145897_0_, double p_145897_1_, double p_145897_3_, double p_145897_5_)
-    {
+    public static EntityItem func_145897_a(World p_145897_0_, double p_145897_1_, double p_145897_3_, double p_145897_5_){
         List list = p_145897_0_.selectEntitiesWithinAABB(EntityItem.class, AxisAlignedBB.getBoundingBox(p_145897_1_, p_145897_3_, p_145897_5_, p_145897_1_ + 1.0D, p_145897_3_ + 1.0D, p_145897_5_ + 1.0D), IEntitySelector.selectAnything);
         return list.size() > 0 ? (EntityItem)list.get(0) : null;
     }
 
-    public static IInventory func_145893_b(World world, double x, double y, double z)
-    {
+    
+    //this funciton is the code that determines where the inventory should be to pull the items from
+    public static IInventory func_145893_b(World world, double x, double y, double z){
         IInventory iinventory = null;
         int i = MathHelper.floor_double(x);
         int j = MathHelper.floor_double(y);
         int k = MathHelper.floor_double(z);
         TileEntity tileentity = world.getTileEntity(i, j, k);
 
-        if (tileentity != null && tileentity instanceof IInventory)
-        {
+        if (tileentity != null && tileentity instanceof IInventory){
             iinventory = (IInventory)tileentity;
 
-            if (iinventory instanceof TileEntityChest)
-            {
+            if (iinventory instanceof TileEntityChest){
                 Block block = world.getBlock(i, j, k);
 
-                if (block instanceof BlockChest)
-                {
+                if (block instanceof BlockChest){
                     iinventory = ((BlockChest)block).func_149951_m(world, i, j, k);
                 }
             }
         }
 
-        if (iinventory == null)
-        {
+        if (iinventory == null){
             List list = world.getEntitiesWithinAABBExcludingEntity((Entity)null, AxisAlignedBB.getBoundingBox(x, y, z, x + 1.0D, y + 1.0D, z + 1.0D), IEntitySelector.selectInventories);
 
-            if (list != null && list.size() > 0)
-            {
+            if (list != null && list.size() > 0){
                 iinventory = (IInventory)list.get(world.rand.nextInt(list.size()));
             }
         }
@@ -1217,28 +971,15 @@ public class TileEntityRedstoneFurnace extends TileEntity implements ISidedInven
 
     private static boolean isANotEqualToB(ItemStack itemStackA, ItemStack itemStackB){
     	//original code
-        //return itemStackA.getItem() != itemStackB.getItem() ? false : (itemStackA.getItemDamage() != itemStackB.getItemDamage() ? false : (itemStackA.stackSize > itemStackA.getMaxStackSize() ? false : ItemStack.areItemStackTagsEqual(itemStackA, itemStackB)));
-        
-        //custom code
-        if(itemStackA.getItem() != itemStackB.getItem()){
-        	return false;
-        }else if(itemStackA.getItemDamage() != itemStackB.getItemDamage()){
-        	return false;
-        }else if(itemStackA.stackSize>itemStackA.getMaxStackSize()){
-        	return false;
-        }else{
-        	return ItemStack.areItemStackTagsEqual(itemStackA, itemStackB);
-        }
+        return itemStackA.getItem() != itemStackB.getItem() ? false : (itemStackA.getItemDamage() != itemStackB.getItemDamage() ? false : (itemStackA.stackSize > itemStackA.getMaxStackSize() ? false : ItemStack.areItemStackTagsEqual(itemStackA, itemStackB)));
     }
 
 
-    public void func_145896_c(int p_145896_1_)
-    {
+    public void func_145896_c(int p_145896_1_){
         this.unknownInteger = p_145896_1_;
     }
 
-    public boolean func_145888_j()
-    {
+    public boolean func_145888_j(){
         return this.unknownInteger > 0;
     }
 
