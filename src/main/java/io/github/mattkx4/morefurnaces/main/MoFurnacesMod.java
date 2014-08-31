@@ -47,16 +47,18 @@ public class MoFurnacesMod {
 	public static final int guiIDNetherrackFurnace = 6;
 	//Bone Furnace gui ID
 	public static final int guiIDBoneFurnace = 7;
+	//Redstone Furnace gui ID
+	public static final int guiIDRedstoneFurnace = 8;
+	//Anvil Furnace gui ID
+	public static final int guiIDAnvilFurnace = 9;
 	//Tier 2 Obsidian Furnace gui ID
 	public static final int guiIDObsidianFurnaceT2 = 20;
 	//Tier 3 Obsidian Furnace gui ID
 	public static final int guiIDObsidianFurnaceT3 = 30;
-	//Redstone Furnace gui ID
-	public static final int guiIDRedstoneFurnace = 8;
 	//Tier 2 Diamond Furnace gui ID
-	public static final int guiIDDiamondFurnaceT2 = 40; 
+	public static final int guiIDDiamondFurnaceT2 = 21; 
 	//Tier 3 Diamond Furnace gui ID
-	public static final int guiIDDiamondFurnaceT3 = 50;
+	public static final int guiIDDiamondFurnaceT3 = 31;
 	
 	@Instance(Strings.MODID)
 	public static MoFurnacesMod instance;

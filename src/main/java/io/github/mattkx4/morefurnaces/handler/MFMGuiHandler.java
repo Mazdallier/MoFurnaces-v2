@@ -1,5 +1,6 @@
 package io.github.mattkx4.morefurnaces.handler;
 
+import io.github.mattkx4.morefurnaces.container.ContainerAnvilFurnace;
 import io.github.mattkx4.morefurnaces.container.ContainerBoneFurnace;
 import io.github.mattkx4.morefurnaces.container.ContainerBrickFurnace;
 import io.github.mattkx4.morefurnaces.container.ContainerDiamondFurnace;
@@ -13,6 +14,7 @@ import io.github.mattkx4.morefurnaces.container.tier2.ContainerDiamondFurnaceT2;
 import io.github.mattkx4.morefurnaces.container.tier2.ContainerObsidianFurnaceT2;
 import io.github.mattkx4.morefurnaces.container.tier3.ContainerDiamondFurnaceT3;
 import io.github.mattkx4.morefurnaces.container.tier3.ContainerObsidianFurnaceT3;
+import io.github.mattkx4.morefurnaces.gui.GuiAnvilFurnace;
 import io.github.mattkx4.morefurnaces.gui.GuiBoneFurnace;
 import io.github.mattkx4.morefurnaces.gui.GuiBrickFurnace;
 import io.github.mattkx4.morefurnaces.gui.GuiDiamondFurnace;
@@ -27,6 +29,7 @@ import io.github.mattkx4.morefurnaces.gui.tier2.GuiObsidianFurnaceT2;
 import io.github.mattkx4.morefurnaces.gui.tier3.GuiDiamondFurnaceT3;
 import io.github.mattkx4.morefurnaces.gui.tier3.GuiObsidianFurnaceT3;
 import io.github.mattkx4.morefurnaces.main.MoFurnacesMod;
+import io.github.mattkx4.morefurnaces.tileentity.TileEntityAnvilFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityBoneFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityBrickFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityDiamondFurnace;
@@ -104,6 +107,10 @@ public class MFMGuiHandler implements IGuiHandler {
 				if(entity instanceof TileEntityDiamondFurnaceT3) {
 					return new ContainerDiamondFurnaceT3(player.inventory, (TileEntityDiamondFurnaceT3) entity);
 				}
+			case MoFurnacesMod.guiIDAnvilFurnace:
+				if(entity instanceof TileEntityAnvilFurnace) {
+					return new ContainerAnvilFurnace(player.inventory, (TileEntityAnvilFurnace) entity);
+				}
 				return null;
 				}
 			}
@@ -166,6 +173,10 @@ public class MFMGuiHandler implements IGuiHandler {
 			case MoFurnacesMod.guiIDDiamondFurnaceT3:
 				if(entity instanceof TileEntityDiamondFurnaceT3) {
 					return new GuiDiamondFurnaceT3(player.inventory, (TileEntityDiamondFurnaceT3) entity);
+				}
+			case MoFurnacesMod.guiIDAnvilFurnace:
+				if(entity instanceof TileEntityAnvilFurnace) {
+					return new GuiAnvilFurnace(player.inventory, (TileEntityAnvilFurnace) entity);
 				}
 				return null;
 				}			

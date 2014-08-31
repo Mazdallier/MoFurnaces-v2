@@ -3,7 +3,6 @@ Developer's Changelog
 * * *
 * * *
 Wishlist{
-
     - Wacky Furnaces
         - Glowstone furnace: Glows extra bright
         X Bone furnace: ??
@@ -14,8 +13,8 @@ Wishlist{
         - Ender furnace: acts like the ender chest
         - Tnt furnace: boom
         - Furnace mob:
-        - Anvil Furnace:
-        - Redstone Furnace: Constant strong redstone signal AND can absorb items like a hopper(thrown on top)
+        X Anvil Furnace:
+        X Redstone Furnace: Constant strong redstone signal AND can absorb items like a hopper(thrown on top)
     - Add an effect so that if you light the Netherrack Furnace on fire, it's infinite fire
     X multi smelting furnaces, furnaces with will individually smelt more than 1 item
         X tiered to smelt 1, 2, 3 and 4 items simultaneously (Stopped at 3 Items. Anymore is too crowded on current GUI)
@@ -136,20 +135,19 @@ V2.1 -> V2.2{
             - Identified problem when attempting to transfer a fuel
                 - FIXED
             - Redstone furnace now works as intended
-            -Neatened up the code
-                
+            - Neatened up the code   
+    }
+    
+    31 AUG - Pr1meSh0ck[
+        - Added the Anvil furnace
+            - Furnace burns normal fuel items and can only accept damaged items(tools and such)
+            - Current furnace cook time is 200 ticks 
+            - Currently each time the furnace "cooks" the furnace will remove 50 points of damage up till the item is fully repaired
+            - Created a custom furnace gui for the anvil furnace
+            - Added names to en_US.lang
     }
     
     TODO{
-        X Fix T2 Obsidian Furnace 2nd input shift clicking problem
-            X Cannot shift click into second input
-        X Fix T2 Obsidian Furnace 2nd output duplication bug
-            X Only happens with shift clicking when click and placed it does not duplication
-        - Fix T2 and T3 gui rendering bug ???
-        X Fix problem when attempting to transfer more than 5 items to be cooked into the furnace
-            X The furnace will attempt to transfer all the items from the attached inventory INTO the furnace
-            but when the furnace's internal inventory(for items TO BE cooked) is full the furnace just seems 
-            to delete the items in the chest
         - Apply tiering to the following furnaces
             - Iron
             - Gold
@@ -158,15 +156,35 @@ V2.1 -> V2.2{
             - Netherrack
             - Quartz
         - Design the following Wacky Furnace:
-            - Anvil
+            X Anvil
             - Cacti
             - Flower
+        - Need to tweak Anvil Furnace stats for balance
+            - Furnace speed
+            - Fuel items and their speeds
+            - Amount of damage fixed
+        - Need to add/alter the following furnace recipes
+            - Bone Furnace
+            - Anvil Furnace
+            - Redstone Furnace
+        - Need to add/alter block textures for the following furnaces
+            - Anvil
+            - Diamond T2 - T3
+        - Fix Diamond Furnace guiID ?
+        - Finish perfecting Tiering Device
+        - Fix T2 and T3 gui rendering bug ???
+            - Bug seems to only be occasional
+        X Fix T2 Obsidian Furnace 2nd input shift clicking problem
+            X Cannot shift click into second input
+        X Fix T2 Obsidian Furnace 2nd output duplication bug
+            X Only happens with shift clicking when click and placed it does not duplication
+        X Fix problem when attempting to transfer more than 5 items to be cooked into the redstone furnace
+            X The furnace will attempt to transfer all the items from the attached inventory INTO the furnace
+            but when the furnace's internal inventory(for items TO BE cooked) is full the furnace just seems 
+            to delete the items in the chest
         X Organize Furnaces in their creative tab
         X Create seperate creative tab for tiered furnaces
         X Credit sb023612 for language file contribution in user changelog.
-        - Make active and idle textures for Diamond Furnace T2/T3
-        - Fix Diamond Furnace guiID ?
-        - Finish perfecting Tiering Device
     } 
 }
 * * *
