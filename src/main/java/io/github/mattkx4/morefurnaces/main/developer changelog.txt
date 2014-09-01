@@ -138,13 +138,24 @@ V2.1 -> V2.2{
             - Neatened up the code   
     }
     
-    31 AUG - Pr1meSh0ck[
+    31 AUG - Pr1meSh0ck{
         - Added the Anvil furnace
             - Furnace burns normal fuel items and can only accept damaged items(tools and such)
             - Current furnace cook time is 200 ticks 
             - Currently each time the furnace "cooks" the furnace will remove 50 points of damage up till the item is fully repaired
             - Created a custom furnace gui for the anvil furnace
             - Added names to en_US.lang
+    }
+    
+    31 AUG - Mattkx4{
+        - Fixed a really weird bug with the ObsidianFurnace.
+            - Just copied and pasted the DiamondFurnaceT2 code so... Don't really know what happened, but it's fixed
+        - Added tiering for DiamondFurnaceT2
+        - Created crafting recipe for the following things:
+            - Tier2Device
+            - Anvil Furnace
+            - Bone Furnace
+            - Redstone Furnace
     }
     
     TODO{

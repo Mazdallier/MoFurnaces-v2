@@ -3,7 +3,10 @@ package io.github.mattkx4.morefurnaces.blocks;
 import io.github.mattkx4.morefurnaces.lib.Strings;
 import io.github.mattkx4.morefurnaces.main.MoFurnacesMod;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityDiamondFurnace;
+import io.github.mattkx4.morefurnaces.tileentity.tier2.TileEntityDiamondFurnaceT2;
+
 import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -11,6 +14,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
@@ -116,6 +120,39 @@ private final boolean isActive;
 	 * Called upon on block activation (right click) to open the GUI
 	 */
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitx, float hity, float hitz){
+		// Tiers the Diamond Furnace to Tier 2
+		if(player.getCurrentEquippedItem() != null) {
+			if(player.getCurrentEquippedItem().getItem() == MFMBlock.Tier2Device) {
+				TileEntityDiamondFurnace tileentity = (TileEntityDiamondFurnace)world.getTileEntity(x, y, z);
+				ItemStack input;
+				ItemStack fuel;
+				ItemStack product;
+				if(tileentity.getStackInSlot(0) != null) {
+					input = tileentity.getStackInSlot(0).copy();
+				} else {
+					input = null;
+				}
+				if(tileentity.getStackInSlot(1) != null) {
+					fuel = tileentity.getStackInSlot(1).copy();
+				} else {
+					fuel = null;
+				}
+				if(tileentity.getStackInSlot(2) != null) {
+					product = tileentity.getStackInSlot(2).copy();
+				} else {
+					product = null;
+				}
+				tileentity.setInventorySlotContents(0, new ItemStack(Items.diamond));
+				tileentity.setInventorySlotContents(1, null);
+				tileentity.setInventorySlotContents(2, null);
+				world.setBlock(x, y, z, MFMBlock.DiamondFurnaceT2Idle);
+				TileEntityDiamondFurnaceT2 tileentityT2 = (TileEntityDiamondFurnaceT2)world.getTileEntity(x, y, z);
+				if(input != null){ tileentityT2.setInventorySlotContents(0, input); }
+				if(fuel != null){ tileentityT2.setInventorySlotContents(2, fuel); }
+				if(product != null){ tileentityT2.setInventorySlotContents(3, product); }	
+				return true;
+			}
+		}
 		if(!world.isRemote) {
 			FMLNetworkHandler.openGui(player, MoFurnacesMod.instance, MoFurnacesMod.guiIDDiamondFurnace, world, x, y, z);
 		}

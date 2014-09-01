@@ -63,6 +63,7 @@ public class MFMBlock {
 
 	public static void secondaryRegistry(){
 		registerBlock2();
+		registerItem2();
 	}
 	
 	/*
@@ -219,7 +220,6 @@ public class MFMBlock {
 		GameRegistry.addRecipe(new ItemStack(ObsidianFurnaceIdle), new Object[]{"ooo", "oDo", "ooo", 'o', Blocks.obsidian, 'D', DiamondFurnaceIdle});
 		//registry for Tier 2 Obsidian furnace
 		GameRegistry.registerTileEntity(TileEntityObsidianFurnaceT2.class, "Obsidian Furnace T2");
-		//GameRegistry.addRecipe(new ItemStack(ObsidianFurnaceT2Idle), new Object[]{"ooo", "OdO", "ooo", 'd', Items.diamond, 'o', Blocks.obsidian, 'O', ObsidianFurnaceIdle});
 		//registry for Tier 3 Obsidian furnace
 		GameRegistry.registerTileEntity(TileEntityObsidianFurnaceT3.class, "Obsidian Furnace T3");
 		//GameRegistry.addRecipe(new ItemStack(ObsidianFurnaceT3Idle), new Object[]{"ofo", "dOd", "ooo", 'd', Items.diamond, 'o', Blocks.obsidian, 'O', ObsidianFurnaceT2Idle, 'f', ObsidianFurnaceIdle});
@@ -230,7 +230,6 @@ public class MFMBlock {
 		GameRegistry.addRecipe(new ItemStack(DiamondFurnaceIdle), new Object[]{"ddd", "dNd", "ddd", 'd', Items.diamond, 'N', NetherrackFurnaceIdle});
 		//registry for Tier 2 Diamond furnace
 		GameRegistry.registerTileEntity(TileEntityDiamondFurnaceT2.class, "Diamond Furnace T2");
-		// Crafting Recipe UNKNOWN. Thinking of making item that tiers the furnace.
 		//registry for Tier 3 Diamond furnace
 		GameRegistry.registerTileEntity(TileEntityDiamondFurnaceT3.class, "Diamond Furnace T3");
 		// Crafting Recipe UNKNOWN. Thinking of making item that tiers the furnace.
@@ -263,11 +262,14 @@ public class MFMBlock {
 		GameRegistry.registerTileEntity(TileEntityBoneFurnace.class, "Bone Furnace");
 		//GameRegistry.addRecipe(new ItemStack(BoneFurnaceIdle), new Object[]{"OOO", "O O", "OOO", 'O', Items.bone});
 		//GameRegistry.addRecipe(new ItemStack(BoneFurnaceIdle), new Object[]{"OOO", "OIO", "OOO", 'O', Items.bone, 'I', Blocks.furnace});
+		GameRegistry.addRecipe(new ItemStack(BoneFurnaceIdle), new Object[]{"sss", "sTs", "sss", 's', Items.bone, 'T', Blocks.furnace});
 		
 		//registry for Redstone Furnace
 		GameRegistry.registerTileEntity(TileEntityRedstoneFurnace.class, "Redstone Furnace");
+		GameRegistry.addRecipe(new ItemStack(RedstoneFurnaceIdle), new Object[]{"aaa", "aCa", "aBa", 'a', Blocks.redstone_block, 'C', Blocks.furnace, 'B', Blocks.hopper});
 		//registry for Anvil Furnace
 		GameRegistry.registerTileEntity(TileEntityAnvilFurnace.class, "Anvil Furnace");
+		GameRegistry.addRecipe(new ItemStack(AnvilFurnaceIdle), new Object[]{"jjj", "jIj", "jUj", 'j', Items.iron_ingot, 'I', Blocks.furnace, "U", Blocks.anvil});
 	}
 	
 	//initialize obsidian tiering device
@@ -279,5 +281,10 @@ public class MFMBlock {
 	
 	public static void registerItem() {
 		GameRegistry.registerItem(Tier2Device, "Tier2Device");
+	}
+	
+	public static void registerItem2() {
+		GameRegistry.addRecipe(new ItemStack(Tier2Device), new Object[]{"zXz", "X X", "zXz", 'z', Items.diamond, 'X', Blocks.obsidian});
+		GameRegistry.addRecipe(new ItemStack(Tier2Device), new Object[]{"yWy", "W W", "yWy", 'y', Blocks.obsidian, 'W', Items.diamond});
 	}
 }

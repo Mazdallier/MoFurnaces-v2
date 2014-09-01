@@ -25,7 +25,7 @@ tile.RedstoneFurnaceActive.name=Redstone Furnace
 tile.ObsidianFurnaceT2Active.name=Tier 2 Obsidian Furnace
 tile.ObsidianFurnaceT3Active.name=Tier 3 Obsidian Furnace
 tile.DiamondFurnaceT2Active.name=Tier 2 Diamond Furnace
-tile.DiamondFurnaceT3Active.name=Tier 3 DiamondFurnace
+tile.DiamondFurnaceT3Active.name=Tier 3 Diamond Furnace
 tile.AnvilFurnaceActive.name=Anvil Furnace
 
 itemGroup.mfm=Mo' Furnaces Mod
@@ -44,6 +44,7 @@ container.obsidianFurnaceT2=Tier 2 Obsidian Furnace
 container.obsidianFurnaceT3=Tier 3 Obsidian Furnace
 container.redstoneFurnace=Redstone Furnace
 container.diamondFurnaceT2=Tier 2 Diamond Furnace
+container.diamondFurnaceT3=Tier 3 Diamond Furnace
 container.anvilFurnace=Anvil Furnace
 
 item.Tier2Device.name=Tier 2 Device

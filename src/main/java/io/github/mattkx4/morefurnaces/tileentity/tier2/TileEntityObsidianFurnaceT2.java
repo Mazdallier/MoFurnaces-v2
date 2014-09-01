@@ -38,7 +38,7 @@ private String localizedName;
 	public int furnaceSpeed = 50;
 	
 	// Number of ticks the furnace will burn for
-	public static int burnTime;
+	public int burnTime;
 	
 	// Number of ticks a fresh piece of fuel will burn for
 	public int currentItemBurnTime;
