@@ -31,11 +31,11 @@ import static org.lwjgl.opengl.GL11.*;
  */
 
 
-public class EntityTier2FlameFX extends EntityFX{	
+/*public class EntityTier2FlameFX extends EntityFX{	
 
 	// This attempt does not seem to work.
 	  
-	public ResourceLocation flame = new ResourceLocation(Strings.MODID + ":textures/particles/tier2_flame2.png");;
+	public ResourceLocation flame = new ResourceLocation(Strings.MODID + ":tier2_flame2.png");;
 	
 	//imitate what a regular furnace flame does
 	public EntityTier2FlameFX(World world, double x, double y, double z, double i, double j, double k) {
@@ -118,7 +118,7 @@ public class EntityTier2FlameFX extends EntityFX{
 		particleScale = scale;
 		return this;
 	}
-}
+}*/
 	
 	
 /**
@@ -130,10 +130,9 @@ public class EntityTier2FlameFX extends EntityFX{
  * 
  */
 
-/**
 public class EntityTier2FlameFX extends EntityFlameFX{	
 
-	/* the scale of the flame FX /
+	/* the scale of the flame FX */
     private float flameScale;
     private static final String __OBFID = "CL_00000907";
 
@@ -191,7 +190,7 @@ public class EntityTier2FlameFX extends EntityFlameFX{
 
     /*
      * Gets how bright this entity is.
-     /
+     */
     public float getBrightness(float p_70013_1_)
     {
         float f1 = ((float)this.particleAge + p_70013_1_) / (float)this.particleMaxAge;
@@ -212,7 +211,7 @@ public class EntityTier2FlameFX extends EntityFlameFX{
 
     /*
      * Called to update the entity's position/logic.
-     /
+     */
     public void onUpdate()
     {
         this.prevPosX = this.posX;
@@ -238,4 +237,3 @@ public class EntityTier2FlameFX extends EntityFlameFX{
 	
 	
 }
-*/

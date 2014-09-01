@@ -158,13 +158,19 @@ V2.1 -> V2.2{
             - Redstone Furnace
     }
     
+    1 SEPT - Mattkx4{
+        - Added the following furnaces:
+            - IronFurnaceT2/T3
+            - BrickFurnaceT2/T3
+        - Fixed a typo in the Anvil Crafting recipe that crashed the game on startup
+        - Fixed the particles on the T2 furnaces... Seems like you had it right...
+    }
+    
     TODO{
         - Apply tiering to the following furnaces
-            - Iron
-            - Gold
+            X Iron
             - Brick
             X Diamond (Needs textures (see below))
-            - Netherrack
             - Quartz
         - Design the following Wacky Furnace:
             X Anvil
@@ -181,8 +187,10 @@ V2.1 -> V2.2{
         - Need to add/alter block textures for the following furnaces
             - Anvil
             - Diamond T2 - T3
-        - Fix Diamond Furnace guiID ?
-        - Finish perfecting Tiering Device
+            - Iron T2 - T3
+            - Brick T2 - T3
+        X Fix Diamond Furnace guiID ?
+        X Finish perfecting Tiering Device
         - Fix T2 and T3 gui rendering bug ???
             - Bug seems to only be occasional
         X Fix T2 Obsidian Furnace 2nd input shift clicking problem
