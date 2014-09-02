@@ -2,6 +2,7 @@ package io.github.mattkx4.morefurnaces.blocks;
 
 import io.github.mattkx4.morefurnaces.lib.Strings;
 import io.github.mattkx4.morefurnaces.main.MoFurnacesMod;
+import io.github.mattkx4.morefurnaces.renderer.RenderAnvilFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityAnvilFurnace;
 
 import java.util.Random;
@@ -10,6 +11,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,6 +25,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -32,7 +35,7 @@ public class AnvilFurnace extends BlockContainer{
 	/*
 	 * Boolean to tell if the furnace is active
 	 */
-	private final boolean isActive;
+	public final boolean isActive;
 	
 	private Random rand = new Random();
 	
@@ -48,6 +51,22 @@ public class AnvilFurnace extends BlockContainer{
 		super(Material.rock);
 		this.isActive = isActive;
 		this.setHarvestLevel("pickaxe", 2);
+		this.setBlockBounds(0F, 0f, 0F, 1F, 1F, 1F);
+	}
+	
+	//render type for custom rendering
+	public int getRenderType(){
+		return -1;
+	}
+	
+	//set the block to not opaque for custom rendering
+	public boolean isOpaqueCube(){
+		return false;
+	}
+	
+	//set to false the boolean render as a normal block for custom rendering
+	public boolean renderAsNormalBlock(){
+		return false;
 	}
 	
 	/*
@@ -110,9 +129,7 @@ public class AnvilFurnace extends BlockContainer{
 	 */
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister iconRegister){
-		this.blockIcon = iconRegister.registerIcon(Strings.MODID+":AnvilFurnace_side");
-		this.iconFront = iconRegister.registerIcon(Strings.MODID+":"+(this.isActive ? "AnvilFurnace_front_active" : "AnvilFurnace_front_idle"));
-		this.iconTop = iconRegister.registerIcon(Strings.MODID+":AnvilFurnace_top");
+		this.blockIcon = iconRegister.registerIcon(Strings.MODID+":/textures/blocks/AnvilFurnace_block.png");
 	}
 	
 	/*
@@ -232,13 +249,23 @@ public class AnvilFurnace extends BlockContainer{
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(World world, int x, int y, int z, Random random){
         if (this.isActive){
-            int direction = world.getBlockMetadata(x, y, z);
+            //int direction = world.getBlockMetadata(x, y, z);
             float x1 = (float)x + 0.5F;
             float y1 = (float)y + 0.0F + random.nextFloat() * 6.0F / 16.0F;
             float z1 = (float)z + 0.5F;
             float f = 0.52F;
             float f1 = random.nextFloat() * 0.6F - 0.3F;
+            
+            world.spawnParticle("smoke", (double)(x1 - f), (double)y1 + 0.5F, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
+        	world.spawnParticle("flame", (double)(x1 - f), (double)y1 + 0.5F, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
+        	world.spawnParticle("smoke", (double)(x1 + f1), (double)y1 + 0.5F, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
+        	world.spawnParticle("flame", (double)(x1 + f1), (double)y1 + 0.5F, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
+        	world.spawnParticle("smoke", (double)(x1 + f1), (double)y1 + 0.5F, (double)(z1 - f1), 0.0D, 0.0D, 0.0D);
+        	world.spawnParticle("flame", (double)(x1 + f1), (double)y1 + 0.5F, (double)(z1 - f1), 0.0D, 0.0D, 0.0D);
+        	world.spawnParticle("smoke", (double)(x1 + f1), (double)y1 + 0.5F, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
+        	world.spawnParticle("flame", (double)(x1 + f1), (double)y1 + 0.5F, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
 
+        	/*
             if(direction == 4){
             	world.spawnParticle("smoke", (double)(x1 - f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
             	world.spawnParticle("flame", (double)(x1 - f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
@@ -252,6 +279,7 @@ public class AnvilFurnace extends BlockContainer{
             	world.spawnParticle("smoke", (double)(x1 + f1), (double)y1, (double)(z1 + f), 0.0D, 0.0D, 0.0D);
             	world.spawnParticle("flame", (double)(x1 + f1), (double)y1, (double)(z1 + f), 0.0D, 0.0D, 0.0D);
             }
+            */
         }
     }
 

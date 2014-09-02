@@ -1,8 +1,10 @@
 package io.github.mattkx4.morefurnaces.tileentity;
 
 import io.github.mattkx4.morefurnaces.blocks.AnvilFurnace;
+import io.github.mattkx4.morefurnaces.renderer.RenderAnvilFurnace;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -17,6 +19,7 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
+import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -186,7 +189,12 @@ public class TileEntityAnvilFurnace extends TileEntity implements ISidedInventor
 	
 	// Check if the furnace is burning
 	public boolean isBurning(){
-		return this.burnTime > 0;
+		if (this.burnTime > 0){
+		return true;
+		}
+		else{
+		return false;
+		}
 	}
 	
 	// Update the Furnace
@@ -203,7 +211,8 @@ public class TileEntityAnvilFurnace extends TileEntity implements ISidedInventor
 				//set currentItemBurnTime and burnTime to the fuel item burn time || add a '+1' after fuel efficiency to create an ever lasting furnace
 				this.currentItemBurnTime = this.burnTime = (int) (((double)getItemBurnTime(this.slots[1]) / (double)this.furnaceEfficiency));
 
-				if(this.isBurning()) {
+				if(this.isBurning()) {			
+					
 					flag1 = true;
 
 					if(this.slots[1] != null) {

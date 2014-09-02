@@ -166,6 +166,14 @@ V2.1 -> V2.2{
         - Fixed the particles on the T2 furnaces... Seems like you had it right...
     }
     
+    2 SEPT - Pr1meSh0ck{
+        - Fixed anvil furnace step sound not playing
+        - Changed anvil furnace to a custom render block as a test for custom rendering
+            - Added custom render texture to the furnace
+            - Altered smoke and flame particles to appear when smelting, on the top face of the furnace
+        - Added handler java files for future models and entities and such.
+    }
+    
     TODO{
         - Apply tiering to the following furnaces
             X Iron
@@ -185,7 +193,7 @@ V2.1 -> V2.2{
             - Anvil Furnace
             - Redstone Furnace
         - Need to add/alter block textures for the following furnaces
-            - Anvil
+            X Anvil
             - Diamond T2 - T3
             - Iron T2 - T3
             - Brick T2 - T3

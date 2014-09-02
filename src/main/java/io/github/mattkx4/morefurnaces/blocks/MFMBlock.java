@@ -59,7 +59,7 @@ public class MFMBlock {
     //Redstone Furnace step sound
     public static final Block.SoundType soundTypeRedstone = new Block.SoundType("stone", 1.0F, 1.5F);
     //Anvil Furnace step sound
-    public static final Block.SoundType soundTypeAnvil = new Block.SoundType("anvil", 0.3F, 1.0F);
+    public static final Block.SoundType soundTypeAnvil = new Block.SoundType("stone", 0.3F, 1.0F);
     
 	public static void mainRegistry(){
 		initializeBlock();
