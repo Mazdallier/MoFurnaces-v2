@@ -174,6 +174,10 @@ V2.1 -> V2.2{
         - Added handler java files for future models and entities and such.
     }
     
+    2 SEPT - Mattkx4{
+        - Fixed a startup bug with the game not finding the AnvilFurnace texture thingy...
+    }
+    
     TODO{
         - Apply tiering to the following furnaces
             X Iron

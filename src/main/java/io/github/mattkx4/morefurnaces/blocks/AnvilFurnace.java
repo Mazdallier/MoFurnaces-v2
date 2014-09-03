@@ -129,7 +129,7 @@ public class AnvilFurnace extends BlockContainer{
 	 */
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister iconRegister){
-		this.blockIcon = iconRegister.registerIcon(Strings.MODID+":/textures/blocks/AnvilFurnace_block.png");
+		this.blockIcon = iconRegister.registerIcon(Strings.MODID+":AnvilFurnace_block");
 	}
 	
 	/*
