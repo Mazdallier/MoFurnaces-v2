@@ -1,0 +1,40 @@
+package io.github.mattkx4.morefurnaces.handler;
+
+import io.github.mattkx4.morefurnaces.entity.EntityCobaltKatana;
+import io.github.mattkx4.morefurnaces.main.MoFurnacesMod;
+
+import java.util.Random;
+
+import net.minecraft.entity.EntityList;
+import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.world.biome.BiomeGenBase;
+import cpw.mods.fml.common.registry.EntityRegistry;
+
+public class MFMEntityHandler {
+	
+	public static void mainRegistry(){
+		registerMonsters(EntityCobaltKatana.class, "Cobalt Katana");
+	}
+
+	public static void registerMonsters(Class entityClass, String name){
+		//get a unique mob ID
+		int entityID = EntityRegistry.findGlobalUniqueEntityId();
+		//create mob seed
+		long x = name.hashCode();
+		//create a random number from the seed of x
+		Random random = new Random(x);
+		//set a primary and secondary colour based off the random 
+		//of the seed.  
+		int mainColour = random.nextInt() * 16777215;
+		int subColour = random.nextInt() * 16777215;
+		
+		EntityRegistry.registerGlobalEntityID(entityClass, name, entityID);
+		//spawn C into the world
+		EntityRegistry.addSpawn(entityClass, 100, 1, 1, EnumCreatureType.creature, BiomeGenBase.desert, BiomeGenBase.extremeHills, BiomeGenBase.roofedForest);
+		
+		EntityRegistry.registerModEntity(entityClass,  name,  entityID, MoFurnacesMod.instance, 64, 1, true);
+		EntityList.entityEggs.put(Integer.valueOf(entityID), new EntityList.EntityEggInfo(entityID, mainColour, subColour));
+		
+	}
+	
+}

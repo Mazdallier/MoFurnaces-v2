@@ -185,6 +185,12 @@ V2.1 -> V2.2{
         - Removed old unused furnace crafting recipes
         - Fixed tiered furnace direction reset problem
             - Rolled out fix to the other furnaces
+        - Fixed Anvil furnace being unable to click and drop items into the cooking slot.
+        - Added new model texture map for CK
+            - Removed old texture
+        - Added CK mob
+            - Added Model java file, texture file etc.
+            -Basic mob, can be spawned but not much else. I'm hitting the hay but ill get onto ai attributes tomorrow.
     }
     
     TODO{

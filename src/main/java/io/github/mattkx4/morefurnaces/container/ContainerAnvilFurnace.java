@@ -26,9 +26,9 @@ public class ContainerAnvilFurnace extends Container{
 	public ContainerAnvilFurnace(InventoryPlayer inventory, TileEntityAnvilFurnace tileentity) {
 		this.anvilFurnace = tileentity;
 
-		this.addSlotToContainer(new SlotFurnace(inventory.player, tileentity, 0, 80, 21));
+		//setting this from SlotFurnace to simply Slot fixes the slots inability to accept items from a click
+		this.addSlotToContainer(new Slot(tileentity, 0, 80, 21));
 		this.addSlotToContainer(new Slot(tileentity, 1, 80, 61));
-		//this.addSlotToContainer(new SlotFurnace(inventory.player, tileentity, 2, 116, 35));
 
 		for(int i = 0; i < 3; i++) {
 			for(int j = 0; j < 9; j++) {
