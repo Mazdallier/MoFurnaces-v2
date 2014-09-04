@@ -51,7 +51,7 @@ private Random rand = new Random();
 	 * What item is dropped from the block
 	 */
 	public Item getItemDropped(int i, Random random, int j){
-		return Item.getItemFromBlock(MFMBlock.GoldFurnaceIdle);	
+		return Item.getItemFromBlock(MFMBlocks.GoldFurnaceIdle);	
 	}	
 	
 	/*
@@ -129,9 +129,9 @@ private Random rand = new Random();
 		keepInventory = true;
 		
 		if(active == true){
-			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlock.GoldFurnaceActive);
+			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlocks.GoldFurnaceActive);
 		}else{
-			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlock.GoldFurnaceIdle);
+			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlocks.GoldFurnaceIdle);
 		}
 		keepInventory = false;
 		
@@ -273,6 +273,6 @@ private Random rand = new Random();
      */
     @SideOnly(Side.CLIENT)
     public Item getItem(World world, int x, int y, int z){
-        return Item.getItemFromBlock(MFMBlock.GoldFurnaceIdle);
+        return Item.getItemFromBlock(MFMBlocks.GoldFurnaceIdle);
     }
 }

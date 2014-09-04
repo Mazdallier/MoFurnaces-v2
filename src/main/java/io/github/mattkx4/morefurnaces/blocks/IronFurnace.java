@@ -1,5 +1,7 @@
 package io.github.mattkx4.morefurnaces.blocks;
 
+import io.github.mattkx4.morefurnaces.blocks.tier2.MFMT2Blocks;
+import io.github.mattkx4.morefurnaces.items.MFMItems;
 import io.github.mattkx4.morefurnaces.lib.Strings;
 import io.github.mattkx4.morefurnaces.main.MoFurnacesMod;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityIronFurnace;
@@ -55,7 +57,7 @@ public class IronFurnace extends BlockContainer{
 	 * What item is dropped from the block
 	 */
 	public Item getItemDropped(int i, Random random, int j){
-		return Item.getItemFromBlock(MFMBlock.IronFurnaceIdle);	
+		return Item.getItemFromBlock(MFMBlocks.IronFurnaceIdle);	
 	}	
 	
 	/*
@@ -122,7 +124,7 @@ public class IronFurnace extends BlockContainer{
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitx, float hity, float hitz){
 		// Tiers the Iron Furnace to Tier 2
 		if(player.getCurrentEquippedItem() != null) {
-			if(player.getCurrentEquippedItem().getItem() == MFMBlock.Tier2Device) {
+			if(player.getCurrentEquippedItem().getItem() == MFMItems.Tier2Device) {
 				TileEntityIronFurnace tileentity = (TileEntityIronFurnace)world.getTileEntity(x, y, z);
 				ItemStack input;
 				ItemStack fuel;
@@ -145,7 +147,12 @@ public class IronFurnace extends BlockContainer{
 				tileentity.setInventorySlotContents(0, new ItemStack(Items.iron_ingot));
 				tileentity.setInventorySlotContents(1, null);
 				tileentity.setInventorySlotContents(2, null);
-				world.setBlock(x, y, z, MFMBlock.IronFurnaceT2Idle);
+				
+				//fix  to the block direction resetting problem
+				int i = world.getBlockMetadata(x, y, z);
+				world.setBlock(x, y, z, MFMT2Blocks.IronFurnaceT2Idle);
+				world.setBlockMetadataWithNotify(x, y, z, i, 2);
+				
 				TileEntityIronFurnaceT2 tileentityT2 = (TileEntityIronFurnaceT2)world.getTileEntity(x, y, z);
 				if(input != null){ tileentityT2.setInventorySlotContents(0, input); }
 				if(fuel != null){ tileentityT2.setInventorySlotContents(2, fuel); }
@@ -166,9 +173,9 @@ public class IronFurnace extends BlockContainer{
 		keepInventory = true;
 		
 		if(active == true){
-			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlock.IronFurnaceActive);
+			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlocks.IronFurnaceActive);
 		}else{
-			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlock.IronFurnaceIdle);
+			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlocks.IronFurnaceIdle);
 		}
 		keepInventory = false;
 		
@@ -311,6 +318,6 @@ public class IronFurnace extends BlockContainer{
      */
     @SideOnly(Side.CLIENT)
     public Item getItem(World world, int x, int y, int z){
-        return Item.getItemFromBlock(MFMBlock.IronFurnaceIdle);
+        return Item.getItemFromBlock(MFMBlocks.IronFurnaceIdle);
     }
 }

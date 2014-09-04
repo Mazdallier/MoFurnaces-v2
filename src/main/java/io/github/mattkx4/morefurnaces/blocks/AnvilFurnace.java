@@ -73,7 +73,7 @@ public class AnvilFurnace extends BlockContainer{
 	 * What item is dropped from the block
 	 */
 	public Item getItemDropped(int i, Random random, int j){
-		return Item.getItemFromBlock(MFMBlock.AnvilFurnaceIdle);	
+		return Item.getItemFromBlock(MFMBlocks.AnvilFurnaceIdle);	
 	}	
 	
 	/*
@@ -149,9 +149,9 @@ public class AnvilFurnace extends BlockContainer{
 		keepInventory = true;
 		
 		if(active == true){
-			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlock.AnvilFurnaceActive);
+			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlocks.AnvilFurnaceActive);
 		}else{
-			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlock.AnvilFurnaceIdle);
+			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlocks.AnvilFurnaceIdle);
 		}
 		keepInventory = false;
 		
@@ -304,6 +304,6 @@ public class AnvilFurnace extends BlockContainer{
      */
     @SideOnly(Side.CLIENT)
     public Item getItem(World world, int x, int y, int z){
-        return Item.getItemFromBlock(MFMBlock.AnvilFurnaceIdle);
+        return Item.getItemFromBlock(MFMBlocks.AnvilFurnaceIdle);
     }
 }

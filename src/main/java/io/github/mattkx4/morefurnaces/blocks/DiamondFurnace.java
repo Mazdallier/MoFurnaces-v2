@@ -1,5 +1,7 @@
 package io.github.mattkx4.morefurnaces.blocks;
 
+import io.github.mattkx4.morefurnaces.blocks.tier2.MFMT2Blocks;
+import io.github.mattkx4.morefurnaces.items.MFMItems;
 import io.github.mattkx4.morefurnaces.lib.Strings;
 import io.github.mattkx4.morefurnaces.main.MoFurnacesMod;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityDiamondFurnace;
@@ -55,7 +57,7 @@ private final boolean isActive;
 	 * What item is dropped from the block
 	 */
 	public Item getItemDropped(int i, Random random, int j){
-		return Item.getItemFromBlock(MFMBlock.DiamondFurnaceIdle);	
+		return Item.getItemFromBlock(MFMBlocks.DiamondFurnaceIdle);	
 	}	
 	
 	/*
@@ -122,7 +124,7 @@ private final boolean isActive;
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitx, float hity, float hitz){
 		// Tiers the Diamond Furnace to Tier 2
 		if(player.getCurrentEquippedItem() != null) {
-			if(player.getCurrentEquippedItem().getItem() == MFMBlock.Tier2Device) {
+			if(player.getCurrentEquippedItem().getItem() == MFMItems.Tier2Device) {
 				TileEntityDiamondFurnace tileentity = (TileEntityDiamondFurnace)world.getTileEntity(x, y, z);
 				ItemStack input;
 				ItemStack fuel;
@@ -145,7 +147,12 @@ private final boolean isActive;
 				tileentity.setInventorySlotContents(0, new ItemStack(Items.diamond));
 				tileentity.setInventorySlotContents(1, null);
 				tileentity.setInventorySlotContents(2, null);
-				world.setBlock(x, y, z, MFMBlock.DiamondFurnaceT2Idle);
+
+				//fix  to the block direction resetting problem
+				int i = world.getBlockMetadata(x, y, z);
+				world.setBlock(x, y, z, MFMT2Blocks.DiamondFurnaceT2Idle);
+				world.setBlockMetadataWithNotify(x, y, z, i, 2);
+				
 				TileEntityDiamondFurnaceT2 tileentityT2 = (TileEntityDiamondFurnaceT2)world.getTileEntity(x, y, z);
 				if(input != null){ tileentityT2.setInventorySlotContents(0, input); }
 				if(fuel != null){ tileentityT2.setInventorySlotContents(2, fuel); }
@@ -166,9 +173,9 @@ private final boolean isActive;
 		keepInventory = true;
 		
 		if(active == true){
-			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlock.DiamondFurnaceActive);
+			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlocks.DiamondFurnaceActive);
 		}else{
-			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlock.DiamondFurnaceIdle);
+			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlocks.DiamondFurnaceIdle);
 		}
 		keepInventory = false;
 		
@@ -310,6 +317,6 @@ private final boolean isActive;
     */
    @SideOnly(Side.CLIENT)
     public Item getItem(World world, int x, int y, int z){
-        return Item.getItemFromBlock(MFMBlock.DiamondFurnaceIdle);
+        return Item.getItemFromBlock(MFMBlocks.DiamondFurnaceIdle);
     }
 }

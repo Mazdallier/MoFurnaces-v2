@@ -245,25 +245,36 @@ public class TileEntityAnvilFurnace extends TileEntity implements ISidedInventor
 	
 	// Check to see if item can be smelted
 	public boolean canSmelt(){
+		//if nothing is in the slot then return false
 		if(this.slots[0] == null){
 			return false;
 		}else{
+			//otherwise set itemstack to the slot contents
 			ItemStack itemstack = this.slots[0];
+			//if the itemstack has damage then return true
 			if(itemstack.getItemDamage() > 0){
 				return true;
 			}
 		}
+		//for all else return false
 		return false;
 	}
 	
 	// Smelt the input item and put the result in the output slot
 	public void smeltItem(){
+		//if the item can be smelted
 		if(this.canSmelt()){
+			//set the itemstack to the input slot contents
 			ItemStack itemstack = this.slots[0];
+			//if the the item has damage less than the max damage(full repaired) but greater than zero(broken)
 			if(itemstack.getItemDamage() < itemstack.getMaxDamage() && itemstack.getItemDamage() > 0){
+				//store the current damage
 				int currentDamage = itemstack.getItemDamage();
+				//take 50 points off the current item damage
 				itemstack.setItemDamage(currentDamage - 50);
+				//if the item damage happens to exceed the maximum damage
 				if (itemstack.getItemDamage() > itemstack.getMaxDamage()){
+					//set the item damage to the max damage(fully repaired)
 					itemstack.setItemDamage(itemstack.getMaxDamage());
 				}
 			}
@@ -316,7 +327,15 @@ public class TileEntityAnvilFurnace extends TileEntity implements ISidedInventor
 
 	// Checks to see if item can go in specified slot
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
-		return i == 0 ? true : (i == 1 ? isItemFuel(itemstack) : true);
+		if(i == 1){
+			if(isItemFuel(itemstack)){
+				return true;
+			}else{
+				return false;
+			}
+		}else{
+			return true;
+		}
 	}
 	
 	// What slots are accessible from the different sides

@@ -51,7 +51,7 @@ public class QuartzFurnace extends BlockContainer{
 	 * What item is dropped from the block
 	 */
 	public Item getItemDropped(int i, Random random, int j){
-		return Item.getItemFromBlock(MFMBlock.QuartzFurnaceIdle);	
+		return Item.getItemFromBlock(MFMBlocks.QuartzFurnaceIdle);	
 	}	
 	
 	/*
@@ -129,9 +129,9 @@ public class QuartzFurnace extends BlockContainer{
 		keepInventory = true;
 		
 		if(active == true){
-			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlock.QuartzFurnaceActive);
+			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlocks.QuartzFurnaceActive);
 		}else{
-			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlock.QuartzFurnaceIdle);
+			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlocks.QuartzFurnaceIdle);
 		}
 		keepInventory = false;
 		
@@ -273,6 +273,6 @@ public class QuartzFurnace extends BlockContainer{
      */
     @SideOnly(Side.CLIENT)
     public Item getItem(World world, int x, int y, int z){
-        return Item.getItemFromBlock(MFMBlock.QuartzFurnaceIdle);
+        return Item.getItemFromBlock(MFMBlocks.QuartzFurnaceIdle);
     }
 }

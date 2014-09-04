@@ -2,7 +2,7 @@ package io.github.mattkx4.morefurnaces.proxy;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
 import io.github.mattkx4.morefurnaces.blocks.AnvilFurnace;
-import io.github.mattkx4.morefurnaces.blocks.MFMBlock;
+import io.github.mattkx4.morefurnaces.blocks.MFMBlocks;
 import io.github.mattkx4.morefurnaces.renderer.ItemRenderAnvilFurnace;
 import io.github.mattkx4.morefurnaces.renderer.RenderAnvilFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityAnvilFurnace;
@@ -16,7 +16,7 @@ public class ClientProxy extends ServerProxy{
 		//rendering anvil furnace
 		TileEntitySpecialRenderer renderAF = new RenderAnvilFurnace();
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAnvilFurnace.class, renderAF);
-		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(MFMBlock.AnvilFurnaceIdle), new ItemRenderAnvilFurnace(renderAF, new TileEntityAnvilFurnace()));
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(MFMBlocks.AnvilFurnaceIdle), new ItemRenderAnvilFurnace(renderAF, new TileEntityAnvilFurnace()));
 		
 	
 	}

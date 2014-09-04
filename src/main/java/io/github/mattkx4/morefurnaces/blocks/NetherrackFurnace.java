@@ -51,7 +51,7 @@ public class NetherrackFurnace extends BlockContainer{
 	 * What item is dropped from the block
 	 */
 	public Item getItemDropped(int i, Random random, int j){
-		return Item.getItemFromBlock(MFMBlock.NetherrackFurnaceIdle);	
+		return Item.getItemFromBlock(MFMBlocks.NetherrackFurnaceIdle);	
 	}	
 	
 	/*
@@ -129,9 +129,9 @@ public class NetherrackFurnace extends BlockContainer{
 		keepInventory = true;
 		
 		if(active == true){
-			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlock.NetherrackFurnaceActive);
+			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlocks.NetherrackFurnaceActive);
 		}else{
-			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlock.NetherrackFurnaceIdle);
+			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlocks.NetherrackFurnaceIdle);
 		}
 		keepInventory = false;
 		
@@ -273,6 +273,6 @@ public class NetherrackFurnace extends BlockContainer{
      */
     @SideOnly(Side.CLIENT)
     public Item getItem(World world, int x, int y, int z){
-        return Item.getItemFromBlock(MFMBlock.NetherrackFurnaceIdle);
+        return Item.getItemFromBlock(MFMBlocks.NetherrackFurnaceIdle);
     }
 }

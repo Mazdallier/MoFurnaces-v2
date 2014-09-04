@@ -1,6 +1,9 @@
 package io.github.mattkx4.morefurnaces.main;
 
-import io.github.mattkx4.morefurnaces.blocks.MFMBlock;
+import io.github.mattkx4.morefurnaces.blocks.MFMBlocks;
+import io.github.mattkx4.morefurnaces.blocks.tier2.MFMT2Blocks;
+import io.github.mattkx4.morefurnaces.blocks.tier3.MFMT3Blocks;
+import io.github.mattkx4.morefurnaces.items.MFMItems;
 import io.github.mattkx4.morefurnaces.gui.MFMGui;
 import io.github.mattkx4.morefurnaces.handler.MFMGuiHandler;
 import io.github.mattkx4.morefurnaces.handler.MFMHandler;
@@ -83,19 +86,22 @@ public class MoFurnacesMod {
 		MFM = new CreativeTabs("mfm"){
 			@SideOnly(Side.CLIENT)
 			public Item getTabIconItem(){
-				return Item.getItemFromBlock(MFMBlock.DiamondFurnaceActive);
+				return Item.getItemFromBlock(MFMBlocks.DiamondFurnaceActive);
 			}
 		};
 		
 		TieredMFM = new CreativeTabs("tieredmfm"){
 			@SideOnly(Side.CLIENT)
 			public Item getTabIconItem() {
-				return Item.getItemFromBlock(MFMBlock.ObsidianFurnaceT3Active);
+				return Item.getItemFromBlock(MFMT3Blocks.ObsidianFurnaceT3Active);
 			}
 		};
 		
-		// Calls the mainRegistry() method
-		MFMBlock.mainRegistry();		
+		// Calls the mainRegistry() methods
+		MFMBlocks.mainRegistry();
+		MFMT2Blocks.mainRegistry();
+		MFMT3Blocks.mainRegistry();
+		MFMItems.mainRegistry();
 		
 		proxy.registerRenderThings();	
 	}
@@ -106,7 +112,10 @@ public class MoFurnacesMod {
 	@EventHandler
 	public void load(FMLInitializationEvent Event){
 		// Calls all secondaryRegistry() methods.
-		MFMBlock.secondaryRegistry();
+		MFMBlocks.secondaryRegistry();
+		MFMT2Blocks.secondaryRegistry();
+		MFMT3Blocks.secondaryRegistry();
+		MFMItems.secondaryRegistry();
 		MFMGui.secondaryRegistry();
 		MFMHandler.secondaryRegistry();
 		

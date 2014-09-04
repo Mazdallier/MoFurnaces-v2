@@ -53,7 +53,7 @@ public class RedstoneFurnace extends BlockContainer{
 	 * What item is dropped from the block
 	 */
 	public Item getItemDropped(int i, Random random, int j){
-		return Item.getItemFromBlock(MFMBlock.RedstoneFurnaceIdle);	
+		return Item.getItemFromBlock(MFMBlocks.RedstoneFurnaceIdle);	
 	}	
 	
 	/*
@@ -131,9 +131,9 @@ public class RedstoneFurnace extends BlockContainer{
 		keepInventory = true;
 		
 		if(active == true){
-			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlock.RedstoneFurnaceActive);
+			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlocks.RedstoneFurnaceActive);
 		}else{
-			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlock.RedstoneFurnaceIdle);
+			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlocks.RedstoneFurnaceIdle);
 		}
 		keepInventory = false;
 		
@@ -275,7 +275,7 @@ public class RedstoneFurnace extends BlockContainer{
      */
     @SideOnly(Side.CLIENT)
     public Item getItem(World world, int x, int y, int z){
-        return Item.getItemFromBlock(MFMBlock.RedstoneFurnaceIdle);
+        return Item.getItemFromBlock(MFMBlocks.RedstoneFurnaceIdle);
     }
     
     //extra function utilized ONLY by the hopper aspects of the redstone furnace

@@ -178,6 +178,15 @@ V2.1 -> V2.2{
         - Fixed a startup bug with the game not finding the AnvilFurnace texture thingy...
     }
     
+    4 SEPT - Pr1meSh0ck{
+        - Added comments to the anvil furnace to instruct on what it does
+        - Created an Items class to initialize and register items only
+        - Split up MFMBlocks into its base, T2 and T3 components
+        - Removed old unused furnace crafting recipes
+        - Fixed tiered furnace direction reset problem
+            - Rolled out fix to the other furnaces
+    }
+    
     TODO{
         - Apply tiering to the following furnaces
             X Iron
@@ -197,10 +206,11 @@ V2.1 -> V2.2{
             - Anvil Furnace
             - Redstone Furnace
         - Need to add/alter block textures for the following furnaces
-            X Anvil
+            - Anvil (Waiting on Re-texturing)
             - Diamond T2 - T3
             - Iron T2 - T3
             - Brick T2 - T3
+        X Identified problem when tiering, the device will cause the rotation of the furnace to reset
         X Fix Diamond Furnace guiID ?
         X Finish perfecting Tiering Device
         - Fix T2 and T3 gui rendering bug ???

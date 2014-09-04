@@ -1,6 +1,6 @@
 package io.github.mattkx4.morefurnaces.blocks.tier3;
 
-import io.github.mattkx4.morefurnaces.blocks.MFMBlock;
+import io.github.mattkx4.morefurnaces.blocks.tier3.MFMT3Blocks;
 import io.github.mattkx4.morefurnaces.lib.Strings;
 import io.github.mattkx4.morefurnaces.main.MoFurnacesMod;
 import io.github.mattkx4.morefurnaces.particles.EntityTier2FlameFX;
@@ -56,7 +56,7 @@ public class ObsidianFurnaceT3 extends BlockContainer{
 	 * What item is dropped from the block
 	 */
 	public Item getItemDropped(int i, Random random, int j){
-		return Item.getItemFromBlock(MFMBlock.ObsidianFurnaceT3Idle);	
+		return Item.getItemFromBlock(MFMT3Blocks.ObsidianFurnaceT3Idle);	
 	}	
 	
 	/*
@@ -134,9 +134,9 @@ public class ObsidianFurnaceT3 extends BlockContainer{
 		keepInventory = true;
 		
 		if(active == true){
-			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlock.ObsidianFurnaceT3Active);
+			worldObj.setBlock(xCoord, yCoord, zCoord, MFMT3Blocks.ObsidianFurnaceT3Active);
 		}else{
-			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlock.ObsidianFurnaceT3Idle);
+			worldObj.setBlock(xCoord, yCoord, zCoord, MFMT3Blocks.ObsidianFurnaceT3Idle);
 		}
 		keepInventory = false;
 		
@@ -278,6 +278,6 @@ public class ObsidianFurnaceT3 extends BlockContainer{
      */
     @SideOnly(Side.CLIENT)
     public Item getItem(World world, int x, int y, int z){
-        return Item.getItemFromBlock(MFMBlock.ObsidianFurnaceT3Idle);
+        return Item.getItemFromBlock(MFMT3Blocks.ObsidianFurnaceT3Idle);
     }
 }

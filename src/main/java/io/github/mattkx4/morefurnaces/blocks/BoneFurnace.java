@@ -51,7 +51,7 @@ public class BoneFurnace extends BlockContainer{
 	 * What item is dropped from the block
 	 */
 	public Item getItemDropped(int i, Random random, int j){
-		return Item.getItemFromBlock(MFMBlock.BoneFurnaceIdle);	
+		return Item.getItemFromBlock(MFMBlocks.BoneFurnaceIdle);	
 	}	
 	
 	/*
@@ -129,9 +129,9 @@ public class BoneFurnace extends BlockContainer{
 		keepInventory = true;
 		
 		if(active == true){
-			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlock.BoneFurnaceActive);
+			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlocks.BoneFurnaceActive);
 		}else{
-			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlock.BoneFurnaceIdle);
+			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlocks.BoneFurnaceIdle);
 		}
 		keepInventory = false;
 		
@@ -273,6 +273,6 @@ public class BoneFurnace extends BlockContainer{
      */
     @SideOnly(Side.CLIENT)
     public Item getItem(World world, int x, int y, int z){
-        return Item.getItemFromBlock(MFMBlock.BoneFurnaceIdle);
+        return Item.getItemFromBlock(MFMBlocks.BoneFurnaceIdle);
     }
 }
