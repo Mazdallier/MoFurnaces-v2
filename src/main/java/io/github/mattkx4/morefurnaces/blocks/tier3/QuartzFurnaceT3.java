@@ -1,25 +1,20 @@
-package io.github.mattkx4.morefurnaces.blocks;
+package io.github.mattkx4.morefurnaces.blocks.tier3;
 
-import io.github.mattkx4.morefurnaces.blocks.tier2.MFMT2Blocks;
-import io.github.mattkx4.morefurnaces.items.MFMItems;
 import io.github.mattkx4.morefurnaces.lib.Strings;
 import io.github.mattkx4.morefurnaces.main.MoFurnacesMod;
-import io.github.mattkx4.morefurnaces.tileentity.TileEntityQuartzFurnace;
-import io.github.mattkx4.morefurnaces.tileentity.tier2.TileEntityQuartzFurnaceT2;
+import io.github.mattkx4.morefurnaces.particles.EntityTier3FlameFX;
+import io.github.mattkx4.morefurnaces.tileentity.tier3.TileEntityQuartzFurnaceT3;
 
 import java.util.Random;
 
-import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
@@ -29,9 +24,11 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
-public class QuartzFurnace extends BlockContainer{
-
+public class QuartzFurnaceT3 extends BlockContainer{
 	/*
 	 * Boolean to tell if the furnace is active
 	 */
@@ -47,17 +44,17 @@ public class QuartzFurnace extends BlockContainer{
 	
 	private static boolean keepInventory;
 	
-	public QuartzFurnace(boolean isActive) {
+	public QuartzFurnaceT3(boolean isActive) {
 		super(Material.rock);
 		this.isActive = isActive;
-		this.setHarvestLevel("pickaxe", 0);
+		this.setHarvestLevel("pickaxe", 2);
 	}
 	
 	/*
 	 * What item is dropped from the block
 	 */
 	public Item getItemDropped(int i, Random random, int j){
-		return Item.getItemFromBlock(MFMBlocks.QuartzFurnaceIdle);	
+		return Item.getItemFromBlock(MFMT3Blocks.QuartzFurnaceT3Idle);	
 	}	
 	
 	/*
@@ -114,7 +111,7 @@ public class QuartzFurnace extends BlockContainer{
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister iconRegister){
 		this.blockIcon = iconRegister.registerIcon(Strings.MODID+":QuartzFurnace_side");
-		this.iconFront = iconRegister.registerIcon(Strings.MODID+":"+(this.isActive ? "QuartzFurnace_front_active" : "QuartzFurnace_front_idle"));
+		this.iconFront = iconRegister.registerIcon(Strings.MODID+":"+(this.isActive ? "ObsidianFurnaceT3_front_active" : "ObsidianFurnaceT3_front_idle"));
 		this.iconTop = iconRegister.registerIcon(Strings.MODID+":QuartzFurnace_top");
 	}
 	
@@ -122,62 +119,22 @@ public class QuartzFurnace extends BlockContainer{
 	 * Called upon on block activation (right click) to open the GUI
 	 */
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitx, float hity, float hitz){
-		// Tiers the Obsidian Furnace to Tier 2
-				if(player.getCurrentEquippedItem() != null) {
-					if(player.getCurrentEquippedItem().getItem() == MFMItems.Tier2Device) {
-						TileEntityQuartzFurnace tileentity = (TileEntityQuartzFurnace)world.getTileEntity(x, y, z);
-						ItemStack input;
-						ItemStack fuel;
-						ItemStack product;
-						if(tileentity.getStackInSlot(0) != null) {
-							input = tileentity.getStackInSlot(0).copy();
-						} else {
-							input = null;
-						}
-						if(tileentity.getStackInSlot(1) != null) {
-							fuel = tileentity.getStackInSlot(1).copy();
-						} else {
-							fuel = null;
-						}
-						if(tileentity.getStackInSlot(2) != null) {
-							product = tileentity.getStackInSlot(2).copy();
-						} else {
-							product = null;
-						}
-						tileentity.setInventorySlotContents(0, new ItemStack(Blocks.quartz_block));
-						tileentity.setInventorySlotContents(1, null);
-						tileentity.setInventorySlotContents(2, null);
-						
-						//fix  to the block direction resetting problem
-						int i = world.getBlockMetadata(x, y, z);
-						world.setBlock(x, y, z, MFMT2Blocks.QuartzFurnaceT2Idle);
-						world.setBlockMetadataWithNotify(x, y, z, i, 2);
-						
-						
-						TileEntityQuartzFurnaceT2 tileentityT2 = (TileEntityQuartzFurnaceT2)world.getTileEntity(x, y, z);
-						if(input != null){ tileentityT2.setInventorySlotContents(0, input); }
-						if(fuel != null){ tileentityT2.setInventorySlotContents(2, fuel); }
-						if(product != null){ tileentityT2.setInventorySlotContents(3, product); }	
-						return true;
-					}
-				}
-		
 		if(!world.isRemote) {
-			FMLNetworkHandler.openGui(player, MoFurnacesMod.instance, MoFurnacesMod.guiIDQuartzFurnace, world, x, y, z);
+			FMLNetworkHandler.openGui(player, MoFurnacesMod.instance, MoFurnacesMod.guiIDQuartzFurnaceT3, world, x, y, z);
 		}
 		return true;
 	}
 
-	public static void updateQuartzFurnaceState(boolean active, World worldObj, int xCoord, int yCoord, int zCoord) {
+	public static void updateQuartzFurnaceT3State(boolean active, World worldObj, int xCoord, int yCoord, int zCoord) {
 		int i = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
 		
 		TileEntity tileentity = worldObj.getTileEntity(xCoord, yCoord, zCoord);
 		keepInventory = true;
 		
 		if(active == true){
-			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlocks.QuartzFurnaceActive);
+			worldObj.setBlock(xCoord, yCoord, zCoord, MFMT3Blocks.QuartzFurnaceT3Active);
 		}else{
-			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlocks.QuartzFurnaceIdle);
+			worldObj.setBlock(xCoord, yCoord, zCoord, MFMT3Blocks.QuartzFurnaceT3Idle);
 		}
 		keepInventory = false;
 		
@@ -193,7 +150,7 @@ public class QuartzFurnace extends BlockContainer{
 	 * Create the tile entity
 	 */
 	public TileEntity createNewTileEntity(World world, int i) {
-		return new TileEntityQuartzFurnace();
+		return new TileEntityQuartzFurnaceT3();
 	}
 	
 	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entityplayer, ItemStack itemstack){
@@ -216,7 +173,7 @@ public class QuartzFurnace extends BlockContainer{
 		}
 		
 		if(itemstack.hasDisplayName()){
-			((TileEntityQuartzFurnace)world.getTileEntity(x, y, z)).setGuiDisplayName(itemstack.getDisplayName());
+			((TileEntityQuartzFurnaceT3)world.getTileEntity(x, y, z)).setGuiDisplayName(itemstack.getDisplayName());
 		}
 	}
 
@@ -225,7 +182,7 @@ public class QuartzFurnace extends BlockContainer{
 	 */
 	public void breakBlock(World world, int x, int y, int z, Block oldblock, int oldmetadata){
         if (!keepInventory){
-            TileEntityQuartzFurnace tileentity = (TileEntityQuartzFurnace)world.getTileEntity(x, y, z);
+            TileEntityQuartzFurnaceT3 tileentity = (TileEntityQuartzFurnaceT3)world.getTileEntity(x, y, z);
 
             if (tileentity != null){
                 for (int i = 0; i < tileentity.getSizeInventory(); ++i){
@@ -272,7 +229,7 @@ public class QuartzFurnace extends BlockContainer{
      * A randomly called display update to add particles or other items for display
      * in this case it is adding smoke and flames.
      */
-     @SideOnly(Side.CLIENT)
+    @SideOnly(Side.CLIENT)
     public void randomDisplayTick(World world, int x, int y, int z, Random random){
         if (this.isActive){
             int direction = world.getBlockMetadata(x, y, z);
@@ -284,17 +241,17 @@ public class QuartzFurnace extends BlockContainer{
 
             if(direction == 4){
             	world.spawnParticle("smoke", (double)(x1 - f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
-            	world.spawnParticle("flame", (double)(x1 - f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
+				Minecraft.getMinecraft().effectRenderer.addEffect(new EntityTier3FlameFX(world, (double)(x1 - f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D));
             }else if (direction == 5){
             	world.spawnParticle("smoke", (double)(x1 + f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
-            	world.spawnParticle("flame", (double)(x1 + f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
-            }else if (direction == 2){
+            	Minecraft.getMinecraft().effectRenderer.addEffect(new EntityTier3FlameFX(world, (double)(x1 + f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D));
+        	}else if (direction == 2){
             	world.spawnParticle("smoke", (double)(x1 + f1), (double)y1, (double)(z1 - f), 0.0D, 0.0D, 0.0D);
-            	world.spawnParticle("flame", (double)(x1 + f1), (double)y1, (double)(z1 - f), 0.0D, 0.0D, 0.0D);
-            }else if (direction == 3){
+            	Minecraft.getMinecraft().effectRenderer.addEffect(new EntityTier3FlameFX(world, (double)(x1 + f1), (double)y1, (double)(z1 - f), 0.0D, 0.0D, 0.0D));  
+        	}else if (direction == 3){
             	world.spawnParticle("smoke", (double)(x1 + f1), (double)y1, (double)(z1 + f), 0.0D, 0.0D, 0.0D);
-            	world.spawnParticle("flame", (double)(x1 + f1), (double)y1, (double)(z1 + f), 0.0D, 0.0D, 0.0D);
-            }
+            	Minecraft.getMinecraft().effectRenderer.addEffect(new EntityTier3FlameFX(world, (double)(x1 + f1), (double)y1, (double)(z1 + f), 0.0D, 0.0D, 0.0D));       
+        	}
         }
     }
 
@@ -319,6 +276,7 @@ public class QuartzFurnace extends BlockContainer{
      */
     @SideOnly(Side.CLIENT)
     public Item getItem(World world, int x, int y, int z){
-        return Item.getItemFromBlock(MFMBlocks.QuartzFurnaceIdle);
+        return Item.getItemFromBlock(MFMT3Blocks.QuartzFurnaceT3Idle);
     }
 }
+

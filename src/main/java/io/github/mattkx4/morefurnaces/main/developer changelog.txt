@@ -208,12 +208,23 @@ V2.1 -> V2.2{
         - Started messing around with a FuelLessFurnace again. Please don't touch any of the code lol, I'm rebuilding it from scratch. Only copying the necessary methods.
     }
     
+    5 SEPT - Pr1meSh0ck{
+        - Added Quartz T2 and T3 furnace
+        - Fixed the following incorrect furnace attributes (inconsistencies when calculating fuel burn time)
+            - Brick T2, T3 now match Brick
+            - Diamond T2, T3 now match Diamond
+            - Iron T2, T3 now match Iron
+        - Found and fixed weird bug is a couple of the T furnaces where the item wouldn't cook
+            - Fuel slot was incorrectly addressed in the TileEntity classes
+        - Added various attributes and ai tasks to CK
+    }
+    
     TODO{
-        - Apply tiering to the following furnaces
+        X Apply tiering to the following furnaces
             X Iron
-            - Brick
+            X Brick
             X Diamond (Needs textures (see below))
-            - Quartz
+            X Quartz
         - Design the following Wacky Furnace:
             X Anvil
             - Cacti
@@ -231,6 +242,7 @@ V2.1 -> V2.2{
             - Diamond T2 - T3
             - Iron T2 - T3
             - Brick T2 - T3
+            - Quartz T2 - T3
         X Identified problem when tiering, the device will cause the rotation of the furnace to reset
         X Fix Diamond Furnace guiID ?
         X Finish perfecting Tiering Device

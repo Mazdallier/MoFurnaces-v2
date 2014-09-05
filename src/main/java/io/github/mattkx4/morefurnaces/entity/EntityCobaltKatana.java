@@ -1,8 +1,16 @@
 package io.github.mattkx4.morefurnaces.entity;
 
 import net.minecraft.entity.EntityAgeable;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
+import net.minecraft.entity.ai.EntityAISwimming;
+import net.minecraft.entity.ai.EntityAITargetNonTamed;
+import net.minecraft.entity.ai.EntityAIWander;
+import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.monster.IMob;
+import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -14,6 +22,16 @@ public class EntityCobaltKatana extends EntityMob{
 	public EntityCobaltKatana(World world){
 		super(world);
 		//add entity ai's here
+        this.isImmuneToFire = true;
+
+        this.getNavigator().setAvoidsWater(false);
+        this.tasks.addTask(0, new EntityAISwimming(this));
+        this.tasks.addTask(2, new EntityAIWander(this, 1.0D));
+        this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityLiving.class, 0, true, false, IMob.mobSelector));
+        this.tasks.addTask(10, new EntityAIWatchClosest(this, EntityLiving.class, 8.0F));
+        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityLiving.class, 0, false, true, IMob.mobSelector));
+
+
 		
 		//add targeting here
 	}
@@ -39,6 +57,55 @@ public class EntityCobaltKatana extends EntityMob{
 		return null;
 		
 	}
+	
+    protected boolean canDespawn()
+    {
+        return false;
+    }
+	
+	/**
+     * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
+     * use this to react to sunlight and start to burn.
+     */
+	public void onLivingUpdate()
+    {
+        this.updateArmSwingProgress();
+        float f = this.getBrightness(1.0F);
+
+        if (f > 0.5F)
+        {
+            this.entityAge += 2;
+        }
+
+        super.onLivingUpdate();
+    }
+	
+	//mob sounds
+	protected String getSwimSound()
+    {
+        return "game.hostile.swim";
+    }
+
+    protected String getSplashSound()
+    {
+        return "game.hostile.swim.splash";
+    }
+    
+    /**
+     * Returns the sound this mob makes when it is hurt.
+     */
+    protected String getHurtSound()
+    {
+        return "game.hostile.hurt";
+    }
+
+    /**
+     * Returns the sound this mob makes on death.
+     */
+    protected String getDeathSound()
+    {
+        return "game.hostile.die";
+    }
 	
 	//add wearable armor and weapons
 	protected void addRandomArmor(){

@@ -1,6 +1,6 @@
 package io.github.mattkx4.morefurnaces.tileentity.tier2;
 
-import io.github.mattkx4.morefurnaces.blocks.tier2.BrickFurnaceT2;
+import io.github.mattkx4.morefurnaces.blocks.tier2.QuartzFurnaceT2;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,7 +21,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class TileEntityBrickFurnaceT2 extends TileEntity implements ISidedInventory{
+public class TileEntityQuartzFurnaceT2 extends TileEntity implements ISidedInventory{
 
 private String localizedName;
 	
@@ -32,10 +32,10 @@ private String localizedName;
 	private ItemStack[] slots = new ItemStack [5];
 	
 	// Inverse of furnace efficiency for fuels, 
-	public double furnaceEfficiency = 1.0D;
+	public double furnaceEfficiency = 0.5D; 
 
 	// Speed of the furnace. A lower integer means a faster speed (Regular furnace is 200)
-	public int furnaceSpeed = 133;
+	public int furnaceSpeed = 200;
 	
 	// Number of ticks the furnace will burn for
 	public int burnTime;
@@ -105,7 +105,7 @@ private String localizedName;
 	
 	// Gets the custom inventory name
 	public String getInventoryName(){
-		return this.hasCustomInventoryName() ? this.localizedName : "container.brickFurnaceT2";
+		return this.hasCustomInventoryName() ? this.localizedName : "container.quartzFurnaceT2";
 	}
 	
 	// Checks to see if inventory has custom name
@@ -210,9 +210,10 @@ private String localizedName;
 			//if the burnTime has reached zero and there is an item that can be smelted
 			if((this.burnTime == 0 && this.canSmelt1()) || (this.burnTime == 0 && this.canSmelt2())) {
 				//set currentItemBurnTime and burnTime to the fuel item burn time || add a '+1' after fuel efficiency to create an ever lasting furnace
-				this.currentItemBurnTime = this.burnTime = (int) (((double)getItemBurnTime(this.slots[2]) / this.furnaceEfficiency) - 0.4D);
-
+				this.currentItemBurnTime = this.burnTime = (int) ((double)getItemBurnTime(this.slots[2]) / (double)this.furnaceEfficiency);
+				
 				if(this.isBurning()) {
+
 					flag1 = true;
 
 					//update for fuel slot item
@@ -251,7 +252,7 @@ private String localizedName;
 
 			if(flag != this.isBurning()) {
 				flag1 = true;
-				BrickFurnaceT2.updateBrickFurnaceT2State(this.burnTime > 0, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
+				QuartzFurnaceT2.updateQuartzFurnaceT2State(this.burnTime > 0, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
 			}
 		}
 		
@@ -403,3 +404,4 @@ private String localizedName;
 		return j != 0 || j !=1 || i!= 2 || itemstack.getItem() == Items.bucket;
 	}
 }
+

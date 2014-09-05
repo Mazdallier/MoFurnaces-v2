@@ -11,11 +11,13 @@ tile.AnvilFurnaceIdle.name=Anvil Furnace
 
 tile.BrickFurnaceT2Idle.name=Tier 2 Brick Furnace
 tile.IronFurnaceT2Idle.name=Tier 2 Iron Furnace
+tile.QuartzFurnaceT2Idle.name=Tier 2 Quartz Furnace
 tile.DiamondFurnaceT2Idle.name=Tier 2 Diamond Furnace
 tile.ObsidianFurnaceT2Idle.name=Tier 2 Obsidian Furnace
 
 tile.BrickFurnaceT3Idle.name=Tier 3 Brick Furnace
 tile.IronFurnaceT3Idle.name=Tier 3 Iron Furnace
+tile.QuartzFurnaceT3Idle.name=Tier 3 Quartz Furnace
 tile.DiamondFurnaceT3Idle.name=Tier 3 Diamond Furnace
 tile.ObsidianFurnaceT3Idle.name=Tier 3 Obsidian Furnace
 
@@ -34,11 +36,13 @@ tile.AnvilFurnaceActive.name=Anvil Furnace
 
 tile.BrickFurnaceT2Active.name=Tier 2 Brick Furnace
 tile.IronFurnaceT2Active.name=Tier 2 Iron Furnace
+tile.QuartzFurnaceT2Active.name=Tier 2 Quartz Furnace
 tile.DiamondFurnaceT2Active.name=Tier 2 Diamond Furnace
 tile.ObsidianFurnaceT2Active.name=Tier 2 Obsidian Furnace
 
 tile.BrickFurnaceT3Active.name=Tier 3 Brick Furnace
 tile.IronFurnaceT3Active.name=Tier 3 Iron Furnace
+tile.QuartzFurnaceT2Active.name=Tier 2 Quartz Furnace
 tile.DiamondFurnaceT3Active.name=Tier 3 Diamond Furnace
 tile.ObsidianFurnaceT3Active.name=Tier 3 Obsidian Furnace
 
@@ -47,6 +51,7 @@ tile.ObsidianFurnaceT3Active.name=Tier 3 Obsidian Furnace
 itemGroup.mfm=Mo' Furnaces Mod
 itemGroup.tieredmfm=Tiered Furnaces
 
+entity.Cobalt Katana.name=Cobalt Katana
 
 
 container.Inventory=Inventory
@@ -64,11 +69,13 @@ container.anvilFurnace=Anvil Furnace
 
 container.brickFurnaceT2=Tier 2 Brick Furnace
 container.ironFurnaceT2=Tier 2 Iron Furnace
+container.quartzFurnaceT2=Tier 2 Quartz Furnace
 container.diamondFurnaceT2=Tier 2 Diamond Furnace
 container.obsidianFurnaceT2=Tier 2 Obsidian Furnace
 
 container.brickFurnaceT3=Tier 3 Brick Furnace
 container.ironFurnaceT3=Tier 3 Iron Furnace
+container.quartzFurnaceT3=Tier 3 Quartz Furnace
 container.diamondFurnaceT3=Tier 3 Diamond Furnace
 container.obsidianFurnaceT3=Tier 3 Obsidian Furnace
 

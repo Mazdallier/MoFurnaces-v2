@@ -5,6 +5,7 @@ import io.github.mattkx4.morefurnaces.main.MoFurnacesMod;
 import io.github.mattkx4.morefurnaces.tileentity.tier3.TileEntityBrickFurnaceT3;
 import io.github.mattkx4.morefurnaces.tileentity.tier3.TileEntityDiamondFurnaceT3;
 import io.github.mattkx4.morefurnaces.tileentity.tier3.TileEntityIronFurnaceT3;
+import io.github.mattkx4.morefurnaces.tileentity.tier3.TileEntityQuartzFurnaceT3;
 import io.github.mattkx4.morefurnaces.tileentity.tier3.TileEntityObsidianFurnaceT3;
 import net.minecraft.block.Block;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -37,6 +38,10 @@ public class MFMT3Blocks {
 	public static Block IronFurnaceT3Idle;
 	public static Block IronFurnaceT3Active;
 	
+	// Tier 3 Quartz Furnace Active and Idle blocks
+	public static Block QuartzFurnaceT3Idle;
+	public static Block QuartzFurnaceT3Active;
+	
 	// Tier 3 Diamond Furnace Active and Idle blocks
 	public static Block DiamondFurnaceT3Idle;
 	public static Block DiamondFurnaceT3Active;
@@ -56,7 +61,11 @@ public class MFMT3Blocks {
 		// Initialize the Tier 3 Iron Furnace
 		IronFurnaceT3Idle = new IronFurnaceT3(false).setBlockName("IronFurnaceT3Idle").setHardness(5.0F).setResistance(10.0F).setStepSound(MFMBlocks.soundTypeIron).setCreativeTab(MoFurnacesMod.TieredMFM);
 		IronFurnaceT3Active = new IronFurnaceT3(true).setBlockName("IronFurnaceT3Active").setHardness(5.0F).setResistance(10.0F).setStepSound(MFMBlocks.soundTypeIron).setLightLevel(0.625F);
-		
+	
+		// Initialize the Tier 3 Quartz Furnace
+		QuartzFurnaceT3Idle = new QuartzFurnaceT3(false).setBlockName("QuartzFurnaceT3Idle").setHardness(5.0F).setResistance(10.0F).setStepSound(MFMBlocks.soundTypeQuartz).setCreativeTab(MoFurnacesMod.TieredMFM);
+		QuartzFurnaceT3Active = new QuartzFurnaceT3(true).setBlockName("QuartzFurnaceT3Active").setHardness(5.0F).setResistance(10.0F).setStepSound(MFMBlocks.soundTypeQuartz).setLightLevel(0.625F);
+	
 		// Initialize the Tier 3 Diamond Furnace
 		DiamondFurnaceT3Idle = new DiamondFurnaceT3(false).setBlockName("DiamondFurnaceT3Idle").setHardness(5.0F).setResistance(10.0F).setStepSound(MFMBlocks.soundTypeDiamond).setCreativeTab(MoFurnacesMod.TieredMFM);
 		DiamondFurnaceT3Active = new DiamondFurnaceT3(true).setBlockName("DiamondFurnaceT3Active").setHardness(5.0F).setResistance(10.0F).setStepSound(MFMBlocks.soundTypeDiamond).setLightLevel(0.625F);
@@ -79,6 +88,10 @@ public class MFMT3Blocks {
 		GameRegistry.registerBlock(IronFurnaceT3Idle, "IronFurnaceT3Idle");
 		GameRegistry.registerBlock(IronFurnaceT3Active, "IronFurnaceT3Active");
 		
+		// Register Tier 3 Quartz Furnace
+		GameRegistry.registerBlock(QuartzFurnaceT3Idle, "QuartzFurnaceT3Idle");
+		GameRegistry.registerBlock(QuartzFurnaceT3Active, "QuartzFurnaceT3Active");
+		
 		// Register Tier 3 Diamond Furnace
 		GameRegistry.registerBlock(DiamondFurnaceT3Idle, "DiamondFurnaceT3Idle");
 		GameRegistry.registerBlock(DiamondFurnaceT3Active, "DiamondFurnaceT3Active");
@@ -97,7 +110,10 @@ public class MFMT3Blocks {
 		
 		// TileEntity Registry for Tier 3 Iron Furnace
 		GameRegistry.registerTileEntity(TileEntityIronFurnaceT3.class, "Iron Furnace T3");
-		
+	
+		// TileEntity Registry for Tier 3 Quartz Furnace
+		GameRegistry.registerTileEntity(TileEntityQuartzFurnaceT3.class, "Quartz Furnace T3");
+	
 		// TileEntity Registry for Tier 3 Diamond Furnace
 		GameRegistry.registerTileEntity(TileEntityDiamondFurnaceT3.class, "Diamond Furnace T3");
 		

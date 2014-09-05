@@ -73,6 +73,10 @@ public class MoFurnacesMod {
 	public static final int guiIDBrickFurnaceT2 = 23;
 	//Tier 3 Brick Furnace gui ID
 	public static final int guiIDBrickFurnaceT3 = 33;
+	//Tier 2 Quartz Furnace gui ID
+	public static final int guiIDQuartzFurnaceT2 = 24;
+	//Tier 3 Quartz Furnace gui ID
+	public static final int guiIDQuartzFurnaceT3 = 34;
 	
 	@Instance(Strings.MODID)
 	public static MoFurnacesMod instance;

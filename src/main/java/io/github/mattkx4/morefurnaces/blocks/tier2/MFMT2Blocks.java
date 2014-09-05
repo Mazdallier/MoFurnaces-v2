@@ -5,6 +5,7 @@ import io.github.mattkx4.morefurnaces.main.MoFurnacesMod;
 import io.github.mattkx4.morefurnaces.tileentity.tier2.TileEntityBrickFurnaceT2;
 import io.github.mattkx4.morefurnaces.tileentity.tier2.TileEntityDiamondFurnaceT2;
 import io.github.mattkx4.morefurnaces.tileentity.tier2.TileEntityIronFurnaceT2;
+import io.github.mattkx4.morefurnaces.tileentity.tier2.TileEntityQuartzFurnaceT2;
 import io.github.mattkx4.morefurnaces.tileentity.tier2.TileEntityObsidianFurnaceT2;
 import net.minecraft.block.Block;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -33,9 +34,13 @@ public class MFMT2Blocks {
 	public static Block BrickFurnaceT2Idle;
 	public static Block BrickFurnaceT2Active;
 
-	// Tier 2 Iron Furnace Active and Ddle blocks
+	// Tier 2 Iron Furnace Active and Idle blocks
 	public static Block IronFurnaceT2Idle;
 	public static Block IronFurnaceT2Active;
+	
+	// Tier 2 Quartz Furnace Active and Idle blocks
+	public static Block QuartzFurnaceT2Idle;
+	public static Block QuartzFurnaceT2Active;
 
 	// Tier 2 Diamond Furnace Active and Idle blocks
 	public static Block DiamondFurnaceT2Idle;
@@ -56,6 +61,10 @@ public class MFMT2Blocks {
 		// Initialize the Tier 2 Iron Furnace
 		IronFurnaceT2Idle = new IronFurnaceT2(false).setBlockName("IronFurnaceT2Idle").setHardness(5.0F).setResistance(10.0F).setStepSound(MFMBlocks.soundTypeIron).setCreativeTab(MoFurnacesMod.TieredMFM);
 		IronFurnaceT2Active = new IronFurnaceT2(true).setBlockName("IronFurnaceT2Active").setHardness(5.0F).setResistance(10.0F).setStepSound(MFMBlocks.soundTypeIron).setLightLevel(0.625F);
+		
+		// Initialize the Tier 2 Quartz Furnace
+		QuartzFurnaceT2Idle = new QuartzFurnaceT2(false).setBlockName("QuartzFurnaceT2Idle").setHardness(5.0F).setResistance(10.0F).setStepSound(MFMBlocks.soundTypeQuartz).setCreativeTab(MoFurnacesMod.TieredMFM);
+		QuartzFurnaceT2Active = new QuartzFurnaceT2(true).setBlockName("QuartzFurnaceT2Active").setHardness(5.0F).setResistance(10.0F).setStepSound(MFMBlocks.soundTypeQuartz).setLightLevel(0.625F);
 
 		// Initialize the Tier 2 Diamond Furnace
 		DiamondFurnaceT2Idle = new DiamondFurnaceT2(false).setBlockName("DiamondFurnaceT2Idle").setHardness(5.0F).setResistance(10.0F).setStepSound(MFMBlocks.soundTypeDiamond).setCreativeTab(MoFurnacesMod.TieredMFM);
@@ -78,7 +87,11 @@ public class MFMT2Blocks {
 		// Register Tier 2 Iron Furnace
 		GameRegistry.registerBlock(IronFurnaceT2Idle, "IronFurnaceT2Idle");
 		GameRegistry.registerBlock(IronFurnaceT2Active, "IronFurnaceT2Active");
-				
+
+		// Register Tier 2 Quartz Furnace
+		GameRegistry.registerBlock(QuartzFurnaceT2Idle, "QuartzFurnaceT2Idle");
+		GameRegistry.registerBlock(QuartzFurnaceT2Active, "QuartzFurnaceT2Active");
+
 		// Register Tier 2 Diamond Furnace
 		GameRegistry.registerBlock(DiamondFurnaceT2Idle, "DiamondFurnaceT2Idle");
 		GameRegistry.registerBlock(DiamondFurnaceT2Active, "DiamondFurnaceT2Active");
@@ -97,7 +110,10 @@ public class MFMT2Blocks {
 				
 		// TileEntity Registry for Tier 2 Iron Furnace
 		GameRegistry.registerTileEntity(TileEntityIronFurnaceT2.class, "Iron Furnace T2");
-				
+
+		// TileEntity Registry for Tier 2 Quartz Furnace
+		GameRegistry.registerTileEntity(TileEntityQuartzFurnaceT2.class, "Quartz Furnace T2");
+
 		// TileEntity Registry for Tier 2 Diamond Furnace
 		GameRegistry.registerTileEntity(TileEntityDiamondFurnaceT2.class, "Diamond Furnace T2");
 				

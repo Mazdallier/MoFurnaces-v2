@@ -218,8 +218,8 @@ private String localizedName;
 			//if the burnTime has reached zero and there is an item that can be smelted
 			if(this.burnTime == 0 && (this.canSmelt1() || this.canSmelt2() || this.canSmelt3())) {
 				//set currentItemBurnTime and burnTime to the fuel item burn time || add a '+1' after fuel efficiency to create an ever lasting furnace
-				this.currentItemBurnTime = this.burnTime = (int) (((double)getItemBurnTime(this.slots[3]) / (double)this.furnaceEfficiency) + 0.5);
-
+				this.currentItemBurnTime = this.burnTime = getItemBurnTime(this.slots[3]) / this.furnaceEfficiency;
+				
 				if(this.isBurning()) {
 					flag1 = true;
 
