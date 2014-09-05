@@ -27,7 +27,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class MoFurnacesMod {
 	
 	/*
-	 * new creative tab for all new physical aspects of the mod
+	 * New Creative Tabs for all New Physical Aspects of the Mod
 	 */
 	public static CreativeTabs MFM;
 	public static CreativeTabs TieredMFM;
@@ -55,6 +55,8 @@ public class MoFurnacesMod {
 	public static final int guiIDRedstoneFurnace = 8;
 	//Anvil Furnace gui ID
 	public static final int guiIDAnvilFurnace = 9;
+	//Fuel Less Furnace gui ID
+	public static final int guiIDFuelLessFurnace = 10;
 	//Tier 2 Obsidian Furnace gui ID
 	public static final int guiIDObsidianFurnaceT2 = 20;
 	//Tier 3 Obsidian Furnace gui ID

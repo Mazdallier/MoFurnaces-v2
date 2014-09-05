@@ -193,6 +193,21 @@ V2.1 -> V2.2{
             -Basic mob, can be spawned but not much else. I'm hitting the hay but ill get onto ai attributes tomorrow.
     }
     
+    4 SEPT - Mattkx4{
+        - Did A LOT of cleaning up in code AND comments.
+            - I reorganized all the initializing code to the following order:
+                + BrickFurnace
+                + IronFurnace
+                + GoldFurnace
+                + NetherrackFurnace
+                + QuartzFurnace
+                + DiamondFurnace
+                + BoneFurnace
+                + RedstoneFurnace
+                + AnvilFurnace
+        - Started messing around with a FuelLessFurnace again. Please don't touch any of the code lol, I'm rebuilding it from scratch. Only copying the necessary methods.
+    }
+    
     TODO{
         - Apply tiering to the following furnaces
             X Iron
