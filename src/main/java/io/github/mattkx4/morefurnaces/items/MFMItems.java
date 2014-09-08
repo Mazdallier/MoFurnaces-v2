@@ -13,6 +13,8 @@ public class MFMItems {
 	 */
 	// Tier 2 Device
 	public static Item Tier2Device;
+	//Tier 3 Device
+	public static Item Tier3Device;
 	
 	/**
 	 * Calls the registry methods for items
@@ -35,6 +37,8 @@ public class MFMItems {
 	public static void initializeItem() {
 		// Initialize the Tier 2 Device
 		Tier2Device = new Tier2Device();
+		// Initialize the Tier 3 Device
+		Tier3Device = new Tier3Device();
 	}
 	
 	/**
@@ -44,6 +48,8 @@ public class MFMItems {
 	public static void registerItem() {
 		// Register the Tier 2 Device
 		GameRegistry.registerItem(Tier2Device, "Tier2Device");
+		// Register the Tier 3 Device
+		GameRegistry.registerItem(Tier3Device, "Tier3Device");
 	}
 
 	/**

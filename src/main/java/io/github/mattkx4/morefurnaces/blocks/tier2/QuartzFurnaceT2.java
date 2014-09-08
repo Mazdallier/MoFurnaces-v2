@@ -1,9 +1,12 @@
 package io.github.mattkx4.morefurnaces.blocks.tier2;
 
+import io.github.mattkx4.morefurnaces.blocks.tier3.MFMT3Blocks;
+import io.github.mattkx4.morefurnaces.items.MFMItems;
 import io.github.mattkx4.morefurnaces.lib.Strings;
 import io.github.mattkx4.morefurnaces.main.MoFurnacesMod;
 import io.github.mattkx4.morefurnaces.particles.EntityTier2FlameFX;
 import io.github.mattkx4.morefurnaces.tileentity.tier2.TileEntityQuartzFurnaceT2;
+import io.github.mattkx4.morefurnaces.tileentity.tier3.TileEntityQuartzFurnaceT3;
 
 import java.util.Random;
 
@@ -15,6 +18,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
@@ -120,6 +124,65 @@ public class QuartzFurnaceT2 extends BlockContainer{
 	 * Called upon on block activation (right click) to open the GUI
 	 */
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitx, float hity, float hitz){
+		// Tiers the Brick Furnace to Tier 3
+				if(player.getCurrentEquippedItem() != null) {
+					if(player.getCurrentEquippedItem().getItem() == MFMItems.Tier3Device) {
+						TileEntityQuartzFurnaceT2 tileentity = (TileEntityQuartzFurnaceT2)world.getTileEntity(x, y, z);
+						//create variable itemstack for the T2 furnace contents
+						ItemStack input1;
+						ItemStack input2;
+						ItemStack fuel;
+						ItemStack product1;
+						ItemStack product2;
+						//set the contents of the first input slot (if applicable)
+						if(tileentity.getStackInSlot(0) != null) {
+							input1 = tileentity.getStackInSlot(0).copy();
+						} else {
+							input1 = null;
+						}
+						//set the contents of the second input slot (if applicable)
+						if(tileentity.getStackInSlot(1) != null) {
+							input2 = tileentity.getStackInSlot(1).copy();
+						} else {
+							input2 = null;
+						}
+						//set the contents of the fuel slot (if applicable)
+						if(tileentity.getStackInSlot(2) != null) {
+							fuel = tileentity.getStackInSlot(2).copy();
+						} else {
+							fuel = null;
+						}
+						//set the contents of the first output slot (if applicable)
+						if(tileentity.getStackInSlot(3) != null) {
+							product1 = tileentity.getStackInSlot(3).copy();
+						} else {
+							product1 = null;
+						}
+						//set the contents of the second output slot (if applicable)
+						if(tileentity.getStackInSlot(4) != null) {
+							product2 = tileentity.getStackInSlot(4).copy();
+						} else {
+							product2 = null;
+						}
+						tileentity.setInventorySlotContents(0, new ItemStack(Blocks.quartz_block));
+						tileentity.setInventorySlotContents(1, null);
+						tileentity.setInventorySlotContents(2, null);
+						
+						//fix  to the block direction resetting problem
+						int i = world.getBlockMetadata(x, y, z);
+						world.setBlock(x, y, z, MFMT3Blocks.QuartzFurnaceT3Idle);
+						world.setBlockMetadataWithNotify(x, y, z, i, 2);
+						
+						TileEntityQuartzFurnaceT3 tileentityT3 = (TileEntityQuartzFurnaceT3)world.getTileEntity(x, y, z);
+						if(input1 != null){ tileentityT3.setInventorySlotContents(0, input1); }
+						if(input2 != null){ tileentityT3.setInventorySlotContents(1, input2); }
+						if(fuel != null){ tileentityT3.setInventorySlotContents(3, fuel); }
+						if(product1 != null){ tileentityT3.setInventorySlotContents(4, product1); }
+						if(product2 != null){ tileentityT3.setInventorySlotContents(5, product2); }	
+						return true;
+					}
+				}
+		
 		if(!world.isRemote) {
 			FMLNetworkHandler.openGui(player, MoFurnacesMod.instance, MoFurnacesMod.guiIDQuartzFurnaceT2, world, x, y, z);
 		}

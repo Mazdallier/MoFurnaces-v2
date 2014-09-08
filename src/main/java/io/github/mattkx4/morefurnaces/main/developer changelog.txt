@@ -219,6 +219,11 @@ V2.1 -> V2.2{
         - Added various attributes and ai tasks to CK
     }
     
+    8 SEPT - Pr1meSh0ck{
+        - Added Tier 3 Device to the same specifications as the Tier 2 Device.
+            - Added right clicking actions to all T2 furnaces
+    }
+    
     TODO{
         X Apply tiering to the following furnaces
             X Iron
@@ -243,6 +248,7 @@ V2.1 -> V2.2{
             - Iron T2 - T3
             - Brick T2 - T3
             - Quartz T2 - T3
+            - Tier 3 Device
         X Identified problem when tiering, the device will cause the rotation of the furnace to reset
         X Fix Diamond Furnace guiID ?
         X Finish perfecting Tiering Device
