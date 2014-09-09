@@ -1,6 +1,7 @@
 package io.github.mattkx4.morefurnaces.blocks.tier2;
 
 import io.github.mattkx4.morefurnaces.blocks.tier3.MFMT3Blocks;
+import io.github.mattkx4.morefurnaces.blocks.tier3.ObsidianFurnaceT3;
 import io.github.mattkx4.morefurnaces.items.MFMItems;
 import io.github.mattkx4.morefurnaces.lib.Strings;
 import io.github.mattkx4.morefurnaces.main.MoFurnacesMod;
@@ -138,6 +139,11 @@ public class ObsidianFurnaceT2 extends BlockContainer{
 						ItemStack fuel;
 						ItemStack product1;
 						ItemStack product2;
+						//create variable for the fuel burn and item cook times
+						int burnTime = 0;
+						int cookTime1 = 0;
+						int cookTime2 = 0;
+						int currentItemBurnTime = 0;
 						//set the contents of the first input slot (if applicable)
 						if(tileentity.getStackInSlot(0) != null) {
 							input1 = tileentity.getStackInSlot(0).copy();
@@ -168,14 +174,33 @@ public class ObsidianFurnaceT2 extends BlockContainer{
 						} else {
 							product2 = null;
 						}
-						tileentity.setInventorySlotContents(0, new ItemStack(Blocks.obsidian));
+						
+						//store fuel and cooking times if applicable
+						if(tileentity.burnTime>0){
+							burnTime = tileentity.burnTime;
+						}
+						if(tileentity.cookTime1>0){
+							cookTime1 = tileentity.cookTime1;
+						}
+						if(tileentity.cookTime2>0){
+							cookTime2 = tileentity.cookTime2;
+						}				
+						if(tileentity.currentItemBurnTime>0){
+							currentItemBurnTime = tileentity.currentItemBurnTime;
+						}
+						//set current slot contents to nothing
+						tileentity.setInventorySlotContents(0, null);
 						tileentity.setInventorySlotContents(1, null);
 						tileentity.setInventorySlotContents(2, null);
+						tileentity.setInventorySlotContents(3, null);
+						tileentity.setInventorySlotContents(4, null);
 						
 						//fix  to the block direction resetting problem
 						int i = world.getBlockMetadata(x, y, z);
 						world.setBlock(x, y, z, MFMT3Blocks.ObsidianFurnaceT3Idle);
 						world.setBlockMetadataWithNotify(x, y, z, i, 2);
+						//sets whether or not the new furnace is active of inactive
+						ObsidianFurnaceT3.updateObsidianFurnaceT3State(isActive, world, x, y, z);
 						
 						TileEntityObsidianFurnaceT3 tileentityT3 = (TileEntityObsidianFurnaceT3)world.getTileEntity(x, y, z);
 						if(input1 != null){ tileentityT3.setInventorySlotContents(0, input1); }
@@ -183,6 +208,10 @@ public class ObsidianFurnaceT2 extends BlockContainer{
 						if(fuel != null){ tileentityT3.setInventorySlotContents(3, fuel); }
 						if(product1 != null){ tileentityT3.setInventorySlotContents(4, product1); }
 						if(product2 != null){ tileentityT3.setInventorySlotContents(5, product2); }	
+						if(burnTime > 0){ tileentityT3.burnTime = burnTime; }
+						if(cookTime1 > 0){ tileentityT3.cookTime1 = cookTime1; }
+						if(cookTime2 > 0){ tileentityT3.cookTime2 = cookTime2; }
+						if(currentItemBurnTime > 0){ tileentityT3.currentItemBurnTime = currentItemBurnTime; }
 						return true;
 					}
 				}

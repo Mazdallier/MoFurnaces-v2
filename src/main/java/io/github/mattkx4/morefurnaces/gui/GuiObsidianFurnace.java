@@ -14,7 +14,7 @@ import org.lwjgl.opengl.GL11;
 
 public class GuiObsidianFurnace extends GuiContainer{
 
-	public static final ResourceLocation bground = new ResourceLocation(Strings.MODID + ":textures/gui/obsidian_furnace.png");
+	public static final ResourceLocation bground = new ResourceLocation(Strings.MODID + ":textures/gui/custom_furnace.png");
 	
 	public TileEntityObsidianFurnace obsidianFurnace;
 	
@@ -52,12 +52,12 @@ public class GuiObsidianFurnace extends GuiContainer{
 		if(this.obsidianFurnace.isBurning()){
 			int m = this.obsidianFurnace.getBurnTimeRemainingScaled(14);
 			int l = 14 - m;
-			drawTexturedModalRect(guiLeft + 57, guiTop + 36 + l, 176, 0 + l, 14, 14 - l);
+			drawTexturedModalRect(guiLeft + 57, guiTop + 36 + l, 176, 87 + l, 14, 14 - l);
 		}
 		
 		// Draws the progress bar for the current item being cooked (Arrow)
 		int m = this.obsidianFurnace.getCookProgressScaled(24);
-		drawTexturedModalRect(guiLeft + 79, guiTop + 34, 176, 14, m + 1, 17);
+		drawTexturedModalRect(guiLeft + 79, guiTop + 34, 176, 0, m + 1, 17);
 		
 	}
 	

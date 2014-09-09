@@ -12,7 +12,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 public class GuiBrickFurnaceT3 extends GuiContainer{
-public static final ResourceLocation bground = new ResourceLocation(Strings.MODID + ":textures/gui/brick_furnace_tier3.png");
+public static final ResourceLocation bground = new ResourceLocation(Strings.MODID + ":textures/gui/custom_furnace_tier3.png");
 	
 	public TileEntityBrickFurnaceT3 brickFurnaceT3;
 	

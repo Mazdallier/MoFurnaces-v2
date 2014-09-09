@@ -13,7 +13,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
 public class GuiObsidianFurnaceT3 extends GuiContainer{
-public static final ResourceLocation bground = new ResourceLocation(Strings.MODID + ":textures/gui/obsidian_furnace_tier3.png");
+public static final ResourceLocation bground = new ResourceLocation(Strings.MODID + ":textures/gui/custom_furnace_tier3.png");
 	
 	public TileEntityObsidianFurnaceT3 obsidianFurnaceT3;
 	
@@ -51,7 +51,7 @@ public static final ResourceLocation bground = new ResourceLocation(Strings.MODI
 		if(this.obsidianFurnaceT3.isBurning()){
 			int m = this.obsidianFurnaceT3.getBurnTimeRemainingScaled(14);
 			int l = 14 - m;
-			drawTexturedModalRect(guiLeft + 38, guiTop + 36 + l, 176, 17 + l, 14, 14 - l);
+			drawTexturedModalRect(guiLeft + 38, guiTop + 36 + l, 176, 59 + l, 14, 14 - l);
 		}
 		
 		// Draws the progress bar for the current item 1 being cooked (Arrow)

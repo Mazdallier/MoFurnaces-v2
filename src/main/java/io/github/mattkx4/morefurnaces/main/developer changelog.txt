@@ -224,6 +224,23 @@ V2.1 -> V2.2{
             - Added right clicking actions to all T2 furnaces
     }
     
+    9 SEPT - Pr1meSh0ck{
+        - Found a fix for transferring the fuel and cook times to the tiered furnace when tiering
+            - Applied the fix to all tiered furnaces
+        - Removed the code dropping a block of the furnace structure upon tiering
+        - Altered tiering device recipes
+            - The "tiering wrenches" now have more suitable recipes and use the tier core
+            - Tier Core is the same recipe as the tier 2 device used to have
+        - Found the problem causing the flame in the gui to render too much
+            - When the renderer got the scaled burn time left if had a chance of returning a value too high
+            - Created a cap so that the renderer would only render as much flame as there was
+            - Applied the fix to all furnace (Except for the FuelLess Furnace)
+        - Altered the gui resource locations and the gui png's to reduce the number of gui's in the resources folder
+            - All gui's now reference the same file (custom_furnace, custom_furance_tier2, custom_furnace_tier3)
+            - Old gui's archived within the textures folder
+        * Just need the tier 3 device and tier core and the tiered furnaces are ready
+    }
+    
     TODO{
         X Apply tiering to the following furnaces
             X Iron
@@ -249,11 +266,12 @@ V2.1 -> V2.2{
             - Brick T2 - T3
             - Quartz T2 - T3
             - Tier 3 Device
+            - Tier Core
         X Identified problem when tiering, the device will cause the rotation of the furnace to reset
         X Fix Diamond Furnace guiID ?
         X Finish perfecting Tiering Device
-        - Fix T2 and T3 gui rendering bug ???
-            - Bug seems to only be occasional
+        X Fix T2 and T3 gui rendering bug ???
+            X Bug seems to only be occasional
         X Fix T2 Obsidian Furnace 2nd input shift clicking problem
             X Cannot shift click into second input
         X Fix T2 Obsidian Furnace 2nd output duplication bug

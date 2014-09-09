@@ -12,7 +12,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 public class GuiDiamondFurnaceT3 extends GuiContainer{
-public static final ResourceLocation bground = new ResourceLocation(Strings.MODID + ":textures/gui/diamond_furnace_tier3.png");
+public static final ResourceLocation bground = new ResourceLocation(Strings.MODID + ":textures/gui/custom_furnace_tier3.png");
 	
 	public TileEntityDiamondFurnaceT3 diamondFurnaceT3;
 	
@@ -50,7 +50,7 @@ public static final ResourceLocation bground = new ResourceLocation(Strings.MODI
 		if(this.diamondFurnaceT3.isBurning()){
 			int m = this.diamondFurnaceT3.getBurnTimeRemainingScaled(14);
 			int l = 14 - m;
-			drawTexturedModalRect(guiLeft + 38, guiTop + 36 + l, 176, 17 + l, 14, 14 - l);
+			drawTexturedModalRect(guiLeft + 38, guiTop + 36 + l, 176, 31 + l, 14, 14 - l);
 		}
 		
 		// Draws the progress bar for the current item 1 being cooked (Arrow)

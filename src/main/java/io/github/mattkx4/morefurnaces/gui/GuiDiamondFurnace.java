@@ -14,7 +14,7 @@ import org.lwjgl.opengl.GL11;
 
 public class GuiDiamondFurnace extends GuiContainer{
 	
-public static final ResourceLocation bground = new ResourceLocation(Strings.MODID + ":textures/gui/diamond_furnace.png");
+public static final ResourceLocation bground = new ResourceLocation(Strings.MODID + ":textures/gui/custom_furnace.png");
 	
 	public TileEntityDiamondFurnace diamondFurnace;
 	
@@ -52,12 +52,12 @@ public static final ResourceLocation bground = new ResourceLocation(Strings.MODI
 		if(this.diamondFurnace.isBurning()){
 			int m = this.diamondFurnace.getBurnTimeRemainingScaled(14);
 			int l = 14 - m;
-			drawTexturedModalRect(guiLeft + 57, guiTop + 36 + l, 176, 0 + l, 14, 14 - l);
+			drawTexturedModalRect(guiLeft + 57, guiTop + 36 + l, 176, 31 + l, 14, 14 - l);
 		}
 		
 		// Draws the progress bar for the current item being cooked (Arrow)
 		int m = this.diamondFurnace.getCookProgressScaled(24);
-		drawTexturedModalRect(guiLeft + 79, guiTop + 34, 176, 14, m + 1, 17);
+		drawTexturedModalRect(guiLeft + 79, guiTop + 34, 176, 0, m + 1, 17);
 		
 	}
 }

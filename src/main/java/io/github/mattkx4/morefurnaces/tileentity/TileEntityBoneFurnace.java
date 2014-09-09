@@ -176,13 +176,21 @@ public class TileEntityBoneFurnace extends TileEntity implements ISidedInventory
 	}
 	
 	// Get the remaining burn time (Scaled)
-	@SideOnly(Side.CLIENT)
-	public int getBurnTimeRemainingScaled(int i){
-		if(this.currentItemBurnTime == 0){
-			this.currentItemBurnTime = furnaceSpeed;
+		@SideOnly(Side.CLIENT)
+		public int getBurnTimeRemainingScaled(int i){
+			
+			if(this.currentItemBurnTime == 0){
+				this.currentItemBurnTime = furnaceSpeed;
+			}
+
+			int result = this.burnTime * i / this.currentItemBurnTime;
+			//below if statement is a fix to the gui rendering too much flame
+			//basically caps the number of pixels to render
+			if(result > i){
+				return 14;
+			}
+			return this.burnTime * i / this.currentItemBurnTime;
 		}
-		return this.burnTime * i / this.currentItemBurnTime;
-	}
 	
 	// Check if the furnace is burning
 	public boolean isBurning(){

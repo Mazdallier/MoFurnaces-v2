@@ -1,5 +1,6 @@
 package io.github.mattkx4.morefurnaces.blocks;
 
+import io.github.mattkx4.morefurnaces.blocks.tier2.DiamondFurnaceT2;
 import io.github.mattkx4.morefurnaces.blocks.tier2.MFMT2Blocks;
 import io.github.mattkx4.morefurnaces.items.MFMItems;
 import io.github.mattkx4.morefurnaces.lib.Strings;
@@ -129,6 +130,10 @@ private final boolean isActive;
 				ItemStack input;
 				ItemStack fuel;
 				ItemStack product;
+				//create variable for the fuel burn and item cook times
+				int burnTime = 0;
+				int cookTime = 0;
+				int currentItemBurnTime = 0;
 				if(tileentity.getStackInSlot(0) != null) {
 					input = tileentity.getStackInSlot(0).copy();
 				} else {
@@ -144,7 +149,17 @@ private final boolean isActive;
 				} else {
 					product = null;
 				}
-				tileentity.setInventorySlotContents(0, new ItemStack(Items.diamond));
+				//store fuel and cooking times
+				if(tileentity.burnTime>0){
+					burnTime = tileentity.burnTime;
+				}
+				if(tileentity.cookTime>0){
+					cookTime = tileentity.cookTime;
+				}			
+				if(tileentity.currentItemBurnTime>0){
+					currentItemBurnTime = tileentity.currentItemBurnTime;
+				}
+				tileentity.setInventorySlotContents(0, null);
 				tileentity.setInventorySlotContents(1, null);
 				tileentity.setInventorySlotContents(2, null);
 
@@ -152,11 +167,16 @@ private final boolean isActive;
 				int i = world.getBlockMetadata(x, y, z);
 				world.setBlock(x, y, z, MFMT2Blocks.DiamondFurnaceT2Idle);
 				world.setBlockMetadataWithNotify(x, y, z, i, 2);
+				//sets whether or not the new furnace is active of inactive
+				DiamondFurnaceT2.updateDiamondFurnaceT2State(isActive, world, x, y, z);
 				
 				TileEntityDiamondFurnaceT2 tileentityT2 = (TileEntityDiamondFurnaceT2)world.getTileEntity(x, y, z);
 				if(input != null){ tileentityT2.setInventorySlotContents(0, input); }
 				if(fuel != null){ tileentityT2.setInventorySlotContents(2, fuel); }
 				if(product != null){ tileentityT2.setInventorySlotContents(3, product); }	
+				if(burnTime > 0){ tileentityT2.burnTime = burnTime; }
+				if(cookTime > 0){ tileentityT2.cookTime1 = cookTime; }
+				if(currentItemBurnTime > 0){ tileentityT2.currentItemBurnTime = currentItemBurnTime; }
 				return true;
 			}
 		}
