@@ -1,6 +1,6 @@
 package io.github.mattkx4.morefurnaces.blocks;
 
-import io.github.mattkx4.morefurnaces.blocks.tier2.DiamondFurnaceT2;
+import io.github.mattkx4.morefurnaces.blocks.tier2.IronFurnaceT2;
 import io.github.mattkx4.morefurnaces.blocks.tier2.MFMT2Blocks;
 import io.github.mattkx4.morefurnaces.items.MFMItems;
 import io.github.mattkx4.morefurnaces.lib.Strings;
@@ -13,11 +13,13 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.particle.EffectRenderer;
+import net.minecraft.client.particle.EntityFireworkSparkFX;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityFireworkRocket;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
@@ -47,6 +49,8 @@ public class IronFurnace extends BlockContainer{
 	private IIcon iconFront;
 	
 	private static boolean keepInventory;
+	
+	private EffectRenderer effect_renderer;
 	
 	public IronFurnace(boolean isActive) {
 		super(Material.rock);
@@ -168,7 +172,7 @@ public class IronFurnace extends BlockContainer{
 				world.setBlock(x, y, z, MFMT2Blocks.IronFurnaceT2Idle);
 				world.setBlockMetadataWithNotify(x, y, z, i, 2);
 				//sets whether or not the new furnace is active of inactive
-				DiamondFurnaceT2.updateDiamondFurnaceT2State(isActive, world, x, y, z);
+				IronFurnaceT2.updateIronFurnaceT2State(isActive, world, x, y, z);
 				
 				TileEntityIronFurnaceT2 tileentityT2 = (TileEntityIronFurnaceT2)world.getTileEntity(x, y, z);
 				if(input != null){ tileentityT2.setInventorySlotContents(0, input); }

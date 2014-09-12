@@ -241,11 +241,19 @@ V2.1 -> V2.2{
         * Just need the tier 3 device and tier core and the tiered furnaces are ready
     }
     
+    11 SEPT - Mattkx4{
+        - Added ItemTierCore name
+        - Successfully added a FUEL LESS furnace
+        - Tried and failed to make a firework effect on the tiering devices...
+    }
+    
     TODO{
+        - Transfer Fuel Less Furnace methods/code to Netherrack Furnace
+        - Fix shift-clicking on Fuel Less Furnace
         X Apply tiering to the following furnaces
             X Iron
             X Brick
-            X Diamond (Needs textures (see below))
+            X Diamond
             X Quartz
         - Design the following Wacky Furnace:
             X Anvil

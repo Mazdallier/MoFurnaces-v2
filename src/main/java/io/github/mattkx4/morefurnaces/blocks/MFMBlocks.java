@@ -5,6 +5,7 @@ import io.github.mattkx4.morefurnaces.tileentity.TileEntityAnvilFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityBoneFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityBrickFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityDiamondFurnace;
+import io.github.mattkx4.morefurnaces.tileentity.TileEntityFuelLessFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityGoldFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityIronFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityNetherrackFurnace;
@@ -112,8 +113,7 @@ public class MFMBlocks {
 	public static Block AnvilFurnaceActive;
 	
 	// Fuel Less Furnace Active and Idle blocks
-	/*public static Block FuelLessFurnaceIdle;
-	public static Block FuelLessFurnaceActive;*/
+	public static Block FuelLessFurnaceActive;
 	
 	/**
 	 * Initialize the active and idle blocks and set attributes
@@ -160,8 +160,7 @@ public class MFMBlocks {
 		AnvilFurnaceActive = new AnvilFurnace(true).setBlockName("AnvilFurnaceActive").setHardness(5.0F).setResistance(2000.0F).setStepSound(soundTypeAnvil).setLightLevel(0.625F);
 		
 		// Initialize the Fuel Less Furnace
-		/*FuelLessFurnaceIdle = new FuelLessFurnace(false).setBlockName("FuelLessFurnaceIdle").setHardness(0.4F).setResistance(4.0F).setStepSound(soundTypeNetherrack).setCreativeTab(MoFurnacesMod.MFM);
-		FuelLessFurnaceActive = new FuelLessFurnace(true).setBlockName("FuelLessFurnaceActive").setHardness(0.4F).setResistance(4.0F).setStepSound(soundTypeNetherrack).setLightLevel(0.625F);*/
+		FuelLessFurnaceActive = new FuelLessFurnace().setBlockName("FuelLessFurnaceActive").setHardness(0.4F).setResistance(4.0F).setStepSound(soundTypeNetherrack).setLightLevel(0.625F).setCreativeTab(MoFurnacesMod.MFM);
 	}
 	
 	/**
@@ -210,8 +209,7 @@ public class MFMBlocks {
 		GameRegistry.registerBlock(AnvilFurnaceActive, "AnvilFurnaceActive");
 		
 		// Register Fuel Less Furnace
-		/*GameRegistry.registerBlock(FuelLessFurnaceIdle, "FuelLessFurnaceIdle");
-		GameRegistry.registerBlock(FuelLessFurnaceActive, "FuelLessFurnaceActive");*/
+		GameRegistry.registerBlock(FuelLessFurnaceActive, "FuelLessFurnaceActive");
 	}
 	
 	/**
@@ -262,7 +260,7 @@ public class MFMBlocks {
 		GameRegistry.addRecipe(new ItemStack(AnvilFurnaceIdle), new Object[]{"jjj", "jIj", "jUj", 'j', Items.iron_ingot, 'I', Blocks.furnace, 'U', Blocks.anvil});
 		
 		// TileEntity and Crafting Recipe Registry for Fuel Less Furnace
-		/*GameRegistry.registerTileEntity(TileEntityFuelLessFurnace.class, "Fuel Less Furnace");
-		GameRegistry.addRecipe(new ItemStack(FuelLessFurnaceIdle), new Object[]{"xxx", "x x", "xZx", 'x', Blocks.planks, 'Z', Items.coal});*/
+		GameRegistry.registerTileEntity(TileEntityFuelLessFurnace.class, "Fuel Less Furnace");
+		GameRegistry.addRecipe(new ItemStack(FuelLessFurnaceActive), new Object[]{"xxx", "x x", "xZx", 'x', Blocks.planks, 'Z', Items.coal});
 	}
 }

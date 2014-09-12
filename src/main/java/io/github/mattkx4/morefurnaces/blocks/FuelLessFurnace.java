@@ -1,7 +1,8 @@
-/*package io.github.mattkx4.morefurnaces.blocks;
+package io.github.mattkx4.morefurnaces.blocks;
 
 import io.github.mattkx4.morefurnaces.lib.Strings;
 import io.github.mattkx4.morefurnaces.main.MoFurnacesMod;
+import io.github.mattkx4.morefurnaces.tileentity.TileEntityFuelLessFurnace;
 
 import java.util.Random;
 
@@ -26,7 +27,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class FuelLessFurnace extends BlockContainer {
-	private final boolean isActive;
 	private Random rand = new Random();
 	@SideOnly(Side.CLIENT)
 	private IIcon iconTop;
@@ -34,14 +34,13 @@ public class FuelLessFurnace extends BlockContainer {
 	private IIcon iconFront;
 	private static boolean keepInventory;
 	
-	public FuelLessFurnace(boolean isActive) {
+	public FuelLessFurnace() {
 		super(Material.rock);
-		this.isActive = isActive;
 		this.setHarvestLevel("pickaxe", 0);
 	}
 	
 	public Item getItemDropped(int i, Random random, int j) {
-		return Item.getItemFromBlock(MFMBlocks.FuelLessFurnaceIdle);
+		return Item.getItemFromBlock(MFMBlocks.FuelLessFurnaceActive);
 	}
 	
 	public void onBlockAdded(World world, int x, int y, int z) {
@@ -86,7 +85,7 @@ public class FuelLessFurnace extends BlockContainer {
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister iconRegister) {
 		this.blockIcon = iconRegister.registerIcon(Strings.MODID + ":NetherrackFurnace_side");
-		this.iconFront = iconRegister.registerIcon(Strings.MODID + ":" + (this.isActive ? "NetherrackFurnace_front_active" : "NetherrackFurnace_front_idle"));
+		this.iconFront = iconRegister.registerIcon(Strings.MODID + ":NetherrackFurnace_front_active");
 		this.iconTop = iconRegister.registerIcon(Strings.MODID + ":NetherrackFurnace_top");
 	}
 	
@@ -97,7 +96,7 @@ public class FuelLessFurnace extends BlockContainer {
 		return true;
 	}
 	
-	public static void updateFuelLessFurnaceState(boolean active, World worldObj, int xCoord, int yCoord, int zCoord) {
+	/*public static void updateFuelLessFurnaceState(boolean active, World worldObj, int xCoord, int yCoord, int zCoord) {
 		int i = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
 		
 		TileEntity tileentity = worldObj.getTileEntity(xCoord, yCoord, zCoord);
@@ -116,7 +115,7 @@ public class FuelLessFurnace extends BlockContainer {
 			tileentity.validate();
 			worldObj.setTileEntity(xCoord, yCoord, zCoord, tileentity);
 		}
-	}
+	}*/
 	
 	public TileEntity createNewTileEntity(World world, int i) {
 		return new TileEntityFuelLessFurnace();
@@ -173,12 +172,12 @@ public class FuelLessFurnace extends BlockContainer {
 	                                item.getEntityItem().setTagCompound((NBTTagCompound)itemstack.getTagCompound().copy());
 	                            }
 	                            //omit following
-	                            *//**
+	                            /*
 	                            float f3 = 0.05F;
 	                            item.motionX = (double)((float)this.rand.nextGaussian() * f3);
 	                            item.motionY = (double)((float)this.rand.nextGaussian() * f3 + 0.2F);
 	                            item.motionZ = (double)((float)this.rand.nextGaussian() * f3);
-	                            *//*
+	                            */
 	                            world.spawnEntityInWorld(item);
 	                        }
 	                    }
@@ -192,45 +191,26 @@ public class FuelLessFurnace extends BlockContainer {
     }
 	
 	@SideOnly(Side.CLIENT)
-    public void randomDisplayTick(World world, int x, int y, int z, Random random){
-        if (this.isActive){
-            int direction = world.getBlockMetadata(x, y, z);
-            float x1 = (float)x + 0.5F;
-            float y1 = (float)y + 0.0F + random.nextFloat() * 6.0F / 16.0F;
-            float z1 = (float)z + 0.5F;
-            float f = 0.52F;
-            float f1 = random.nextFloat() * 0.6F - 0.3F;
+    public void randomDisplayTick(World world, int x, int y, int z, Random random) {
+		int direction = world.getBlockMetadata(x, y, z);
+        float x1 = (float)x + 0.5F;
+        float y1 = (float)y + 0.0F + random.nextFloat() * 6.0F / 16.0F;
+        float z1 = (float)z + 0.5F;
+        float f = 0.52F;
+        float f1 = random.nextFloat() * 0.6F - 0.3F;
 
-            if(direction == 4){
-            	world.spawnParticle("smoke", (double)(x1 - f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
-            	world.spawnParticle("flame", (double)(x1 - f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
-            }else if (direction == 5){
-            	world.spawnParticle("smoke", (double)(x1 + f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
-            	world.spawnParticle("flame", (double)(x1 + f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
-            }else if (direction == 2){
-            	world.spawnParticle("smoke", (double)(x1 + f1), (double)y1, (double)(z1 - f), 0.0D, 0.0D, 0.0D);
-            	world.spawnParticle("flame", (double)(x1 + f1), (double)y1, (double)(z1 - f), 0.0D, 0.0D, 0.0D);
-            }else if (direction == 3){
-            	world.spawnParticle("smoke", (double)(x1 + f1), (double)y1, (double)(z1 + f), 0.0D, 0.0D, 0.0D);
-            	world.spawnParticle("flame", (double)(x1 + f1), (double)y1, (double)(z1 + f), 0.0D, 0.0D, 0.0D);
-            }
-        } else {
-        	int direction = world.getBlockMetadata(x, y, z);
-            float x1 = (float)x + 0.5F;
-            float y1 = (float)y + 0.0F + random.nextFloat() * 6.0F / 16.0F;
-            float z1 = (float)z + 0.5F;
-            float f = 0.52F;
-            float f1 = random.nextFloat() * 0.6F - 0.3F;
-
-            if(direction == 4){
-            	world.spawnParticle("smoke", (double)(x1 - f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
-            }else if (direction == 5){
-            	world.spawnParticle("smoke", (double)(x1 + f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
-            }else if (direction == 2){
-            	world.spawnParticle("smoke", (double)(x1 + f1), (double)y1, (double)(z1 - f), 0.0D, 0.0D, 0.0D);
-            }else if (direction == 3){
-            	world.spawnParticle("smoke", (double)(x1 + f1), (double)y1, (double)(z1 + f), 0.0D, 0.0D, 0.0D);
-            }
+        if(direction == 4){
+        	world.spawnParticle("smoke", (double)(x1 - f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
+        	world.spawnParticle("flame", (double)(x1 - f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
+        }else if (direction == 5){
+        	world.spawnParticle("smoke", (double)(x1 + f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
+        	world.spawnParticle("flame", (double)(x1 + f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
+        }else if (direction == 2){
+        	world.spawnParticle("smoke", (double)(x1 + f1), (double)y1, (double)(z1 - f), 0.0D, 0.0D, 0.0D);
+        	world.spawnParticle("flame", (double)(x1 + f1), (double)y1, (double)(z1 - f), 0.0D, 0.0D, 0.0D);
+        }else if (direction == 3){
+        	world.spawnParticle("smoke", (double)(x1 + f1), (double)y1, (double)(z1 + f), 0.0D, 0.0D, 0.0D);
+        	world.spawnParticle("flame", (double)(x1 + f1), (double)y1, (double)(z1 + f), 0.0D, 0.0D, 0.0D);
         }
     }
 	
@@ -244,6 +224,6 @@ public class FuelLessFurnace extends BlockContainer {
 	
 	@SideOnly(Side.CLIENT)
 	public Item getItem(World world, int x, int y, int z) {
-		return Item.getItemFromBlock(MFMBlocks.FuelLessFurnaceIdle);
+		return Item.getItemFromBlock(MFMBlocks.FuelLessFurnaceActive);
 	}
-}*/
+}

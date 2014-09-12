@@ -33,6 +33,7 @@ tile.ObsidianFurnaceActive.name=Obsidian Furnace
 tile.BoneFurnaceActive.name=Bone Furnace
 tile.RedstoneFurnaceActive.name=Redstone Furnace
 tile.AnvilFurnaceActive.name=Anvil Furnace
+tile.FuelLessFurnaceActive.name=Fuel Less Furnace
 
 tile.BrickFurnaceT2Active.name=Tier 2 Brick Furnace
 tile.IronFurnaceT2Active.name=Tier 2 Iron Furnace
@@ -66,6 +67,7 @@ container.obsidianFurnace=Obsidian Furnace
 container.boneFurnace=Bone Furnace
 container.redstoneFurnace=Redstone Furnace
 container.anvilFurnace=Anvil Furnace
+container.fuelLessFurnace=Fuel Less Furnace
 
 container.brickFurnaceT2=Tier 2 Brick Furnace
 container.ironFurnaceT2=Tier 2 Iron Furnace
@@ -83,3 +85,4 @@ container.obsidianFurnaceT3=Tier 3 Obsidian Furnace
 
 item.Tier2Device.name=Tier 2 Device
 item.Tier3Device.name=Tier 3 Device
+item.TierCore.name=Tier Core
