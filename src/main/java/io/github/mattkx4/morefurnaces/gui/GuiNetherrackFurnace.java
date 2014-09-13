@@ -50,12 +50,5 @@ public static final ResourceLocation bground = new ResourceLocation(Strings.MODI
 		int m = this.netherrackFurnace.getCookProgressScaled(24);
 		drawTexturedModalRect(guiLeft + 79, guiTop + 34, 176, 0, m + 1, 17);
 		
-		/*
-		 * The following code SHOULD render a a gray box over the fuel slot. This code is still being
-		 * tested and for the moment is commented out. Should be available in future updates.
-		 */
-		//Minecraft.getMinecraft().getTextureManager().bindTexture(bground);
-		//drawTexturedModalRect(guiLeft + 55, guiTop + 52, 176, 31, 18, 18);
-		
 	}
 }

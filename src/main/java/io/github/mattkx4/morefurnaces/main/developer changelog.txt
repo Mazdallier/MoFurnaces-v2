@@ -8,7 +8,7 @@ Wishlist{
         X Bone furnace: ??
         - Flower furnace: ??
         - Water furnace: ?? runs off water??
-        - Cacti Furnace: is prickly and grows cacti in a 3 block radius around it
+        X Cacti Furnace: is prickly and grows cacti in a 3 block radius around it
         - Exp furnace: ??
         - Ender furnace: acts like the ender chest
         - Tnt furnace: boom
@@ -255,9 +255,23 @@ V2.1 -> V2.2{
             - Gonna have CK fix the textures on it eventually. It's a wee bit bugged out...
     }
     
+    13 SEPT - Pr1meSh0ck{
+        - Fixed the shift clicking problem with the Netherrack Furnace
+        - Adjusted Netherrack Furnace Gui to bring the input slot in line with the output slot
+            - Looks a tad neater, also fixed the code to register that change
+        - Fixed the derpy Cactus Furnace texture
+        - Added counter within Cactus Furnace Tile Entity to count 64 cooked items and then dispense a cactus block
+        in an odd direction.
+        - Changed wacky furnace recipes to what I think is more balanced, let me know what you think. 
+        - Altered the anvil furnace
+            - Furnace cooks 25% slower
+            - Only takes coal or coal blocks for fuel and then they produce diminished burn times
+            - Lowered damage fixed by half
+    }
+    
     TODO{
-        - Transfer Fuel Less Furnace methods/code to Netherrack Furnace
-        - Fix shift-clicking on Fuel Less Furnace
+        X Transfer Fuel Less Furnace methods/code to Netherrack Furnace
+        X Fix shift-clicking on Fuel Less Furnace
         X Apply tiering to the following furnaces
             X Iron
             X Brick
@@ -265,16 +279,16 @@ V2.1 -> V2.2{
             X Quartz
         - Design the following Wacky Furnace:
             X Anvil
-            - Cacti
+            X Cacti
             - Flower
-        - Need to tweak Anvil Furnace stats for balance
-            - Furnace speed
-            - Fuel items and their speeds
-            - Amount of damage fixed
-        - Need to add/alter the following furnace recipes
-            - Bone Furnace
-            - Anvil Furnace
-            - Redstone Furnace
+        X Need to tweak Anvil Furnace stats for balance
+            X Furnace speed
+            X Fuel items and their speeds
+            X Amount of damage fixed
+        X Need to add/alter the following furnace recipes
+            X Bone Furnace
+            X Anvil Furnace
+            X Redstone Furnace
         - Need to add/alter block textures for the following furnaces
             - Anvil (Waiting on Re-texturing)
             - Diamond T2 - T3

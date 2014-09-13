@@ -252,18 +252,18 @@ public class MFMBlocks {
 
 		// TileEntity and Crafting Recipe Registry for Bone Furnace
 		GameRegistry.registerTileEntity(TileEntityBoneFurnace.class, "Bone Furnace");
-		GameRegistry.addRecipe(new ItemStack(BoneFurnaceIdle), new Object[]{"sss", "sTs", "sss", 's', Items.bone, 'T', Blocks.furnace});
+		GameRegistry.addRecipe(new ItemStack(BoneFurnaceIdle), new Object[]{"sss", "sTs", "sss", 's', Items.bone, 'T', MFMBlocks.BrickFurnaceIdle});
 		
 		// TileEntity and Crafting Recipe Registry for Redstone Furnace
 		GameRegistry.registerTileEntity(TileEntityRedstoneFurnace.class, "Redstone Furnace");
-		GameRegistry.addRecipe(new ItemStack(RedstoneFurnaceIdle), new Object[]{"aaa", "aCa", "aBa", 'a', Blocks.redstone_block, 'C', Blocks.furnace, 'B', Blocks.hopper});
+		GameRegistry.addRecipe(new ItemStack(RedstoneFurnaceIdle), new Object[]{"aBa", "aCB", "aaa", 'a', Blocks.redstone_block, 'C', MFMBlocks.BrickFurnaceIdle, 'B', Blocks.hopper});
 		
 		// TileEntity and Crafting Recipe Registry for Anvil Furnace
 		GameRegistry.registerTileEntity(TileEntityAnvilFurnace.class, "Anvil Furnace");
-		GameRegistry.addRecipe(new ItemStack(AnvilFurnaceIdle), new Object[]{"jjj", "jIj", "jUj", 'j', Items.iron_ingot, 'I', Blocks.furnace, 'U', Blocks.anvil});
+		GameRegistry.addRecipe(new ItemStack(AnvilFurnaceIdle), new Object[]{"dUd", "jIj", "lll", 'l', Blocks.iron_block, 'j', Items.iron_ingot, 'I', MFMBlocks.BrickFurnaceIdle, 'U', Blocks.anvil, 'd', Items.diamond});
 		
 		// TileEntity and Crafting Recipe Registry for Cactus Furnace
 		GameRegistry.registerTileEntity(TileEntityCactusFurnace.class, "Cactus Furnace");
-		GameRegistry.addRecipe(new ItemStack(CactusFurnaceIdle), new Object[]{"yyy", "y y", "yyy", 'y', Blocks.cactus});
+		GameRegistry.addRecipe(new ItemStack(CactusFurnaceIdle), new Object[]{"yyy", "yBy", "yyy", 'y', Blocks.cactus, 'B', MFMBlocks.BrickFurnaceActive});
 	}
 }

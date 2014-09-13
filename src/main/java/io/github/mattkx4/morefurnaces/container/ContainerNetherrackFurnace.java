@@ -24,7 +24,9 @@ public class ContainerNetherrackFurnace extends Container{
 	public ContainerNetherrackFurnace(InventoryPlayer inventory, TileEntityNetherrackFurnace tileentity) {
 		this.netherrackFurnace = tileentity;
 
-		this.addSlotToContainer(new Slot(tileentity, 0, 56, 17));
+		//this is the input slot
+		this.addSlotToContainer(new Slot(tileentity, 0, 56, 35));
+		//this is the output slot
 		this.addSlotToContainer(new SlotFurnace(inventory.player, tileentity, 1, 116, 35));
 
 		for(int i = 0; i < 3; i++) {
@@ -76,7 +78,7 @@ public class ContainerNetherrackFurnace extends Container{
 	/*
 	 * Called when a player shift clicks a slot | NEEDS TO BE CORRECTED
 	 */
-	/*public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2)
+	public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2)
     {
         ItemStack itemstack = null;
         Slot slot = (Slot)this.inventorySlots.get(par2);
@@ -85,32 +87,44 @@ public class ContainerNetherrackFurnace extends Container{
             ItemStack itemstack1 = slot.getStack();
             itemstack = itemstack1.copy();
 
-            if (par2 == 2) {
-                if (!this.mergeItemStack(itemstack1, 3, 39, true)) {
+            //this here deals shift clicking the output slot which has been ID'd as slot 1
+            //thus this needs to be par2 == 1
+            //mergeItemStack needs to go from slot 2(the first inventory slot) to slot 38(the last inventory slot)
+            if (par2 == 1) {
+                if (!this.mergeItemStack(itemstack1, 2, 38, true)) {
                     return null;
                 }
 
                 slot.onSlotChange(itemstack1, itemstack);
             }
-            else if (par2 != 1 && par2 != 0) {
+            //this should only be for inputs, as there is only one input (0) this needs to say
+            // par2 != 0
+            else if (par2 != 0) {
                 if (FurnaceRecipes.smelting().getSmeltingResult(itemstack1) != null) {
                     if (!this.mergeItemStack(itemstack1, 0, 1, false))
                     {
                         return null;
                     }
-                }else if (TileEntityNetherrackFurnace.isItemFuel(itemstack1)) {
+                }
+                
+                //removal of the condition for if the itemstack is a fuel (as no fuel is needed)
+                /*else if (TileEntityNetherrackFurnace.isItemFuel(itemstack1)) {
                     if (!this.mergeItemStack(itemstack1, 1, 2, false))
                     {
                         return null;
                     }
-                }else if (par2 >= 3 && par2 < 30){
-                    if (!this.mergeItemStack(itemstack1, 30, 39, false)){
+                }
+                */
+                //otherwise if the shift clicked slot is any of the inventory slots (2 to 29 not 3 to 30)
+                //changed all values down by one to properly reflect the number of slots
+                else if (par2 >= 2 && par2 < 29){
+                    if (!this.mergeItemStack(itemstack1, 29, 38, false)){
                         return null;
                     }
-                }else if (par2 >= 30 && par2 < 39 && !this.mergeItemStack(itemstack1, 3, 30, false)) {
+                }else if (par2 >= 29 && par2 < 38 && !this.mergeItemStack(itemstack1, 2, 29, false)) {
                     return null;
                 }
-            } else if (!this.mergeItemStack(itemstack1, 3, 39, false)) {
+            } else if (!this.mergeItemStack(itemstack1, 2, 38, false)) {
                 return null;
             }
 
@@ -128,7 +142,7 @@ public class ContainerNetherrackFurnace extends Container{
         }
 
         return itemstack;
-    }*/
+    }
 
 	/*
 	 * Makes it so a player can interact with it

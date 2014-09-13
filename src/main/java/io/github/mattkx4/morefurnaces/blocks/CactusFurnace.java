@@ -15,6 +15,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
@@ -153,6 +154,47 @@ public class CactusFurnace extends BlockContainer implements IPlantable {
 			tileentity.validate();
 			worldObj.setTileEntity(xCoord, yCoord, zCoord, tileentity);
 		}
+		
+		//get the block metadata (direction)
+    	int l = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
+    	//set a new variable to the grow counter
+    	int variable = TileEntityCactusFurnace.growCounter;
+    	//if the grow counter is larger than 2
+    	ItemStack itemStack = new ItemStack(Blocks.cactus);
+    	itemStack.stackSize = 1;
+    	if (variable > 63){
+    		//depending on the metadata spawn a cactus block in front of it
+    		if(l == 5) {
+    			EntityItem item = new EntityItem(worldObj, xCoord + 1, yCoord, zCoord + 1,  new ItemStack(itemStack.getItem(), 1, itemStack.getItemDamage()));
+    			 if (itemStack.hasTagCompound()){
+                     item.getEntityItem().setTagCompound((NBTTagCompound)itemStack.getTagCompound().copy());
+                 }
+    			 worldObj.spawnEntityInWorld(item);   
+    		}
+    		if(l == 4) {
+    			EntityItem item = new EntityItem(worldObj, xCoord - 1, yCoord, zCoord + 1, new ItemStack(itemStack.getItem(), 1, itemStack.getItemDamage()));
+    			 if (itemStack.hasTagCompound()){
+                     item.getEntityItem().setTagCompound((NBTTagCompound)itemStack.getTagCompound().copy());
+                 }    			
+    			 worldObj.spawnEntityInWorld(item);
+    		}    		
+    		if(l == 2) {
+    			EntityItem item = new EntityItem(worldObj, xCoord + 1, yCoord, zCoord - 1, new ItemStack(itemStack.getItem(), 1, itemStack.getItemDamage()));
+    			 if (itemStack.hasTagCompound()){
+                     item.getEntityItem().setTagCompound((NBTTagCompound)itemStack.getTagCompound().copy());
+                 }    			
+    			 worldObj.spawnEntityInWorld(item);    
+            }    		
+    		if(l == 3) {
+    			EntityItem item = new EntityItem(worldObj, xCoord + 1, yCoord, zCoord + 1, new ItemStack(itemStack.getItem(), 1, itemStack.getItemDamage()));
+    			 if (itemStack.hasTagCompound()){
+                     item.getEntityItem().setTagCompound((NBTTagCompound)itemStack.getTagCompound().copy());
+                 }    			
+    			 worldObj.spawnEntityInWorld(item);    		
+            }
+    		//set grow counter to zero
+    		TileEntityCactusFurnace.growCounter = 0;
+    	}    	
 	}
 	
 	/*
@@ -241,6 +283,7 @@ public class CactusFurnace extends BlockContainer implements IPlantable {
      */
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(World world, int x, int y, int z, Random random){
+    	
         if (this.isActive){
             int direction = world.getBlockMetadata(x, y, z);
             float x1 = (float)x + 0.5F;
@@ -286,6 +329,7 @@ public class CactusFurnace extends BlockContainer implements IPlantable {
      */
     public void updateTick(World p_149674_1_, int p_149674_2_, int p_149674_3_, int p_149674_4_, Random p_149674_5_)
     {
+    	
         if (p_149674_1_.isAirBlock(p_149674_2_, p_149674_3_ + 1, p_149674_4_))
         {
             int l;
@@ -403,6 +447,7 @@ public class CactusFurnace extends BlockContainer implements IPlantable {
         {
             Block block = p_149718_1_.getBlock(p_149718_2_, p_149718_3_ - 1, p_149718_4_);
             return block.canSustainPlant(p_149718_1_, p_149718_2_, p_149718_3_ - 1, p_149718_4_, ForgeDirection.UP, this);
+
         }
     }
 

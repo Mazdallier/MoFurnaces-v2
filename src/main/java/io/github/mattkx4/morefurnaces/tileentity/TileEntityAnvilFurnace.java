@@ -30,11 +30,14 @@ public class TileEntityAnvilFurnace extends TileEntity implements ISidedInventor
 	
 	private ItemStack[] slots = new ItemStack [2];
 	
+	//Integer for the damage fixed
+	public int damageFixed = 25;
+	
 	// Inverse of furnace efficiency for fuels, 
 	public int furnaceEfficiency = 1;
 
 	// Speed of the furnace. A lower integer means a faster speed (Regular furnace is 200)
-	public int furnaceSpeed = 200;
+	public int furnaceSpeed = 250;
 
 	// Number of ticks the furnace will burn for
 	public int burnTime;
@@ -278,8 +281,8 @@ public class TileEntityAnvilFurnace extends TileEntity implements ISidedInventor
 			if(itemstack.getItemDamage() < itemstack.getMaxDamage() && itemstack.getItemDamage() > 0){
 				//store the current damage
 				int currentDamage = itemstack.getItemDamage();
-				//take 50 points off the current item damage
-				itemstack.setItemDamage(currentDamage - 50);
+				//take damage points off the current item damage
+				itemstack.setItemDamage(currentDamage - damageFixed);
 				//if the item damage happens to exceed the maximum damage
 				if (itemstack.getItemDamage() > itemstack.getMaxDamage()){
 					//set the item damage to the max damage(fully repaired)
@@ -298,24 +301,12 @@ public class TileEntityAnvilFurnace extends TileEntity implements ISidedInventor
 			
 			if(item instanceof ItemBlock && Block.getBlockFromItem(item) != Blocks.air){
 				Block block = Block.getBlockFromItem(item);
-							
-				//insert block based fuels
-                if (block == Blocks.wooden_slab) return 150;
-                if (block.getMaterial() == Material.wood)return 300;
-                if(block == Blocks.coal_block) return 14400;
+                if(block == Blocks.coal_block) return 1125;
 			}	
-			
-				//insert item based fuels
-				if (item instanceof ItemTool && ((ItemTool)item).getToolMaterialName().equals("WOOD")) return 200;
-	            if (item instanceof ItemSword && ((ItemSword)item).getToolMaterialName().equals("WOOD")) return 200;
-	            if (item instanceof ItemHoe && ((ItemHoe)item).getToolMaterialName().equals("WOOD")) return 200;
-	            if (item == Items.stick) return 100;
-	            if (item == Items.coal) return 1600;
-	            if (item == Items.lava_bucket) return 20000;
-	            if (item == Item.getItemFromBlock(Blocks.sapling)) return 100;
-	            if (item == Items.blaze_rod) return 2400;
-			}	            
-		return GameRegistry.getFuelValue(itemstack);
+	            if (item == Items.coal) return 125;
+
+			}
+		return 0;
 	}
 	
 	// Checks if the specified item is a fuel

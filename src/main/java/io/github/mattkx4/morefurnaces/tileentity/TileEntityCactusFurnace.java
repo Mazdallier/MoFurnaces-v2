@@ -31,6 +31,9 @@ public class TileEntityCactusFurnace extends TileEntity implements ISidedInvento
 	
 	private ItemStack[] slots = new ItemStack [3];
 	
+	//public integer for the cactus growing counter
+	public static int growCounter;
+	
 	// Inverse of furnace efficiency for fuels, 
 	public int furnaceEfficiency = 2;
 
@@ -134,6 +137,7 @@ public class TileEntityCactusFurnace extends TileEntity implements ISidedInvento
         this.burnTime = (int)nbt.getShort("BurnTime");
         this.cookTime = (int)nbt.getShort("CookTime");
         this.currentItemBurnTime = (int)nbt.getShort("CurrentItemBurnTime");
+        this.growCounter = (int)nbt.getShort("GrowCounter");
 
         if (nbt.hasKey("CustomName")){
             this.localizedName = nbt.getString("CustomName");
@@ -145,6 +149,7 @@ public class TileEntityCactusFurnace extends TileEntity implements ISidedInvento
         nbt.setShort("BurnTime", (short)this.burnTime);
         nbt.setShort("CookTime", (short)this.cookTime);
         nbt.setShort("CurrentBurnTime", (short)this.currentItemBurnTime);
+        nbt.setShort("GrowCounter", (short)this.growCounter);
         NBTTagList list = new NBTTagList();
 
         for (int i = 0; i < this.slots.length; ++i){
@@ -199,8 +204,14 @@ public class TileEntityCactusFurnace extends TileEntity implements ISidedInvento
 	
 	// Update the Furnace
 	public void updateEntity(){
+		
+		
+		
+		
 		boolean flag = isBurning();
 		boolean flag1 = false;
+		
+		
 		
 		if(this.burnTime > 0){
 			--this.burnTime;
@@ -274,6 +285,10 @@ public class TileEntityCactusFurnace extends TileEntity implements ISidedInvento
 			}
 	
 			--this.slots[0].stackSize;
+			growCounter++;
+			if (growCounter > 63){
+				CactusFurnace.updateCactusFurnaceState(this.burnTime > 0, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
+			}
 	
 			if(this.slots[0].stackSize <= 0){
 				this.slots[0] = null;
