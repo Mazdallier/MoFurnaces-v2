@@ -4,8 +4,8 @@ import io.github.mattkx4.morefurnaces.main.MoFurnacesMod;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityAnvilFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityBoneFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityBrickFurnace;
+import io.github.mattkx4.morefurnaces.tileentity.TileEntityCactusFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityDiamondFurnace;
-import io.github.mattkx4.morefurnaces.tileentity.TileEntityFuelLessFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityGoldFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityIronFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityNetherrackFurnace;
@@ -51,7 +51,10 @@ public class MFMBlocks {
     public static final Block.SoundType soundTypeRedstone = new Block.SoundType("stone", 1.0F, 1.5F);
     
     // Anvil Furnace step sound
-    public static final Block.SoundType soundTypeAnvil = new Block.SoundType("stone", 0.3F, 1.0F);
+    public static final Block.SoundType soundTypeAnvil = new Block.SoundType("anvil", 0.3F, 1.0F);
+    
+    // Cactus Furnace step sound
+    public static final Block.SoundType soundTypeCactus = new Block.SoundType("cloth", 1.0F, 1.0F);
     
     /**
      * Calls the registry methods for blocks
@@ -84,8 +87,7 @@ public class MFMBlocks {
 	public static Block GoldFurnaceIdle;
 	public static Block GoldFurnaceActive;
 
-	// Netherrack Furnace Active and Idle blocks
-	public static Block NetherrackFurnaceIdle;
+	// Netherrack Furnace Active blocks
 	public static Block NetherrackFurnaceActive;
 
 	// Quartz Furnace Active and Idle blocks
@@ -112,8 +114,9 @@ public class MFMBlocks {
 	public static Block AnvilFurnaceIdle;
 	public static Block AnvilFurnaceActive;
 	
-	// Fuel Less Furnace Active and Idle blocks
-	public static Block FuelLessFurnaceActive;
+	// Cactus Furnace Active and Idle blocks
+	public static Block CactusFurnaceIdle;
+	public static Block CactusFurnaceActive;
 	
 	/**
 	 * Initialize the active and idle blocks and set attributes
@@ -132,8 +135,7 @@ public class MFMBlocks {
 		GoldFurnaceActive = new GoldFurnace(true).setBlockName("GoldFurnaceActive").setHardness(3.0F).setResistance(10.0F).setStepSound(soundTypeIron).setLightLevel(0.625F);
 		
 		// Initialize the Netherrack Furnace
-		NetherrackFurnaceIdle = new NetherrackFurnace(false).setBlockName("NetherrackFurnaceIdle").setHardness(0.4F).setResistance(4.0F).setStepSound(soundTypeNetherrack).setCreativeTab(MoFurnacesMod.MFM);
-		NetherrackFurnaceActive = new NetherrackFurnace(true).setBlockName("NetherrackFurnaceActive").setHardness(0.4F).setResistance(4.0F).setStepSound(soundTypeNetherrack).setLightLevel(0.625F);
+		NetherrackFurnaceActive = new NetherrackFurnace(true).setBlockName("NetherrackFurnaceActive").setHardness(0.4F).setResistance(4.0F).setStepSound(soundTypeNetherrack).setLightLevel(0.625F).setCreativeTab(MoFurnacesMod.MFM);
 		
 		// Initialize the Quartz Furnace
 		QuartzFurnaceIdle = new QuartzFurnace(false).setBlockName("QuartzFurnaceIdle").setHardness(0.8F).setResistance(4.0F).setStepSound(soundTypeQuartz).setCreativeTab(MoFurnacesMod.MFM);
@@ -159,8 +161,9 @@ public class MFMBlocks {
 		AnvilFurnaceIdle = new AnvilFurnace(false).setBlockName("AnvilFurnaceIdle").setHardness(5.0F).setResistance(2000.0F).setStepSound(soundTypeAnvil).setCreativeTab(MoFurnacesMod.MFM);
 		AnvilFurnaceActive = new AnvilFurnace(true).setBlockName("AnvilFurnaceActive").setHardness(5.0F).setResistance(2000.0F).setStepSound(soundTypeAnvil).setLightLevel(0.625F);
 		
-		// Initialize the Fuel Less Furnace
-		FuelLessFurnaceActive = new FuelLessFurnace().setBlockName("FuelLessFurnaceActive").setHardness(0.4F).setResistance(4.0F).setStepSound(soundTypeNetherrack).setLightLevel(0.625F).setCreativeTab(MoFurnacesMod.MFM);
+		// Initialize the Cactus Furnace
+		CactusFurnaceIdle = new CactusFurnace(false).setBlockName("CactusFurnaceIdle").setHardness(0.4F).setResistance(0.1F).setStepSound(soundTypeCactus).setCreativeTab(MoFurnacesMod.MFM);
+		CactusFurnaceActive = new CactusFurnace(true).setBlockName("CactusFurnaceActive").setHardness(0.4F).setResistance(0.1F).setStepSound(soundTypeCactus).setLightLevel(0.625F);
 	}
 	
 	/**
@@ -181,7 +184,6 @@ public class MFMBlocks {
 		GameRegistry.registerBlock(GoldFurnaceActive, "GoldFurnaceActive");
 		
 		// Register Netherrack Furnace
-		GameRegistry.registerBlock(NetherrackFurnaceIdle, "NetherrackFurnaceIdle");
 		GameRegistry.registerBlock(NetherrackFurnaceActive, "NetherrackFurnaceActive");
 
 		// Register Quartz Furnace
@@ -208,8 +210,9 @@ public class MFMBlocks {
 		GameRegistry.registerBlock(AnvilFurnaceIdle, "AnvilFurnaceIdle");
 		GameRegistry.registerBlock(AnvilFurnaceActive, "AnvilFurnaceActive");
 		
-		// Register Fuel Less Furnace
-		GameRegistry.registerBlock(FuelLessFurnaceActive, "FuelLessFurnaceActive");
+		// Register Cactus Furnace
+		GameRegistry.registerBlock(CactusFurnaceIdle, "CactusFurnaceIdle");
+		GameRegistry.registerBlock(CactusFurnaceActive, "CactusFurnaceActive");
 	}
 	
 	/**
@@ -230,8 +233,8 @@ public class MFMBlocks {
 		
 		// TileEntity and Crafting Recipe Registry for Netherrack Furnace
 		GameRegistry.registerTileEntity(TileEntityNetherrackFurnace.class, "Netherrack Furnace");
-		GameRegistry.addRecipe(new ItemStack(NetherrackFurnaceIdle), new Object[]{"nnn", "nIn", "nnn", 'n', Blocks.netherrack, 'I', IronFurnaceIdle});
-		GameRegistry.addRecipe(new ItemStack(NetherrackFurnaceIdle), new Object[]{"nnn", "nGn", "nnn", 'n', Blocks.netherrack, 'G', GoldFurnaceIdle});
+		GameRegistry.addRecipe(new ItemStack(NetherrackFurnaceActive), new Object[]{"nnn", "nIn", "nnn", 'n', Blocks.netherrack, 'I', IronFurnaceIdle});
+		GameRegistry.addRecipe(new ItemStack(NetherrackFurnaceActive), new Object[]{"nnn", "nGn", "nnn", 'n', Blocks.netherrack, 'G', GoldFurnaceIdle});
 
 		// TileEntity and Crafting Recipe Registry for Quartz Furnace
 		GameRegistry.registerTileEntity(TileEntityQuartzFurnace.class, "Quartz Furnace");
@@ -241,7 +244,7 @@ public class MFMBlocks {
 		// TileEntity and Crafting Recipe Registry for Diamond Furnace
 		GameRegistry.registerTileEntity(TileEntityDiamondFurnace.class, "Diamond Furnace");
 		GameRegistry.addRecipe(new ItemStack(DiamondFurnaceIdle), new Object[]{"ddd", "dQd", "ddd", 'd', Items.diamond, 'Q', QuartzFurnaceIdle});
-		GameRegistry.addRecipe(new ItemStack(DiamondFurnaceIdle), new Object[]{"ddd", "dNd", "ddd", 'd', Items.diamond, 'N', NetherrackFurnaceIdle});
+		GameRegistry.addRecipe(new ItemStack(DiamondFurnaceIdle), new Object[]{"ddd", "dNd", "ddd", 'd', Items.diamond, 'N', NetherrackFurnaceActive});
 		
 		// TileEntity and Crafting Recipe Registry for Obsidian Furnace
 		GameRegistry.registerTileEntity(TileEntityObsidianFurnace.class, "Obsidian Furnace");
@@ -259,8 +262,8 @@ public class MFMBlocks {
 		GameRegistry.registerTileEntity(TileEntityAnvilFurnace.class, "Anvil Furnace");
 		GameRegistry.addRecipe(new ItemStack(AnvilFurnaceIdle), new Object[]{"jjj", "jIj", "jUj", 'j', Items.iron_ingot, 'I', Blocks.furnace, 'U', Blocks.anvil});
 		
-		// TileEntity and Crafting Recipe Registry for Fuel Less Furnace
-		GameRegistry.registerTileEntity(TileEntityFuelLessFurnace.class, "Fuel Less Furnace");
-		GameRegistry.addRecipe(new ItemStack(FuelLessFurnaceActive), new Object[]{"xxx", "x x", "xZx", 'x', Blocks.planks, 'Z', Items.coal});
+		// TileEntity and Crafting Recipe Registry for Cactus Furnace
+		GameRegistry.registerTileEntity(TileEntityCactusFurnace.class, "Cactus Furnace");
+		GameRegistry.addRecipe(new ItemStack(CactusFurnaceIdle), new Object[]{"yyy", "y y", "yyy", 'y', Blocks.cactus});
 	}
 }

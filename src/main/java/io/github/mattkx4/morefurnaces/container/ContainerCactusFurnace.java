@@ -1,7 +1,6 @@
 package io.github.mattkx4.morefurnaces.container;
 
-import io.github.mattkx4.morefurnaces.tileentity.TileEntityFuelLessFurnace;
-import io.github.mattkx4.morefurnaces.tileentity.TileEntityIronFurnace;
+import io.github.mattkx4.morefurnaces.tileentity.TileEntityCactusFurnace;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -13,54 +12,95 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ContainerFuelLessFurnace extends Container {
-	private TileEntityFuelLessFurnace fuelLessFurnace;
-	
+public class ContainerCactusFurnace extends Container{
+
+	private TileEntityCactusFurnace cactusFurnace;
+
+	public int lastBurnTime;
+	public int lastCurrentItemBurnTime;
 	public int lastCookTime;
-	
-	public ContainerFuelLessFurnace(InventoryPlayer inventory, TileEntityFuelLessFurnace tileentity) {
-		this.fuelLessFurnace = tileentity;
-		
+
+	/*
+	 * Class constructor that adds all the slots to the Furnace GUI
+	 */
+	public ContainerCactusFurnace(InventoryPlayer inventory, TileEntityCactusFurnace tileentity) {
+		this.cactusFurnace = tileentity;
+
 		this.addSlotToContainer(new Slot(tileentity, 0, 56, 17));
-		this.addSlotToContainer(new SlotFurnace(inventory.player, tileentity, 1, 116, 35));
-		
+		this.addSlotToContainer(new Slot(tileentity, 1, 56, 53));
+		this.addSlotToContainer(new SlotFurnace(inventory.player, tileentity, 2, 116, 35));
+
 		for(int i = 0; i < 3; i++) {
 			for(int j = 0; j < 9; j++) {
 				this.addSlotToContainer(new Slot(inventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
 			}
 		}
-		
+
 		for(int i = 0; i < 9; i++) {
 			this.addSlotToContainer(new Slot(inventory, i, 8 + i * 18, 142));
 		}
 	}
-	
-	public void addCraftingToCrafters(ICrafting icrafting) {
+
+	/*
+	 * Sends progress bar updates
+	 */
+	public void addCraftingToCrafters (ICrafting icrafting) {
 		super.addCraftingToCrafters(icrafting);
-		icrafting.sendProgressBarUpdate(this, 0, this.fuelLessFurnace.cookTime);
+		icrafting.sendProgressBarUpdate(this, 0, this.cactusFurnace.cookTime);
+		icrafting.sendProgressBarUpdate(this, 1, this.cactusFurnace.burnTime);
+		icrafting.sendProgressBarUpdate(this, 2, this.cactusFurnace.currentItemBurnTime);
 	}
-	
+
+	/*
+	 * Updates the Fuel and Progess Bar (Arrow and Fire) if there is any changes.
+	 */
 	public void detectAndSendChanges() {
 		super.detectAndSendChanges();
 		for(int i = 0; i < this.crafters.size(); i++) {
 			ICrafting icrafting = (ICrafting) this.crafters.get(i);
-			
-			if(this.lastCookTime != this.fuelLessFurnace.cookTime) {
-				icrafting.sendProgressBarUpdate(this, 0, this.fuelLessFurnace.cookTime);
+
+			if(this.lastCookTime != this.cactusFurnace.cookTime) {
+				icrafting.sendProgressBarUpdate(this, 0, this.cactusFurnace.cookTime);
+			}
+
+			if(this.lastBurnTime != this.cactusFurnace.burnTime) {
+				icrafting.sendProgressBarUpdate(this, 1, this.cactusFurnace.burnTime);
+			}
+
+			if(this.lastCurrentItemBurnTime != this.cactusFurnace.currentItemBurnTime) {
+				icrafting.sendProgressBarUpdate(this, 2, this.cactusFurnace.currentItemBurnTime);
 			}
 		}
-		
-		this.lastCookTime = this.fuelLessFurnace.cookTime;
+
+		this.lastCookTime = this.cactusFurnace.cookTime;
+		this.lastBurnTime = this.cactusFurnace.burnTime;
+		this.lastCurrentItemBurnTime = this.cactusFurnace.currentItemBurnTime;
 	}
-	
+
+	/*
+	 * Updates Progress Bar
+	 */
 	@SideOnly(Side.CLIENT)
-	public void updateProgressBar(int par1, int par2) {
-		if (par1 == 0) {
-			this.fuelLessFurnace.cookTime = par2;
-		}
-	}
-	
-	public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2) {
+    public void updateProgressBar(int par1, int par2)
+    {
+        if (par1 == 0) {
+            this.cactusFurnace.cookTime = par2;
+        }
+
+        if (par1 == 1) {
+            this.cactusFurnace.burnTime = par2;
+        }
+
+        if (par1 == 2) {
+            this.cactusFurnace.currentItemBurnTime = par2;
+        }
+    }
+
+	/*
+	 * Called when a player shift clicks a slot
+	 */
+	public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2)
+    {
         ItemStack itemstack = null;
         Slot slot = (Slot)this.inventorySlots.get(par2);
 
@@ -81,7 +121,7 @@ public class ContainerFuelLessFurnace extends Container {
                     {
                         return null;
                     }
-                }else if (TileEntityIronFurnace.isItemFuel(itemstack1)) {
+                }else if (TileEntityCactusFurnace.isItemFuel(itemstack1)) {
                     if (!this.mergeItemStack(itemstack1, 1, 2, false))
                     {
                         return null;
@@ -109,9 +149,13 @@ public class ContainerFuelLessFurnace extends Container {
 
             slot.onPickupFromSlot(par1EntityPlayer, itemstack1);
         }
+
         return itemstack;
     }
-	
+
+	/*
+	 * Makes it so a player can interact with it
+	 */
 	public boolean canInteractWith(EntityPlayer var1) {
 		return true;
 	}

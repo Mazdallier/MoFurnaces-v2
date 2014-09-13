@@ -16,8 +16,6 @@ public class ContainerNetherrackFurnace extends Container{
 
 	private TileEntityNetherrackFurnace netherrackFurnace;
 
-	public int lastBurnTime;
-	public int lastCurrentItemBurnTime;
 	public int lastCookTime;
 
 	/*
@@ -27,8 +25,7 @@ public class ContainerNetherrackFurnace extends Container{
 		this.netherrackFurnace = tileentity;
 
 		this.addSlotToContainer(new Slot(tileentity, 0, 56, 17));
-		this.addSlotToContainer(new Slot(tileentity, 1, 56, 53));
-		this.addSlotToContainer(new SlotFurnace(inventory.player, tileentity, 2, 116, 35));
+		this.addSlotToContainer(new SlotFurnace(inventory.player, tileentity, 1, 116, 35));
 
 		for(int i = 0; i < 3; i++) {
 			for(int j = 0; j < 9; j++) {
@@ -47,8 +44,6 @@ public class ContainerNetherrackFurnace extends Container{
 	public void addCraftingToCrafters (ICrafting icrafting) {
 		super.addCraftingToCrafters(icrafting);
 		icrafting.sendProgressBarUpdate(this, 0, this.netherrackFurnace.cookTime);
-		icrafting.sendProgressBarUpdate(this, 1, this.netherrackFurnace.burnTime);
-		icrafting.sendProgressBarUpdate(this, 2, this.netherrackFurnace.currentItemBurnTime);
 	}
 
 	/*
@@ -62,19 +57,9 @@ public class ContainerNetherrackFurnace extends Container{
 			if(this.lastCookTime != this.netherrackFurnace.cookTime) {
 				icrafting.sendProgressBarUpdate(this, 0, this.netherrackFurnace.cookTime);
 			}
-
-			if(this.lastBurnTime != this.netherrackFurnace.burnTime) {
-				icrafting.sendProgressBarUpdate(this, 1, this.netherrackFurnace.burnTime);
-			}
-
-			if(this.lastCurrentItemBurnTime != this.netherrackFurnace.currentItemBurnTime) {
-				icrafting.sendProgressBarUpdate(this, 2, this.netherrackFurnace.currentItemBurnTime);
-			}
 		}
 
 		this.lastCookTime = this.netherrackFurnace.cookTime;
-		this.lastBurnTime = this.netherrackFurnace.burnTime;
-		this.lastCurrentItemBurnTime = this.netherrackFurnace.currentItemBurnTime;
 	}
 
 	/*
@@ -86,20 +71,12 @@ public class ContainerNetherrackFurnace extends Container{
         if (par1 == 0) {
             this.netherrackFurnace.cookTime = par2;
         }
-
-        if (par1 == 1) {
-            this.netherrackFurnace.burnTime = par2;
-        }
-
-        if (par1 == 2) {
-            this.netherrackFurnace.currentItemBurnTime = par2;
-        }
     }
 
 	/*
-	 * Called when a player shift clicks a slot
+	 * Called when a player shift clicks a slot | NEEDS TO BE CORRECTED
 	 */
-	public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2)
+	/*public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2)
     {
         ItemStack itemstack = null;
         Slot slot = (Slot)this.inventorySlots.get(par2);
@@ -151,7 +128,7 @@ public class ContainerNetherrackFurnace extends Container{
         }
 
         return itemstack;
-    }
+    }*/
 
 	/*
 	 * Makes it so a player can interact with it

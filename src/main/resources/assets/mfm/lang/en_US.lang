@@ -1,13 +1,13 @@
 tile.BrickFurnaceIdle.name=Brick Furnace
 tile.IronFurnaceIdle.name=Iron Furnace
 tile.GoldFurnaceIdle.name=Gold Furnace
-tile.NetherrackFurnaceIdle.name=Netherrack Furnace
 tile.QuartzFurnaceIdle.name=Quartz Furnace
 tile.DiamondFurnaceIdle.name=Diamond Furnace
 tile.ObsidianFurnaceIdle.name=Obsidian Furnace
 tile.BoneFurnaceIdle.name=Bone Furnace
 tile.RedstoneFurnaceIdle.name=Redstone Furnace
 tile.AnvilFurnaceIdle.name=Anvil Furnace
+tile.CactusFurnaceIdle.name=Cactus Furnace
 
 tile.BrickFurnaceT2Idle.name=Tier 2 Brick Furnace
 tile.IronFurnaceT2Idle.name=Tier 2 Iron Furnace
@@ -33,7 +33,7 @@ tile.ObsidianFurnaceActive.name=Obsidian Furnace
 tile.BoneFurnaceActive.name=Bone Furnace
 tile.RedstoneFurnaceActive.name=Redstone Furnace
 tile.AnvilFurnaceActive.name=Anvil Furnace
-tile.FuelLessFurnaceActive.name=Fuel Less Furnace
+tile.CactusFurnaceActive.name=Cactus Furnace
 
 tile.BrickFurnaceT2Active.name=Tier 2 Brick Furnace
 tile.IronFurnaceT2Active.name=Tier 2 Iron Furnace
@@ -52,7 +52,10 @@ tile.ObsidianFurnaceT3Active.name=Tier 3 Obsidian Furnace
 itemGroup.mfm=Mo' Furnaces Mod
 itemGroup.tieredmfm=Tiered Furnaces
 
+
+
 entity.Cobalt Katana.name=Cobalt Katana
+
 
 
 container.Inventory=Inventory
@@ -67,7 +70,7 @@ container.obsidianFurnace=Obsidian Furnace
 container.boneFurnace=Bone Furnace
 container.redstoneFurnace=Redstone Furnace
 container.anvilFurnace=Anvil Furnace
-container.fuelLessFurnace=Fuel Less Furnace
+container.cactusFurnace=Cactus Furnace
 
 container.brickFurnaceT2=Tier 2 Brick Furnace
 container.ironFurnaceT2=Tier 2 Iron Furnace

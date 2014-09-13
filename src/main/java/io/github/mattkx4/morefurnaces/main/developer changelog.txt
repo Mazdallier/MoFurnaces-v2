@@ -247,6 +247,14 @@ V2.1 -> V2.2{
         - Tried and failed to make a firework effect on the tiering devices...
     }
     
+    12 SEPT - Mattkx4{
+        - Switched the FuelLess Furnace code to the Netherrack Furnace
+        - Deleted FuelLess Furnace
+        - Added a Cactus Furnace
+            - Has everything a regular cactus does, except it doesn't grow cactus on top of it ;)
+            - Gonna have CK fix the textures on it eventually. It's a wee bit bugged out...
+    }
+    
     TODO{
         - Transfer Fuel Less Furnace methods/code to Netherrack Furnace
         - Fix shift-clicking on Fuel Less Furnace

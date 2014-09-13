@@ -55,8 +55,8 @@ public class MoFurnacesMod {
 	public static final int guiIDRedstoneFurnace = 8;
 	//Anvil Furnace gui ID
 	public static final int guiIDAnvilFurnace = 9;
-	//Fuel Less Furnace gui ID
-	public static final int guiIDFuelLessFurnace = 10;
+	//Cactus Furnace gui ID
+	public static final int guiIDCactusFurnace = 10;
 	//Tier 2 Obsidian Furnace gui ID
 	public static final int guiIDObsidianFurnaceT2 = 20;
 	//Tier 3 Obsidian Furnace gui ID

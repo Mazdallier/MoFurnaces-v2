@@ -3,8 +3,8 @@ package io.github.mattkx4.morefurnaces.handler;
 import io.github.mattkx4.morefurnaces.container.ContainerAnvilFurnace;
 import io.github.mattkx4.morefurnaces.container.ContainerBoneFurnace;
 import io.github.mattkx4.morefurnaces.container.ContainerBrickFurnace;
+import io.github.mattkx4.morefurnaces.container.ContainerCactusFurnace;
 import io.github.mattkx4.morefurnaces.container.ContainerDiamondFurnace;
-import io.github.mattkx4.morefurnaces.container.ContainerFuelLessFurnace;
 import io.github.mattkx4.morefurnaces.container.ContainerGoldFurnace;
 import io.github.mattkx4.morefurnaces.container.ContainerIronFurnace;
 import io.github.mattkx4.morefurnaces.container.ContainerNetherrackFurnace;
@@ -24,8 +24,8 @@ import io.github.mattkx4.morefurnaces.container.tier3.ContainerQuartzFurnaceT3;
 import io.github.mattkx4.morefurnaces.gui.GuiAnvilFurnace;
 import io.github.mattkx4.morefurnaces.gui.GuiBoneFurnace;
 import io.github.mattkx4.morefurnaces.gui.GuiBrickFurnace;
+import io.github.mattkx4.morefurnaces.gui.GuiCactusFurnace;
 import io.github.mattkx4.morefurnaces.gui.GuiDiamondFurnace;
-import io.github.mattkx4.morefurnaces.gui.GuiFuelLessFurnace;
 import io.github.mattkx4.morefurnaces.gui.GuiGoldFurnace;
 import io.github.mattkx4.morefurnaces.gui.GuiIronFurnace;
 import io.github.mattkx4.morefurnaces.gui.GuiNetherrackFurnace;
@@ -46,8 +46,8 @@ import io.github.mattkx4.morefurnaces.main.MoFurnacesMod;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityAnvilFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityBoneFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityBrickFurnace;
+import io.github.mattkx4.morefurnaces.tileentity.TileEntityCactusFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityDiamondFurnace;
-import io.github.mattkx4.morefurnaces.tileentity.TileEntityFuelLessFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityGoldFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityIronFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityNetherrackFurnace;
@@ -156,9 +156,9 @@ public class MFMGuiHandler implements IGuiHandler {
 				if(entity instanceof TileEntityQuartzFurnaceT3) {
 					return new ContainerQuartzFurnaceT3(player.inventory, (TileEntityQuartzFurnaceT3) entity);
 				}
-			case MoFurnacesMod.guiIDFuelLessFurnace:
-				if(entity instanceof TileEntityFuelLessFurnace) {
-					return new ContainerFuelLessFurnace(player.inventory, (TileEntityFuelLessFurnace) entity);
+			case MoFurnacesMod.guiIDCactusFurnace:
+				if(entity instanceof TileEntityCactusFurnace) {
+					return new ContainerCactusFurnace(player.inventory, (TileEntityCactusFurnace) entity);
 				}
 				return null;
 				}
@@ -251,9 +251,9 @@ public class MFMGuiHandler implements IGuiHandler {
 				if(entity instanceof TileEntityQuartzFurnaceT3) {
 					return new GuiQuartzFurnaceT3(player.inventory, (TileEntityQuartzFurnaceT3) entity);
 				}
-			case MoFurnacesMod.guiIDFuelLessFurnace:
-				if(entity instanceof TileEntityFuelLessFurnace) {
-					return new GuiFuelLessFurnace(player.inventory, (TileEntityFuelLessFurnace) entity);
+			case MoFurnacesMod.guiIDCactusFurnace:
+				if(entity instanceof TileEntityCactusFurnace) {
+					return new GuiCactusFurnace(player.inventory, (TileEntityCactusFurnace) entity);
 				}
 				return null;
 				}			

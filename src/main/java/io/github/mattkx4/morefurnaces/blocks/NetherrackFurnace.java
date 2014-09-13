@@ -25,12 +25,6 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class NetherrackFurnace extends BlockContainer{
-
-	/*
-	 * Boolean to tell if the furnace is active
-	 */
-	private final boolean isActive;
-	
 	private Random rand = new Random();
 	
 	@SideOnly(Side.CLIENT)
@@ -43,7 +37,6 @@ public class NetherrackFurnace extends BlockContainer{
 	
 	public NetherrackFurnace(boolean isActive) {
 		super(Material.rock);
-		this.isActive = isActive;
 		this.setHarvestLevel("pickaxe", 0);
 	}
 	
@@ -51,7 +44,7 @@ public class NetherrackFurnace extends BlockContainer{
 	 * What item is dropped from the block
 	 */
 	public Item getItemDropped(int i, Random random, int j){
-		return Item.getItemFromBlock(MFMBlocks.NetherrackFurnaceIdle);	
+		return Item.getItemFromBlock(MFMBlocks.NetherrackFurnaceActive);	
 	}	
 	
 	/*
@@ -108,7 +101,7 @@ public class NetherrackFurnace extends BlockContainer{
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister iconRegister){
 		this.blockIcon = iconRegister.registerIcon(Strings.MODID+":NetherrackFurnace_side");
-		this.iconFront = iconRegister.registerIcon(Strings.MODID+":"+(this.isActive ? "NetherrackFurnace_front_active" : "NetherrackFurnace_front_idle"));
+		this.iconFront = iconRegister.registerIcon(Strings.MODID+":NetherrackFurnace_front_active");
 		this.iconTop = iconRegister.registerIcon(Strings.MODID+":NetherrackFurnace_top");
 	}
 	
@@ -122,7 +115,7 @@ public class NetherrackFurnace extends BlockContainer{
 		return true;
 	}
 
-	public static void updateNetherrackFurnaceState(boolean active, World worldObj, int xCoord, int yCoord, int zCoord) {
+	/*public static void updateNetherrackFurnaceState(boolean active, World worldObj, int xCoord, int yCoord, int zCoord) {
 		int i = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
 		
 		TileEntity tileentity = worldObj.getTileEntity(xCoord, yCoord, zCoord);
@@ -141,7 +134,7 @@ public class NetherrackFurnace extends BlockContainer{
 			tileentity.validate();
 			worldObj.setTileEntity(xCoord, yCoord, zCoord, tileentity);
 		}
-	}
+	}*/
 	
 	/*
 	 * Create the tile entity
@@ -227,30 +220,28 @@ public class NetherrackFurnace extends BlockContainer{
      * in this case it is adding smoke and flames.
      */
    @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(World world, int x, int y, int z, Random random){
-        if (this.isActive || !this.isActive){
-            int direction = world.getBlockMetadata(x, y, z);
-            float x1 = (float)x + 0.5F;
-            float y1 = (float)y + 0.0F + random.nextFloat() * 6.0F / 16.0F;
-            float z1 = (float)z + 0.5F;
-            float f = 0.52F;
-            float f1 = random.nextFloat() * 0.6F - 0.3F;
+   public void randomDisplayTick(World world, int x, int y, int z, Random random) {
+	   int direction = world.getBlockMetadata(x, y, z);
+       float x1 = (float)x + 0.5F;
+       float y1 = (float)y + 0.0F + random.nextFloat() * 6.0F / 16.0F;
+       float z1 = (float)z + 0.5F;
+       float f = 0.52F;
+       float f1 = random.nextFloat() * 0.6F - 0.3F;
 
-            if(direction == 4){
-            	world.spawnParticle("smoke", (double)(x1 - f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
-            	world.spawnParticle("flame", (double)(x1 - f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
-            }else if (direction == 5){
-            	world.spawnParticle("smoke", (double)(x1 + f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
-            	world.spawnParticle("flame", (double)(x1 + f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
-            }else if (direction == 2){
-            	world.spawnParticle("smoke", (double)(x1 + f1), (double)y1, (double)(z1 - f), 0.0D, 0.0D, 0.0D);
-            	world.spawnParticle("flame", (double)(x1 + f1), (double)y1, (double)(z1 - f), 0.0D, 0.0D, 0.0D);
-            }else if (direction == 3){
-            	world.spawnParticle("smoke", (double)(x1 + f1), (double)y1, (double)(z1 + f), 0.0D, 0.0D, 0.0D);
-            	world.spawnParticle("flame", (double)(x1 + f1), (double)y1, (double)(z1 + f), 0.0D, 0.0D, 0.0D);
-            }
-        }
-    }
+       if (direction == 4) {
+    	   world.spawnParticle("smoke", (double)(x1 - f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
+    	   world.spawnParticle("flame", (double)(x1 - f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
+       } else if (direction == 5) {
+    	   world.spawnParticle("smoke", (double)(x1 + f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
+    	   world.spawnParticle("flame", (double)(x1 + f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
+       } else if (direction == 2) {
+    	   world.spawnParticle("smoke", (double)(x1 + f1), (double)y1, (double)(z1 - f), 0.0D, 0.0D, 0.0D);
+    	   world.spawnParticle("flame", (double)(x1 + f1), (double)y1, (double)(z1 - f), 0.0D, 0.0D, 0.0D);
+       } else if (direction == 3) {
+    	   world.spawnParticle("smoke", (double)(x1 + f1), (double)y1, (double)(z1 + f), 0.0D, 0.0D, 0.0D);
+    	   world.spawnParticle("flame", (double)(x1 + f1), (double)y1, (double)(z1 + f), 0.0D, 0.0D, 0.0D);
+       }
+   }
 
     /*
      * If this returns true, then comparators facing away from this block will use the value from
@@ -273,6 +264,6 @@ public class NetherrackFurnace extends BlockContainer{
      */
     @SideOnly(Side.CLIENT)
     public Item getItem(World world, int x, int y, int z){
-        return Item.getItemFromBlock(MFMBlocks.NetherrackFurnaceIdle);
+        return Item.getItemFromBlock(MFMBlocks.NetherrackFurnaceActive);
     }
 }
