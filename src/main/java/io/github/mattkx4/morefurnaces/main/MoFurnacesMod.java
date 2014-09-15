@@ -1,13 +1,14 @@
 package io.github.mattkx4.morefurnaces.main;
 
+import io.github.mattkx4.morefurnaces.achievements.MFMAchievements;
 import io.github.mattkx4.morefurnaces.blocks.MFMBlocks;
 import io.github.mattkx4.morefurnaces.blocks.tier2.MFMT2Blocks;
 import io.github.mattkx4.morefurnaces.blocks.tier3.MFMT3Blocks;
-import io.github.mattkx4.morefurnaces.items.MFMItems;
 import io.github.mattkx4.morefurnaces.gui.MFMGui;
 import io.github.mattkx4.morefurnaces.handler.MFMEntityHandler;
 import io.github.mattkx4.morefurnaces.handler.MFMGuiHandler;
 import io.github.mattkx4.morefurnaces.handler.MFMHandler;
+import io.github.mattkx4.morefurnaces.items.MFMItems;
 import io.github.mattkx4.morefurnaces.lib.Strings;
 import io.github.mattkx4.morefurnaces.proxy.ServerProxy;
 import net.minecraft.creativetab.CreativeTabs;
@@ -110,6 +111,7 @@ public class MoFurnacesMod {
 		MFMT3Blocks.mainRegistry();
 		MFMItems.mainRegistry();
 		MFMEntityHandler.mainRegistry();
+		MFMAchievements.mainRegistry();
 		
 		proxy.registerRenderThings();	
 	}
