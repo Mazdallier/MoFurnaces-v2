@@ -298,6 +298,15 @@ V2.1 -> V2.2{
                 - Need to find an "onBlockCraft" event...
     }
     
+    16 SEPT - Pr1meSh0cl{
+        - Adding to the CK Mob
+            - Fixed the derpy head textures
+            - Added various attributes
+            - Now targets: Zombies, Spiders, Skeletons, Witches, Player (similar to zombie pigman)
+            - Still has super speed if attacked
+            - Small chance to drop a diamond sword
+    }
+    
     TODO{
         - Do the CK Mob
             - Fix texture rendering...
