@@ -307,6 +307,13 @@ V2.1 -> V2.2{
             - Small chance to drop a diamond sword
     }
     
+    17 SEPT - Pr1meSh0ck{
+        - Mucked around with the CK mob
+            - Got the sword to render
+            - CK will attack you with the sword, still attacks mobs by collision, will change that to sword
+            - Added full diamond armor, armor buffs apply and armor may drop but it doesn't render
+    }
+    
     TODO{
         - Do the CK Mob
             - Fix texture rendering...

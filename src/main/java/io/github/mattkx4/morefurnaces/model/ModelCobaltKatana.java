@@ -4,6 +4,7 @@ import io.github.mattkx4.morefurnaces.entity.EntityCobaltKatana;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.entity.RenderBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.monster.EntityZombie;
@@ -11,9 +12,9 @@ import net.minecraft.util.MathHelper;
 
 public class ModelCobaltKatana extends ModelBase{
 	//fields
-	ModelRenderer head;
+	public ModelRenderer head;
 	ModelRenderer body;
-    ModelRenderer rightarm;
+    public ModelRenderer rightarm;
     ModelRenderer leftarm;
     ModelRenderer rightleg;
     ModelRenderer leftleg;
@@ -185,9 +186,6 @@ public class ModelCobaltKatana extends ModelBase{
         this.leftleg.rotateAngleY = 0.0F;
 	}
 		
-	protected void renderEquippedItems(EntityLiving entity, float f)
-    {
-        this.renderEquippedItems((EntityCobaltKatana)entity, f);
-    }
+	
 	
 }

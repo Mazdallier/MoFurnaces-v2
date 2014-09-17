@@ -57,15 +57,15 @@ public class EntityCobaltKatana extends EntityMob{
         this.getNavigator().setCanSwim(true);
         this.getNavigator().setAvoidsWater(false);
         this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(2, new EntityAIWander(this, 1.0D));
-        this.tasks.addTask(3, new EntityAIAttackOnCollide(this, EntityCreeper.class, 1.0D, true));
-        this.tasks.addTask(4, new EntityAIAttackOnCollide(this, EntityZombie.class, 1.0D, true));
-        this.tasks.addTask(5, new EntityAIAttackOnCollide(this, EntitySkeleton.class, 1.0D, true));
-        this.tasks.addTask(6, new EntityAIAttackOnCollide(this, EntitySpider.class, 1.0D, true));
-        this.tasks.addTask(7, new EntityAIAttackOnCollide(this, EntityWitch.class, 1.0D, true));
-        this.tasks.addTask(7, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.0D, false));
-        this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-        this.tasks.addTask(8, new EntityAILookIdle(this));
+        this.tasks.addTask(1, new EntityAIWander(this, 1.0D));
+        this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityCreeper.class, 1.0D, true));
+        this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityZombie.class, 1.0D, true));
+        this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntitySkeleton.class, 1.0D, true));
+        this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntitySpider.class, 1.0D, true));
+        this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityWitch.class, 1.0D, true));
+        this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.0D, false));
+        this.tasks.addTask(2, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+        this.tasks.addTask(3, new EntityAILookIdle(this));
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityCreeper.class, 0, true, false, IMob.mobSelector));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityZombie.class, 0, true, false, IMob.mobSelector));
@@ -284,6 +284,9 @@ public class EntityCobaltKatana extends EntityMob{
 	//add wearable armor and weapons
 	protected void addRandomArmor(){
 		this.setCurrentItemOrArmor(0, new ItemStack(Items.diamond_sword));
+		this.setCurrentItemOrArmor(1, new ItemStack(Items.diamond_helmet));
+		this.setCurrentItemOrArmor(2, new ItemStack(Items.diamond_chestplate));
+		this.setCurrentItemOrArmor(3, new ItemStack(Items.diamond_leggings));
 		this.setCurrentItemOrArmor(4, new ItemStack(Items.diamond_boots));
 	}
 	
