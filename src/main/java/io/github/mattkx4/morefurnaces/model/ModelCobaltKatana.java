@@ -28,7 +28,6 @@ public class ModelCobaltKatana extends ModelBase{
      * Records whether the model should be rendered holding an item in the right hand, and if that item is a block.
      */
     public int heldItemRight;
-    
   
     public ModelCobaltKatana(){
     	textureWidth = 64;

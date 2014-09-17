@@ -284,6 +284,7 @@ public class EntityCobaltKatana extends EntityMob{
 	//add wearable armor and weapons
 	protected void addRandomArmor(){
 		this.setCurrentItemOrArmor(0, new ItemStack(Items.diamond_sword));
+		this.setCurrentItemOrArmor(4, new ItemStack(Items.diamond_boots));
 	}
 	
 	public IEntityLivingData onSpawnWithEgg(IEntityLivingData p_110161_1_)
