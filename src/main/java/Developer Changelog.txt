@@ -374,6 +374,7 @@ V2.1 -> V2.2{
         X Organize Furnaces in their creative tab
         X Create seperate creative tab for tiered furnaces
         X Credit sb023612 for language file contribution in user changelog.
+        - Credit ViKaleidoscope for language file contribution in user changelog.
         - EXTENSIVE TESTING
             - I wanna test the mod in my own workspace for at least a week.
                 - To be honest, I just want to figure out the mod. Learn the crafting recipes, perks, etc. That will help with writing the wiki.
