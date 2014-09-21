@@ -3,10 +3,9 @@ package io.github.mattkx4.morefurnaces.blocks;
 import io.github.mattkx4.morefurnaces.lib.Strings;
 import io.github.mattkx4.morefurnaces.main.MoFurnacesMod;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityGoldFurnace;
+
 import java.util.Random;
-import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -23,6 +22,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class GoldFurnace extends BlockContainer{
 
@@ -226,7 +228,7 @@ private Random rand = new Random();
      * A randomly called display update to add particles or other items for display
      * in this case it is adding smoke and flames.
      */
-   @SideOnly(Side.CLIENT)
+	@SideOnly(Side.CLIENT)
     public void randomDisplayTick(World world, int x, int y, int z, Random random){
         if (this.isActive){
             int direction = world.getBlockMetadata(x, y, z);

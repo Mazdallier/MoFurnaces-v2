@@ -298,7 +298,7 @@ V2.1 -> V2.2{
                 - Need to find an "onBlockCraft" event...
     }
     
-    16 SEPT - Pr1meSh0cl{
+    16 SEPT - Pr1meSh0ck{
         - Adding to the CK Mob
             - Fixed the derpy head textures
             - Added various attributes
@@ -314,7 +314,15 @@ V2.1 -> V2.2{
             - Added full diamond armor, armor buffs apply and armor may drop but it doesn't render
     }
     
+    20 SEPT - Mattkx4{
+        - Added bonemeal to bone furnace.
+        - Messed around with the particles, but made new progress. Imma screw around with it tomorrow
+        - Sharpening up on my HTML Skills. 
+            - Plan on creating a website for the Mo' Furnaces Mod and I want to make it look... sexy...
+    }
+    
     TODO{
+        X Add bonemeal to the bone furnace
         - Do the CK Mob
             - Fix texture rendering...
                 - Head is all messed up and the emerald furnace is rendering onto the legs (?)
@@ -341,7 +349,6 @@ V2.1 -> V2.2{
         - Design the following Wacky Furnace:
             X Anvil
             X Cacti
-            - Flower
         X Need to tweak Anvil Furnace stats for balance
             X Furnace speed
             X Fuel items and their speeds

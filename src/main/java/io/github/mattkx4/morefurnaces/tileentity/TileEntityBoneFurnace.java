@@ -287,6 +287,7 @@ public class TileEntityBoneFurnace extends TileEntity implements ISidedInventory
 			return 0;
 		}else{
 			Item item = itemstack.getItem();
+			ItemStack itemStack = itemstack;
 			
 			if(item instanceof ItemBlock && Block.getBlockFromItem(item) != Blocks.air){
 				Block block = Block.getBlockFromItem(item);
@@ -307,6 +308,7 @@ public class TileEntityBoneFurnace extends TileEntity implements ISidedInventory
 	            if (item == Item.getItemFromBlock(Blocks.sapling)) return 100;
 	            if (item == Items.blaze_rod) return 2400;*/
 	            if (item == Items.bone) return 1600;
+	            if (item == new ItemStack(Items.dye, 15).getItem()) return 3200;
 			}	            
 		return GameRegistry.getFuelValue(itemstack);
 	}
