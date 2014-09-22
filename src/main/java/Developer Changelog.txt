@@ -321,21 +321,36 @@ V2.1 -> V2.2{
             - Plan on creating a website for the Mo' Furnaces Mod and I want to make it look... sexy...
     }
     
+    22 SEPT - Pr1meSh0ck{
+        - Added smelting capabilities to CK
+            - right click on him with nothing says go away(need to change to a dynamic chatting)
+            - right clicking on him with a diamond adds 2 cooking attempts to the counter and notifies player
+            - right clicking on him with a cookable item after being primed will cook the entire size of the stack,
+            drop no experience, reduce the counter by one and let the player know what occurred.
+    }
+    
     TODO{
         X Add bonemeal to the bone furnace
         - Do the CK Mob
-            - Fix texture rendering...
-                - Head is all messed up and the emerald furnace is rendering onto the legs (?)
-            - Add tameablility?
-                - Add the ability to tame a CobaltKatana and have it follow you
-                    - Seems kind of morbid, but like...
-            - Ability to leash to a fence and etc.
-                - Once again, kind of morbid, but seriously...
-            - Make it a defender.
-                - Attacks hostile mobs with the power of a diamond sword
+            X Fix texture rendering...
+                X Head is all messed up and the emerald furnace is rendering onto the legs (?)
+                - Not sure about the emerald furnace part but it should be rendering correctly, can you check this again??
+            X Add tameablility?
+                X Add the ability to tame a CobaltKatana and have it follow you
+                    X Seems kind of morbid, but like...
+                    X No he one shots mobs and can smelt items instantly, having him follow you is too powerful
+            X Ability to leash to a fence and etc.
+                X Once again, kind of morbid, but seriously...
+                X Again no, this would allow for too much of an advantage
+            X Make it a defender.
+                X Attacks hostile mobs with the power of a diamond sword
+                X Done
             - Right-Click opens up a furnace
                 - Opens EmeraldFurnace
                 - Smelts stuff in the EmeraldFurnace backpack
+            X Currently right clicking will display chat to the player and provide further options for right clicking,
+            the actual furnace and it's gui are impossible to open right now.
+            - Improve dynamics of the chat conversations.
             - On death spawns fireworks and drops a single EmeraldFurnace
         - Create the EmeraldFurnace
             - We'd have to eventually because you have to open something on the mob ;)

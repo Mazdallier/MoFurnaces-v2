@@ -4,11 +4,17 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
 
+import io.github.mattkx4.morefurnaces.blocks.IronFurnace;
 import io.github.mattkx4.morefurnaces.main.MoFurnacesMod;
+import io.github.mattkx4.morefurnaces.tileentity.TileEntityIronFurnace;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.ChatLine;
+import net.minecraft.client.network.NetHandlerPlayClient;
 import net.minecraft.command.IEntitySelector;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.IEntityLivingData;
+import net.minecraft.entity.IMerchant;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -33,13 +39,24 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.IChatComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeModContainer;
-import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityCobaltKatana extends EntityMob{
+
+	//an integer for the number of attempts
+    int attempts;
+    String text;
+    int textCount;
 	
 	/** Above zero if this Entity is Angry. */
     private int angerLevel;
@@ -115,26 +132,96 @@ public class EntityCobaltKatana extends EntityMob{
     /**
      * Called when a player interacts with a mob. e.g. gets milk from a cow, gets into the saddle on a pig.
      */
+    
+    /**
+     * quick check to see if the item that will be right-clicked onto CK Mob has a cooking result
+     * @param item
+     * @param slot
+     * @return
+     */
+    public boolean canSmelt(ItemStack item, int slot){
+    	if(item == null){
+			return false;
+		}else{
+			ItemStack itemstack = FurnaceRecipes.smelting().getSmeltingResult(item);
+		
+			if(itemstack == null) return false;
+		}
+    	
+    	return true;
+    }
+        
+    @Override
+    @SideOnly(Side.CLIENT)
     public boolean interact(EntityPlayer player)
-    {
+    {    	
+    	if(!this.worldObj.isRemote){
+    	
+    	if(textCount > 1){
+    		textCount = 0;
+    	}
+    	
+    	//get the item currently being held
         ItemStack itemstack = player.inventory.getCurrentItem();
-        boolean flag = itemstack != null && itemstack.getItem() == Items.spawn_egg;
-
-        if (!flag && this.isEntityAlive() && !this.isChild() && !player.isSneaking())
+    	//set the current slot ID
+    	int slot = player.inventory.currentItem;
+        //if the item is a diamond then set the flag to true
+        boolean flag = itemstack != null && itemstack.getItem() == Items.diamond;
+        //create a ready flag for smelting 
+        boolean smeltIt = canSmelt(itemstack, slot);
+               
+        player.addChatMessage(new ChatComponentText("Hello "+player.getDisplayName()));
+       
+       
+        //make sure the mob is first ready for smelting
+        if (flag && this.isEntityAlive() && !this.isChild() && !player.isSneaking())
         {
-            if (!this.worldObj.isRemote)
+        	//play the tamed animation (hearts above the mob)
+        	for (int i = 0; i < 7; ++i)
             {
-            	//set the activation of the emerald furnace in here
+                double d0 = this.rand.nextGaussian() * 0.02D;
+                double d1 = this.rand.nextGaussian() * 0.02D;
+                double d2 = this.rand.nextGaussian() * 0.02D;
+                this.worldObj.spawnParticle("flame", this.posX + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, this.posY + 0.5D + (double)(this.rand.nextFloat() * this.height), this.posZ + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, d0, d1, d2);
             }
-
+            //remove one diamond from the stack
+            --itemstack.stackSize;
+            //set the number of attempts to 3
+            attempts += 2;
+            player.addChatMessage(new ChatComponentText("You may use my furnace "+attempts+" more times."));
+            
+            //set text to congratulations
+            textCount++;
             return true;
         }
-        else
-        {
-            return super.interact(player);
-        }
+        //smelt the item held immediately
+        //if the mob is ready and there is an item to smelt
+        else if (smeltIt && attempts > 0){
+        	System.out.println("smelted");
+        	//set a new itemstack for the smelting result
+        	ItemStack result = FurnaceRecipes.smelting().getSmeltingResult(itemstack);
+        	//set the correct itemstack size
+        	result.stackSize = itemstack.stackSize;
+        	//delete current itemstack
+        	player.inventory.setInventorySlotContents(slot, null);
+        	//replace the old itemstack with the new one   	
+        	player.inventory.setInventorySlotContents(slot, result);
+        	//reduce the number of attempts by one
+        	--attempts;
+        	 player.addChatMessage(new ChatComponentText("I've turned your "+itemstack.getDisplayName()+" into "+result.getDisplayName()));
+        	 player.addChatMessage(new ChatComponentText("You have "+attempts+ " more uses of my furnace"));
+            textCount++;
+
+        	return true;
+        }else
+        	 player.addChatMessage(new ChatComponentText("You may not use my furnace."));
+        	textCount++;
+
+            return true;
+    	}
+        return true;
+
     }
-    
     
     
     /**
