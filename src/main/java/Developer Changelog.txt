@@ -338,6 +338,9 @@ V2.1 -> V2.2{
             - right clicking on him with a diamond adds 2 cooking attempts to the counter and notifies player
             - right clicking on him with a cookable item after being primed will cook the entire size of the stack,
             drop no experience, reduce the counter by one and let the player know what occurred.
+        - Neatened up the cooking code
+        - Partitioned off the chat messages and their references
+        - Will work on the area surrounding and cooking every 1 second tomorrow(every 5 seconds would take 5 minutes to cook a stack)
     }
     
     TODO{
@@ -365,7 +368,7 @@ V2.1 -> V2.2{
                 - Smelts stuff in the EmeraldFurnace backpack
             X Currently right clicking will display chat to the player and provide further options for right clicking,
             the actual furnace and it's gui are impossible to open right now.
-            - Improve dynamics of the chat conversations.
+            X Improve dynamics of the chat conversations.
             - On death spawns fireworks and drops a single EmeraldFurnace
         - Create the EmeraldFurnace
             - We'd have to eventually because you have to open something on the mob ;)

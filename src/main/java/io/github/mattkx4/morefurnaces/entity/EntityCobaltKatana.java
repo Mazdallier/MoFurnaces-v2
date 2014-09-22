@@ -56,7 +56,14 @@ public class EntityCobaltKatana extends EntityMob{
 	//an integer for the number of attempts
     int attempts;
     String text;
-    int textCount;
+    //flag to check if this mob has greeted this player
+    boolean greeted;
+    //get the number of attempts to add to the total number of attempts
+    int newAttempts;
+    //new itemstack for the currently held item
+    ItemStack heldItem;
+    //new itemstack for the result of cooking the held item
+    ItemStack cookingResult;
 	
 	/** Above zero if this Entity is Angry. */
     private int angerLevel;
@@ -65,6 +72,7 @@ public class EntityCobaltKatana extends EntityMob{
     private Entity field_110191_bu;
     private static final UUID field_110189_bq = UUID.fromString("49455A49-7EC5-45BA-B886-3B90B23A1718");
     private static final AttributeModifier field_110190_br = (new AttributeModifier(field_110189_bq, "Attacking speed boost", 0.45D, 0)).setSaved(false);
+	
 
 	public EntityCobaltKatana(World world){
 		super(world);
@@ -150,96 +158,165 @@ public class EntityCobaltKatana extends EntityMob{
     	
     	return true;
     }
+    /**
+     * This is called to display a conversational message for the player
+     * 
+     * @param branch : Which piece of text should the player receive
+     * @param player : The player entity
+     */
+    public void chatTree(int branch, EntityPlayer player){
+    	switch(branch){
+    	//greet the player and set the greeting as true
+    	case 1:{
+            player.addChatMessage(new ChatComponentText("Hello "+player.getDisplayName()+" it's nice to finnaly meet you."));
+            greeted = true;
+            return;
+    	}
+        //notify the player of the number of attempts added
+    	case 2:{
+            player.addChatMessage(new ChatComponentText("You may use my furnace another "+newAttempts+" times."));
+            return;
+    	}
+        //notify the player that they have nothing in hand
+    	case 3:{
+            player.addChatMessage(new ChatComponentText("I'm sorry "+player.getDisplayName()+" you have nothing to cook."));
+            return;
+    	}
+        //notify the player of what they will smelt and what they will receive
+    	case 4:{
+    		player.addChatMessage(new ChatComponentText("I will turn " + heldItem.stackSize + " of your " + heldItem.getDisplayName() + " into " + cookingResult.getDisplayName() + "."));
+    		return;
+    	}
+		//notify the player of how many attempts they have left
+    	case 5:{
+    		if(attempts == 0){
+                player.addChatMessage(new ChatComponentText("You have no more attempts for cooking, " + player.getDisplayName() + "."));
+                return;
+    		}else if(attempts == 1){
+                player.addChatMessage(new ChatComponentText(player.getDisplayName() + ", I can cook " + attempts + " more stack of items for you."));
+                return;
+    		}else{
+    			player.addChatMessage(new ChatComponentText(player.getDisplayName() + ", I can cook " + attempts + " more stacks of items for you."));
+    			return;
+    		}
+    	}
+		//notify the player that the item cannot be smelted/cooked
+    	case 6:{
+            player.addChatMessage(new ChatComponentText("I'm sorry " + player.getDisplayName() + " I can't cook that for you."));
+            return;
+    	}
+    	default:{
+    		return;
+    	}
+    	}
+    }
         
     @Override
     @SideOnly(Side.CLIENT)
     public boolean interact(EntityPlayer player)
     {    	
     	if(!this.worldObj.isRemote){
-    	
-    	if(textCount > 1){
-    		textCount = 0;
-    	}
-    	
-    	//get the item currently being held
-        ItemStack itemstack = player.inventory.getCurrentItem();
-    	//set the current slot ID
-    	int slot = player.inventory.currentItem;
-        //if the item is a diamond then set the flag to true
-        boolean flag = itemstack != null && itemstack.getItem() == Items.diamond;
-        //create a ready flag for smelting 
-        boolean smeltIt = canSmelt(itemstack, slot);
-               
-        player.addChatMessage(new ChatComponentText("Hello "+player.getDisplayName()));
-       
-       
-        //make sure the mob is first ready for smelting
-        if (flag && this.isEntityAlive() && !this.isChild() && !player.isSneaking())
-        {
-        	//play the tamed animation (hearts above the mob)
-        	for (int i = 0; i < 7; ++i)
-            {
-                double d0 = this.rand.nextGaussian() * 0.02D;
-                double d1 = this.rand.nextGaussian() * 0.02D;
-                double d2 = this.rand.nextGaussian() * 0.02D;
-                this.worldObj.spawnParticle("flame", this.posX + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, this.posY + 0.5D + (double)(this.rand.nextFloat() * this.height), this.posZ + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, d0, d1, d2);
-            }
-            //remove one diamond from the stack
-            --itemstack.stackSize;
-            //set the number of attempts to 3
-            attempts += 2;
-            player.addChatMessage(new ChatComponentText("You may use my furnace "+attempts+" more times."));
-            
-            //set text to congratulations
-            textCount++;
-            return true;
-        }
-        //smelt the item held immediately
-        //if the mob is ready and there is an item to smelt
-        else if (smeltIt && attempts > 0){
-        	System.out.println("smelted");
-        	//set a new itemstack for the smelting result
-        	ItemStack result = FurnaceRecipes.smelting().getSmeltingResult(itemstack);
-        	//set the correct itemstack size
-        	result.stackSize = itemstack.stackSize;
-        	//delete current itemstack
-        	player.inventory.setInventorySlotContents(slot, null);
-        	//replace the old itemstack with the new one   	
-        	player.inventory.setInventorySlotContents(slot, result);
-        	//reduce the number of attempts by one
-        	--attempts;
-        	 player.addChatMessage(new ChatComponentText("I've turned your "+itemstack.getDisplayName()+" into "+result.getDisplayName()));
-        	 player.addChatMessage(new ChatComponentText("You have "+attempts+ " more uses of my furnace"));
-            textCount++;
-
-        	return true;
-        }else
-        	 player.addChatMessage(new ChatComponentText("You may not use my furnace."));
-        	textCount++;
-
-            return true;
+    		//make sure that the mob is not angry
+	    	if(angerLevel == 0){
+		    	//get the item currently being held
+	    		heldItem = player.inventory.getCurrentItem();
+		    	//set the current slot ID
+		    	int slot = player.inventory.currentItem;
+		        //if the item is a diamond then set the flag to true
+		        boolean flag = heldItem != null && (heldItem.getItem() == Items.diamond || heldItem.getItem() == Items.emerald);
+		        //create a ready flag for smelting 
+		        boolean smeltIt = canSmelt(heldItem, slot);   
+		        
+		        //if the player has not been greeted, greet them
+		        if(greeted == false)chatTree(1,player);
+		        
+		        //make sure the mob is first ready for smelting
+		        if (flag && this.isEntityAlive() && !this.isChild() && !player.isSneaking()){
+		        	//play the tamed animation (hearts above the mob)
+		        	for (int i = 0; i < 7; ++i){
+		                double d0 = this.rand.nextGaussian() * 0.02D;
+		                double d1 = this.rand.nextGaussian() * 0.02D;
+		                double d2 = this.rand.nextGaussian() * 0.02D;
+		                this.worldObj.spawnParticle("flame", this.posX + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, this.posY + 0.5D + (double)(this.rand.nextFloat() * this.height), this.posZ + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, d0, d1, d2);
+		            }
+		            //remove one item from the stack
+		            --heldItem.stackSize;
+		            
+		            //set the number of attempts to 3
+		            if(heldItem.getItem() == Items.diamond)newAttempts = 2;
+		            if(heldItem.getItem() == Items.emerald)newAttempts = 5;
+		            
+		            //add the new attempts to the current counter
+		            attempts = attempts + newAttempts;
+		            //tell the player how many more attempts they gainer
+		            chatTree(2, player);
+		            
+		            return true;
+		        }
+		        //smelt the item held immediately
+		        //if the mob is ready and there is an item to smelt
+		        else if (smeltIt && attempts > 0){
+		        	System.out.println("smelted");
+		        	//set a new itemstack for the smelting result
+		        	cookingResult = FurnaceRecipes.smelting().getSmeltingResult(heldItem);
+		        	//set the correct itemstack size
+		        	cookingResult.stackSize = heldItem.stackSize;
+		        	//delete current itemstack
+		        	player.inventory.setInventorySlotContents(slot, null);
+		        	//replace the old itemstack with the new one   	
+		        	player.inventory.setInventorySlotContents(slot, cookingResult);
+		        	//reduce the number of attempts by one
+		        	--attempts;
+		        	//tell the player what is being cooked into what, and how much
+		        	chatTree(4, player);
+		        	//tell the player how many attempts they have left
+		        	chatTree(5, player);
+		        	return true;
+		        }else if(heldItem == null){
+		        	//tell the player that there is nothing being held
+		        	chatTree(3, player);
+		        	//tell the player how many attempts they have left
+		        	chatTree(5, player);
+		        	return true;
+		        }else
+		        	//tell the player that they can't smelt that item
+		        	chatTree(6, player);
+		        	//tell the player how many attempts they have left
+		        	chatTree(5, player);
+		        	
+	            return true;
+	    	}
     	}
         return true;
-
     }
     
     
     /**
-     * (abstract) Protected helper method to write subclass entity data to NBT.
+     * save variables to the nbt
      */
     public void writeEntityToNBT(NBTTagCompound nbt)
     {
         super.writeEntityToNBT(nbt);
+        //set the anger level of the current mob
         nbt.setShort("Anger", (short)this.angerLevel);
+        //set the number of cooking attempts left for the player
+        nbt.setShort("attempts", (short)this.attempts);
+        //set whether or not this particular mob has been greeted or not
+        nbt.setBoolean("greeted", (boolean)this.greeted);
     }
 
     /**
-     * (abstract) Protected helper method to read subclass entity data from NBT.
+     * Read variable from the saved nbt
      */
     public void readEntityFromNBT(NBTTagCompound nbt)
     {
         super.readEntityFromNBT(nbt);
+        //grab the anger level of this mob
         this.angerLevel = nbt.getShort("Anger");
+        //grab the number of cooking attempts granted by this mob
+        this.attempts = nbt.getShort("attempts");
+        //get whether or not this mob has greeted the player
+        this.greeted = nbt.getBoolean("greeted");
     }
     
     /**
