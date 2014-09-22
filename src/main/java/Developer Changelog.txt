@@ -321,7 +321,6 @@ V2.1 -> V2.2{
             - Plan on creating a website for the Mo' Furnaces Mod and I want to make it look... sexy...
     }
     
-<<<<<<< HEAD
     21 SEPT- Mattkx4{
         - Particles, Particles, Particles
             - I kind of got the hang of the particle thingy:
@@ -331,33 +330,26 @@ V2.1 -> V2.2{
             - Changed it so Tier 1, 2, 3 and furnaces all have the same flame color.
             - Briefed CK on the Tiering Device and the Tier 3 Device, so those should be done in a day or two.
             - Yeah, still working on my HTML. Website will hopefully be done by the next, or following update.
-=======
+    }
+
     22 SEPT - Pr1meSh0ck{
         - Added smelting capabilities to CK
             - right click on him with nothing says go away(need to change to a dynamic chatting)
             - right clicking on him with a diamond adds 2 cooking attempts to the counter and notifies player
             - right clicking on him with a cookable item after being primed will cook the entire size of the stack,
             drop no experience, reduce the counter by one and let the player know what occurred.
->>>>>>> origin/master
     }
     
     TODO{
         - PARTICLES
             - Perfect the art of making particle stuffs
         X Add bonemeal to the bone furnace
-        - Do the CK Mob
+         Do the CK Mob
             X Fix texture rendering...
                 X Head is all messed up and the emerald furnace is rendering onto the legs (?)
-<<<<<<< HEAD
-            - Add tameablility?
-                - Add the ability to tame a CobaltKatana and have it follow you
-                    - Seems kind of morbid, but like...
-            - Ability to leash to a fence and etc.
-                - Once again, kind of morbid, but seriously...
+                 Not sure about the emerald furnace part but it should be rendering correctly, can you check this again??
             X Make it a defender.
                 X Attacks hostile mobs with the power of a diamond sword
-=======
-                - Not sure about the emerald furnace part but it should be rendering correctly, can you check this again??
             X Add tameablility?
                 X Add the ability to tame a CobaltKatana and have it follow you
                     X Seems kind of morbid, but like...
@@ -368,7 +360,6 @@ V2.1 -> V2.2{
             X Make it a defender.
                 X Attacks hostile mobs with the power of a diamond sword
                 X Done
->>>>>>> origin/master
             - Right-Click opens up a furnace
                 - Opens EmeraldFurnace
                 - Smelts stuff in the EmeraldFurnace backpack
