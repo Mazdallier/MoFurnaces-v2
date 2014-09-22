@@ -321,18 +321,31 @@ V2.1 -> V2.2{
             - Plan on creating a website for the Mo' Furnaces Mod and I want to make it look... sexy...
     }
     
+    21 SEPT- Mattkx4{
+        - Particles, Particles, Particles
+            - I kind of got the hang of the particle thingy:
+                - So when they say "1.0F" they mean 100% or 255 in RGB Code Values. Anyway, that helped out a bunch.
+            - Just because of the texture, I wasn't able to successfully make a white-ish flame or a blue-ish flame, so for now, they're stuck with the originals.
+            - I'll do some more work on the blue and white textures when I get time.
+            - Changed it so Tier 1, 2, 3 and furnaces all have the same flame color.
+            - Briefed CK on the Tiering Device and the Tier 3 Device, so those should be done in a day or two.
+            - Yeah, still working on my HTML. Website will hopefully be done by the next, or following update.
+    }
+    
     TODO{
+        - PARTICLES
+            - Perfect the art of making particle stuffs
         X Add bonemeal to the bone furnace
         - Do the CK Mob
-            - Fix texture rendering...
-                - Head is all messed up and the emerald furnace is rendering onto the legs (?)
+            X Fix texture rendering...
+                X Head is all messed up and the emerald furnace is rendering onto the legs (?)
             - Add tameablility?
                 - Add the ability to tame a CobaltKatana and have it follow you
                     - Seems kind of morbid, but like...
             - Ability to leash to a fence and etc.
                 - Once again, kind of morbid, but seriously...
-            - Make it a defender.
-                - Attacks hostile mobs with the power of a diamond sword
+            X Make it a defender.
+                X Attacks hostile mobs with the power of a diamond sword
             - Right-Click opens up a furnace
                 - Opens EmeraldFurnace
                 - Smelts stuff in the EmeraldFurnace backpack
@@ -358,7 +371,7 @@ V2.1 -> V2.2{
             X Anvil Furnace
             X Redstone Furnace
         - Need to add/alter block textures for the following furnaces
-            - Anvil (Waiting on Re-texturing)
+            X Anvil
             - Diamond T2 - T3
             - Iron T2 - T3
             - Brick T2 - T3

@@ -2,11 +2,11 @@ package io.github.mattkx4.morefurnaces.blocks.tier2;
 
 import io.github.mattkx4.morefurnaces.blocks.tier3.BrickFurnaceT3;
 import io.github.mattkx4.morefurnaces.blocks.tier3.MFMT3Blocks;
-import io.github.mattkx4.morefurnaces.lib.Strings;
 import io.github.mattkx4.morefurnaces.items.MFMItems;
+import io.github.mattkx4.morefurnaces.lib.Strings;
 import io.github.mattkx4.morefurnaces.main.MoFurnacesMod;
-import io.github.mattkx4.morefurnaces.particles.EntityTier2FlameFX;
-import io.github.mattkx4.morefurnaces.tileentity.TileEntityBrickFurnace;
+import io.github.mattkx4.morefurnaces.particles.EntityIronFlameFX;
+import io.github.mattkx4.morefurnaces.particles.EntityObsidianFlameFX;
 import io.github.mattkx4.morefurnaces.tileentity.tier2.TileEntityBrickFurnaceT2;
 import io.github.mattkx4.morefurnaces.tileentity.tier3.TileEntityBrickFurnaceT3;
 
@@ -20,7 +20,6 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
@@ -326,7 +325,7 @@ public class BrickFurnaceT2 extends BlockContainer{
      * A randomly called display update to add particles or other items for display
      * in this case it is adding smoke and flames.
      */
-    @SideOnly(Side.CLIENT)
+	@SideOnly(Side.CLIENT)
     public void randomDisplayTick(World world, int x, int y, int z, Random random){ 	
     	
         if (this.isActive){
@@ -340,16 +339,17 @@ public class BrickFurnaceT2 extends BlockContainer{
             //spawn in the smoke and custom flame particle
             if(direction == 4){
             	world.spawnParticle("smoke", (double)(x1 - f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
-				Minecraft.getMinecraft().effectRenderer.addEffect(new EntityTier2FlameFX(world, (double)(x1 - f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D));
+				Minecraft.getMinecraft().effectRenderer.addEffect(new EntityIronFlameFX(world, (double)(x1 - f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D));
+
             }else if (direction == 5){
             	world.spawnParticle("smoke", (double)(x1 + f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
-            	Minecraft.getMinecraft().effectRenderer.addEffect(new EntityTier2FlameFX(world, (double)(x1 + f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D));
+            	Minecraft.getMinecraft().effectRenderer.addEffect(new EntityIronFlameFX(world, (double)(x1 + f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D));
         	}else if (direction == 2){
             	world.spawnParticle("smoke", (double)(x1 + f1), (double)y1, (double)(z1 - f), 0.0D, 0.0D, 0.0D);
-            	Minecraft.getMinecraft().effectRenderer.addEffect(new EntityTier2FlameFX(world, (double)(x1 + f1), (double)y1, (double)(z1 - f), 0.0D, 0.0D, 0.0D));  
+            	Minecraft.getMinecraft().effectRenderer.addEffect(new EntityIronFlameFX(world, (double)(x1 + f1), (double)y1, (double)(z1 - f), 0.0D, 0.0D, 0.0D));  
         	}else if (direction == 3){
             	world.spawnParticle("smoke", (double)(x1 + f1), (double)y1, (double)(z1 + f), 0.0D, 0.0D, 0.0D);
-            	Minecraft.getMinecraft().effectRenderer.addEffect(new EntityTier2FlameFX(world, (double)(x1 + f1), (double)y1, (double)(z1 + f), 0.0D, 0.0D, 0.0D));       
+            	Minecraft.getMinecraft().effectRenderer.addEffect(new EntityIronFlameFX(world, (double)(x1 + f1), (double)y1, (double)(z1 + f), 0.0D, 0.0D, 0.0D));       
         	}
         }
     }

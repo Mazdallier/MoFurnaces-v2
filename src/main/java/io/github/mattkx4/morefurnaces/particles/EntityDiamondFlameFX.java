@@ -1,41 +1,16 @@
 package io.github.mattkx4.morefurnaces.particles;
 
-import java.nio.ByteBuffer;
-import java.nio.FloatBuffer;
-import java.nio.IntBuffer;
-
-import org.lwjgl.opengl.GL11;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import io.github.mattkx4.morefurnaces.lib.Strings;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.particle.EntityFX;
 import net.minecraft.client.particle.EntityFlameFX;
-import net.minecraft.client.renderer.GLAllocation;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.util.IIcon;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import static org.lwjgl.opengl.GL11.*;
 
+public class EntityDiamondFlameFX extends EntityFlameFX{	
 
-/**
- * Attempt at creating custom particles, it's bloody difficult
- * This is a carbon copy of the minecraft flame effect that recolours the texture to be a bluish green. 
- * problems persist in creating an original particle and calling it properly
- * as such, and this being the best I can do right now I am leaving this all as is
- * and moving onto wacky furnaces.
- * 
- */
-
-public class EntityTier3FlameFX extends EntityFlameFX{	
-
-	/** the scale of the flame FX */
+	/* the scale of the flame FX */
     private float flameScale;
     private static final String __OBFID = "CL_00000907";
 
-    public EntityTier3FlameFX(World p_i1209_1_, double p_i1209_2_, double p_i1209_4_, double p_i1209_6_, double p_i1209_8_, double p_i1209_10_, double p_i1209_12_)
+    public EntityDiamondFlameFX(World p_i1209_1_, double p_i1209_2_, double p_i1209_4_, double p_i1209_6_, double p_i1209_8_, double p_i1209_10_, double p_i1209_12_)
     {
         super(p_i1209_1_, p_i1209_2_, p_i1209_4_, p_i1209_6_, p_i1209_8_, p_i1209_10_, p_i1209_12_);
         this.motionX = this.motionX * 0.009999999776482582D + p_i1209_8_;
@@ -45,7 +20,7 @@ public class EntityTier3FlameFX extends EntityFlameFX{
         d6 = p_i1209_4_ + (double)((this.rand.nextFloat() - this.rand.nextFloat()) * 0.05F);
         d6 = p_i1209_6_ + (double)((this.rand.nextFloat() - this.rand.nextFloat()) * 0.05F);
         this.flameScale = this.particleScale;
-        this.particleRed = 0.1F;
+        this.particleRed = 1.0F;
 		this.particleGreen = 1.0F;
 		this.particleBlue = 1.0F;
         this.particleMaxAge = (int)(8.0D / (Math.random() * 0.8D + 0.2D)) + 4;
@@ -87,7 +62,7 @@ public class EntityTier3FlameFX extends EntityFlameFX{
         return j | k << 16;
     }
 
-    /**
+    /*
      * Gets how bright this entity is.
      */
     public float getBrightness(float p_70013_1_)
@@ -108,7 +83,7 @@ public class EntityTier3FlameFX extends EntityFlameFX{
         return f2 * f1 + (1.0F - f1);
     }
 
-    /**
+    /*
      * Called to update the entity's position/logic.
      */
     public void onUpdate()
