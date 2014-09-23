@@ -2,19 +2,12 @@ package io.github.mattkx4.morefurnaces.entity;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
-import io.github.mattkx4.morefurnaces.blocks.IronFurnace;
-import io.github.mattkx4.morefurnaces.main.MoFurnacesMod;
-import io.github.mattkx4.morefurnaces.tileentity.TileEntityIronFurnace;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.ChatLine;
-import net.minecraft.client.network.NetHandlerPlayClient;
-import net.minecraft.command.IEntitySelector;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.IEntityLivingData;
-import net.minecraft.entity.IMerchant;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -27,13 +20,11 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.entity.monster.EntityWitch;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.monster.IMob;
-import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -41,13 +32,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.IChatComponent;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeModContainer;
-import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -168,7 +155,7 @@ public class EntityCobaltKatana extends EntityMob{
     	switch(branch){
     	//greet the player and set the greeting as true
     	case 1:{
-            player.addChatMessage(new ChatComponentText("Hello "+player.getDisplayName()+" it's nice to finnaly meet you."));
+            player.addChatMessage(new ChatComponentText("Hello "+player.getDisplayName()+" it's nice to finally meet you."));
             greeted = true;
             return;
     	}
@@ -202,7 +189,7 @@ public class EntityCobaltKatana extends EntityMob{
     	}
 		//notify the player that the item cannot be smelted/cooked
     	case 6:{
-            player.addChatMessage(new ChatComponentText("I'm sorry " + player.getDisplayName() + " I can't cook that for you."));
+            player.addChatMessage(new ChatComponentText("I'm sorry " + player.getDisplayName() + ", I can't cook that for you."));
             return;
     	}
     	default:{
@@ -487,6 +474,27 @@ public class EntityCobaltKatana extends EntityMob{
 		
 		
     }
-	
-	
+	// I'll use this method tomorrow, for now just chill.
+	/**
+	 * Returns a pseudo-random number between min and max, inclusive.
+	 * The difference between min and max can be at most
+	 * <code>Integer.MAX_VALUE - 1</code>.
+	 *
+	 * @param min Minimum value
+	 * @param max Maximum value.  Must be greater than min.
+	 * @return Integer between min and max, inclusive.
+	 * @see java.util.Random#nextInt(int)
+	 */
+	public static int randInt(int min, int max) {
+
+	    // NOTE: Usually this should be a field rather than a method
+	    // variable so that it is not re-seeded every call.
+	    Random rand = new Random();
+
+	    // nextInt is normally exclusive of the top value,
+	    // so add 1 to make it inclusive
+	    int randomNum = rand.nextInt((max - min) + 1) + min;
+
+	    return randomNum;
+	}
 }

@@ -343,6 +343,10 @@ V2.1 -> V2.2{
         - Will work on the area surrounding and cooking every 1 second tomorrow(every 5 seconds would take 5 minutes to cook a stack)
     }
     
+    23 SEPT- Mattkx4{
+        - Brief work to CK chat. I'll do more stuffs tomrrow. Not a lot of time tonight.
+    }
+    
     TODO{
         - PARTICLES
             - Perfect the art of making particle stuffs
