@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.IEntityLivingData;
@@ -51,6 +52,8 @@ public class EntityCobaltKatana extends EntityMob{
     ItemStack heldItem;
     //new itemstack for the result of cooking the held item
     ItemStack cookingResult;
+    //new variable for the slot number(0-8)
+    int slot;
 	
 	/** Above zero if this Entity is Angry. */
     private int angerLevel;
@@ -208,7 +211,7 @@ public class EntityCobaltKatana extends EntityMob{
 		    	//get the item currently being held
 	    		heldItem = player.inventory.getCurrentItem();
 		    	//set the current slot ID
-		    	int slot = player.inventory.currentItem;
+		    	slot = player.inventory.currentItem;
 		        //if the item is a diamond then set the flag to true
 		        boolean flag = heldItem != null && (heldItem.getItem() == Items.diamond || heldItem.getItem() == Items.emerald);
 		        //create a ready flag for smelting 
@@ -237,7 +240,11 @@ public class EntityCobaltKatana extends EntityMob{
 		            attempts = attempts + newAttempts;
 		            //tell the player how many more attempts they gainer
 		            chatTree(2, player);
-		            
+		            //reset the items
+		        	heldItem = null;
+		        	cookingResult = null;
+		        	
+		        	
 		            return true;
 		        }
 		        //smelt the item held immediately
@@ -246,24 +253,56 @@ public class EntityCobaltKatana extends EntityMob{
 		        	System.out.println("smelted");
 		        	//set a new itemstack for the smelting result
 		        	cookingResult = FurnaceRecipes.smelting().getSmeltingResult(heldItem);
-		        	//set the correct itemstack size
 		        	cookingResult.stackSize = heldItem.stackSize;
 		        	//delete current itemstack
 		        	player.inventory.setInventorySlotContents(slot, null);
-		        	//replace the old itemstack with the new one   	
-		        	player.inventory.setInventorySlotContents(slot, cookingResult);
+
+		        	
+		        	//test code for smelting within an area
+		        	//grab the x and z coords of the mob
+		        	double xCoord = EntityCobaltKatana.this.posX;
+		        	System.out.println("X position is:"+xCoord);
+		        	double zCoord = EntityCobaltKatana.this.posZ;
+		        	System.out.println("Z position is:"+zCoord);
+		        	//create limits to the radius of the effect(5x5x5 cube)
+		        	int xPlus = (int)xCoord + 5;
+		        	int xMinus = (int)xCoord - 5;
+		        	int zPlus = (int)zCoord + 5;
+		        	int zMinus = (int)zCoord - 5;
+		        	//do while the player is within the area of effect
+		        	System.out.println("Player X position is:"+player.posX);
+		        	System.out.println("Player Z position is:"+player.posZ);
+
+		        	//arbitrary flag to let the code know that the itemstack has been cooked
+		        	boolean finished = false;
+		        	while(player.posX > xMinus && player.posX < xPlus && player.posZ > zMinus && player.posZ < zPlus && finished == false){
+		        		System.out.println("player is within the radius");
+		        		//while the cooked item stack size is still less than the held item item stack
+	        			//set the slot to the stack adding the stack size
+	        			player.inventory.setInventorySlotContents(slot, cookingResult);	  
+			        	finished = true;
+		        		}
 		        	//reduce the number of attempts by one
 		        	--attempts;
 		        	//tell the player what is being cooked into what, and how much
 		        	chatTree(4, player);
 		        	//tell the player how many attempts they have left
 		        	chatTree(5, player);
-		        	return true;
+		        	
+		            //reset the items
+		        	heldItem = null;
+		        	cookingResult = null;
+		        	return true;       	
+		        	
 		        }else if(heldItem == null){
 		        	//tell the player that there is nothing being held
 		        	chatTree(3, player);
 		        	//tell the player how many attempts they have left
 		        	chatTree(5, player);
+		        	
+		            //reset the items
+		        	heldItem = null;
+		        	cookingResult = null;
 		        	return true;
 		        }else
 		        	//tell the player that they can't smelt that item
@@ -271,12 +310,18 @@ public class EntityCobaltKatana extends EntityMob{
 		        	//tell the player how many attempts they have left
 		        	chatTree(5, player);
 		        	
-	            return true;
+		            //reset the items
+		        	heldItem = null;
+		        	cookingResult = null;
+		        	return true;
 	    	}
     	}
-        return true;
-    }
-    
+    	
+        //reset the items
+    	heldItem = null;
+    	cookingResult = null;
+		return true;
+	}    
     
     /**
      * save variables to the nbt
