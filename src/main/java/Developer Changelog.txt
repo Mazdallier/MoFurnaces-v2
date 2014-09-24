@@ -343,8 +343,12 @@ V2.1 -> V2.2{
         - Will work on the area surrounding and cooking every 1 second tomorrow(every 5 seconds would take 5 minutes to cook a stack)
     }
     
-    23 SEPT- Mattkx4{
+    22 SEPT - Mattkx4{
         - Brief work to CK chat. I'll do more stuffs tomrrow. Not a lot of time tonight.
+    }
+    
+    23 SEPT - Mattkx4{
+        - Did A LOT of work to the CK chat. It's a little bit more... interesting now. I'll see what I can do with him later (probs not tomorrow (usually busy on wednesday)).
     }
     
     TODO{

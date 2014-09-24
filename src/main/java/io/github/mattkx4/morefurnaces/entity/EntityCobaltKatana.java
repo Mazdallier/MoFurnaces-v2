@@ -155,21 +155,28 @@ public class EntityCobaltKatana extends EntityMob{
      * @param player : The player entity
      */
     public void chatTree(int branch, EntityPlayer player){
+    	int randomInt = randInt(0, 2);
     	switch(branch){
     	//greet the player and set the greeting as true
     	case 1:{
-            player.addChatMessage(new ChatComponentText("Hello "+player.getDisplayName()+" it's nice to finally meet you."));
+    		if (randomInt == 0) {
+    			player.addChatMessage(new ChatComponentText("Hello "+player.getDisplayName()+", it's nice to finally meet you."));
+    		} else if (randomInt == 1) {
+    			player.addChatMessage(new ChatComponentText("Hey there "+player.getDisplayName()+", good to meet yah!"));
+    		} else if (randomInt == 2) {
+    			player.addChatMessage(new ChatComponentText("My name's Cobalt Katana! It's nice to meet you "+player.getDisplayName()+"!"));
+    		}
             greeted = true;
             return;
     	}
         //notify the player of the number of attempts added
     	case 2:{
-            player.addChatMessage(new ChatComponentText("You may use my furnace another "+newAttempts+" times."));
+            player.addChatMessage(new ChatComponentText("You have added "+newAttempts+" more attempts to my furnace. Total attempts left: "+attempts+"."));
             return;
     	}
         //notify the player that they have nothing in hand
     	case 3:{
-            player.addChatMessage(new ChatComponentText("I'm sorry "+player.getDisplayName()+" you have nothing to cook."));
+            player.addChatMessage(new ChatComponentText("I'm sorry "+player.getDisplayName()+", you have nothing to cook."));
             return;
     	}
         //notify the player of what they will smelt and what they will receive
@@ -182,12 +189,9 @@ public class EntityCobaltKatana extends EntityMob{
     		if(attempts == 0){
                 player.addChatMessage(new ChatComponentText("You have no more attempts for cooking, " + player.getDisplayName() + "."));
                 return;
-    		}else if(attempts == 1){
-                player.addChatMessage(new ChatComponentText(player.getDisplayName() + ", I can cook " + attempts + " more stack of items for you."));
-                return;
     		}else{
-    			player.addChatMessage(new ChatComponentText(player.getDisplayName() + ", I can cook " + attempts + " more stacks of items for you."));
-    			return;
+                player.addChatMessage(new ChatComponentText("Total attempts left: "+attempts+"."));
+                return;
     		}
     	}
 		//notify the player that the item cannot be smelted/cooked
@@ -233,12 +237,13 @@ public class EntityCobaltKatana extends EntityMob{
 		            --heldItem.stackSize;
 		            
 		            //set the number of attempts to 3
-		            if(heldItem.getItem() == Items.diamond)newAttempts = 2;
+		            if(heldItem.getItem() == Items.diamond)newAttempts = 3;
+		            //set the number of attempts to 5
 		            if(heldItem.getItem() == Items.emerald)newAttempts = 5;
 		            
 		            //add the new attempts to the current counter
 		            attempts = attempts + newAttempts;
-		            //tell the player how many more attempts they gainer
+		            //tell the player how many more attempts they gained
 		            chatTree(2, player);
 		            //reset the items
 		        	heldItem = null;
@@ -305,6 +310,9 @@ public class EntityCobaltKatana extends EntityMob{
 		        	cookingResult = null;
 		        	return true;
 		        }else
+		        	if (heldItem == new ItemStack(Items.diamond) || heldItem == new ItemStack(Items.emerald)) {
+		        		return true;
+		        	}
 		        	//tell the player that they can't smelt that item
 		        	chatTree(6, player);
 		        	//tell the player how many attempts they have left
@@ -519,7 +527,7 @@ public class EntityCobaltKatana extends EntityMob{
 		
 		
     }
-	// I'll use this method tomorrow, for now just chill.
+
 	/**
 	 * Returns a pseudo-random number between min and max, inclusive.
 	 * The difference between min and max can be at most
