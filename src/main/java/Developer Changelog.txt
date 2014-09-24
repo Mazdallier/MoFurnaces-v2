@@ -30,6 +30,10 @@ Wishlist{
         - Depending on the setting in the furnace:
             - Turns 9 (? Forgot how to make a solid block) ingots into a solid ingot block
             - Turns 32 ingots into the ore that the ingot came from
+    - Eventual CK Mob updates
+        - Adding in an emerald furnace
+        - Right clicking on CK opens up an Emerald Furnace gui
+        - On death spawns fireworks and drops a single EmeraldFurnace
     - Automated updater
     - Mod Installer
     - Mo' Furnaces Website
@@ -351,11 +355,18 @@ V2.1 -> V2.2{
         - Did A LOT of work to the CK chat. It's a little bit more... interesting now. I'll see what I can do with him later (probs not tomorrow (usually busy on wednesday)).
     }
     
+    24 SEPT - Pr1meSh0ck{
+        - Finalised the cooking process for the CK mob. I am now happy with it and will leave that mechanic alone for the time being
+        - I also left in the code (commented out) that identifies if the player is within a cube around the mob.
+        - Tomorrow I'm going to work on the flame particles again, try out the idea of cloning the default flame and the particles texture,
+        changing the ttexture and point the clone flame to the new texture.
+    }
+    
     TODO{
         - PARTICLES
             - Perfect the art of making particle stuffs
         X Add bonemeal to the bone furnace
-         Do the CK Mob
+        X Do the CK Mob
             X Fix texture rendering...
                 X Head is all messed up and the emerald furnace is rendering onto the legs (?)
                  Not sure about the emerald furnace part but it should be rendering correctly, can you check this again??
@@ -371,15 +382,9 @@ V2.1 -> V2.2{
             X Make it a defender.
                 X Attacks hostile mobs with the power of a diamond sword
                 X Done
-            - Right-Click opens up a furnace
-                - Opens EmeraldFurnace
-                - Smelts stuff in the EmeraldFurnace backpack
             X Currently right clicking will display chat to the player and provide further options for right clicking,
             the actual furnace and it's gui are impossible to open right now.
             X Improve dynamics of the chat conversations.
-            - On death spawns fireworks and drops a single EmeraldFurnace
-        - Create the EmeraldFurnace
-            - We'd have to eventually because you have to open something on the mob ;)
         X Transfer Fuel Less Furnace methods/code to Netherrack Furnace
         X Fix shift-clicking on Fuel Less Furnace
         X Apply tiering to the following furnaces
@@ -387,7 +392,7 @@ V2.1 -> V2.2{
             X Brick
             X Diamond
             X Quartz
-        - Design the following Wacky Furnace:
+        X Design the following Wacky Furnace:
             X Anvil
             X Cacti
         X Need to tweak Anvil Furnace stats for balance
