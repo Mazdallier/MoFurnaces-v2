@@ -362,9 +362,20 @@ V2.1 -> V2.2{
         changing the ttexture and point the clone flame to the new texture.
     }
     
+    25 SEPT - Pr1meSh0ck{
+        - Finally got the custom particles working.
+            - Attempted a second method of spawning custom particles, it didn't work.
+            - Added custom tier 2 and tier 3 flames.
+            - Added custom texture maps (entire particle texture) for the T2, T3 flames.
+            - Changed the flames spawned by the T2, T3 furnaces to their respective flames.
+        - As a guide to add in custom particles, you need to clone the T2 or T3 flame FX's, change the resource location
+        and create a new resource that is a copy of the original particles texture with the flame particle altered.
+    }
+    
     TODO{
         - PARTICLES
-            - Perfect the art of making particle stuffs
+            X Perfect the art of making particle stuffs
+            - Add particles to the things that need them
         X Add bonemeal to the bone furnace
         X Do the CK Mob
             X Fix texture rendering...
