@@ -11,7 +11,9 @@ import io.github.mattkx4.morefurnaces.handler.MFMHandler;
 import io.github.mattkx4.morefurnaces.items.MFMItems;
 import io.github.mattkx4.morefurnaces.lib.Strings;
 import io.github.mattkx4.morefurnaces.proxy.ServerProxy;
+import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
@@ -23,6 +25,7 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.gameevent.TickEvent.ClientTickEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -95,6 +98,7 @@ public class MoFurnacesMod {
 	private MFMUpdateNotifier updateNotifier;
 	public Logger LOGGER;
     private boolean updateMessageQueued;
+    public EntityPlayer player;
 
 	
 	
@@ -103,6 +107,8 @@ public class MoFurnacesMod {
 	 */
 	@EventHandler
 	public static void preload(FMLPreInitializationEvent preEvent){
+		instance.updateNotifier = new MFMUpdateNotifier();
+
 		// Creates a new Creative Tab using the Diamond Furnace Block.
 		MFM = new CreativeTabs("mfm"){
 			@SideOnly(Side.CLIENT)
@@ -126,10 +132,7 @@ public class MoFurnacesMod {
 		MFMEntityHandler.mainRegistry();
 		MFMAchievements.mainRegistry();
 		
-		proxy.registerRenderThings();	
-
-			instance.updateNotifier = new MFMUpdateNotifier();
-		
+		proxy.registerRenderThings();			
 	}
 	
 	/*
@@ -137,6 +140,7 @@ public class MoFurnacesMod {
 	 */
 	@EventHandler
 	public void load(FMLInitializationEvent Event){
+				
 		// Calls all secondaryRegistry() methods.
 		MFMBlocks.secondaryRegistry();
 		MFMT2Blocks.secondaryRegistry();
@@ -154,8 +158,15 @@ public class MoFurnacesMod {
 	 */
 	@EventHandler
 	public static void postload(FMLPostInitializationEvent PostEvent){
-		
+
 	}
+	
+	public void onClientTick(ClientTickEvent event) {
+		 if(this.updateMessageQueued) {
+             this.updateFound();
+         }
+	}
+	
 	
 	public static MoFurnacesMod instance() {
         return instance;
@@ -172,9 +183,10 @@ public class MoFurnacesMod {
 	//activate in the case that an update is found
 	public void updateFound() {
         try {
-            if(FMLClientHandler.instance().getClientPlayerEntity() != null) {
-                FMLClientHandler.instance().getClientPlayerEntity().addChatComponentMessage(new ChatComponentText("[" + EnumChatFormatting.RED + "HudPixel" + EnumChatFormatting.RESET + "] " + EnumChatFormatting.DARK_PURPLE + "Update available: " + EnumChatFormatting.GREEN + this.updateNotifier.newestVersion));
-                FMLClientHandler.instance().getClientPlayerEntity().addChatMessage(new ChatComponentText("[" + EnumChatFormatting.RED + "HudPixel" + EnumChatFormatting.RESET + "] " + EnumChatFormatting.DARK_PURPLE + "Download here: " + EnumChatFormatting.YELLOW + this.updateNotifier.downloadLink));
+            if(player != null) {
+            	System.out.println("made it to the thing");
+            	player.addChatMessage(new ChatComponentText("[" + EnumChatFormatting.RED + "MoFurnacesMod" + EnumChatFormatting.RESET + "] " + EnumChatFormatting.DARK_PURPLE + "Update available: " + EnumChatFormatting.GREEN + this.updateNotifier.newestVersion));
+            	player.addChatMessage(new ChatComponentText("[" + EnumChatFormatting.RED + "MoFurnacesMod" + EnumChatFormatting.RESET + "] " + EnumChatFormatting.DARK_PURPLE + "Download here: " + EnumChatFormatting.YELLOW + this.updateNotifier.downloadLink));
                 this.updateMessageQueued = false;
             } else {
                 // make this being called from onTick()
@@ -185,5 +197,30 @@ public class MoFurnacesMod {
             e.printStackTrace();
         }
     }
+	
+	public void versionCurrent(){
+    	System.out.println("made it to 1");
+
+		try {
+        	System.out.println("made it to 2");
+
+            if(player != null) {
+            	System.out.println("made it to the new line");
+            	player.addChatComponentMessage(new ChatComponentText("[" + EnumChatFormatting.RED + "MoFurnacesMod" + EnumChatFormatting.RESET + "] " + EnumChatFormatting.DARK_PURPLE + "is up to date."));
+                this.updateMessageQueued = false;
+            } else {
+            	System.out.println("made it to the new line 3");
+
+                // make this being called from onTick()
+                this.updateMessageQueued = true;
+            }
+        } catch(Exception e) {
+        	System.out.println("bwough");
+
+            this.logWarn("An exception occured in updateFound(). Stacktrace below.");
+            e.printStackTrace();
+        }
+    
+	}
 
 }

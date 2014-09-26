@@ -19,7 +19,9 @@ public class MFMUpdateNotifier extends Thread{
 	public MFMUpdateNotifier(){
 		
 		try{
-			start();
+			System.out.println("Debug got to here 1");
+
+			run();
 		}catch (Exception e){
 			//found an error
 		}
@@ -27,11 +29,13 @@ public class MFMUpdateNotifier extends Thread{
 	
 	@Override
 	public void run(){
-		
+		System.out.println("Debug got to here 2");
 		ArrayList<String> data = new ArrayList<String>();
 		//Throw this for me
 		try{
-			URL accessedFile = new URL("https://raw.githubusercontent.com/Mattkx4/MoFurnaces-v2/master/update/update.txt");
+			System.out.println("Debug got to here 3");
+
+			URL accessedFile = new URL("https://raw.githubusercontent.com/Mattkx4/MoFurnaces-v2/11d91f857d92aa7f1fd90c2ed95ece4f3ebcb57b/update/update.txt.txt");
 			BufferedReader fileReader = new BufferedReader(new InputStreamReader(accessedFile.openStream()));
 			for(int line = 0 ; line < 2 ; line++){
 				data.add(fileReader.readLine());
@@ -57,8 +61,11 @@ public class MFMUpdateNotifier extends Thread{
 				this.outOfDate = true;
 				MoFurnacesMod.instance.logInfo("There is a new update available: " + this.newestVersion);
 				MoFurnacesMod.instance.updateFound();
-			}else if(Integer.valueOf(currentVersion[arrayLocation]) < Integer.valueOf(latestVersion[arrayLocation])){
+			}else if(Integer.valueOf(currentVersion[arrayLocation]) >= Integer.valueOf(latestVersion[arrayLocation])){
 				//DO NOTHING, you have the latest update
+				MoFurnacesMod.instance.logInfo("There is no new update for MoFurnacesMod, current version:" + Strings.version);
+				MoFurnacesMod.instance.versionCurrent();
+				System.out.println("version is current");
 				return;
 			}
 		}
