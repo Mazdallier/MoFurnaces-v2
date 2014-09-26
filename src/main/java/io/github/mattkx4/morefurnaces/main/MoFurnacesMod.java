@@ -13,6 +13,9 @@ import io.github.mattkx4.morefurnaces.lib.Strings;
 import io.github.mattkx4.morefurnaces.proxy.ServerProxy;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.EnumChatFormatting;
+import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -23,6 +26,9 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @Mod(modid = Strings.MODID, name = Strings.name, version = Strings.version)
 public class MoFurnacesMod {
@@ -85,6 +91,13 @@ public class MoFurnacesMod {
 	@SidedProxy (clientSide = "io.github.mattkx4.morefurnaces.proxy.ClientProxy",serverSide = "io.github.mattkx4.morefurnaces.proxy.ServerProxy")
 	public static ServerProxy proxy;
 	
+	//Things for the updater
+	private MFMUpdateNotifier updateNotifier;
+	public Logger LOGGER;
+    private boolean updateMessageQueued;
+
+	
+	
 	/*
 	 * 'Things' that will load before
 	 */
@@ -114,6 +127,9 @@ public class MoFurnacesMod {
 		MFMAchievements.mainRegistry();
 		
 		proxy.registerRenderThings();	
+
+			instance.updateNotifier = new MFMUpdateNotifier();
+		
 	}
 	
 	/*
@@ -140,5 +156,34 @@ public class MoFurnacesMod {
 	public static void postload(FMLPostInitializationEvent PostEvent){
 		
 	}
+	
+	public static MoFurnacesMod instance() {
+        return instance;
+    }
+	
+	public void logWarn(String s) {
+        this.LOGGER.warn(s);
+    }
+	
+	public void logInfo(String s) {
+        this.LOGGER.info(s);
+    }
+	
+	//activate in the case that an update is found
+	public void updateFound() {
+        try {
+            if(FMLClientHandler.instance().getClientPlayerEntity() != null) {
+                FMLClientHandler.instance().getClientPlayerEntity().addChatComponentMessage(new ChatComponentText("[" + EnumChatFormatting.RED + "HudPixel" + EnumChatFormatting.RESET + "] " + EnumChatFormatting.DARK_PURPLE + "Update available: " + EnumChatFormatting.GREEN + this.updateNotifier.newestVersion));
+                FMLClientHandler.instance().getClientPlayerEntity().addChatMessage(new ChatComponentText("[" + EnumChatFormatting.RED + "HudPixel" + EnumChatFormatting.RESET + "] " + EnumChatFormatting.DARK_PURPLE + "Download here: " + EnumChatFormatting.YELLOW + this.updateNotifier.downloadLink));
+                this.updateMessageQueued = false;
+            } else {
+                // make this being called from onTick()
+                this.updateMessageQueued = true;
+            }
+        } catch(Exception e) {
+            this.logWarn("An exception occured in updateFound(). Stacktrace below.");
+            e.printStackTrace();
+        }
+    }
 
 }
