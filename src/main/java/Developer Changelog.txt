@@ -372,10 +372,26 @@ V2.1 -> V2.2{
         and create a new resource that is a copy of the original particles texture with the flame particle altered.
     }
     
+    25 SEPT - Mattkx4{
+        - More particle work.
+            - Created a TextureMap named "custom_flames.png"
+            - It holds 7 particle textures for the following furnaces
+                I. Redstone/Netherrack/Anvil Furnace
+                II. Iron/Quartz/Bone Furnace
+                III. Gold Furnace
+                IV. Obsidian Furnace
+                V. Diamond Furnace
+                VI. Cactus Furnace
+                VII. Brick Furnace
+            - If you intened on adding more textures to the map REMEMBER that the counting starts at "0" not "1".
+            - Made a bunch of simple one color textures. I'll have CK work on them when he's done with this current assignment.
+            - Particles are now DONE (in coding) for this update! Great work!
+    }
+    
     TODO{
         - PARTICLES
             X Perfect the art of making particle stuffs
-            - Add particles to the things that need them
+            X Add particles to the things that need them
         X Add bonemeal to the bone furnace
         X Do the CK Mob
             X Fix texture rendering...

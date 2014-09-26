@@ -1,12 +1,18 @@
 package io.github.mattkx4.morefurnaces.particles;
 
+import io.github.mattkx4.morefurnaces.lib.Strings;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFlameFX;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
-public class EntityGoldFlameFX extends EntityFlameFX{	
+public class EntityGoldFlameFX extends EntityFlameFX{
 
-	/* the scale of the flame FX */
+	public static final ResourceLocation flame = new ResourceLocation(Strings.MODID + ":textures/particles/custom_flames.png");
+
+	
+    /** the scale of the flame FX */
     private float flameScale;
     private static final String __OBFID = "CL_00000907";
 
@@ -20,19 +26,22 @@ public class EntityGoldFlameFX extends EntityFlameFX{
         d6 = p_i1209_4_ + (double)((this.rand.nextFloat() - this.rand.nextFloat()) * 0.05F);
         d6 = p_i1209_6_ + (double)((this.rand.nextFloat() - this.rand.nextFloat()) * 0.05F);
         this.flameScale = this.particleScale;
-        this.particleRed = 1.0F;
-		this.particleGreen = 1.0F;
-		this.particleBlue = 0.0F;
+        this.particleRed = this.particleGreen = this.particleBlue = 1.0F;
         this.particleMaxAge = (int)(8.0D / (Math.random() * 0.8D + 0.2D)) + 4;
         this.noClip = true;
-        this.setParticleTextureIndex(48);
+        this.setParticleTextureIndex(2);
     }
 
-    public void renderParticle(Tessellator p_70539_1_, float p_70539_2_, float p_70539_3_, float p_70539_4_, float p_70539_5_, float p_70539_6_, float p_70539_7_)
-    {
-        float f6 = ((float)this.particleAge + p_70539_2_) / (float)this.particleMaxAge;
-        this.particleScale = this.flameScale * (1.0F - f6 * f6 * 0.5F);
-        super.renderParticle(p_70539_1_, p_70539_2_, p_70539_3_, p_70539_4_, p_70539_5_, p_70539_6_, p_70539_7_);
+    public void renderParticle(Tessellator tessellator, float par2, float par3, float par4, float par5, float par6, float par7){
+    	tessellator.draw();
+    	Minecraft.getMinecraft().getTextureManager().bindTexture(flame);
+    	tessellator.startDrawingQuads();
+    	tessellator.setBrightness(200);//make sure you have this!!
+    	super.renderParticle(tessellator, par2, par3, par4, par5, par6, par7);
+    	tessellator.draw();
+    	Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("textures/particle/particles.png"));
+    	tessellator.startDrawingQuads();
+
     }
 
     public int getBrightnessForRender(float p_70070_1_)
@@ -62,7 +71,7 @@ public class EntityGoldFlameFX extends EntityFlameFX{
         return j | k << 16;
     }
 
-    /*
+    /**
      * Gets how bright this entity is.
      */
     public float getBrightness(float p_70013_1_)
@@ -83,7 +92,7 @@ public class EntityGoldFlameFX extends EntityFlameFX{
         return f2 * f1 + (1.0F - f1);
     }
 
-    /*
+    /**
      * Called to update the entity's position/logic.
      */
     public void onUpdate()
@@ -109,5 +118,5 @@ public class EntityGoldFlameFX extends EntityFlameFX{
         }
     }
 	
-	
+
 }

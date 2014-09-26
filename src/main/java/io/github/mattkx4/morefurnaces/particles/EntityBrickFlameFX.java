@@ -7,16 +7,16 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
-public class EntityTier2FlameFX extends EntityFlameFX{
+public class EntityBrickFlameFX extends EntityFlameFX{
 
-	public static final ResourceLocation flame = new ResourceLocation(Strings.MODID + ":textures/particles/custom_particles.png");
+	public static final ResourceLocation flame = new ResourceLocation(Strings.MODID + ":textures/particles/custom_flames.png");
 
 	
     /** the scale of the flame FX */
     private float flameScale;
     private static final String __OBFID = "CL_00000907";
 
-    public EntityTier2FlameFX(World p_i1209_1_, double p_i1209_2_, double p_i1209_4_, double p_i1209_6_, double p_i1209_8_, double p_i1209_10_, double p_i1209_12_)
+    public EntityBrickFlameFX(World p_i1209_1_, double p_i1209_2_, double p_i1209_4_, double p_i1209_6_, double p_i1209_8_, double p_i1209_10_, double p_i1209_12_)
     {
         super(p_i1209_1_, p_i1209_2_, p_i1209_4_, p_i1209_6_, p_i1209_8_, p_i1209_10_, p_i1209_12_);
         this.motionX = this.motionX * 0.009999999776482582D + p_i1209_8_;
@@ -29,7 +29,7 @@ public class EntityTier2FlameFX extends EntityFlameFX{
         this.particleRed = this.particleGreen = this.particleBlue = 1.0F;
         this.particleMaxAge = (int)(8.0D / (Math.random() * 0.8D + 0.2D)) + 4;
         this.noClip = true;
-        this.setParticleTextureIndex(48);
+        this.setParticleTextureIndex(6);
     }
 
     public void renderParticle(Tessellator tessellator, float par2, float par3, float par4, float par5, float par6, float par7){

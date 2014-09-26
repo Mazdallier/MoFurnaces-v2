@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
-import net.minecraft.client.Minecraft;
+import net.minecraft.block.BlockFurnace;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.IEntityLivingData;
@@ -210,7 +210,8 @@ public class EntityCobaltKatana extends EntityMob{
     	}
     	}
     }
-        
+    
+    Random random = new Random();
     @Override
     @SideOnly(Side.CLIENT)
     public boolean interact(EntityPlayer player)
