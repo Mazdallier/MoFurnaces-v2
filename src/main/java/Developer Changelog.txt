@@ -390,6 +390,13 @@ V2.1 -> V2.2{
         - Starting to write wiki stuffs. I'm making a more in-depth description for the previous stuff and creating some new pages.
     }
     
+    27 SEPT- Mattkx4{
+        - Added Tier3Device and TierCore Textures
+        - Briefed CK on particle asignment.
+        - Writing more wiki things. All done with the landing-page, installation, and update changelog.
+            - I'll write more tonight, but for now, I'm done for the day.
+    }
+    
     TODO{
         - PARTICLES
             X Perfect the art of making particle stuffs
