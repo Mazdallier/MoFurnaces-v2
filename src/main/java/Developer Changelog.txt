@@ -12,7 +12,7 @@ Wishlist{
         - Exp furnace: ??
         - Ender furnace: acts like the ender chest
         - Tnt furnace: boom
-        - Furnace mob:
+        X Furnace mob:
         X Anvil Furnace:
         X Redstone Furnace: Constant strong redstone signal AND can absorb items like a hopper(thrown on top)
     X Add an effect so that if you light the Netherrack Furnace on fire, it's infinite fire
@@ -21,11 +21,9 @@ Wishlist{
         X idea: replace side faces with front faces (SCRAPPED: Would interfere with hopper actions)
     X Custom Bone Furnace textures
     X redesign custom furnace gui
-    - implement ability to turn ingots into blocks if enough ingots are available
-        - send to a secondary output slot, not the primary output
     X furnace upgrades ??? not likely due to nature of mod being similar to tool tiering
-    - custom particles
-        - Attempt 1 Failed, carbon copying has limited success
+    X custom particles
+        X Attempt 1 Failed, carbon copying has limited success
     - Ingot transfuser
         - Depending on the setting in the furnace:
             - Turns 9 (? Forgot how to make a solid block) ingots into a solid ingot block
@@ -34,7 +32,7 @@ Wishlist{
         - Adding in an emerald furnace
         - Right clicking on CK opens up an Emerald Furnace gui
         - On death spawns fireworks and drops a single EmeraldFurnace
-    - Automated updater
+    - Update Notifier (in progress)
     - Mod Installer
     - Mo' Furnaces Website
     - Get translated into 5 different languages
@@ -388,6 +386,10 @@ V2.1 -> V2.2{
             - Particles are now DONE (in coding) for this update! Great work!
     }
     
+    26 SEPT - Mattkx4{
+        - Starting to write wiki stuffs. I'm making a more in-depth description for the previous stuff and creating some new pages.
+    }
+    
     TODO{
         - PARTICLES
             X Perfect the art of making particle stuffs
@@ -396,7 +398,6 @@ V2.1 -> V2.2{
         X Do the CK Mob
             X Fix texture rendering...
                 X Head is all messed up and the emerald furnace is rendering onto the legs (?)
-                 Not sure about the emerald furnace part but it should be rendering correctly, can you check this again??
             X Make it a defender.
                 X Attacks hostile mobs with the power of a diamond sword
             X Add tameablility?

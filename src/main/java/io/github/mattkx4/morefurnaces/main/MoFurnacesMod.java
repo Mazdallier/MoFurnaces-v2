@@ -11,6 +11,7 @@ import io.github.mattkx4.morefurnaces.handler.MFMHandler;
 import io.github.mattkx4.morefurnaces.items.MFMItems;
 import io.github.mattkx4.morefurnaces.lib.Strings;
 import io.github.mattkx4.morefurnaces.proxy.ServerProxy;
+import io.github.mattkx4.morefurnaces.updater.MFMUpdateNotifier;
 import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
