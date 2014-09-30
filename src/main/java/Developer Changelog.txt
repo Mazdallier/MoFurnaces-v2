@@ -402,6 +402,8 @@ V2.1 -> V2.2{
     }
     
     TODO{
+        - Update Notifier
+            - Possible GUI renderation on Start Menu?
         - Add Cactus Furnace GUI flame to the custom_furnace.png file
         X PARTICLES
             X Perfect the art of making particle stuffs
