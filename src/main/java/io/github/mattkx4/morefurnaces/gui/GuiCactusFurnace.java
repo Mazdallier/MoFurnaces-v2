@@ -12,7 +12,8 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 public class GuiCactusFurnace extends GuiContainer{
-public static final ResourceLocation bground = new ResourceLocation(Strings.MODID + ":textures/gui/cactus_furnace.png");
+
+	public static final ResourceLocation bground = new ResourceLocation(Strings.MODID + ":textures/gui/custom_furnace.png");
 	
 	public TileEntityCactusFurnace cactusFurnace;
 	
@@ -28,27 +29,37 @@ public static final ResourceLocation bground = new ResourceLocation(Strings.MODI
 	/*
 	 * Draw the Foreground Layer (everything that is in front of the items)
 	 */
-	 protected void drawGuiContainerForegroundLayer(int p_146979_1_, int p_146979_2_)
-	    {
-	        String s = this.cactusFurnace.hasCustomInventoryName() ? this.cactusFurnace.getInventoryName() : I18n.format(this.cactusFurnace.getInventoryName(), new Object[0]);
-	        this.fontRendererObj.drawString(s, this.xSize / 2 - this.fontRendererObj.getStringWidth(s) / 2, 6, 4210752);
-	        this.fontRendererObj.drawString(I18n.format("container.inventory", new Object[0]), 8, this.ySize - 96 + 2, 4210752);
-	    }
-
-	    protected void drawGuiContainerBackgroundLayer(float p_146976_1_, int p_146976_2_, int p_146976_3_)
-	    {
-	        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-	        this.mc.getTextureManager().bindTexture(bground);
-	        int k = (this.width - this.xSize) / 2;
-	        int l = (this.height - this.ySize) / 2;
-	        this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
-
-	        if (this.cactusFurnace.isBurning())
-	        {
-	            int i1 = this.cactusFurnace.getBurnTimeRemainingScaled(13);
-	            this.drawTexturedModalRect(k + 56, l + 36 + 12 - i1, 176, 12 - i1, 14, i1 + 1);
-	            i1 = this.cactusFurnace.getCookProgressScaled(24);
-	            this.drawTexturedModalRect(k + 79, l + 34, 176, 14, i1 + 1, 16);
-	        }
-	    }
+	public void drawGuiContainerForegroundLayer(int i, int j){
+		// Gets the name of the furnace and stores it String "name"
+		String name = this.cactusFurnace.hasCustomInventoryName() ? this.cactusFurnace.getInventoryName() : I18n.format(this.cactusFurnace.getInventoryName(), new Object[0]);
+		// Displays the name and GUI of the furnace on the GUI Foreground Layer
+		this.fontRendererObj.drawString(name, this.xSize / 2 - this.fontRendererObj.getStringWidth(name) / 2, 6, 4210752);
+		this.fontRendererObj.drawString(I18n.format("container.Inventory", new Object[0]), 8, this.ySize - 96 + 2, 4210752);
+	}
+	
+	/*
+	 * Draws the Background Layer of the GUI
+	 */
+	@Override
+	protected void drawGuiContainerBackgroundLayer(float i, int j, int k) {
+		GL11.glColor4f(1F, 1F, 1F, 1F);
+		
+		Minecraft.getMinecraft().getTextureManager().bindTexture(bground);
+		drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
+	
+		// Checks if the furnace is burning. If yes, then displays the Burn Time Remaining (Fire)
+		if(this.cactusFurnace.isBurning()){
+			int m = this.cactusFurnace.getBurnTimeRemainingScaled(14);
+			int l = 14 - m;
+			drawTexturedModalRect(guiLeft + 57, guiTop + 36 + l, 176, 129 + l, 14, 14 - l);
+		}
+		
+		// Draws the progress bar for the current item being cooked (Arrow)
+		int m = this.cactusFurnace.getCookProgressScaled(24);
+		drawTexturedModalRect(guiLeft + 79, guiTop + 34, 176, 0, m + 1, 17);
+		
+	}
+	
+	
+	
 }

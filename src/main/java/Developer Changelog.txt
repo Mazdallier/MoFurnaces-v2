@@ -401,6 +401,10 @@ V2.1 -> V2.2{
         - Added some more textures in
     }
     
+    30 SEPT - Mattkx4{
+        - Added CactusFurnace has been added to the custom_furnace.png
+    }
+    
     TODO{
         - Update Notifier
             - Possible GUI renderation on Start Menu?
