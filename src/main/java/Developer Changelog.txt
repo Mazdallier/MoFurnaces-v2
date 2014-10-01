@@ -405,6 +405,17 @@ V2.1 -> V2.2{
         - Added CactusFurnace has been added to the custom_furnace.png
     }
     
+    1 OCT - Pr1meSh0ck{
+        - Added in the update checker
+            - My previous commit added in a static file to the git hub repository that stored the most up to date mod version
+            and a website where one can download the latest update.
+            - This new class compares the static "newest version" to the version of the local mod being used.
+            - This function only activates on client loading a world. Testing needs to determine if this extends to 
+            the use of portals and dimension crossing.
+            - The function will tell the player when there is a new mod version available.
+            - If the mod is up to date then the function will tell the player that this is the case.
+    }
+    
     TODO{
         - Update Notifier
             - Possible GUI renderation on Start Menu?

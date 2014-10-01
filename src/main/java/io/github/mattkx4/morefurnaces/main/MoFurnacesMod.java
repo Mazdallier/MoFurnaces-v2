@@ -16,9 +16,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraftforge.common.MinecraftForge;
 
 import org.apache.logging.log4j.Logger;
 
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -92,21 +94,17 @@ public class MoFurnacesMod {
 	@SidedProxy (clientSide = "io.github.mattkx4.morefurnaces.proxy.ClientProxy",serverSide = "io.github.mattkx4.morefurnaces.proxy.ServerProxy")
 	public static ServerProxy proxy;
 	
-	//Things for the updater
-	private MFMUpdateNotifier updateNotifier;
-	public Logger LOGGER;
-    private boolean updateMessageQueued;
-    public EntityPlayer player;
+    static MFMUpdateNotifier events = new MFMUpdateNotifier() ;
 
-	
-	
-	/*
+	/**
 	 * 'Things' that will load before
 	 */
 	@EventHandler
 	public static void preload(FMLPreInitializationEvent preEvent){
-		instance.updateNotifier = new MFMUpdateNotifier();
 
+		FMLCommonHandler.instance().bus().register(events);
+    	MinecraftForge.EVENT_BUS.register(events);
+		
 		// Creates a new Creative Tab using the Diamond Furnace Block.
 		MFM = new CreativeTabs("mfm"){
 			@SideOnly(Side.CLIENT)
@@ -133,7 +131,7 @@ public class MoFurnacesMod {
 		proxy.registerRenderThings();			
 	}
 	
-	/*
+	/**
 	 * 'Things' that will load during
 	 */
 	@EventHandler
@@ -151,74 +149,11 @@ public class MoFurnacesMod {
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new MFMGuiHandler());
 	}
 	
-	/*
+	/**
 	 * 'Things' that will load after
 	 */
 	@EventHandler
 	public static void postload(FMLPostInitializationEvent PostEvent){
 
 	}
-	
-	public void onClientTick(ClientTickEvent event) {
-		 if(this.updateMessageQueued) {
-             this.updateFound();
-         }
-	}
-	
-	
-	public static MoFurnacesMod instance() {
-        return instance;
-    }
-	
-	public void logWarn(String s) {
-        this.LOGGER.warn(s);
-    }
-	
-	public void logInfo(String s) {
-        this.LOGGER.info(s);
-    }
-	
-	//activate in the case that an update is found
-	public void updateFound() {
-        try {
-            if(player != null) {
-            	System.out.println("made it to the thing");
-            	player.addChatMessage(new ChatComponentText("[" + EnumChatFormatting.RED + "MoFurnacesMod" + EnumChatFormatting.RESET + "] " + EnumChatFormatting.DARK_PURPLE + "Update available: " + EnumChatFormatting.GREEN + this.updateNotifier.newestVersion));
-            	player.addChatMessage(new ChatComponentText("[" + EnumChatFormatting.RED + "MoFurnacesMod" + EnumChatFormatting.RESET + "] " + EnumChatFormatting.DARK_PURPLE + "Download here: " + EnumChatFormatting.YELLOW + this.updateNotifier.downloadLink));
-                this.updateMessageQueued = false;
-            } else {
-                // make this being called from onTick()
-                this.updateMessageQueued = true;
-            }
-        } catch(Exception e) {
-            this.logWarn("An exception occured in updateFound(). Stacktrace below.");
-            e.printStackTrace();
-        }
-    }
-	
-	public void versionCurrent(){
-    	System.out.println("made it to 1");
-
-		try {
-        	System.out.println("made it to 2");
-
-            if(player != null) {
-            	System.out.println("made it to the new line");
-            	player.addChatComponentMessage(new ChatComponentText("[" + EnumChatFormatting.RED + "MoFurnacesMod" + EnumChatFormatting.RESET + "] " + EnumChatFormatting.DARK_PURPLE + "is up to date."));
-                this.updateMessageQueued = false;
-            } else {
-            	System.out.println("made it to the new line 3");
-
-                // make this being called from onTick()
-                this.updateMessageQueued = true;
-            }
-        } catch(Exception e) {
-        	System.out.println("bwough");
-
-            this.logWarn("An exception occured in updateFound(). Stacktrace below.");
-            e.printStackTrace();
-        }
-    
-	}
-
 }
