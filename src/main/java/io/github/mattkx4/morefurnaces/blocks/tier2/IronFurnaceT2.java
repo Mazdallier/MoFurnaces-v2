@@ -116,7 +116,7 @@ public class IronFurnaceT2 extends BlockContainer{
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister iconRegister){
 		this.blockIcon = iconRegister.registerIcon(Strings.MODID+":IronFurnace_side");
-		this.iconFront = iconRegister.registerIcon(Strings.MODID+":"+(this.isActive ? "ObsidianFurnaceT2_front_active" : "ObsidianFurnaceT2_front_idle")); // Fix textures
+		this.iconFront = iconRegister.registerIcon(Strings.MODID+":"+(this.isActive ? "IronFurnaceT2_front_active" : "IronFurnaceT2_front_idle"));
 		this.iconTop = iconRegister.registerIcon(Strings.MODID+":IronFurnace_top");
 	}
 	

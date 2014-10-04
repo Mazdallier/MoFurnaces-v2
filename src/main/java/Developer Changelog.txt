@@ -416,6 +416,11 @@ V2.1 -> V2.2{
             - If the mod is up to date then the function will tell the player that this is the case.
     }
     
+    3 OCT - Mattkx4{
+        - I got our first T2 and T3 texture in there! 
+            - Thanks CK for amazing IronFurnaceT2/3 Textures!
+    }
+    
     TODO{
         - Update Notifier
             - Possible GUI renderation on Start Menu?
