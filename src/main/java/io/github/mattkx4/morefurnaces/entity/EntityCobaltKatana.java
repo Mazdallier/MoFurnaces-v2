@@ -183,11 +183,11 @@ public class EntityCobaltKatana extends EntityMob{
     	case 4:{
     		//if there is only one item
     		if(heldItem.stackSize == 1){
-    			player.addChatMessage(new ChatComponentText("I will turn your " + heldItem.getDisplayName() + " into " + cookingResult.getDisplayName() + "."));
+    			player.addChatMessage(new ChatComponentText(heldItem.getDisplayName() + " > " + cookingResult.getDisplayName()));
     			return;
     		}
     		//if there is more than one item
-    		player.addChatMessage(new ChatComponentText("I will turn " + heldItem.stackSize + " of your " + heldItem.getDisplayName() + "'s into " + cookingResult.getDisplayName() + "."));
+    		player.addChatMessage(new ChatComponentText(heldItem.stackSize + " " + heldItem.getDisplayName() + " > " + cookingResult.stackSize + " " + cookingResult.getDisplayName()));
     		return;
     	}
 		//notify the player of how many attempts they have left
@@ -229,7 +229,8 @@ public class EntityCobaltKatana extends EntityMob{
 		        boolean smeltIt = canSmelt(heldItem, slot);   
 		        
 		        //if the player has not been greeted, greet them
-		        if(greeted == false)chatTree(1,player);
+		        if(greeted == false){chatTree(1,player); return true;}
+		        
 		        
 		        //make sure the mob is first ready for smelting
 		        if (flag && this.isEntityAlive() && !this.isChild() && !player.isSneaking()){
@@ -315,19 +316,15 @@ public class EntityCobaltKatana extends EntityMob{
     	
 		        	
 		        }else if(heldItem == null){
-		        	//tell the player that there is nothing being held
-		        	chatTree(3, player);
-		        	//tell the player how many attempts they have left
 		        	chatTree(5, player);
 		        	return true;
 		        }else
-		        	if (heldItem == new ItemStack(Items.diamond) || heldItem == new ItemStack(Items.emerald)) {
+		        	if(attempts == 0) {
+		        		chatTree(5, player);
 		        		return true;
 		        	}
 		        	//tell the player that they can't smelt that item
 		        	chatTree(6, player);
-		        	//tell the player how many attempts they have left
-		        	chatTree(5, player);
 		        	return true;
 	    	}
     	}

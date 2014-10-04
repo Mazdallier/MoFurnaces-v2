@@ -421,10 +421,14 @@ V2.1 -> V2.2{
             - Thanks CK for amazing IronFurnaceT2/3 Textures!
     }
     
+    4 OCT - Mattkx4{
+        - Played around with CK chat some more. I think I got it where I want it to be. Extensive testing will let me figure that out.
+    }
+    
     TODO{
-        - Update Notifier
-            - Possible GUI renderation on Start Menu?
-        - Add Cactus Furnace GUI flame to the custom_furnace.png file
+        X Update Notifier
+            X Possible GUI renderation on Start Menu?
+        X Add Cactus Furnace GUI flame to the custom_furnace.png file
         X PARTICLES
             X Perfect the art of making particle stuffs
             X Add particles to the things that need them
@@ -468,11 +472,12 @@ V2.1 -> V2.2{
         - Need to add/alter block textures for the following furnaces
             X Anvil
             - Diamond T2 - T3
-            - Iron T2 - T3
+            X Iron T2 - T3
             - Brick T2 - T3
             - Quartz T2 - T3
-            - Tier 3 Device
-            - Tier Core
+            X Tier 3 Device
+            X Tier Core
+            - Obsidian T2 - T3
         X Identified problem when tiering, the device will cause the rotation of the furnace to reset
         X Fix Diamond Furnace guiID ?
         X Finish perfecting Tiering Device
