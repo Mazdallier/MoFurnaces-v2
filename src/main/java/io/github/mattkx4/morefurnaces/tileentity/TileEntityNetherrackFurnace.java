@@ -245,7 +245,7 @@ public class TileEntityNetherrackFurnace extends TileEntity implements ISidedInv
 			ItemStack itemstack = FurnaceRecipes.smelting().getSmeltingResult(this.slots[0]);
 			if(this.slots[1] == null){
 				this.slots[1] = itemstack.copy();
-			}else if(this.slots[2].getItem() == itemstack.getItem()){
+			}else if(this.slots[1].getItem() == itemstack.getItem()){
 				this.slots[1].stackSize += itemstack.stackSize;
 			}
 	

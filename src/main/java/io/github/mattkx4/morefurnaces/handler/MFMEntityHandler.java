@@ -18,7 +18,11 @@ public class MFMEntityHandler {
 
 	public static void registerMonsters(Class entityClass, String name){
 		//get a unique mob ID
-		int entityID = EntityRegistry.findGlobalUniqueEntityId();
+		//int entityID = EntityRegistry.findGlobalUniqueEntityId();
+		/*
+		 * The above line does not seem to be grabbing an actual unique ID. Thus I am setting the ID to an insanely high number
+		 */
+		int entityID = 1024;
 		//create mob seed
 		long x = name.hashCode();
 		//create a random number from the seed of x
@@ -30,7 +34,7 @@ public class MFMEntityHandler {
 		
 		EntityRegistry.registerGlobalEntityID(entityClass, name, entityID);
 		//spawn C into the world
-		EntityRegistry.addSpawn(entityClass, 100, 1, 1, EnumCreatureType.creature, BiomeGenBase.desert, BiomeGenBase.extremeHills, BiomeGenBase.roofedForest);
+		EntityRegistry.addSpawn(entityClass, 5, 1, 1, EnumCreatureType.creature, BiomeGenBase.desert, BiomeGenBase.extremeHills, BiomeGenBase.roofedForest);
 		
 		EntityRegistry.registerModEntity(entityClass,  name,  entityID, MoFurnacesMod.instance, 64, 1, true);
 		EntityList.entityEggs.put(Integer.valueOf(entityID), new EntityList.EntityEggInfo(entityID, mainColour, subColour));

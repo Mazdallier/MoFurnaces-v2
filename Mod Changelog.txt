@@ -3,6 +3,75 @@ Its contents will be submitted in reverse chronological order starting with the 
 
 SPECIAL THANKS TO: sb023612 for a Chinese Language File!
 
+Update: V2.1.0 - V2.2.0
+    - Added a mod update notifier
+    - Added custom particle effects for some of our furnaces
+    - Added Tiered furnaces
+        - Tiered furnaces increases the number of input and output slots on selected furnaces with tier two adding
+        one new slot and tier three adding an additional slot.
+    - Adds in the following Two and Three Tiered Furnaces
+        - Brick
+        - Iron
+        - Quartz
+        - Obsidian
+        - Diamond
+    - Added items to tier furnaces
+        - Tier Core: 
+            - Recipe        DED     EDE
+                            E E  or D D : E = Emerald, D = Diamond
+                            DED     EDE 
+            -Specifications: This is the heart of each tier device
+            
+        - Tier Two Device: 
+            - Recipe        I I
+                            ICI     : I = Iron Ingot, B = Blaze Rod, C = Tier Core
+                             B 
+            - Specifications: The completed item that has the ability to turn a regular selected furnace into 
+            a Tier Two Furnace with a single right click
+
+        - Tier Three Device: 
+            - Recipe        DED
+                            DCD     : D = Diamond, E = Eye of Ender, C = Tier Core, B = Blaze Rod
+                             B
+            - Specifications: Similar to the Tier Two Device but more resource intensive, this item will turn 
+            selected Tier Two Furnaces into a Tier Three Furnace
+    - Added new custom furnaces; All the custom furnaces feature the smelting speed of the brick furnace
+        - Anvil Furnace:
+            - Recipe        DAD
+                            IFI     : D = Diamond, I = Iron Ingot, A = Anvil, F = Brick Furnace, B = Iron Blocks
+                            BBB
+            - Specifications: Although very resource heavy, this extremely hot forge will slowly repair damaged items
+            
+        - Bone Furnace:
+            - Recipe        XXX
+                            XFX     : X = Bones, F = Brick Furnace
+                            XXX
+            - Specifications: Accepts only bones and bone meal as fuel
+        
+        - Cactus Furnace
+            - Recipe
+                            CCC
+                            CBC     : C = Cactus, B = Brick Furnace
+                            CCC
+            - Specifications: This prickly furnace has an interesting ability to spontaneously grow more cacti
+            
+        - Redstone Furnace
+            - Recipe
+                            RHR
+                            RBH     : R = Redstone Block, H = Hopper, B = Brick Furnace
+                            RRR
+            - Specifications: Recent improvements in restone and hopper technology have lead to this marvel.
+            Capable of transferring the entire contents of a chest into its own internal inventory and smelting
+            the items. If another suitable inventory is located to its right, it will deposit smelted items 
+            automatically.
+        
+    - Modifications to the following furnaces
+        - Netherrack Furnace shall no longer need fuel to burn
+        
+    - Finally a new mob has been seen roaming the worlds of Minecraft. His smelting skills are considered legendary if
+    you can pay the costs, his combat prowess is unsurpassed, and he makes some damn good textures. This addition is a 
+    warm shout out to Mo Furnaces Mod's texture expert, Cobalt Katana.
+            
 Release: V2.1.0
     - Recreation of the entire original mod
     - Adds the following furnaces with the following crafting recipes, specifications and (if applicable) extra effects

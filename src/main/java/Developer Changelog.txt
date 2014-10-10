@@ -425,6 +425,13 @@ V2.1 -> V2.2{
         - Played around with CK chat some more. I think I got it where I want it to be. Extensive testing will let me figure that out.
     }
     
+    9 OCT - Pr1meSh0ck{
+        - Commented out a chunk of code from the RenderEntityCobaltKatana that was preventing a clean build
+        - Changed the entity ID so it wouldn't clash
+        - Reduced CK mob spawn rate dramatically
+        - Fix in netherrack furnace, where the code was trying to reference the incorrect slot
+    }
+    
     TODO{
         X Update Notifier
             X Possible GUI renderation on Start Menu?

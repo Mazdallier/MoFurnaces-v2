@@ -25,7 +25,7 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTUtil;
+//import net.minecraft.nbt.NBTUtil;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StringUtils;
 import io.github.mattkx4.morefurnaces.entity.EntityCobaltKatana;
@@ -97,6 +97,10 @@ public class RenderEntityCobaltKatana extends RenderLiving {
 
                 this.renderManager.itemRenderer.renderItem(p_77029_1_, itemstack1, 0);
             }
+            /*
+            * this is creating problems when trying to build, I have commented it out to see if the mod will build
+            */
+            /*
             else if (item == Items.skull)
             {
                 f1 = 1.0625F;
@@ -107,6 +111,8 @@ public class RenderEntityCobaltKatana extends RenderLiving {
                 {
                     NBTTagCompound nbttagcompound = itemstack1.getTagCompound();
 
+                    
+                    
                     if (nbttagcompound.hasKey("SkullOwner", 10))
                     {
                         gameprofile = NBTUtil.func_152459_a(nbttagcompound.getCompoundTag("SkullOwner"));
@@ -115,10 +121,13 @@ public class RenderEntityCobaltKatana extends RenderLiving {
                     {
                         gameprofile = new GameProfile((UUID)null, nbttagcompound.getString("SkullOwner"));
                     }
+                    
                 }
 
+                
                 TileEntitySkullRenderer.field_147536_b.func_152674_a(-0.5F, 0.0F, -0.5F, 1, 180.0F, itemstack1.getItemDamage(), gameprofile);
             }
+			*/
 
             GL11.glPopMatrix();
         }

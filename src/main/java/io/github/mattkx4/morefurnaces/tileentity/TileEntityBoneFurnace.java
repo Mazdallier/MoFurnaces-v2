@@ -291,22 +291,9 @@ public class TileEntityBoneFurnace extends TileEntity implements ISidedInventory
 			
 			if(item instanceof ItemBlock && Block.getBlockFromItem(item) != Blocks.air){
 				Block block = Block.getBlockFromItem(item);
-							
-				//insert block based fuels
-                /*if (block == Blocks.wooden_slab) return 150;
-                if (block.getMaterial() == Material.wood)return 300;
-                if(block == Blocks.coal_block) return 14400;*/
 			}	
 			
 				//insert item based fuels
-				/*if (item instanceof ItemTool && ((ItemTool)item).getToolMaterialName().equals("WOOD")) return 200;
-	            if (item instanceof ItemSword && ((ItemSword)item).getToolMaterialName().equals("WOOD")) return 200;
-	            if (item instanceof ItemHoe && ((ItemHoe)item).getToolMaterialName().equals("WOOD")) return 200;
-	            if (item == Items.stick) return 100;
-	            if (item == Items.coal) return 1600;
-	            if (item == Items.lava_bucket) return 20000;
-	            if (item == Item.getItemFromBlock(Blocks.sapling)) return 100;
-	            if (item == Items.blaze_rod) return 2400;*/
 	            if (item == Items.bone) return 1600;
 	            if (item == new ItemStack(Items.dye, 15).getItem()) return 3200;
 			}	            
