@@ -1,6 +1,7 @@
 package io.github.mattkx4.morefurnaces.tileentity;
 
 import io.github.mattkx4.morefurnaces.blocks.NetherrackFurnace;
+import io.github.mattkx4.morefurnaces.lib.FurnaceVariables;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -29,16 +30,9 @@ public class TileEntityNetherrackFurnace extends TileEntity implements ISidedInv
 	private static final int[] slots_output = new int[]{1};
 	
 	private ItemStack[] slots = new ItemStack [3];
-	
-	// Inverse of furnace efficiency for fuels, 
-	public double furnaceEfficiency = 0.5;
-
-	// Speed of the furnace. A lower integer means a faster speed (Regular furnace is 200)
-	public int furnaceSpeed = 450;
 
 	// Number of ticks an item has been cooking for
 	public int cookTime;
-	
 	
 	// Gets the number of slots in the furnace, (example: [3])
 	public int getSizeInventory(){
@@ -157,7 +151,7 @@ public class TileEntityNetherrackFurnace extends TileEntity implements ISidedInv
 	
 	@SideOnly(Side.CLIENT)
 	public int getCookProgressScaled(int i){
-		return this.cookTime * i / this.furnaceSpeed;
+		return this.cookTime * i / FurnaceVariables.NETHERRACK_FURNACE_SPEED;
 	}
 	
 	/*// Get the remaining burn time (Scaled)
@@ -209,7 +203,7 @@ public class TileEntityNetherrackFurnace extends TileEntity implements ISidedInv
 		if(this.canSmelt()) {
 		++this.cookTime;
 			
-		if(this.cookTime == this.furnaceSpeed) {
+		if(this.cookTime == FurnaceVariables.NETHERRACK_FURNACE_SPEED) {
 			this.cookTime = 0;
 			this.smeltItem();
 			flag = true;

@@ -432,6 +432,13 @@ V2.1 -> V2.2{
         - Fix in netherrack furnace, where the code was trying to reference the incorrect slot
     }
     
+    10 OCT - Mattkx4{
+        - Small organizational fixes regarding item/block initialization.
+        - Began on FurnaceVariables class.
+            - Pretty much just a class holding static variables with all the speeds and efficiencies for the furnaces.
+            - Need to do the T2 and T3 Furnaces.
+    }
+    
     TODO{
         X Update Notifier
             X Possible GUI renderation on Start Menu?
@@ -478,9 +485,11 @@ V2.1 -> V2.2{
             X Redstone Furnace
         - Need to add/alter block textures for the following furnaces
             X Anvil
-            - Diamond T2 - T3
+            X Diamond T2
+            - Diamond T3
             X Iron T2 - T3
-            - Brick T2 - T3
+            X Brick T2
+            - Brick T3
             - Quartz T2 - T3
             X Tier 3 Device
             X Tier Core

@@ -1,6 +1,7 @@
 package io.github.mattkx4.morefurnaces.tileentity;
 
 import io.github.mattkx4.morefurnaces.blocks.BoneFurnace;
+import io.github.mattkx4.morefurnaces.lib.FurnaceVariables;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -30,12 +31,6 @@ public class TileEntityBoneFurnace extends TileEntity implements ISidedInventory
 	private static final int[] slots_side = new int[]{1};
 	
 	private ItemStack[] slots = new ItemStack [3];
-	
-	// Inverse of furnace efficiency for fuels
-	public int furnaceEfficiency = 2;
-
-	// Speed of the furnace. A lower integer means a faster speed. (Regular furnace is 200)
-	public int furnaceSpeed = 175;
 
 	// Number of ticks the furnace will burn for
 	public int burnTime;
@@ -172,7 +167,7 @@ public class TileEntityBoneFurnace extends TileEntity implements ISidedInventory
     // Gets the cooking progress (Scaled)
 	@SideOnly(Side.CLIENT)
 	public int getCookProgressScaled(int i){
-		return this.cookTime * i / this.furnaceSpeed;
+		return this.cookTime * i / FurnaceVariables.BONE_FURNACE_SPEED;
 	}
 	
 	// Get the remaining burn time (Scaled)
@@ -180,7 +175,7 @@ public class TileEntityBoneFurnace extends TileEntity implements ISidedInventory
 		public int getBurnTimeRemainingScaled(int i){
 			
 			if(this.currentItemBurnTime == 0){
-				this.currentItemBurnTime = furnaceSpeed;
+				this.currentItemBurnTime = FurnaceVariables.BONE_FURNACE_SPEED;
 			}
 
 			int result = this.burnTime * i / this.currentItemBurnTime;
@@ -209,7 +204,7 @@ public class TileEntityBoneFurnace extends TileEntity implements ISidedInventory
 			//if the burnTime has reached zero and there is an item that can be smelted
 			if(this.burnTime == 0 && this.canSmelt()) {
 				//set currentItemBurnTime and burnTime to the fuel item burn time || add a '+1' after fuel efficiency to create an ever lasting furnace
-				this.currentItemBurnTime = this.burnTime = (int) (((double)getItemBurnTime(this.slots[1]) / (double)this.furnaceEfficiency));
+				this.currentItemBurnTime = this.burnTime = (int) (((double)getItemBurnTime(this.slots[1]) / FurnaceVariables.BONE_FURNACE_EFFICIENCY));
 
 				if(this.isBurning()) {
 					flag1 = true;
@@ -226,7 +221,7 @@ public class TileEntityBoneFurnace extends TileEntity implements ISidedInventory
 			if(this.isBurning() && this.canSmelt()) {
 			++this.cookTime;
 
-			if(this.cookTime == this.furnaceSpeed) {
+			if(this.cookTime == FurnaceVariables.BONE_FURNACE_SPEED) {
 				this.cookTime = 0;
 				this.smeltItem();
 				flag1 = true;

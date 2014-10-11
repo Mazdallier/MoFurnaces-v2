@@ -39,13 +39,12 @@ public class MFMItems {
 	 * Initialize the items
 	 */
 	public static void initializeItem() {
+		// Initialize the Tier Core
+		TierCore = new TierCore();
 		// Initialize the Tier 2 Device
 		Tier2Device = new Tier2Device();
 		// Initialize the Tier 3 Device
 		Tier3Device = new Tier3Device();
-		// Initialize the Tier Core
-		TierCore = new TierCore();
-
 	}
 	
 	/**
@@ -53,26 +52,25 @@ public class MFMItems {
 	 * format: GameRegistry.registerItem(newitemname, "newitemname"); 
 	 */
 	public static void registerItem() {
+		// Register the Tier Core
+		GameRegistry.registerItem(TierCore, "TierCore");
 		// Register the Tier 2 Device
 		GameRegistry.registerItem(Tier2Device, "Tier2Device");
 		// Register the Tier 3 Device
 		GameRegistry.registerItem(Tier3Device, "Tier3Device");
-		// Register the Tier Core
-		GameRegistry.registerItem(TierCore, "TierCore");
-
 	}
 
 	/**
 	 * Register the Crafting Recipe
 	 */
 	public static void registerItem2() {
+		// Register Crafting Recipe for the Tier Core
+		GameRegistry.addRecipe(new ItemStack(TierCore), new Object[]{"zXz", "X X", "zXz", 'z', Items.diamond, 'X', Items.emerald});
+		GameRegistry.addRecipe(new ItemStack(TierCore), new Object[]{"yWy", "W W", "yWy", 'y', Items.emerald, 'W', Items.diamond});	
 		// Register Crafting Recipe for the Tier 2 Device
 		GameRegistry.addRecipe(new ItemStack(Tier2Device), new Object[]{"z z", "zXz", " y ", 'z', Items.iron_ingot, 'X', MFMItems.TierCore, 'y', Items.blaze_rod});
 		//Register Crafting Recipe for the Tier 3 Device
-		GameRegistry.addRecipe(new ItemStack(Tier3Device), new Object[]{"zXz", "zWz", " y ", 'z', Items.diamond, 'X', Items.ender_eye, 'W', MFMItems.TierCore, 'y', Items.blaze_rod});
-		// Register Crafting Recipe for the Tier Core
-		GameRegistry.addRecipe(new ItemStack(TierCore), new Object[]{"zXz", "X X", "zXz", 'z', Items.diamond, 'X', Items.emerald});
-		GameRegistry.addRecipe(new ItemStack(TierCore), new Object[]{"yWy", "W W", "yWy", 'y', Items.emerald, 'W', Items.diamond});		
+		GameRegistry.addRecipe(new ItemStack(Tier3Device), new Object[]{"zXz", "zWz", " y ", 'z', Items.diamond, 'X', Items.ender_eye, 'W', MFMItems.TierCore, 'y', Items.blaze_rod});	
 			
 	}
 }
