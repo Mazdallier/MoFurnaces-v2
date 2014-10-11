@@ -1,6 +1,7 @@
 package io.github.mattkx4.morefurnaces.tileentity.tier2;
 
 import io.github.mattkx4.morefurnaces.blocks.tier2.DiamondFurnaceT2;
+import io.github.mattkx4.morefurnaces.lib.FurnaceVariables;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -30,12 +31,6 @@ private String localizedName;
 	private static final int[] slots_side = new int[]{2};
 	
 	private ItemStack[] slots = new ItemStack [5];
-	
-	// Inverse of furnace efficiency for fuels, 
-	public int furnaceEfficiency = 3;
-
-	// Speed of the furnace. A lower integer means a faster speed (Regular furnace is 200)
-	public int furnaceSpeed = 66;
 	
 	// Number of ticks the furnace will burn for
 	public int burnTime;
@@ -175,13 +170,13 @@ private String localizedName;
     // Gets the cooking progress (Scaled) for item 1
 	@SideOnly(Side.CLIENT)
 	public int getCookProgressScaled1(int i){
-		return this.cookTime1 * i / this.furnaceSpeed;
+		return this.cookTime1 * i / FurnaceVariables.DIAMOND_FURNACE_T2_SPEED;
 	}
 	
     // Gets the cooking progress (Scaled) for item 2
 	@SideOnly(Side.CLIENT)
 	public int getCookProgressScaled2(int i){
-		return this.cookTime2 * i / this.furnaceSpeed;
+		return this.cookTime2 * i / FurnaceVariables.DIAMOND_FURNACE_T2_SPEED;
 	}
 		
 	// Get the remaining burn time (Scaled)
@@ -189,7 +184,7 @@ private String localizedName;
 		public int getBurnTimeRemainingScaled(int i){
 			
 			if(this.currentItemBurnTime == 0){
-				this.currentItemBurnTime = furnaceSpeed;
+				this.currentItemBurnTime = FurnaceVariables.DIAMOND_FURNACE_T2_SPEED;
 			}
 
 			int result = this.burnTime * i / this.currentItemBurnTime;
@@ -218,7 +213,7 @@ private String localizedName;
 			//if the burnTime has reached zero and there is an item that can be smelted
 			if((this.burnTime == 0 && this.canSmelt1()) || (this.burnTime == 0 && this.canSmelt2())) {
 				//set currentItemBurnTime and burnTime to the fuel item burn time || add a '+1' after fuel efficiency to create an ever lasting furnace
-				this.currentItemBurnTime = this.burnTime = getItemBurnTime(this.slots[2]) / this.furnaceEfficiency;
+				this.currentItemBurnTime = this.burnTime = (int) (((double)getItemBurnTime(this.slots[2]) / FurnaceVariables.DIAMOND_FURNACE_T2_EFFICIENCY));
 				
 				if(this.isBurning()) {
 					flag1 = true;
@@ -236,7 +231,7 @@ private String localizedName;
 			if(this.isBurning() && this.canSmelt1()) {
 				++this.cookTime1;
 	
-				if(this.cookTime1 == this.furnaceSpeed) {
+				if(this.cookTime1 == FurnaceVariables.DIAMOND_FURNACE_T2_SPEED) {
 					this.cookTime1 = 0;
 					this.smeltItem1();
 					flag1 = true;
@@ -248,7 +243,7 @@ private String localizedName;
 			if(this.isBurning() && this.canSmelt2()) {
 				++this.cookTime2;
 	
-				if(this.cookTime2 == this.furnaceSpeed) {
+				if(this.cookTime2 == FurnaceVariables.DIAMOND_FURNACE_T2_SPEED) {
 					this.cookTime2 = 0;
 					this.smeltItem2();
 					flag1 = true;
