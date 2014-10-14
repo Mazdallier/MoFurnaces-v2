@@ -112,7 +112,7 @@ public class DiamondFurnaceT3 extends BlockContainer{
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister iconRegister){
 		this.blockIcon = iconRegister.registerIcon(Strings.MODID+":DiamondFurnace_side");
-		this.iconFront = iconRegister.registerIcon(Strings.MODID+":"+(this.isActive ? "ObsidianFurnaceT3_front_active" : "ObsidianFurnaceT3_front_idle"));
+		this.iconFront = iconRegister.registerIcon(Strings.MODID+":"+(this.isActive ? "DiamondFurnaceT3_front_active" : "DiamondFurnaceT3_front_idle"));
 		this.iconTop = iconRegister.registerIcon(Strings.MODID+":DiamondFurnace_top");
 	}
 	

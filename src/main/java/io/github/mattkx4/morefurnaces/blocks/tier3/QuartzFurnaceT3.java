@@ -111,7 +111,7 @@ public class QuartzFurnaceT3 extends BlockContainer{
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister iconRegister){
 		this.blockIcon = iconRegister.registerIcon(Strings.MODID+":QuartzFurnace_side");
-		this.iconFront = iconRegister.registerIcon(Strings.MODID+":"+(this.isActive ? "ObsidianFurnaceT3_front_active" : "ObsidianFurnaceT3_front_idle"));
+		this.iconFront = iconRegister.registerIcon(Strings.MODID+":"+(this.isActive ? "QuartzFurnaceT3_front_active" : "QuartzFurnaceT3_front_idle"));
 		this.iconTop = iconRegister.registerIcon(Strings.MODID+":QuartzFurnace_top");
 	}
 	
