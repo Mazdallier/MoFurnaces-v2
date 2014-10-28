@@ -34,7 +34,7 @@ public class MFMEntityHandler {
 		
 		EntityRegistry.registerGlobalEntityID(entityClass, name, entityID);
 		//spawn C into the world
-		EntityRegistry.addSpawn(entityClass, 5, 1, 1, EnumCreatureType.creature, BiomeGenBase.desert, BiomeGenBase.extremeHills, BiomeGenBase.roofedForest);
+		EntityRegistry.addSpawn(entityClass, 1, 1, 1, EnumCreatureType.creature, BiomeGenBase.desert, BiomeGenBase.extremeHills, BiomeGenBase.roofedForest);
 		
 		EntityRegistry.registerModEntity(entityClass,  name,  entityID, MoFurnacesMod.instance, 64, 1, true);
 		EntityList.entityEggs.put(Integer.valueOf(entityID), new EntityList.EntityEggInfo(entityID, mainColour, subColour));

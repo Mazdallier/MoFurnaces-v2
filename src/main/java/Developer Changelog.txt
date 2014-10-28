@@ -447,6 +447,15 @@ V2.1 -> V2.2{
             - I've started now, and the wiki will be done by tomorrow.
     }
     
+    28 OCT - Pr1meSh0ck{
+        - Changed CK spawn rate to 1, hopefully this dramatically reduces the spawnrate in desert biomes.
+        - Improved and altered CK's targeting attributes
+            - Will now target all mob type entities
+            - Possibility to damage any entity upon collision, even if accidental (side effect #1)
+            - Will attack other CK entities (side effect #2)
+        - Added efficiency description and attributes to the furnace variables
+    }
+    
     TODO{
         X Update Notifier
             X Possible GUI renderation on Start Menu?
