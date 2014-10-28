@@ -19,6 +19,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
@@ -127,6 +128,7 @@ public class BrickFurnace extends BlockContainer{
 			// Tiers the Brick Furnace to Tier 2
 			if(player.getCurrentEquippedItem() != null) {
 				if(player.getCurrentEquippedItem().getItem() == MFMItems.Tier2Device) {
+					player.setCurrentItemOrArmor(0, null);
 					TileEntityBrickFurnace tileentity = (TileEntityBrickFurnace)world.getTileEntity(x, y, z);
 					ItemStack input;
 					ItemStack fuel;

@@ -128,6 +128,7 @@ private final boolean isActive;
 		// Tiers the Diamond Furnace to Tier 2
 		if(player.getCurrentEquippedItem() != null) {
 			if(player.getCurrentEquippedItem().getItem() == MFMItems.Tier2Device) {
+				player.setCurrentItemOrArmor(0, null);
 				TileEntityDiamondFurnace tileentity = (TileEntityDiamondFurnace)world.getTileEntity(x, y, z);
 				ItemStack input;
 				ItemStack fuel;

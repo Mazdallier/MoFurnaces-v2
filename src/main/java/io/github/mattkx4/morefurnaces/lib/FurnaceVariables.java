@@ -49,4 +49,21 @@ public class FurnaceVariables {
 	public static final double QUARTZ_FURNACE_T2_EFFICIENCY = 0.5D;
 	public static final double DIAMOND_FURNACE_T2_EFFICIENCY = 3.0D;
 	public static final double OBSIDIAN_FURNACE_T2_EFFICIENCY = 8.0D;
+	
+	/*
+	 * Teir 3 Furnaces
+	 */
+	// SPEEDS
+	public static final int BRICK_FURNACE_T3_SPEED = 133;
+	public static final int IRON_FURNACE_T3_SPEED = 100;
+	public static final int QUARTZ_FURNACE_T3_SPEED = 200;
+	public static final int DIAMOND_FURNACE_T3_SPEED = 66;
+	public static final int OBSIDIAN_FURNACE_T3_SPEED = 50;
+	
+	// EFFICIENCIES
+	public static final double BRICK_FURNACE_T3_EFFICIENCY = 1.0D;
+	public static final double IRON_FURNACE_T3_EFFICIENCY = 2.0D;
+	public static final double QUARTZ_FURNACE_T3_EFFICIENCY = 0.5D;
+	public static final double DIAMOND_FURNACE_T3_EFFICIENCY = 3.0D;
+	public static final double OBSIDIAN_FURNACE_T3_EFFICIENCY = 8.0D;
 }

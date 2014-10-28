@@ -128,6 +128,7 @@ public class QuartzFurnace extends BlockContainer{
 		// Tiers the Obsidian Furnace to Tier 2
 				if(player.getCurrentEquippedItem() != null) {
 					if(player.getCurrentEquippedItem().getItem() == MFMItems.Tier2Device) {
+						player.setCurrentItemOrArmor(0, null);
 						TileEntityQuartzFurnace tileentity = (TileEntityQuartzFurnace)world.getTileEntity(x, y, z);
 						ItemStack input;
 						ItemStack fuel;

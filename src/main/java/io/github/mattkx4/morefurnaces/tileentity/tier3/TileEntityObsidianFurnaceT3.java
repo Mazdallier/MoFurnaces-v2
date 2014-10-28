@@ -1,6 +1,7 @@
 package io.github.mattkx4.morefurnaces.tileentity.tier3;
 
 import io.github.mattkx4.morefurnaces.blocks.tier3.ObsidianFurnaceT3;
+import io.github.mattkx4.morefurnaces.lib.FurnaceVariables;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -29,13 +30,7 @@ private String localizedName;
 	private static final int[] slots_side = new int[]{3};
 	
 	private ItemStack[] slots = new ItemStack [7];
-	
-	// Inverse of furnace efficiency for fuels, 
-	public int furnaceEfficiency = 8;
 
-	// Speed of the furnace. A lower integer means a faster speed (Regular furnace is 200)
-	public int furnaceSpeed = 50;
-	
 	// Number of ticks the furnace will burn for
 	public int burnTime;
 	
@@ -177,19 +172,19 @@ private String localizedName;
     // Gets the cooking progress (Scaled) for item 1
 	@SideOnly(Side.CLIENT)
 	public int getCookProgressScaled1(int i){
-		return this.cookTime1 * i / this.furnaceSpeed;
+		return this.cookTime1 * i / FurnaceVariables.OBSIDIAN_FURNACE_T3_SPEED;
 	}
 	
     // Gets the cooking progress (Scaled) for item 2
 	@SideOnly(Side.CLIENT)
 	public int getCookProgressScaled2(int i){
-		return this.cookTime2 * i / this.furnaceSpeed;
+		return this.cookTime2 * i / FurnaceVariables.OBSIDIAN_FURNACE_T3_SPEED;
 	}
 	
     // Gets the cooking progress (Scaled) for item 3
 	@SideOnly(Side.CLIENT)
 	public int getCookProgressScaled3(int i){
-		return this.cookTime3 * i / this.furnaceSpeed;
+		return this.cookTime3 * i / FurnaceVariables.OBSIDIAN_FURNACE_T3_SPEED;
 	}
 		
 	// Get the remaining burn time (Scaled)
@@ -197,7 +192,7 @@ private String localizedName;
 		public int getBurnTimeRemainingScaled(int i){
 			
 			if(this.currentItemBurnTime == 0){
-				this.currentItemBurnTime = furnaceSpeed;
+				this.currentItemBurnTime = FurnaceVariables.OBSIDIAN_FURNACE_T3_SPEED;
 			}
 
 			int result = this.burnTime * i / this.currentItemBurnTime;
@@ -226,7 +221,7 @@ private String localizedName;
 			//if the burnTime has reached zero and there is an item that can be smelted
 			if(this.burnTime == 0 && (this.canSmelt1() || this.canSmelt2() || this.canSmelt3())) {
 				//set currentItemBurnTime and burnTime to the fuel item burn time || add a '+1' after fuel efficiency to create an ever lasting furnace
-				this.currentItemBurnTime = this.burnTime = (int) (((double)getItemBurnTime(this.slots[3]) / (double)this.furnaceEfficiency) + 0.5);
+				this.currentItemBurnTime = this.burnTime = (int) (((double)getItemBurnTime(this.slots[3]) / FurnaceVariables.OBSIDIAN_FURNACE_T3_EFFICIENCY) + 0.5);
 
 				if(this.isBurning()) {
 					flag1 = true;
@@ -245,7 +240,7 @@ private String localizedName;
 			if(this.isBurning() && this.canSmelt1()) {
 				++this.cookTime1;
 	
-				if(this.cookTime1 == this.furnaceSpeed) {
+				if(this.cookTime1 == FurnaceVariables.OBSIDIAN_FURNACE_T3_SPEED) {
 					this.cookTime1 = 0;
 					this.smeltItem1();
 					flag1 = true;
@@ -257,7 +252,7 @@ private String localizedName;
 			if(this.isBurning() && this.canSmelt2()) {
 				++this.cookTime2;
 	
-				if(this.cookTime2 == this.furnaceSpeed) {
+				if(this.cookTime2 == FurnaceVariables.OBSIDIAN_FURNACE_T3_SPEED) {
 					this.cookTime2 = 0;
 					this.smeltItem2();
 					flag1 = true;
@@ -269,7 +264,7 @@ private String localizedName;
 			if(this.isBurning() && this.canSmelt3()) {
 				++this.cookTime3;
 	
-				if(this.cookTime3 == this.furnaceSpeed) {
+				if(this.cookTime3 == FurnaceVariables.OBSIDIAN_FURNACE_T3_SPEED) {
 					this.cookTime3 = 0;
 					this.smeltItem3();
 					flag1 = true;

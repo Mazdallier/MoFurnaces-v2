@@ -127,6 +127,7 @@ public class ObsidianFurnaceT2 extends BlockContainer{
 		// Tiers the Brick Furnace to Tier 3
 				if(player.getCurrentEquippedItem() != null) {
 					if(player.getCurrentEquippedItem().getItem() == MFMItems.Tier3Device) {
+						player.setCurrentItemOrArmor(0, null);
 						TileEntityObsidianFurnaceT2 tileentity = (TileEntityObsidianFurnaceT2)world.getTileEntity(x, y, z);
 						//create variable itemstack for the T2 furnace contents
 						ItemStack input1;
