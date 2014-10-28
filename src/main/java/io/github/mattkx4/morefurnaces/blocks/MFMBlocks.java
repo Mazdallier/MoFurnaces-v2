@@ -264,6 +264,6 @@ public class MFMBlocks {
 		
 		// TileEntity and Crafting Recipe Registry for Cactus Furnace
 		GameRegistry.registerTileEntity(TileEntityCactusFurnace.class, "Cactus Furnace");
-		GameRegistry.addRecipe(new ItemStack(CactusFurnaceIdle), new Object[]{"yyy", "yBy", "yyy", 'y', Blocks.cactus, 'B', MFMBlocks.BrickFurnaceActive});
+		GameRegistry.addRecipe(new ItemStack(CactusFurnaceIdle), new Object[]{"yyy", "yBy", "yyy", 'y', Blocks.cactus, 'B', MFMBlocks.BrickFurnaceIdle});
 	}
 }
