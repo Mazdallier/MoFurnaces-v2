@@ -290,7 +290,7 @@ public class TileEntityBoneFurnace extends TileEntity implements ISidedInventory
 			
 				//insert item based fuels
 	            if (item == Items.bone) return 1600;
-	            if (item == new ItemStack(Items.dye, 15).getItem()) return 3200;
+	            if (item == new ItemStack(Items.dye, 15).getItem()) return 533;
 			}	            
 		return GameRegistry.getFuelValue(itemstack);
 	}

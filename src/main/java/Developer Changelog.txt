@@ -457,6 +457,13 @@ V2.1 -> V2.2{
         - Made changes to the damnable Iron Furnace to avoid clashes with other mods
     }
     
+    28 OCT - Mattkx4{
+        - Changed the Bone Furnace fuels
+            - Previously the bonemeal produced 3200 ticks of fuel and bone produced 1600.
+            - That doesn't make sense however since 1 bone gives you 3 bonemeal.
+            - So I changed it so that one bonemeal produces 1/3 of the amount that a bone produces.
+    }
+    
     TODO{
         X Update Notifier
             X Possible GUI renderation on Start Menu?
