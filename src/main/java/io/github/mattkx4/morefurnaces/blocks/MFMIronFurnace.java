@@ -33,7 +33,7 @@ import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class IronFurnace extends BlockContainer{
+public class MFMIronFurnace extends BlockContainer{
 
 	/*
 	 * Boolean to tell if the furnace is active
@@ -52,7 +52,7 @@ public class IronFurnace extends BlockContainer{
 	
 	private EffectRenderer effect_renderer;
 	
-	public IronFurnace(boolean isActive) {
+	public MFMIronFurnace(boolean isActive) {
 		super(Material.rock);
 		this.isActive = isActive;
 		this.setHarvestLevel("pickaxe", 1);
@@ -62,7 +62,7 @@ public class IronFurnace extends BlockContainer{
 	 * What item is dropped from the block
 	 */
 	public Item getItemDropped(int i, Random random, int j){
-		return Item.getItemFromBlock(MFMBlocks.IronFurnaceIdle);	
+		return Item.getItemFromBlock(MFMBlocks.MFMIronFurnaceIdle);	
 	}	
 	
 	/*
@@ -198,9 +198,9 @@ public class IronFurnace extends BlockContainer{
 		keepInventory = true;
 		
 		if(active == true){
-			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlocks.IronFurnaceActive);
+			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlocks.MFMIronFurnaceActive);
 		}else{
-			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlocks.IronFurnaceIdle);
+			worldObj.setBlock(xCoord, yCoord, zCoord, MFMBlocks.MFMIronFurnaceIdle);
 		}
 		keepInventory = false;
 		
@@ -347,6 +347,6 @@ public class IronFurnace extends BlockContainer{
      */
     @SideOnly(Side.CLIENT)
     public Item getItem(World world, int x, int y, int z){
-        return Item.getItemFromBlock(MFMBlocks.IronFurnaceIdle);
+        return Item.getItemFromBlock(MFMBlocks.MFMIronFurnaceIdle);
     }
 }

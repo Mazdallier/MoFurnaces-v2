@@ -1,6 +1,6 @@
 package io.github.mattkx4.morefurnaces.tileentity;
 
-import io.github.mattkx4.morefurnaces.blocks.IronFurnace;
+import io.github.mattkx4.morefurnaces.blocks.MFMIronFurnace;
 import io.github.mattkx4.morefurnaces.lib.FurnaceVariables;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -232,7 +232,7 @@ public class TileEntityIronFurnace extends TileEntity implements ISidedInventory
 
 			if(flag != this.isBurning()) {
 				flag1 = true;
-				IronFurnace.updateIronFurnaceState(this.burnTime > 0, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
+				MFMIronFurnace.updateIronFurnaceState(this.burnTime > 0, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
 			}
 		}
 		

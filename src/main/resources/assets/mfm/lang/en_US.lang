@@ -1,5 +1,5 @@
 tile.BrickFurnaceIdle.name=Brick Furnace
-tile.IronFurnaceIdle.name=Iron Furnace
+tile.MFMIronFurnaceIdle.name=Iron Furnace
 tile.GoldFurnaceIdle.name=Gold Furnace
 tile.QuartzFurnaceIdle.name=Quartz Furnace
 tile.DiamondFurnaceIdle.name=Diamond Furnace
@@ -24,7 +24,7 @@ tile.ObsidianFurnaceT3Idle.name=Tier 3 Obsidian Furnace
 
 
 tile.BrickFurnaceActive.name=Brick Furnace
-tile.IronFurnaceActive.name=Iron Furnace
+tile.MFMIronFurnaceActive.name=Iron Furnace
 tile.GoldFurnaceActive.name=Gold Furnace
 tile.NetherrackFurnaceActive.name=Netherrack Furnace
 tile.QuartzFurnaceActive.name=Quartz Furnace

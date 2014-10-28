@@ -454,6 +454,7 @@ V2.1 -> V2.2{
             - Possibility to damage any entity upon collision, even if accidental (side effect #1)
             - Will attack other CK entities (side effect #2)
         - Added efficiency description and attributes to the furnace variables
+        - Made changes to the damnable Iron Furnace to avoid clashes with other mods
     }
     
     TODO{

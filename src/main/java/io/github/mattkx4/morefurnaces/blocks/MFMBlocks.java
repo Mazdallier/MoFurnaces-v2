@@ -80,8 +80,8 @@ public class MFMBlocks {
 	public static Block BrickFurnaceActive;
 
 	// Iron Furnace Active and Idle blocks
-	public static Block IronFurnaceIdle;
-	public static Block IronFurnaceActive;
+	public static Block MFMIronFurnaceIdle;
+	public static Block MFMIronFurnaceActive;
 
 	// Gold Furnace Active and Idle blocks
 	public static Block GoldFurnaceIdle;
@@ -127,8 +127,8 @@ public class MFMBlocks {
 		BrickFurnaceActive = new BrickFurnace(true).setBlockName("BrickFurnaceActive").setHardness(2.0F).setResistance(10.0F).setStepSound(soundTypeBrick).setLightLevel(0.625F);
 		
 		// Initialize the Iron Furnace
-		IronFurnaceIdle = new IronFurnace(false).setBlockName("IronFurnaceIdle").setHardness(5.0F).setResistance(10.0F).setStepSound(soundTypeIron).setCreativeTab(MoFurnacesMod.MFM);
-		IronFurnaceActive = new IronFurnace(true).setBlockName("IronFurnaceActive").setHardness(5.0F).setResistance(10.0F).setStepSound(soundTypeIron).setLightLevel(0.625F);
+		MFMIronFurnaceIdle = new MFMIronFurnace(false).setBlockName("MFMIronFurnaceIdle").setHardness(5.0F).setResistance(10.0F).setStepSound(soundTypeIron).setCreativeTab(MoFurnacesMod.MFM);
+		MFMIronFurnaceActive = new MFMIronFurnace(true).setBlockName("MFMIronFurnaceActive").setHardness(5.0F).setResistance(10.0F).setStepSound(soundTypeIron).setLightLevel(0.625F);
 		
 		// Initialize the Gold Furnace
 		GoldFurnaceIdle = new GoldFurnace(false).setBlockName("GoldFurnaceIdle").setHardness(3.0F).setResistance(10.0F).setStepSound(soundTypeIron).setCreativeTab(MoFurnacesMod.MFM);
@@ -176,8 +176,8 @@ public class MFMBlocks {
 		GameRegistry.registerBlock(BrickFurnaceActive, "BrickFurnaceActive");
 		
 		// Register Iron Furnace
-		GameRegistry.registerBlock(IronFurnaceIdle,  "IronFurnaceIdle");
-		GameRegistry.registerBlock(IronFurnaceActive, "IronFurnaceActive");
+		GameRegistry.registerBlock(MFMIronFurnaceIdle,  "MFMIronFurnaceIdle");
+		GameRegistry.registerBlock(MFMIronFurnaceActive, "MFMIronFurnaceActive");
 
 		// Register Gold Furnace
 		GameRegistry.registerBlock(GoldFurnaceIdle,  "GoldFurnaceIdle");
@@ -224,8 +224,8 @@ public class MFMBlocks {
 		GameRegistry.addRecipe(new ItemStack(BrickFurnaceIdle), new Object[]{"bbb", "bFb", "bbb", 'b', Blocks.brick_block, 'F', Blocks.furnace});
 		
 		// TileEntity and Crafting Recipe Registry for Iron Furnace
-		GameRegistry.registerTileEntity(TileEntityIronFurnace.class, "Iron Furnace");
-		GameRegistry.addRecipe(new ItemStack(IronFurnaceIdle), new Object[]{"iii", "iBi", "iii", 'i', Items.iron_ingot, 'B', BrickFurnaceIdle});
+		GameRegistry.registerTileEntity(TileEntityIronFurnace.class, "MFMIron Furnace");
+		GameRegistry.addRecipe(new ItemStack(MFMIronFurnaceIdle), new Object[]{"iii", "iBi", "iii", 'i', Items.iron_ingot, 'B', BrickFurnaceIdle});
 
 		// TileEntity and Crafting Recipe Registry for Gold Furnace
 		GameRegistry.registerTileEntity(TileEntityGoldFurnace.class, "Gold Furnace");
@@ -233,12 +233,12 @@ public class MFMBlocks {
 		
 		// TileEntity and Crafting Recipe Registry for Netherrack Furnace
 		GameRegistry.registerTileEntity(TileEntityNetherrackFurnace.class, "Netherrack Furnace");
-		GameRegistry.addRecipe(new ItemStack(NetherrackFurnaceActive), new Object[]{"nnn", "nIn", "nnn", 'n', Blocks.netherrack, 'I', IronFurnaceIdle});
+		GameRegistry.addRecipe(new ItemStack(NetherrackFurnaceActive), new Object[]{"nnn", "nIn", "nnn", 'n', Blocks.netherrack, 'I', MFMIronFurnaceIdle});
 		GameRegistry.addRecipe(new ItemStack(NetherrackFurnaceActive), new Object[]{"nnn", "nGn", "nnn", 'n', Blocks.netherrack, 'G', GoldFurnaceIdle});
 
 		// TileEntity and Crafting Recipe Registry for Quartz Furnace
 		GameRegistry.registerTileEntity(TileEntityQuartzFurnace.class, "Quartz Furnace");
-		GameRegistry.addRecipe(new ItemStack(QuartzFurnaceIdle), new Object[]{"qqq", "qIq", "qqq", 'q', Blocks.quartz_block, 'I', IronFurnaceIdle});
+		GameRegistry.addRecipe(new ItemStack(QuartzFurnaceIdle), new Object[]{"qqq", "qIq", "qqq", 'q', Blocks.quartz_block, 'I', MFMIronFurnaceIdle});
 		GameRegistry.addRecipe(new ItemStack(QuartzFurnaceIdle), new Object[]{"qqq", "qGq", "qqq", 'q', Blocks.quartz_block, 'G', GoldFurnaceIdle});
 		
 		// TileEntity and Crafting Recipe Registry for Diamond Furnace
