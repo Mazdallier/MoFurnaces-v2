@@ -10,6 +10,7 @@ import io.github.mattkx4.morefurnaces.tileentity.TileEntityGoldFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityIronFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityNetherrackFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityObsidianFurnace;
+import io.github.mattkx4.morefurnaces.tileentity.TileEntityPumpkinFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityQuartzFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityRedstoneFurnace;
 import net.minecraft.block.Block;
@@ -118,6 +119,10 @@ public class MFMBlocks {
 	public static Block CactusFurnaceIdle;
 	public static Block CactusFurnaceActive;
 	
+	//Pumpkin Block Active and Idle Blocks
+	public static Block PumpkinFurnaceIdle;
+	public static Block PumpkinFurnaceActive;
+	
 	/**
 	 * Initialize the active and idle blocks and set attributes
 	 */
@@ -164,6 +169,10 @@ public class MFMBlocks {
 		// Initialize the Cactus Furnace
 		CactusFurnaceIdle = new CactusFurnace(false).setBlockName("CactusFurnaceIdle").setHardness(0.4F).setResistance(0.1F).setStepSound(soundTypeCactus).setCreativeTab(MoFurnacesMod.MFM);
 		CactusFurnaceActive = new CactusFurnace(true).setBlockName("CactusFurnaceActive").setHardness(0.4F).setResistance(0.1F).setStepSound(soundTypeCactus).setLightLevel(0.625F);
+		
+		// Initialize the Pumpkin Furnace
+		PumpkinFurnaceIdle = new PumpkinFurnace(false).setBlockName("PumpkinFurnaceIdle").setHardness(0.4F).setResistance(0.1F).setStepSound(soundTypeCactus).setCreativeTab(MoFurnacesMod.MFM);
+		PumpkinFurnaceActive = new PumpkinFurnace(true).setBlockName("PumpkinFurnaceActive").setHardness(0.4F).setResistance(0.1F).setStepSound(soundTypeCactus).setLightLevel(0.625F);
 	}
 	
 	/**
@@ -213,6 +222,10 @@ public class MFMBlocks {
 		// Register Cactus Furnace
 		GameRegistry.registerBlock(CactusFurnaceIdle, "CactusFurnaceIdle");
 		GameRegistry.registerBlock(CactusFurnaceActive, "CactusFurnaceActive");
+		
+		// Register Cactus Furnace
+		GameRegistry.registerBlock(PumpkinFurnaceIdle, "PumpkinFurnaceIdle");
+		GameRegistry.registerBlock(PumpkinFurnaceActive, "PumpkinFurnaceActive");
 	}
 	
 	/**
@@ -265,5 +278,9 @@ public class MFMBlocks {
 		// TileEntity and Crafting Recipe Registry for Cactus Furnace
 		GameRegistry.registerTileEntity(TileEntityCactusFurnace.class, "Cactus Furnace");
 		GameRegistry.addRecipe(new ItemStack(CactusFurnaceIdle), new Object[]{"yyy", "yBy", "yyy", 'y', Blocks.cactus, 'B', MFMBlocks.BrickFurnaceIdle});
+		
+		// TileEntity and Crafting Recipe Registry for Pumpkin Furnace
+		GameRegistry.registerTileEntity(TileEntityPumpkinFurnace.class, "Pumpkin Furnace");
+		GameRegistry.addRecipe(new ItemStack(PumpkinFurnaceIdle), new Object[]{"yyy", "yBy", "yyy", 'y', Blocks.pumpkin, 'B', MFMBlocks.BrickFurnaceIdle});
 	}
 }

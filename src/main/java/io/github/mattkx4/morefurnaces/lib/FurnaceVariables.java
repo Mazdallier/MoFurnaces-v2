@@ -16,6 +16,7 @@ public class FurnaceVariables {
 	public static final int REDSTONE_FURNACE_SPEED = 200; // Same Speed
 	public static final int ANVIL_FURNACE_SPEED = 250; // 0.8x As Fast or 20% Slower
 	public static final int CACTUS_FURNACE_SPEED = 100; // 2x Faster or 200% Faster
+	public static final int PUMPKIN_FURNACE_SPEED = 133; // 1.5xx Faster or 150% Faster
 	
 	/*
 	 * EFFICIENCIES
@@ -43,6 +44,7 @@ public class FurnaceVariables {
 	public static final double REDSTONE_FURNACE_EFFICIENCY = 1.0D; // Same Efficiency
 	public static final double ANVIL_FURNACE_EFFICIENCY = 1.0D; // 0.8x as efficient or 20% less efficient as a regular furnace
 	public static final double CACTUS_FURNACE_EFFICIENCY = 2.0D; // Same Efficiency
+	public static final double PUMPKIN_FURNACE_EFFICIENCY = 1.0D; // 1.5x More Efficient or 150% Regular Efficiency
 	
 	// "DAMAGE FIXED" (For AnvilFurnace)
 	public static final int ANVIL_FURNACE_DAMAGE_FIXED = 25; // This needs no description...

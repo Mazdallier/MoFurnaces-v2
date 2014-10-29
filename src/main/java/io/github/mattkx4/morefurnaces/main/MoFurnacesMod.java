@@ -67,6 +67,8 @@ public class MoFurnacesMod {
 	public static final int guiIDAnvilFurnace = 9;
 	//Cactus Furnace gui ID
 	public static final int guiIDCactusFurnace = 10;
+	//Cactus Furnace gui ID
+	public static final int guiIDPumpkinFurnace = 11;
 	//Tier 2 Obsidian Furnace gui ID
 	public static final int guiIDObsidianFurnaceT2 = 20;
 	//Tier 3 Obsidian Furnace gui ID
