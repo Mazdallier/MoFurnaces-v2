@@ -45,6 +45,23 @@ Wishlist{
 * * *
 * * *
 * * *
+V2.1 -> V2.2.1{
+    Haloween Mini Update
+    
+    29 OCT - Pr1meSh0ck{
+        - Added the backbone of the pumpkin furnace, using cactus textures as placeholders
+    }
+    
+    TODO{
+        - Add Attributes to the pumpkin furnace
+        - Add custom textures
+        - Made the furnace spawn a bat every ten seconds
+    }
+    
+}
+* * *
+* * *
+* * *
 V2.1 -> V2.2{
     
     13 AUG - Pr1meSh0ck{
@@ -470,85 +487,6 @@ V2.1 -> V2.2{
         complications.
     }
     
-    TODO{
-        X Update Notifier
-            X Possible GUI renderation on Start Menu?
-        X Add Cactus Furnace GUI flame to the custom_furnace.png file
-        X PARTICLES
-            X Perfect the art of making particle stuffs
-            X Add particles to the things that need them
-        X Add bonemeal to the bone furnace
-        X Do the CK Mob
-            X Fix texture rendering...
-                X Head is all messed up and the emerald furnace is rendering onto the legs (?)
-            X Make it a defender.
-                X Attacks hostile mobs with the power of a diamond sword
-            X Add tameablility?
-                X Add the ability to tame a CobaltKatana and have it follow you
-                    X Seems kind of morbid, but like...
-                    X No he one shots mobs and can smelt items instantly, having him follow you is too powerful
-            X Ability to leash to a fence and etc.
-                X Once again, kind of morbid, but seriously...
-                X Again no, this would allow for too much of an advantage
-            X Make it a defender.
-                X Attacks hostile mobs with the power of a diamond sword
-                X Done
-            X Currently right clicking will display chat to the player and provide further options for right clicking,
-            the actual furnace and it's gui are impossible to open right now.
-            X Improve dynamics of the chat conversations.
-        X Transfer Fuel Less Furnace methods/code to Netherrack Furnace
-        X Fix shift-clicking on Fuel Less Furnace
-        X Apply tiering to the following furnaces
-            X Iron
-            X Brick
-            X Diamond
-            X Quartz
-        X Design the following Wacky Furnace:
-            X Anvil
-            X Cacti
-        X Need to tweak Anvil Furnace stats for balance
-            X Furnace speed
-            X Fuel items and their speeds
-            X Amount of damage fixed
-        X Need to add/alter the following furnace recipes
-            X Bone Furnace
-            X Anvil Furnace
-            X Redstone Furnace
-        X Need to add/alter block textures for the following furnaces
-            X Anvil
-            X Diamond T2
-            X Diamond T3
-            X Iron T2 - T3
-            X Brick T2
-            X Brick T3
-            X Quartz T2 - T3
-            X Tier 3 Device
-            X Tier Core
-            X Obsidian T2 - T3
-        X Identified problem when tiering, the device will cause the rotation of the furnace to reset
-        X Fix Diamond Furnace guiID ?
-        X Finish perfecting Tiering Device
-        X Fix T2 and T3 gui rendering bug ???
-            X Bug seems to only be occasional
-        X Fix T2 Obsidian Furnace 2nd input shift clicking problem
-            X Cannot shift click into second input
-        X Fix T2 Obsidian Furnace 2nd output duplication bug
-            X Only happens with shift clicking when click and placed it does not duplication
-        X Fix problem when attempting to transfer more than 5 items to be cooked into the redstone furnace
-            X The furnace will attempt to transfer all the items from the attached inventory INTO the furnace
-            but when the furnace's internal inventory(for items TO BE cooked) is full the furnace just seems 
-            to delete the items in the chest
-        X Organize Furnaces in their creative tab
-        X Create seperate creative tab for tiered furnaces
-        X Credit sb023612 for language file contribution in user changelog.
-        X Credit ViKaleidoscope for language file contribution in user changelog.
-        X EXTENSIVE TESTING
-            X I wanna test the mod in my own workspace for at least a week.
-                X To be honest, I just want to figure out the mod. Learn the crafting recipes, perks, etc. That will help with writing the wiki.
-        X Edit wiki to add ALLLLLLL the new stuff
-        X Compile and Release!
-        X Begin v2.3 :D
-    } 
 }
 * * *
 * * *
@@ -699,28 +637,5 @@ ALPHA 0.1 -> V2.1{
         - Added to language file for NEI compatibility
         - 1.7.2 release ready
    }
-	
-	TODO{
-		X diamond furnace custom textures 
-		X add in remaining furnaces with the following attributes
-			X brick furnace: speed = 1.5, efficiency = 1.5
-			X iron furnace: speed = 2, efficiency = 1
-			X quartz furnace: speed = 1, efficiency = 2
-			X netherrack furnace: speed = 0.5, efficiency = no fuel needed
-			X gold furnace: speed = 4, efficiency = 0.5, added effect of not smelting ores
-		X create/find custom textures for previous mentioned custom furnaces
-        X Correct speed for Quartz and Brick Furnace
-        X Custom Netherrack Furnace textures
-        X Fix Netherrack Furnace to be less buggy
-            NOTE: I changed it so it uses only netherrack, lava buckets, and blaze rod as a super efficient fuel.
-        X Polish up the code for release
-            X Polish files in the container, gui and tileentity folders
-        X Create release version change log with user relevant data
-        X Compile and test mod
-            X 1.7.2
-            X 1.7.10
-        X Build final versions of mod
-        X Create posts on MCF and PMC
-        X Start next version
-    }
+   
 }
