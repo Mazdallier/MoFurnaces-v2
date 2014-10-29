@@ -464,6 +464,12 @@ V2.1 -> V2.2{
             - So I changed it so that one bonemeal produces 1/3 of the amount that a bone produces.
     }
     
+    29 Oct - Pr1meSh0ck{
+        - Made alterations to the code governing item inputs for the redstone furnace. This appears 
+        to have fixed the problem without causing additional errors. Testing will reveal any further 
+        complications.
+    }
+    
     TODO{
         X Update Notifier
             X Possible GUI renderation on Start Menu?

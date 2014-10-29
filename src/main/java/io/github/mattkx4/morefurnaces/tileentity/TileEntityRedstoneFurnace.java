@@ -769,7 +769,8 @@ public class TileEntityRedstoneFurnace extends TileEntity implements ISidedInven
             return false;
         }else{
             ItemStack itemstack = item.getEntityItem().copy();
-            ItemStack itemstack1 = func_145889_a(inventory, itemstack, -1);
+            //run the custom processItemStack method that DOES NOT allow for any unsmeltable items
+            ItemStack itemstack1 = processItemStack(inventory, itemstack, -1);
             for (int i = 0; i < 6; i++){
         		if((FurnaceRecipes.smelting().getSmeltingResult(itemstack) != null) || isItemFuel(itemstack)){
         			if (itemstack1 != null && itemstack1.stackSize != 0){
@@ -783,7 +784,57 @@ public class TileEntityRedstoneFurnace extends TileEntity implements ISidedInven
         return flag;   
         }
     }
+    
+    /**
+     * This function is a carbon copy of the method func_145889_a with one small change. The method
+     * won't process items that are not smeltable or fuels. This method is called specifically by 
+     * the method that hands item inputs, whether that be from the environment or a suitably placed
+     * chest. All other instances are handled by the original method.
+     * @param inventory : The inventory being accessed
+     * @param itemStack : The itemStack being passed
+     * @param i : Integer of some importance
+     * @return Returns the itemStack as processed by method func_145899_c
+     */
+    public ItemStack processItemStack(IInventory inventory, ItemStack itemStack, int i){
+    	//custom code
+        if (inventory instanceof ISidedInventory && i > -1){
+            ISidedInventory isidedinventory = (ISidedInventory)inventory;
+            int[] aint = isidedinventory.getAccessibleSlotsFromSide(i);
+            for (int l = 0; l < aint.length && itemStack != null && itemStack.stackSize > 0; ++l){
+        		itemStack = func_145899_c(inventory, itemStack, aint[l], i);
+            }
+        }else{
+    		int j = inventory.getSizeInventory();
+            for (int k = 0; k < j && itemStack != null && itemStack.stackSize > 0; ++k){
+            	//if the item is a fuel
+            	if (isItemFuel(itemStack)){
+            		//run the function func_145899_c and set the slot number as 5:fuel slot
+            		itemStack = func_145899_c(inventory, itemStack, 5, i);
+        		//if the item has a smelting recipe
+            	}else if(FurnaceRecipes.smelting().getSmeltingResult(itemStack) != null){
+	            		//do the normal thing
+	                    itemStack = func_145899_c(inventory, itemStack, k, i);         		
+            	}else{
+            		;//DO NOTHING
+            	}
+            }
+        }
+        if (itemStack != null && itemStack.stackSize == 0){
+            itemStack = null;
+        }
+        return itemStack;
+    }
+    
 
+    /**
+     * This function is called whenever an item is dropped onto the redstone furnace, or when a suitably
+     * placed chest contains items. It will determine what to do with the item in the chest. Further more 
+     * it also processes items in the output slot of the furnace which are neither fuels or smeltables.
+     * @param inventory : The inventory being accessed
+     * @param itemStack : The itemStack being passed
+     * @param i : Integer of some importance
+     * @return Returns the itemStack as processed by method func_145899_c
+     */
     public ItemStack func_145889_a(IInventory inventory, ItemStack itemStack, int i){
     	//custom code
         if (inventory instanceof ISidedInventory && i > -1){
@@ -805,7 +856,7 @@ public class TileEntityRedstoneFurnace extends TileEntity implements ISidedInven
 	                    itemStack = func_145899_c(inventory, itemStack, k, i);         		
             	}else{
             		//this pertains only to the function controlling the outputting of smelted items
-                itemStack = func_145899_c(inventory, itemStack, k, i);
+            		itemStack = func_145899_c(inventory, itemStack, k, i);
             	}
             }
         }
