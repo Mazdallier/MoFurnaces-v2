@@ -542,12 +542,12 @@ V2.1 -> V2.2{
         X Create seperate creative tab for tiered furnaces
         X Credit sb023612 for language file contribution in user changelog.
         X Credit ViKaleidoscope for language file contribution in user changelog.
-        - EXTENSIVE TESTING
-            - I wanna test the mod in my own workspace for at least a week.
-                - To be honest, I just want to figure out the mod. Learn the crafting recipes, perks, etc. That will help with writing the wiki.
-        - Edit wiki to add ALLLLLLL the new stuff
-        - Compile and Release!
-        - Begin v2.3 :D
+        X EXTENSIVE TESTING
+            X I wanna test the mod in my own workspace for at least a week.
+                X To be honest, I just want to figure out the mod. Learn the crafting recipes, perks, etc. That will help with writing the wiki.
+        X Edit wiki to add ALLLLLLL the new stuff
+        X Compile and Release!
+        X Begin v2.3 :D
     } 
 }
 * * *
