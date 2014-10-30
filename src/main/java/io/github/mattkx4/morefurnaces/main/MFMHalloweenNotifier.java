@@ -18,7 +18,12 @@ public class MFMHalloweenNotifier {
 	public String message = "";
 	
 	public MFMHalloweenNotifier() {
-		// Pointless for the time being
+
+		try{
+
+		}catch (Exception e){
+			//found an error
+		}
 	}
 	
 	@SubscribeEvent
@@ -30,7 +35,7 @@ public class MFMHalloweenNotifier {
 		ArrayList<String> data = new ArrayList<String>();
 		
 		try {
-			URL accessedFile = new URL("");
+			URL accessedFile = new URL("https://raw.githubusercontent.com/Mattkx4/MoFurnaces-v2/master/update/halloween%20update.txt");
 			BufferedReader fileReader = new BufferedReader(new InputStreamReader(accessedFile.openStream()));
 			for(int line = 0; line < 2; line++) {
 				data.add(fileReader.readLine());
@@ -39,16 +44,8 @@ public class MFMHalloweenNotifier {
 			// Nope
 		}
 		
-		message = data.get(1);
-		bool = data.get(0);
+		this.message = data.get(1);
 		
-		if(bool == "true") {
-			MoFurnacesMod.isHalloween = true;
-			Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText("[" + EnumChatFormatting.BLUE + "MoFurnacesMod" + EnumChatFormatting.RESET + "] " + EnumChatFormatting.GOLD + message));
-		} else if(bool == "false") {
-			MoFurnacesMod.isHalloween = false;
-		} else {
-			System.out.println("Something went wrong.");
-		}
+		Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(message));
 	}
 }
