@@ -22,6 +22,8 @@ public class TileEntityPumpkinFurnace extends TileEntity implements ISidedInvent
 	
 	long oldTime;
 	
+	boolean otherSide;
+	
 	private String localizedName;
 	
 	private static final int[] slots_top = new int[]{0};
@@ -193,12 +195,6 @@ public class TileEntityPumpkinFurnace extends TileEntity implements ISidedInvent
 	// Update the Furnace
 	public void updateEntity(){
 		
-		//create a long and give it  a value of the current system time in milliseconds
-		long newTime = System.currentTimeMillis();
-		if((newTime - oldTime) > 10000){
-			PumpkinFurnace.spawnBat(this.worldObj, this.xCoord, this.yCoord, this.zCoord);
-			oldTime = newTime;
-		}
 		
 		boolean flag = isBurning();
 		boolean flag1 = false;
@@ -207,6 +203,13 @@ public class TileEntityPumpkinFurnace extends TileEntity implements ISidedInvent
 			--this.burnTime;
 		}
 		if(!this.worldObj.isRemote) {
+			
+			long newTime = System.currentTimeMillis();
+			if((newTime - oldTime) > 10000){
+				PumpkinFurnace.spawnBat(this.worldObj, this.xCoord, this.yCoord, this.zCoord);
+				oldTime = newTime;
+			}			
+			
 			//if the burnTime has reached zero and there is an item that can be smelted
 			if(this.burnTime == 0 && this.canSmelt()) {
 				//set currentItemBurnTime and burnTime to the fuel item burn time || add a '+1' after fuel efficiency to create an ever lasting furnace
