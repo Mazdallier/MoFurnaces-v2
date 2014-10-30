@@ -1,2 +1,2 @@
-true
+false
 For Halloween, the CK Mob now attacks players if provoked! This is a temporary feature. Happy Halloween! ~Mo' Furnaces Development Team
