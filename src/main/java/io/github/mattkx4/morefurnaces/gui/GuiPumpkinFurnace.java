@@ -51,7 +51,7 @@ public class GuiPumpkinFurnace extends GuiContainer{
 		if(this.pumpkinFurnace.isBurning()){
 			int m = this.pumpkinFurnace.getBurnTimeRemainingScaled(14);
 			int l = 14 - m;
-			drawTexturedModalRect(guiLeft + 57, guiTop + 36 + l, 176, 129 + l, 14, 14 - l);
+			drawTexturedModalRect(guiLeft + 57, guiTop + 36 + l, 176, 143 + l, 14, 14 - l);
 		}
 		
 		// Draws the progress bar for the current item being cooked (Arrow)
