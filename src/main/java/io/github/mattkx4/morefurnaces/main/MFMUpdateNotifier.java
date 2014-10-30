@@ -18,13 +18,13 @@ import net.minecraft.util.EnumChatFormatting;
 public class MFMUpdateNotifier{
 
 	//create a boolean flag to check if the mod is up to date
-	public boolean outOfDate = false;
+	public static boolean outOfDate = false;
 	//create a string for the latest version and the download link
 	public String newestVersion = "";
 	public String downloadLink = "";
 	EntityPlayer player;
 	
-	//this function is not really needed, but I'm keeping it in case deleting it has unintended consequences
+	//this constructor is not really needed, but I'm keeping it in case deleting it has unintended consequences
 	public MFMUpdateNotifier(){
 		
 		try{
@@ -59,7 +59,6 @@ public class MFMUpdateNotifier{
 		String[] currentVersion = Strings.version.split("[.]");
 		String[] latestVersion = data.get(0).split("[.]");
 		//local boolean to tell if the mod is out of date
-		boolean outOfDate = false;
 		//repeat for all the array locations
 		for(int arrayLocation = 0; arrayLocation < 3; arrayLocation++){
 			//Compare the Major versions, the first number.
@@ -70,14 +69,14 @@ public class MFMUpdateNotifier{
 				Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText("[" + EnumChatFormatting.BLUE + "MoFurnacesMod" + EnumChatFormatting.RESET + "] " + EnumChatFormatting.DARK_PURPLE + "A new update is available, Version: " + EnumChatFormatting.GREEN + newestVersion));
 				Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText("[" + EnumChatFormatting.BLUE + "MoFurnacesMod" + EnumChatFormatting.RESET + "] " + EnumChatFormatting.DARK_PURPLE + "Download here:"));
 				Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(downloadLink));
-				outOfDate = true;
+				//outOfDate = true;
 			}else if(Integer.valueOf(currentVersion[arrayLocation]) > Integer.valueOf(latestVersion[arrayLocation])){
 				//Do nothing
 				return;
 			}
 		}
 		//called if the mod is up to date
-		if(!outOfDate){
+		if(!this.outOfDate){
 			Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText("[" + EnumChatFormatting.BLUE + "MoFurnacesMod" + EnumChatFormatting.RESET + "] " + EnumChatFormatting.DARK_PURPLE + "Mod is up to date."));
 
 		}

@@ -8,6 +8,7 @@ tile.BoneFurnaceIdle.name=Bone Furnace
 tile.RedstoneFurnaceIdle.name=Redstone Furnace
 tile.AnvilFurnaceIdle.name=Anvil Furnace
 tile.CactusFurnaceIdle.name=Cactus Furnace
+tile.PumpkinFurnaceIdle.name=Pumpkin Furnace
 
 tile.BrickFurnaceT2Idle.name=Tier 2 Brick Furnace
 tile.IronFurnaceT2Idle.name=Tier 2 Iron Furnace
@@ -34,6 +35,7 @@ tile.BoneFurnaceActive.name=Bone Furnace
 tile.RedstoneFurnaceActive.name=Redstone Furnace
 tile.AnvilFurnaceActive.name=Anvil Furnace
 tile.CactusFurnaceActive.name=Cactus Furnace
+tile.PumpkinFurnaceActive.name=Pumpkin Furnace
 
 tile.BrickFurnaceT2Active.name=Tier 2 Brick Furnace
 tile.IronFurnaceT2Active.name=Tier 2 Iron Furnace
@@ -71,6 +73,7 @@ container.boneFurnace=Bone Furnace
 container.redstoneFurnace=Redstone Furnace
 container.anvilFurnace=Anvil Furnace
 container.cactusFurnace=Cactus Furnace
+container.pumpkinFurnace=Pumpkin Furnace
 
 container.brickFurnaceT2=Tier 2 Brick Furnace
 container.ironFurnaceT2=Tier 2 Iron Furnace
@@ -89,8 +92,3 @@ container.obsidianFurnaceT3=Tier 3 Obsidian Furnace
 item.Tier2Device.name=Tier 2 Device
 item.Tier3Device.name=Tier 3 Device
 item.TierCore.name=Tier Core
-
-
-
-achievement.gettingAnUpgradeII=Getting an Upgrade II
-achievement.gettingAnUpgradeII.desc=Craft a Brick Furnace

@@ -32,7 +32,7 @@ Wishlist{
         - Adding in an emerald furnace
         - Right clicking on CK opens up an Emerald Furnace gui
         - On death spawns fireworks and drops a single EmeraldFurnace
-    - Update Notifier (in progress)
+    X Update Notifier (in progress)
     - Mod Installer
     - Mo' Furnaces Website
     - Get translated into 5 different languages
@@ -53,9 +53,9 @@ V2.1 -> V2.2.1{
     }
     
     TODO{
-        - Add Attributes to the pumpkin furnace
+        X Add Attributes to the pumpkin furnace
         - Add custom textures
-        - Made the furnace spawn a bat every ten seconds
+        X Made the furnace spawn a bat every ten seconds
     }
     
 }
