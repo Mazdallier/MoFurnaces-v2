@@ -287,6 +287,9 @@ public class PumpkinFurnace extends BlockContainer{
         return Item.getItemFromBlock(MFMBlocks.BoneFurnaceIdle);
     }
 
+    /*
+     * Spawns a bat at desired location
+     */
 	public static void spawnBat(World world, double xCoord, double yCoord, double zCoord) {
 		System.out.println("worldspawn at "+world);
 		//get the current world
