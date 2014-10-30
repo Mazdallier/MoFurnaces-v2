@@ -42,6 +42,10 @@ public class MoFurnacesMod {
 	public static CreativeTabs MFM;
 	public static CreativeTabs TieredMFM;
 	
+	//TODO this boolean needs to be set to true within the update notifier changes in order
+	//for the halloween changes to come into effect, if false regular operation resume,s
+	public static boolean isHalloween;
+	
 	/*
 	 * Create constants for the individual furnace GUI ID's
 	 */

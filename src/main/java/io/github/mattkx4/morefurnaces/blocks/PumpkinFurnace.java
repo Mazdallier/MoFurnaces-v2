@@ -12,6 +12,7 @@ import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityBat;
@@ -21,7 +22,11 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
@@ -31,8 +36,10 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class PumpkinFurnace extends BlockContainer{
 	
-	static long oldTime;
 
+	static EntityBat bat;
+
+	
 	/*
 	 * Boolean to tell if the furnace is active
 	 */
@@ -260,6 +267,12 @@ public class PumpkinFurnace extends BlockContainer{
             	world.spawnParticle("smoke", (double)(x1 + f1), (double)y1, (double)(z1 + f), 0.0D, 0.0D, 0.0D);
             	Minecraft.getMinecraft().effectRenderer.addEffect(new EntityIronFlameFX(world, (double)(x1 + f1), (double)y1, (double)(z1 + f), 0.0D, 0.0D, 0.0D));       
         	}
+            
+        	world.spawnParticle("spell", (double)(x1 - f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
+        	world.spawnParticle("spell", (double)(x1 + f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
+        	world.spawnParticle("spell", (double)(x1 + f1), (double)y1, (double)(z1 - f), 0.0D, 0.0D, 0.0D);
+        	world.spawnParticle("spell", (double)(x1 + f1), (double)y1, (double)(z1 + f), 0.0D, 0.0D, 0.0D);
+
         }
     }
 
@@ -288,15 +301,48 @@ public class PumpkinFurnace extends BlockContainer{
     }
 
 	public static void spawnBat(World world, double xCoord, double yCoord, double zCoord) {
-		System.out.println("worldspawn at "+world);
 		//get the current world
 		//create a new object (bat) based on new world
-		EntityBat bat = new EntityBat(world);
+		bat = new EntityBat(world);
 		bat.setPosition(xCoord+0.5, yCoord, zCoord+0.5);
+		bat.setIsBatHanging(false);
 		//if ten seconds has elapsed, spawn a bat
-		System.out.println("World = "+world);
-
-		System.out.println("Bat = "+bat);
-       	world.spawnEntityInWorld(bat);		
+       	world.spawnEntityInWorld(bat);
 	}
+	
+	
+	public void onEntityCollidedWithBlock(World world, int xCoord, int yCoord, int zCoord, Entity entity)
+    {
+		//if the entity is a player
+		if(entity instanceof EntityPlayer){
+			//apply blindness
+			((EntityLivingBase)entity).addPotionEffect(new PotionEffect(Potion.blindness.id, 140, 0));
+
+		}
+		//if the entity colliding with the furnace is a living
+		if(entity instanceof EntityLivingBase){
+			//apply blindness
+			((EntityLivingBase)entity).addPotionEffect(new PotionEffect(Potion.blindness.id, 140, 0));
+		}
+    }
+	
+	/*
+     * Returns a bounding box from the pool of bounding boxes (this means this box can change after the pool has been
+     * cleared to be reused)
+     */
+    public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_, int p_149668_2_, int p_149668_3_, int p_149668_4_)
+    {
+        float f = 0.0625F;
+        return AxisAlignedBB.getBoundingBox((double)((float)p_149668_2_ + f), (double)p_149668_3_, (double)((float)p_149668_4_ + f), (double)((float)(p_149668_2_ + 1) - f), (double)((float)(p_149668_3_ + 1) - f), (double)((float)(p_149668_4_ + 1) - f));
+    }
+
+    /*
+     * Returns the bounding box of the wired rectangular prism to render.
+     */
+    @SideOnly(Side.CLIENT)
+    public AxisAlignedBB getSelectedBoundingBoxFromPool(World p_149633_1_, int p_149633_2_, int p_149633_3_, int p_149633_4_)
+    {
+        float f = 0.0625F;
+        return AxisAlignedBB.getBoundingBox((double)((float)p_149633_2_ + f), (double)p_149633_3_, (double)((float)p_149633_4_ + f), (double)((float)(p_149633_2_ + 1) - f), (double)(p_149633_3_ + 1), (double)((float)(p_149633_4_ + 1) - f));
+    }
 }

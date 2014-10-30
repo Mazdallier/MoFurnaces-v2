@@ -46,10 +46,20 @@ Wishlist{
 * * *
 * * *
 V2.1 -> V2.2.1{
-    Haloween Mini Update
+    Halloween Mini Update
     
     29 OCT - Pr1meSh0ck{
         - Added the backbone of the pumpkin furnace, using cactus textures as placeholders
+    }
+    
+    30 OCT - Pr1meSh0ck{
+        - Made the pumpkin furnace stop spawning an untouchable bat
+        - Made the furnace spawn potion(spell) particles on all sides whilst burning
+        - Colliding with the furnace will now cause blindness for 6 seconds to any living entity
+        - Matched sounds of the pumpkin furnace to the lit pumpkin block
+        - Matched light levels of the pumpkin to the lit pumpkin block
+        - Added halloween skin and adjusted texture handler for CK rendering, to render halloween version
+        - Added CK "rabid tasks" for halloween, will now target and attack players, lower task priorityy however
     }
     
     TODO{

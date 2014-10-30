@@ -30,11 +30,14 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StringUtils;
 import io.github.mattkx4.morefurnaces.entity.EntityCobaltKatana;
 import io.github.mattkx4.morefurnaces.lib.Strings;
+import io.github.mattkx4.morefurnaces.main.MoFurnacesMod;
 import io.github.mattkx4.morefurnaces.model.ModelCobaltKatana;
 
 public class RenderEntityCobaltKatana extends RenderLiving {
 
 	private static final ResourceLocation texture = new ResourceLocation(Strings.MODID + ":textures/model/cobalt_katana.png");
+	
+	private static final ResourceLocation texture_halloween = new ResourceLocation(Strings.MODID + ":textures/model/cobalt_katana_halloween.png");
 	
 	protected ModelCobaltKatana modelEntity;
 	
@@ -59,7 +62,11 @@ public class RenderEntityCobaltKatana extends RenderLiving {
 	
 	@Override
 	protected ResourceLocation getEntityTexture(Entity p_110775_1_) {
-		return texture;
+		if(MoFurnacesMod.isHalloween == true){
+			return texture_halloween;
+		}else{
+			return texture;
+		}
 	}
 
 	protected void renderEquippedItems(EntityLivingBase entity, float f)

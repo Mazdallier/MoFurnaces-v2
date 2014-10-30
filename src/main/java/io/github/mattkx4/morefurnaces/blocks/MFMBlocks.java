@@ -14,6 +14,7 @@ import io.github.mattkx4.morefurnaces.tileentity.TileEntityPumpkinFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityQuartzFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityRedstoneFurnace;
 import net.minecraft.block.Block;
+import net.minecraft.block.Block.SoundType;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -57,6 +58,9 @@ public class MFMBlocks {
     // Cactus Furnace step sound
     public static final Block.SoundType soundTypeCactus = new Block.SoundType("cloth", 1.0F, 1.0F);
     
+    //pumpkin furnace step sounds
+    public static final Block.SoundType soundTypePumpkin = new Block.SoundType("wood", 1.0F, 1.0F);
+
     /**
      * Calls the registry methods for blocks
      */
@@ -171,8 +175,8 @@ public class MFMBlocks {
 		CactusFurnaceActive = new CactusFurnace(true).setBlockName("CactusFurnaceActive").setHardness(0.4F).setResistance(0.1F).setStepSound(soundTypeCactus).setLightLevel(0.625F);
 		
 		// Initialize the Pumpkin Furnace
-		PumpkinFurnaceIdle = new PumpkinFurnace(false).setBlockName("PumpkinFurnaceIdle").setHardness(0.4F).setResistance(0.1F).setStepSound(soundTypeCactus).setCreativeTab(MoFurnacesMod.MFM);
-		PumpkinFurnaceActive = new PumpkinFurnace(true).setBlockName("PumpkinFurnaceActive").setHardness(0.4F).setResistance(0.1F).setStepSound(soundTypeCactus).setLightLevel(0.625F);
+		PumpkinFurnaceIdle = new PumpkinFurnace(false).setBlockName("PumpkinFurnaceIdle").setHardness(0.4F).setResistance(0.1F).setStepSound(soundTypePumpkin).setCreativeTab(MoFurnacesMod.MFM);
+		PumpkinFurnaceActive = new PumpkinFurnace(true).setBlockName("PumpkinFurnaceActive").setHardness(0.4F).setResistance(0.1F).setStepSound(soundTypePumpkin).setLightLevel(1.0F);
 	}
 	
 	/**
