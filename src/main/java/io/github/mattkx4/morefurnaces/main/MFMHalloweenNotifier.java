@@ -45,7 +45,15 @@ public class MFMHalloweenNotifier {
 		}
 		
 		this.message = data.get(1);
+		this.bool = data.get(0);
 		
-		Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(message));
+		if(this.bool.matches("true")) {
+			MoFurnacesMod.isHalloween = true;
+			Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText("[" + EnumChatFormatting.BLUE + "MoFurnacesMod" + EnumChatFormatting.RESET + "] " + this.message));
+		} else if(this.bool.matches("false")) {
+			MoFurnacesMod.isHalloween = false;
+		} else {
+			System.out.println("[MoFurnacesMod] Um, something went wrong.");
+		}
 	}
 }

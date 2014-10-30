@@ -100,7 +100,8 @@ public class MoFurnacesMod {
 	@SidedProxy (clientSide = "io.github.mattkx4.morefurnaces.proxy.ClientProxy",serverSide = "io.github.mattkx4.morefurnaces.proxy.ServerProxy")
 	public static ServerProxy proxy;
 	
-    static MFMUpdateNotifier events = new MFMUpdateNotifier() ;
+    static MFMUpdateNotifier updateNotifier = new MFMUpdateNotifier();
+    static MFMHalloweenNotifier halloweenUpdateNotifier = new MFMHalloweenNotifier();
 
 	/**
 	 * 'Things' that will load before
@@ -108,8 +109,10 @@ public class MoFurnacesMod {
 	@EventHandler
 	public static void preload(FMLPreInitializationEvent preEvent){
 
-		FMLCommonHandler.instance().bus().register(events);
-    	MinecraftForge.EVENT_BUS.register(events);
+		FMLCommonHandler.instance().bus().register(updateNotifier);
+		FMLCommonHandler.instance().bus().register(halloweenUpdateNotifier);
+    	MinecraftForge.EVENT_BUS.register(updateNotifier);
+    	MinecraftForge.EVENT_BUS.register(halloweenUpdateNotifier);
 		
 		// Creates a new Creative Tab using the Diamond Furnace Block.
 		MFM = new CreativeTabs("mfm"){
