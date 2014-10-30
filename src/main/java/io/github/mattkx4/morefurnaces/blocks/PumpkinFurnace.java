@@ -291,10 +291,15 @@ public class PumpkinFurnace extends BlockContainer{
      * Spawns a bat at desired location
      */
 	public static void spawnBat(World world, double xCoord, double yCoord, double zCoord) {
+		System.out.println("worldspawn at "+world);
+		//get the current world
 		//create a new object (bat) based on new world
 		EntityBat bat = new EntityBat(world);
 		bat.setPosition(xCoord+0.5, yCoord, zCoord+0.5);
 		//if ten seconds has elapsed, spawn a bat
+		System.out.println("World = "+world);
+
+		System.out.println("Bat = "+bat);
        	world.spawnEntityInWorld(bat);		
 	}
 }
