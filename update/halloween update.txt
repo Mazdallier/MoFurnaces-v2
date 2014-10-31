@@ -1,2 +1,2 @@
 true
-For Halloween, the CK Mob now attacks players if provoked! This is a temporary feature. Happy Halloween! ~Mo' Furnaces Development Team
+For Halloween, the CK Mob is now rabid and attacks all hostile mobs INCLUDING players. Happy Halloween! ~Mo' Furnaces Development Team
