@@ -68,6 +68,13 @@ V2.1 -> V2.2.1{
         - CK has some creepy, and some weird, and some odd halloween phrases for the player when they get within 32 blocks
     }
     
+    31 OCT - Mattkx4{
+        - I actually did stuff in this update, I just forgot to say it...
+            - Halloween Message Notifier
+            - Added textures
+            - Did stuff...
+    }
+    
     TODO{
         X Add Attributes to the pumpkin furnace
         - Add custom textures

@@ -459,11 +459,11 @@ public class EntityCobaltKatana extends EntityMob{
 		    		if (hasChatted == false){
 		    			int randomInt = randInt(0,100);
 			    		if(randomInt == 0 || randomInt == 10 || randomInt == 7){
-			    			entityPlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_PURPLE +"Nightmare Night, What a fright, Give me something sweet to BITE"));
+			    			entityPlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_PURPLE +"Nightmare Night, what a fright, give me something sweet to BITE"));
 			    		}else if (randomInt == 100){
 			    			entityPlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.BLACK + "Living in a nudist colony takes all the fun out of Halloween"));
 			    		}else if(randomInt > 0 && randomInt < 7){
-			    			entityPlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_RED + "A blood donor,Time to get my fill"));
+			    			entityPlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_RED + "A blood donor! Time to get my fill"));
 			    		}else if(randomInt > 10 && randomInt < 20){
 			    			entityPlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_GRAY + "I spy with my little eye, some little player who's going to die"));
 			    		}else if(randomInt > 20 && randomInt < 30){
@@ -483,7 +483,7 @@ public class EntityCobaltKatana extends EntityMob{
 			    		}else if(randomInt > 90 && randomInt < 100){
 			    			entityPlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_PURPLE + "Your ribs look nice " + entityPlayer.getDisplayName() + ", may I try one?"));
 			    		}else if(randomInt == 50 || randomInt == 20){
-			    			entityPlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_RED + "Salt the Flesh"));
+			    			entityPlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_RED + "Salt the Flesh."));
 			    		}else if(randomInt == 60 || randomInt == 9){
 			    			entityPlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_GRAY + "Will you marrow me?"));
 			    		}else if(randomInt == 70 || randomInt == 8){
