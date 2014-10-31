@@ -1,5 +1,6 @@
 package io.github.mattkx4.morefurnaces.entity;
 
+import ibxm.Player;
 import io.github.mattkx4.morefurnaces.main.MoFurnacesMod;
 
 import java.util.Calendar;
@@ -8,6 +9,7 @@ import java.util.Random;
 import java.util.UUID;
 
 import net.minecraft.block.BlockFurnace;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityCreature;
@@ -44,6 +46,7 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -55,6 +58,7 @@ public class EntityCobaltKatana extends EntityMob{
     String text;
     //flag to check if this mob has greeted this player
     boolean greeted;
+    boolean hasChatted;
     //get the number of attempts to add to the total number of attempts
     int newAttempts;
     //new itemstack for the currently held item
@@ -91,6 +95,7 @@ public class EntityCobaltKatana extends EntityMob{
         if(MoFurnacesMod.isHalloween == true){
         	this.tasks.addTask(4, new EntityAIAttackOnCollide(this,EntityPlayer.class, 1.0D, true));
             this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
+            angerLevel = 1;
         }
 	}
 	
@@ -432,17 +437,70 @@ public class EntityCobaltKatana extends EntityMob{
     {    	    	
     	
     	if(MoFurnacesMod.isHalloween == true){
+    		//get the entities location
     		World world = worldObj;
     		float x1 = (float) this.posX;
     		float y1 = (float) this.posY + 0.0F + random.nextFloat() * 6.0F / 16.0F;
     		float z1 = (float) this.posZ;
 			float f = 0.52F;
 	        float f1 = random.nextFloat() * 0.6F - 0.3F;
-    		
+    		//spawn in spell particles around the entity
     		world.spawnParticle("spell", (double)(x1 - f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
     		world.spawnParticle("spell", (double)(x1 + f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
     		world.spawnParticle("spell", (double)(x1 + f1), (double)y1, (double)(z1 - f), 0.0D, 0.0D, 0.0D);
     		world.spawnParticle("spell", (double)(x1 + f1), (double)y1, (double)(z1 + f), 0.0D, 0.0D, 0.0D);
+    		
+    		//if the player is within a 64 block radius of the mob then send 1 random message
+    		EntityPlayer entityPlayer = this.worldObj.getClosestPlayer(x1, y1, z1, 32);
+    		//check that the player is actually there
+    		if(world.isRemote){
+	    		if(entityPlayer != null){
+	    			//check that the mob has not already spoken
+		    		if (hasChatted == false){
+		    			int randomInt = randInt(0,100);
+			    		if(randomInt == 0 || randomInt == 10 || randomInt == 7){
+			    			entityPlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_PURPLE +"Nightmare Night, What a fright, Give me something sweet to BITE"));
+			    		}else if (randomInt == 100){
+			    			entityPlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.BLACK + "Living in a nudist colony takes all the fun out of Halloween"));
+			    		}else if(randomInt > 0 && randomInt < 7){
+			    			entityPlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_RED + "A blood donor,Time to get my fill"));
+			    		}else if(randomInt > 10 && randomInt < 20){
+			    			entityPlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_GRAY + "I spy with my little eye, some little player who's going to die"));
+			    		}else if(randomInt > 20 && randomInt < 30){
+			    			entityPlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_RED + "I see you " + entityPlayer.getDisplayName() + ", and your time is short"));
+			    		}else if(randomInt > 30 && randomInt < 40){
+			    			entityPlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_PURPLE + "Trick or Treat. Be so sweet. Give me something good to eat."));
+			    		}else if(randomInt > 40 && randomInt < 50){
+			    			entityPlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.BLACK + "The graveyard shift is best.  No bones about it!"));
+			    		}else if(randomInt > 50 && randomInt < 60){
+			    			entityPlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_RED + "Do you know how I made those scars?"));
+			    		}else if(randomInt > 60 && randomInt < 70){
+			    			entityPlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_GRAY + "Are you my mummy?"));
+			    		}else if(randomInt > 70 && randomInt < 80){
+			    			entityPlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_RED + "Well aren't you dressed to kill"));
+			    		}else if(randomInt > 80 && randomInt < 90){
+			    			entityPlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_RED + "I'm going to add you to my scarf, " + entityPlayer.getDisplayName()));
+			    		}else if(randomInt > 90 && randomInt < 100){
+			    			entityPlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_PURPLE + "Your ribs look nice " + entityPlayer.getDisplayName() + ", may I try one?"));
+			    		}else if(randomInt == 50 || randomInt == 20){
+			    			entityPlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_RED + "Salt the Flesh"));
+			    		}else if(randomInt == 60 || randomInt == 9){
+			    			entityPlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_GRAY + "Will you marrow me?"));
+			    		}else if(randomInt == 70 || randomInt == 8){
+			    			entityPlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.BLACK + "I plucked a hair from the head of a dying baby! TAKE IT!"));
+			    		}else if(randomInt == 80 || randomInt == 30){
+			    			entityPlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_RED + "I need more heads for my merry-go-round. YOURS IS PERFECT!"));
+			    		}else if(randomInt == 90 || randomInt == 40){
+			    			entityPlayer.addChatMessage(new ChatComponentText(EnumChatFormatting.DARK_RED + "I’m gonna beat you to life"));
+			    		}
+			    		//set hasChatted to true
+			    		hasChatted = true;
+		    		}
+	    		}else if (entityPlayer == null){
+	    			//if not player is present then set hasChatted to false
+	    			hasChatted = false;
+	    		}
+    		}
     	}
     	
         if (this.field_110191_bu != this.entityToAttack && !this.worldObj.isRemote)

@@ -64,6 +64,8 @@ V2.1 -> V2.2.1{
     
     31 OCT - Pr1meSh0ck{
         - CK spawns spell particles around himself
+        - CK now attacks players automatically (only for halloween)
+        - CK has some creepy, and some weird, and some odd halloween phrases for the player when they get within 32 blocks
     }
     
     TODO{
