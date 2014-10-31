@@ -429,7 +429,22 @@ public class EntityCobaltKatana extends EntityMob{
      * Called to update the entity's position/logic.
      */
     public void onUpdate()
-    {
+    {    	    	
+    	
+    	if(MoFurnacesMod.isHalloween == true){
+    		World world = worldObj;
+    		float x1 = (float) this.posX;
+    		float y1 = (float) this.posY + 0.0F + random.nextFloat() * 6.0F / 16.0F;
+    		float z1 = (float) this.posZ;
+			float f = 0.52F;
+	        float f1 = random.nextFloat() * 0.6F - 0.3F;
+    		
+    		world.spawnParticle("spell", (double)(x1 - f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
+    		world.spawnParticle("spell", (double)(x1 + f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
+    		world.spawnParticle("spell", (double)(x1 + f1), (double)y1, (double)(z1 - f), 0.0D, 0.0D, 0.0D);
+    		world.spawnParticle("spell", (double)(x1 + f1), (double)y1, (double)(z1 + f), 0.0D, 0.0D, 0.0D);
+    	}
+    	
         if (this.field_110191_bu != this.entityToAttack && !this.worldObj.isRemote)
         {
             IAttributeInstance iattributeinstance = this.getEntityAttribute(SharedMonsterAttributes.movementSpeed);

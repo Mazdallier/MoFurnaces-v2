@@ -62,6 +62,10 @@ V2.1 -> V2.2.1{
         - Added CK "rabid tasks" for halloween, will now target and attack players, lower task priorityy however
     }
     
+    31 OCT - Pr1meSh0ck{
+        - CK spawns spell particles around himself
+    }
+    
     TODO{
         X Add Attributes to the pumpkin furnace
         - Add custom textures
