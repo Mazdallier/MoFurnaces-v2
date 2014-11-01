@@ -44,7 +44,7 @@ public class MoFurnacesMod {
 	
 	//TODO this boolean needs to be set to true within the update notifier changes in order
 	//for the halloween changes to come into effect, if false regular operation resume,s
-	public static boolean isHalloween;
+	public static boolean isHalloween = false;
 	
 	/*
 	 * Create constants for the individual furnace GUI ID's

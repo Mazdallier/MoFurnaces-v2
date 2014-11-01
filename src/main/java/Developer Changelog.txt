@@ -45,6 +45,18 @@ Wishlist{
 * * *
 * * *
 * * *
+V2.2.1 -> V2.2.2{
+    Update Notifier Settings Patch
+    
+    Mattkx4{
+        - Added the ability to turn on and off the UpdateNotifier and HalloweenNotifier.
+            - Only problem is, I don't know how to access the files... Like I don't what to put for there location.
+        - (I added this ability because of a complaint saying that he didn't have internet so the game would crash whenever it tried to look for updates.)
+    }
+}
+* * *
+* * *
+* * *
 V2.1 -> V2.2.1{
     Halloween Mini Update
     

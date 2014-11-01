@@ -3,6 +3,7 @@ package io.github.mattkx4.morefurnaces.main;
 import io.github.mattkx4.morefurnaces.lib.Strings;
 
 import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
@@ -34,8 +35,28 @@ public class MFMUpdateNotifier{
 	}
 	
 	@SubscribeEvent
-	public void checkUpdate(PlayerEvent.PlayerLoggedInEvent event){
-		run();
+	public void checkUpdate(PlayerEvent.PlayerLoggedInEvent event) throws Exception {
+		FileReader file = new FileReader("");
+		@SuppressWarnings("resource")
+		BufferedReader reader = new BufferedReader(file);
+		String text = "";
+		String line = reader.readLine();
+		
+		while(line != null) {
+			text += line;
+			line = reader.readLine();
+		}
+		
+		// System.out.println(text);
+		if(text.matches("true")) {
+			run();	
+		} else if(text.matches("false")){
+			Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText("[" + EnumChatFormatting.BLUE + "MoFurnacesMod" + EnumChatFormatting.RESET + "] "+ "Update Notifier has been disabled."));
+			return;
+		} else {
+			Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText("[" + EnumChatFormatting.BLUE + "MoFurnacesMod" + EnumChatFormatting.RESET + "] "+ "Incorrect value in UpdateNotifierSettings.txt. UpdateNotifier cancelled."));
+			return;
+		}
 	}
 	
 	public void run(){
