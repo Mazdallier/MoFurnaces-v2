@@ -34,6 +34,7 @@ public class MFMUpdateNotifier{
 		}
 	}
 	
+	/*
 	@SubscribeEvent
 	public void checkUpdate(PlayerEvent.PlayerLoggedInEvent event) throws Exception {
 		FileReader file = new FileReader("");
@@ -58,8 +59,16 @@ public class MFMUpdateNotifier{
 			return;
 		}
 	}
+	*/
+	@SubscribeEvent
+	public void checkUpdate(PlayerEvent.PlayerLoggedInEvent event) throws Exception {
+		run();
+	}
 	
 	public void run(){
+		//So the problem described is that if the player is not connected to the internet, then the mod fails spectacularly
+		//throwing an exception the reason is because nothing is done if the buffered reader does not access the internet
+		//First solution, apply a return statement if the an exception occurs.
 		ArrayList<String> data = new ArrayList<String>();
 		//Throw this for me
 		try{
@@ -71,6 +80,10 @@ public class MFMUpdateNotifier{
 		//Here catch
 		}catch(Exception e){
 			//Ooh too bad
+			Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText("[" + EnumChatFormatting.BLUE + "MoFurnacesMod" + EnumChatFormatting.RESET + "] " + EnumChatFormatting.DARK_PURPLE + "Unable to access update resource."));
+			Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new ChatComponentText(EnumChatFormatting.DARK_PURPLE + "Please check internet connection."));
+			//do nothing and exit out of this method
+			return;
 		}
 		
 		//Set link on his quest

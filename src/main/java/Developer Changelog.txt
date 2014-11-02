@@ -24,6 +24,7 @@ Wishlist{
     X furnace upgrades ??? not likely due to nature of mod being similar to tool tiering
     X custom particles
         X Attempt 1 Failed, carbon copying has limited success
+    X Update Notifier (in progress)
     - Ingot transfuser
         - Depending on the setting in the furnace:
             - Turns 9 (? Forgot how to make a solid block) ingots into a solid ingot block
@@ -32,7 +33,6 @@ Wishlist{
         - Adding in an emerald furnace
         - Right clicking on CK opens up an Emerald Furnace gui
         - On death spawns fireworks and drops a single EmeraldFurnace
-    X Update Notifier (in progress)
     - Mod Installer
     - Mo' Furnaces Website
     - Get translated into 5 different languages
@@ -41,6 +41,7 @@ Wishlist{
         - Spanish
         - German
         - Dutch
+    * BUG: tier 2 and 3 furnaces cook twice as fast as their regular counterparts.
 }
 * * *
 * * *
@@ -52,6 +53,13 @@ V2.2.1 -> V2.2.2{
         - Added the ability to turn on and off the UpdateNotifier and HalloweenNotifier.
             - Only problem is, I don't know how to access the files... Like I don't what to put for there location.
         - (I added this ability because of a complaint saying that he didn't have internet so the game would crash whenever it tried to look for updates.)
+    }
+    
+    2 NOV - Pr1meSh0ck {
+        - Commented out additional code for "turning update notifier on and off" and inputed a return in the catch statement
+        of the update notifiers as a handler for not being connected to the internet. Tested with no connection and it works.
+        Tested with a connection to the internet and it still works.
+        - Noted a problem with the tiered furnaces cooking 2X faster than their single input counterparts.
     }
 }
 * * *
@@ -89,7 +97,7 @@ V2.1 -> V2.2.1{
     
     TODO{
         X Add Attributes to the pumpkin furnace
-        - Add custom textures
+        X Add custom textures
         X Made the furnace spawn a bat every ten seconds
     }
     

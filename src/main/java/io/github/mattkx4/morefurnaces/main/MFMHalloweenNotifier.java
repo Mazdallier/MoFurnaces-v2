@@ -27,6 +27,7 @@ public class MFMHalloweenNotifier {
 		}
 	}
 	
+	/*
 	@SubscribeEvent
 	public void checkUpdate(PlayerEvent.PlayerLoggedInEvent event) throws Exception {
 		FileReader file = new FileReader("");
@@ -51,6 +52,12 @@ public class MFMHalloweenNotifier {
 			return;
 		}
 	}
+	*/
+	
+	@SubscribeEvent
+	public void checkUpdate(PlayerEvent.PlayerLoggedInEvent event) throws Exception {
+		run();
+	}
 	
 	public void run() {
 		ArrayList<String> data = new ArrayList<String>();
@@ -62,7 +69,7 @@ public class MFMHalloweenNotifier {
 				data.add(fileReader.readLine());
 			}
 		} catch(Exception e) {
-			// Nope
+			return;
 		}
 		
 		this.message = data.get(1);
