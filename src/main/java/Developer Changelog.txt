@@ -25,10 +25,10 @@ Wishlist{
     X custom particles
         X Attempt 1 Failed, carbon copying has limited success
     X Update Notifier (in progress)
-    - Ingot transfuser
-        - Depending on the setting in the furnace:
-            - Turns 9 (? Forgot how to make a solid block) ingots into a solid ingot block
-            - Turns 32 ingots into the ore that the ingot came from
+    X Ingot transfuser
+        X Depending on the setting in the furnace:
+            X Turns 9 (? Forgot how to make a solid block) ingots into a solid ingot block
+            X Turns 32 ingots into the ore that the ingot came from
     - Eventual CK Mob updates
         - Adding in an emerald furnace
         - Right clicking on CK opens up an Emerald Furnace gui
@@ -42,6 +42,39 @@ Wishlist{
         - German
         - Dutch
     * BUG: tier 2 and 3 furnaces cook twice as fast as their regular counterparts.
+}
+* * *
+* * *
+* * *
+V2.2.2 -> V2.3.0{
+    2 NOV - Mattkx4{
+        - Created the "blocks" texture map. Added all textures to archive just in case.
+            - We will delete all the old textures before the update.
+    }
+    TODO{
+        - Block/Item Name Config Files
+        - CK Mob Config File
+        - Tiered Furnace, only available in Creative Mode
+            - Tier 2/3 Redstone Furnace
+            - Tier 2 Netherrack Furnace
+        - Glowstone Furnace
+        - Uncrafting Furnace
+        - Furnace Addons
+            - Double Output
+            - Brightness
+            - Fuel Timer
+            - Input Timer
+            - Notification
+            - Block Compressor
+            - Fuel Saver
+        - CK Passive Healing
+        - Bone Furnace Tweaks
+            - Chance to auto-grow crops in a certain radius with smelting.
+            - Chance to output 1 bonemeal along with item to be smelted.
+        - Cactus Furnace grows Cacti on top of it.
+        - Nerf the Tiered Furnaces Speed
+        - Use Texture maps for the block and item textures
+    }
 }
 * * *
 * * *
