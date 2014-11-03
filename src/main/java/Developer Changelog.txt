@@ -51,6 +51,21 @@ V2.2.2 -> V2.3.0{
         - Created the "blocks" texture map. Added all textures to archive just in case.
             - We will delete all the old textures before the update.
     }
+    
+    3 NOV - Pr1meSh0ck{
+        - Tested the speeds of the tiered furnaces, unable to replicate the results inside a 1.7.10 sandbox of the game.
+            - Tested again in a 1.7.2 version of the game (not launching from eclipse)
+            - Unable to replicate the results, passing this off as a random glitch but I will keep an eye on it in the future.
+        - Started furnace upgrades.
+            - Added a placeholder upgrade (Brightness)
+            - Added code to brick furnace
+                - Container: Added slot for upgrade, and code to remove shift clicking into or out of that slot
+                - Tile Entity: Added slot for continuity purposes, This will come into effect for double output upgrade and some others
+                Added code to pass to the block class to tell it what to do
+                - Block: added custom code that can determine what to do from any upgrade(needs populating)
+                Added the beginning of the brightness upgrade, will gather a list of enemy mobs within a certain radius AND BURN THEM
+    }
+    
     TODO{
         - Block/Item Name Config Files
         - CK Mob Config File
@@ -72,7 +87,7 @@ V2.2.2 -> V2.3.0{
             - Chance to auto-grow crops in a certain radius with smelting.
             - Chance to output 1 bonemeal along with item to be smelted.
         - Cactus Furnace grows Cacti on top of it.
-        - Nerf the Tiered Furnaces Speed
+        X Nerf the Tiered Furnaces Speed - No need, random glitch not a repeatable bug
         - Use Texture maps for the block and item textures
     }
 }

@@ -9,6 +9,7 @@ import io.github.mattkx4.morefurnaces.particles.EntityBrickFlameFX;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityBrickFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.tier2.TileEntityBrickFurnaceT2;
 
+import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.Block;
@@ -18,6 +19,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.Container;
@@ -26,6 +28,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
@@ -345,4 +348,26 @@ public class BrickFurnace extends BlockContainer{
     public Item getItem(World world, int x, int y, int z){
         return Item.getItemFromBlock(MFMBlocks.BrickFurnaceIdle);
     }
+    
+    public static void upgradeActive(World worldObj, int xCoord, int yCoord, int zCoord, String upgrade){
+    	switch(upgrade){
+	    	case "brightness":
+	    		//get the closes entitymob (15 blocks away)
+	    		//get the boundary for the effect
+	    		AxisAlignedBB boundary = AxisAlignedBB.getBoundingBox(xCoord-8, yCoord-8, zCoord-8, xCoord+8, yCoord+8, zCoord+8);
+	    		//create a list of entities with all the EntityMob's within the boundary
+	    		List entityList = worldObj.getEntitiesWithinAABB(EntityMob.class, boundary);
+	    		//cycle through all of the mobs within the entityList
+	    		for(int i = 0; i< entityList.size();i++){
+	    			System.out.println("Entity list is "+entityList.get(i));
+	    			//EntityMob currentEntity = entityList.get(index)
+	    			EntityMob entity = (EntityMob) entityList.get(i);
+	    			entity.setFire(10);
+	    		}
+	    		break;
+    		default:
+    			break;
+    	}
+    }
+    
 }

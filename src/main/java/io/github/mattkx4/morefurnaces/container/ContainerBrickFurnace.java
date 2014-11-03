@@ -29,6 +29,8 @@ public class ContainerBrickFurnace extends Container{
 		this.addSlotToContainer(new Slot(tileentity, 0, 56, 17));
 		this.addSlotToContainer(new Slot(tileentity, 1, 56, 53));
 		this.addSlotToContainer(new SlotFurnace(inventory.player, tileentity, 2, 116, 35));
+		//add in a new slot to the container (last slot available)
+		this.addSlotToContainer(new Slot(tileentity, 3, 20, 20));
 
 		for(int i = 0; i < 3; i++) {
 			for(int j = 0; j < 9; j++) {
@@ -109,7 +111,7 @@ public class ContainerBrickFurnace extends Container{
             itemstack = itemstack1.copy();
 
             if (par2 == 2) {
-                if (!this.mergeItemStack(itemstack1, 3, 39, true)) {
+                if (!this.mergeItemStack(itemstack1, 4, 40, true)) {
                     return null;
                 }
 
@@ -126,17 +128,20 @@ public class ContainerBrickFurnace extends Container{
                     {
                         return null;
                     }
-                }else if (par2 >= 3 && par2 < 30){
-                    if (!this.mergeItemStack(itemstack1, 30, 39, false)){
+                }else if (par2 >= 4 && par2 < 31){
+                    if (!this.mergeItemStack(itemstack1, 31, 40, false)){
                         return null;
                     }
-                }else if (par2 >= 30 && par2 < 39 && !this.mergeItemStack(itemstack1, 3, 30, false)) {
+                }else if (par2 >= 331 && par2 < 40 && !this.mergeItemStack(itemstack1, 4, 31, false)) {
                     return null;
                 }
-            } else if (!this.mergeItemStack(itemstack1, 3, 39, false)) {
+            } else if (!this.mergeItemStack(itemstack1, 4, 40, false)) {
                 return null;
             }
-
+            //added code for the upgrade, if the slot is the upgrade slot then do nothing (ie, remove the ability to shiftclick out of that slot)
+            else if(par2 == 3){
+            	return null;
+            }
             if (itemstack1.stackSize == 0) {
                 slot.putStack((ItemStack)null);
             } else {

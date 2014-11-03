@@ -18,6 +18,8 @@ public class MFMItems {
 	public static Item Tier2Device;
 	//Tier 3 Device
 	public static Item Tier3Device;
+	//Upgrades
+	public static Item UpgradeBrightness; // Brightness upgrade
 	
 	
 	/**
@@ -45,6 +47,8 @@ public class MFMItems {
 		Tier2Device = new Tier2Device();
 		// Initialize the Tier 3 Device
 		Tier3Device = new Tier3Device();
+		//Initialize the upgrades
+		UpgradeBrightness = new UpgradeBrightness();	// Brightness Upgrade
 	}
 	
 	/**
@@ -58,6 +62,8 @@ public class MFMItems {
 		GameRegistry.registerItem(Tier2Device, "Tier2Device");
 		// Register the Tier 3 Device
 		GameRegistry.registerItem(Tier3Device, "Tier3Device");
+		// Register the upgrades
+		GameRegistry.registerItem(UpgradeBrightness, "UpgradeBrightness");	// Brightness Upgrade
 	}
 
 	/**
@@ -71,6 +77,6 @@ public class MFMItems {
 		GameRegistry.addRecipe(new ItemStack(Tier2Device), new Object[]{"z z", "zXz", " y ", 'z', Items.iron_ingot, 'X', MFMItems.TierCore, 'y', Items.blaze_rod});
 		//Register Crafting Recipe for the Tier 3 Device
 		GameRegistry.addRecipe(new ItemStack(Tier3Device), new Object[]{"zXz", "zWz", " y ", 'z', Items.diamond, 'X', Items.ender_eye, 'W', MFMItems.TierCore, 'y', Items.blaze_rod});	
-			
+		//Add recipes for the upgrades here	
 	}
 }
