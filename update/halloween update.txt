@@ -1,2 +1,1 @@
-true
-The CK Mob will begin acting normal again on November 7, 2014! Happy Halloween! ~MFM Development Team
+false
