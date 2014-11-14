@@ -1,4 +1,4 @@
-package io.github.mattkx4.morefurnaces.items;
+package io.github.mattkx4.morefurnaces.items.upgrades;
 
 import io.github.mattkx4.morefurnaces.lib.Strings;
 import io.github.mattkx4.morefurnaces.main.MoFurnacesMod;

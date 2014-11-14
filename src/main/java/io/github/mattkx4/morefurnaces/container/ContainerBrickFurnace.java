@@ -30,7 +30,7 @@ public class ContainerBrickFurnace extends Container{
 		this.addSlotToContainer(new Slot(tileentity, 1, 56, 53));
 		this.addSlotToContainer(new SlotFurnace(inventory.player, tileentity, 2, 116, 35));
 		//add in a new slot to the container (last slot available)
-		this.addSlotToContainer(new Slot(tileentity, 3, 20, 20));
+		this.addSlotToContainer(new Slot(tileentity, 3, 20, 17));
 
 		for(int i = 0; i < 3; i++) {
 			for(int j = 0; j < 9; j++) {

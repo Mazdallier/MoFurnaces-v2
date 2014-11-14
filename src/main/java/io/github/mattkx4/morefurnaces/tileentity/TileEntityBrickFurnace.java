@@ -207,7 +207,7 @@ public class TileEntityBrickFurnace extends TileEntity implements ISidedInventor
 			try{
 				if(slots[3].getItem() != null){
 					if(slots[3].getItem() == MFMItems.UpgradeBrightness){
-						BrickFurnace.upgradeActive(worldObj, this.xCoord, this.yCoord, this.zCoord, "brightness");
+						BrickFurnace.upgradeActive(worldObj, this.xCoord, this.yCoord, this.zCoord, "brightness", this.isBurning());
 					}
 				}
 			}catch(Exception e){

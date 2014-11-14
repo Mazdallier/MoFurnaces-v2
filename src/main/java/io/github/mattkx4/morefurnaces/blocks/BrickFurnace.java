@@ -352,7 +352,7 @@ public class BrickFurnace extends BlockContainer{
         return Item.getItemFromBlock(MFMBlocks.BrickFurnaceIdle);
     }
     
-    public static void upgradeActive(World worldObj, int xCoord, int yCoord, int zCoord, String upgrade){
+    public static void upgradeActive(World worldObj, int xCoord, int yCoord, int zCoord, String upgrade, boolean isActive){
     	switch(upgrade){
 	    	case "brightness":
 	    		//get the closes entitymob (15 blocks away)
@@ -360,12 +360,14 @@ public class BrickFurnace extends BlockContainer{
 	    		AxisAlignedBB boundary = AxisAlignedBB.getBoundingBox(xCoord-8, yCoord-8, zCoord-8, xCoord+8, yCoord+8, zCoord+8);
 	    		//create a list of entities with all the EntityMob's within the boundary
 	    		List entityList = worldObj.getEntitiesWithinAABB(EntityMob.class, boundary);
-	    		//cycle through all of the mobs within the entityList
-	    		for(int i = 0; i< entityList.size();i++){
-	    			System.out.println("Entity list is "+entityList.get(i));
-	    			//EntityMob currentEntity = entityList.get(index)
-	    			EntityMob entity = (EntityMob) entityList.get(i);
-	    			entity.setFire(10);
+	    		if(isActive) {
+	    			//cycle through all of the mobs within the entityList
+		    		for(int i = 0; i< entityList.size();i++){
+		    			//System.out.println("Entity list is "+entityList.get(i));
+		    			//EntityMob currentEntity = entityList.get(index)
+		    			EntityMob entity = (EntityMob) entityList.get(i);
+		    			entity.setFire(10);
+		    		}
 	    		}
 	    		break;
     		default:

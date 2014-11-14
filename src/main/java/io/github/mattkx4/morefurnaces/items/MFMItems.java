@@ -1,5 +1,6 @@
 package io.github.mattkx4.morefurnaces.items;
 
+import io.github.mattkx4.morefurnaces.items.upgrades.UpgradeBrightness;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
