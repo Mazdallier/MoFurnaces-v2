@@ -64,6 +64,9 @@ V2.2.2 -> V2.3.0{
                 Added code to pass to the block class to tell it what to do
                 - Block: added custom code that can determine what to do from any upgrade(needs populating)
                 Added the beginning of the brightness upgrade, will gather a list of enemy mobs within a certain radius AND BURN THEM
+    
+    14 NOV - Mattkx4{
+    }
     }
     
     TODO{
@@ -76,7 +79,7 @@ V2.2.2 -> V2.3.0{
         - Uncrafting Furnace
         - Furnace Addons
             - Double Output
-            - Brightness
+            X Brightness
             - Fuel Timer
             - Input Timer
             - Notification

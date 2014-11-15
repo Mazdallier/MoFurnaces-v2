@@ -1,11 +1,11 @@
 package io.github.mattkx4.morefurnaces.items;
 
 import io.github.mattkx4.morefurnaces.items.upgrades.UpgradeBrightness;
-import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraft.init.Blocks;
+import io.github.mattkx4.morefurnaces.items.upgrades.UpgradeNotification;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public class MFMItems {
 
@@ -21,6 +21,7 @@ public class MFMItems {
 	public static Item Tier3Device;
 	//Upgrades
 	public static Item UpgradeBrightness; // Brightness upgrade
+	public static Item UpgradeNotification; // Notification upgrade
 	
 	
 	/**
@@ -50,6 +51,7 @@ public class MFMItems {
 		Tier3Device = new Tier3Device();
 		//Initialize the upgrades
 		UpgradeBrightness = new UpgradeBrightness();	// Brightness Upgrade
+		UpgradeNotification = new UpgradeNotification(); // Notification Upgrade
 	}
 	
 	/**
@@ -65,6 +67,7 @@ public class MFMItems {
 		GameRegistry.registerItem(Tier3Device, "Tier3Device");
 		// Register the upgrades
 		GameRegistry.registerItem(UpgradeBrightness, "UpgradeBrightness");	// Brightness Upgrade
+		GameRegistry.registerItem(UpgradeNotification, "UpgradeNotification"); // Notification Upgrade
 	}
 
 	/**
