@@ -1,4 +1,4 @@
-Mo' Furnaces v2.1.0
+Mo' Furnaces v2.2.0
 ===================
 
 Welcome to the official Repository for the mod Mo' Furnaces! Here you can
