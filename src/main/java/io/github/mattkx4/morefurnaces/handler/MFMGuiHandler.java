@@ -75,200 +75,246 @@ import cpw.mods.fml.common.network.IGuiHandler;
 public class MFMGuiHandler implements IGuiHandler {
 
 	@Override
-	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+	public Object getServerGuiElement(int ID, EntityPlayer player, World world,
+			int x, int y, int z) {
 		TileEntity entity = world.getTileEntity(x, y, z);
-		if(entity != null){
-			switch(ID){
+		if (entity != null) {
+			switch (ID) {
 			case MoFurnacesMod.guiIDObsidianFurnace:
-				if(entity instanceof TileEntityObsidianFurnace) {
-					return new ContainerObsidianFurnace(player.inventory, (TileEntityObsidianFurnace) entity);
+				if (entity instanceof TileEntityObsidianFurnace) {
+					return new ContainerObsidianFurnace(player.inventory,
+							(TileEntityObsidianFurnace) entity);
 				}
 			case MoFurnacesMod.guiIDDiamondFurnace:
-				if(entity instanceof TileEntityDiamondFurnace) {
-					return new ContainerDiamondFurnace(player.inventory, (TileEntityDiamondFurnace) entity);
+				if (entity instanceof TileEntityDiamondFurnace) {
+					return new ContainerDiamondFurnace(player.inventory,
+							(TileEntityDiamondFurnace) entity);
 				}
 			case MoFurnacesMod.guiIDIronFurnace:
-				if(entity instanceof TileEntityIronFurnace) {
-					return new ContainerIronFurnace(player.inventory, (TileEntityIronFurnace) entity);
+				if (entity instanceof TileEntityIronFurnace) {
+					return new ContainerIronFurnace(player.inventory,
+							(TileEntityIronFurnace) entity);
 				}
 			case MoFurnacesMod.guiIDGoldFurnace:
-				if(entity instanceof TileEntityGoldFurnace) {
-					return new ContainerGoldFurnace(player.inventory, (TileEntityGoldFurnace) entity);
+				if (entity instanceof TileEntityGoldFurnace) {
+					return new ContainerGoldFurnace(player.inventory,
+							(TileEntityGoldFurnace) entity);
 				}
 			case MoFurnacesMod.guiIDBrickFurnace:
-				if(entity instanceof TileEntityBrickFurnace) {
-					return new ContainerBrickFurnace(player.inventory, (TileEntityBrickFurnace) entity);
+				if (entity instanceof TileEntityBrickFurnace) {
+					return new ContainerBrickFurnace(player.inventory,
+							(TileEntityBrickFurnace) entity);
 				}
 			case MoFurnacesMod.guiIDQuartzFurnace:
-				if(entity instanceof TileEntityQuartzFurnace) {
-					return new ContainerQuartzFurnace(player.inventory, (TileEntityQuartzFurnace) entity);
+				if (entity instanceof TileEntityQuartzFurnace) {
+					return new ContainerQuartzFurnace(player.inventory,
+							(TileEntityQuartzFurnace) entity);
 				}
 			case MoFurnacesMod.guiIDNetherrackFurnace:
-				if(entity instanceof TileEntityNetherrackFurnace) {
-					return new ContainerNetherrackFurnace(player.inventory, (TileEntityNetherrackFurnace) entity);
+				if (entity instanceof TileEntityNetherrackFurnace) {
+					return new ContainerNetherrackFurnace(player.inventory,
+							(TileEntityNetherrackFurnace) entity);
 				}
 			case MoFurnacesMod.guiIDBoneFurnace:
-				if(entity instanceof TileEntityBoneFurnace) {
-					return new ContainerBoneFurnace(player.inventory, (TileEntityBoneFurnace) entity);
+				if (entity instanceof TileEntityBoneFurnace) {
+					return new ContainerBoneFurnace(player.inventory,
+							(TileEntityBoneFurnace) entity);
 				}
 			case MoFurnacesMod.guiIDObsidianFurnaceT2:
-				if(entity instanceof TileEntityObsidianFurnaceT2) {
-					return new ContainerObsidianFurnaceT2(player.inventory, (TileEntityObsidianFurnaceT2) entity);
+				if (entity instanceof TileEntityObsidianFurnaceT2) {
+					return new ContainerObsidianFurnaceT2(player.inventory,
+							(TileEntityObsidianFurnaceT2) entity);
 				}
 			case MoFurnacesMod.guiIDObsidianFurnaceT3:
-				if(entity instanceof TileEntityObsidianFurnaceT3) {
-					return new ContainerObsidianFurnaceT3(player.inventory, (TileEntityObsidianFurnaceT3) entity);
+				if (entity instanceof TileEntityObsidianFurnaceT3) {
+					return new ContainerObsidianFurnaceT3(player.inventory,
+							(TileEntityObsidianFurnaceT3) entity);
 				}
 			case MoFurnacesMod.guiIDRedstoneFurnace:
-				if(entity instanceof TileEntityRedstoneFurnace) {
-					return new ContainerRedstoneFurnace(player.inventory, (TileEntityRedstoneFurnace) entity);
+				if (entity instanceof TileEntityRedstoneFurnace) {
+					return new ContainerRedstoneFurnace(player.inventory,
+							(TileEntityRedstoneFurnace) entity);
 				}
 			case MoFurnacesMod.guiIDDiamondFurnaceT2:
-				if(entity instanceof TileEntityDiamondFurnaceT2) {
-					return new ContainerDiamondFurnaceT2(player.inventory, (TileEntityDiamondFurnaceT2) entity);
+				if (entity instanceof TileEntityDiamondFurnaceT2) {
+					return new ContainerDiamondFurnaceT2(player.inventory,
+							(TileEntityDiamondFurnaceT2) entity);
 				}
 			case MoFurnacesMod.guiIDDiamondFurnaceT3:
-				if(entity instanceof TileEntityDiamondFurnaceT3) {
-					return new ContainerDiamondFurnaceT3(player.inventory, (TileEntityDiamondFurnaceT3) entity);
+				if (entity instanceof TileEntityDiamondFurnaceT3) {
+					return new ContainerDiamondFurnaceT3(player.inventory,
+							(TileEntityDiamondFurnaceT3) entity);
 				}
 			case MoFurnacesMod.guiIDAnvilFurnace:
-				if(entity instanceof TileEntityAnvilFurnace) {
-					return new ContainerAnvilFurnace(player.inventory, (TileEntityAnvilFurnace) entity);
+				if (entity instanceof TileEntityAnvilFurnace) {
+					return new ContainerAnvilFurnace(player.inventory,
+							(TileEntityAnvilFurnace) entity);
 				}
 			case MoFurnacesMod.guiIDIronFurnaceT2:
-				if(entity instanceof TileEntityIronFurnaceT2) {
-					return new ContainerIronFurnaceT2(player.inventory, (TileEntityIronFurnaceT2) entity);
+				if (entity instanceof TileEntityIronFurnaceT2) {
+					return new ContainerIronFurnaceT2(player.inventory,
+							(TileEntityIronFurnaceT2) entity);
 				}
 			case MoFurnacesMod.guiIDIronFurnaceT3:
-				if(entity instanceof TileEntityIronFurnaceT3) {
-					return new ContainerIronFurnaceT3(player.inventory, (TileEntityIronFurnaceT3) entity);
+				if (entity instanceof TileEntityIronFurnaceT3) {
+					return new ContainerIronFurnaceT3(player.inventory,
+							(TileEntityIronFurnaceT3) entity);
 				}
 			case MoFurnacesMod.guiIDBrickFurnaceT2:
-				if(entity instanceof TileEntityBrickFurnaceT2) {
-					return new ContainerBrickFurnaceT2(player.inventory, (TileEntityBrickFurnaceT2) entity);
+				if (entity instanceof TileEntityBrickFurnaceT2) {
+					return new ContainerBrickFurnaceT2(player.inventory,
+							(TileEntityBrickFurnaceT2) entity);
 				}
 			case MoFurnacesMod.guiIDBrickFurnaceT3:
-				if(entity instanceof TileEntityBrickFurnaceT3) {
-					return new ContainerBrickFurnaceT3(player.inventory, (TileEntityBrickFurnaceT3) entity);
+				if (entity instanceof TileEntityBrickFurnaceT3) {
+					return new ContainerBrickFurnaceT3(player.inventory,
+							(TileEntityBrickFurnaceT3) entity);
 				}
 			case MoFurnacesMod.guiIDQuartzFurnaceT2:
-				if(entity instanceof TileEntityQuartzFurnaceT2) {
-					return new ContainerQuartzFurnaceT2(player.inventory, (TileEntityQuartzFurnaceT2) entity);
+				if (entity instanceof TileEntityQuartzFurnaceT2) {
+					return new ContainerQuartzFurnaceT2(player.inventory,
+							(TileEntityQuartzFurnaceT2) entity);
 				}
 			case MoFurnacesMod.guiIDQuartzFurnaceT3:
-				if(entity instanceof TileEntityQuartzFurnaceT3) {
-					return new ContainerQuartzFurnaceT3(player.inventory, (TileEntityQuartzFurnaceT3) entity);
+				if (entity instanceof TileEntityQuartzFurnaceT3) {
+					return new ContainerQuartzFurnaceT3(player.inventory,
+							(TileEntityQuartzFurnaceT3) entity);
 				}
 			case MoFurnacesMod.guiIDCactusFurnace:
-				if(entity instanceof TileEntityCactusFurnace) {
-					return new ContainerCactusFurnace(player.inventory, (TileEntityCactusFurnace) entity);
+				if (entity instanceof TileEntityCactusFurnace) {
+					return new ContainerCactusFurnace(player.inventory,
+							(TileEntityCactusFurnace) entity);
 				}
 			case MoFurnacesMod.guiIDPumpkinFurnace:
-				if(entity instanceof TileEntityPumpkinFurnace) {
-					return new ContainerPumpkinFurnace(player.inventory, (TileEntityPumpkinFurnace) entity);
+				if (entity instanceof TileEntityPumpkinFurnace) {
+					return new ContainerPumpkinFurnace(player.inventory,
+							(TileEntityPumpkinFurnace) entity);
 				}
 				return null;
-				}
 			}
+		}
 		return null;
 	}
 
 	@Override
-	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+	public Object getClientGuiElement(int ID, EntityPlayer player, World world,
+			int x, int y, int z) {
 		TileEntity entity = world.getTileEntity(x, y, z);
-		if(entity != null){
-			switch(ID){
+		if (entity != null) {
+			switch (ID) {
 			case MoFurnacesMod.guiIDObsidianFurnace:
-				if(entity instanceof TileEntityObsidianFurnace) {
-					return new GuiObsidianFurnace(player.inventory, (TileEntityObsidianFurnace) entity);
+				if (entity instanceof TileEntityObsidianFurnace) {
+					return new GuiObsidianFurnace(player.inventory,
+							(TileEntityObsidianFurnace) entity);
 				}
 			case MoFurnacesMod.guiIDDiamondFurnace:
-				if(entity instanceof TileEntityDiamondFurnace) {
-					return new GuiDiamondFurnace(player.inventory, (TileEntityDiamondFurnace) entity);
+				if (entity instanceof TileEntityDiamondFurnace) {
+					return new GuiDiamondFurnace(player.inventory,
+							(TileEntityDiamondFurnace) entity);
 				}
 			case MoFurnacesMod.guiIDIronFurnace:
-				if(entity instanceof TileEntityIronFurnace) {
-					return new GuiIronFurnace(player.inventory, (TileEntityIronFurnace) entity);
+				if (entity instanceof TileEntityIronFurnace) {
+					return new GuiIronFurnace(player.inventory,
+							(TileEntityIronFurnace) entity);
 				}
 			case MoFurnacesMod.guiIDGoldFurnace:
-				if(entity instanceof TileEntityGoldFurnace) {
-					return new GuiGoldFurnace(player.inventory, (TileEntityGoldFurnace) entity);
+				if (entity instanceof TileEntityGoldFurnace) {
+					return new GuiGoldFurnace(player.inventory,
+							(TileEntityGoldFurnace) entity);
 				}
 			case MoFurnacesMod.guiIDBrickFurnace:
-				if(entity instanceof TileEntityBrickFurnace) {
-					return new GuiBrickFurnace(player.inventory, (TileEntityBrickFurnace) entity);
+				if (entity instanceof TileEntityBrickFurnace) {
+					return new GuiBrickFurnace(player.inventory,
+							(TileEntityBrickFurnace) entity);
 				}
 			case MoFurnacesMod.guiIDQuartzFurnace:
-				if(entity instanceof TileEntityQuartzFurnace) {
-					return new GuiQuartzFurnace(player.inventory, (TileEntityQuartzFurnace) entity);
+				if (entity instanceof TileEntityQuartzFurnace) {
+					return new GuiQuartzFurnace(player.inventory,
+							(TileEntityQuartzFurnace) entity);
 				}
 			case MoFurnacesMod.guiIDNetherrackFurnace:
-				if(entity instanceof TileEntityNetherrackFurnace) {
-					return new GuiNetherrackFurnace(player.inventory, (TileEntityNetherrackFurnace) entity);
+				if (entity instanceof TileEntityNetherrackFurnace) {
+					return new GuiNetherrackFurnace(player.inventory,
+							(TileEntityNetherrackFurnace) entity);
 				}
 			case MoFurnacesMod.guiIDBoneFurnace:
-				if(entity instanceof TileEntityBoneFurnace) {
-					return new GuiBoneFurnace(player.inventory, (TileEntityBoneFurnace) entity);
+				if (entity instanceof TileEntityBoneFurnace) {
+					return new GuiBoneFurnace(player.inventory,
+							(TileEntityBoneFurnace) entity);
 				}
 			case MoFurnacesMod.guiIDObsidianFurnaceT2:
-				if(entity instanceof TileEntityObsidianFurnaceT2) {
-					return new GuiObsidianFurnaceT2(player.inventory, (TileEntityObsidianFurnaceT2) entity);
+				if (entity instanceof TileEntityObsidianFurnaceT2) {
+					return new GuiObsidianFurnaceT2(player.inventory,
+							(TileEntityObsidianFurnaceT2) entity);
 				}
 			case MoFurnacesMod.guiIDObsidianFurnaceT3:
-				if(entity instanceof TileEntityObsidianFurnaceT3) {
-					return new GuiObsidianFurnaceT3(player.inventory, (TileEntityObsidianFurnaceT3) entity);
+				if (entity instanceof TileEntityObsidianFurnaceT3) {
+					return new GuiObsidianFurnaceT3(player.inventory,
+							(TileEntityObsidianFurnaceT3) entity);
 				}
 			case MoFurnacesMod.guiIDRedstoneFurnace:
-				if(entity instanceof TileEntityRedstoneFurnace) {
-					return new GuiRedstoneFurnace(player.inventory, (TileEntityRedstoneFurnace) entity);
+				if (entity instanceof TileEntityRedstoneFurnace) {
+					return new GuiRedstoneFurnace(player.inventory,
+							(TileEntityRedstoneFurnace) entity);
 				}
 			case MoFurnacesMod.guiIDDiamondFurnaceT2:
-				if(entity instanceof TileEntityDiamondFurnaceT2) {
-					return new GuiDiamondFurnaceT2(player.inventory, (TileEntityDiamondFurnaceT2) entity);
+				if (entity instanceof TileEntityDiamondFurnaceT2) {
+					return new GuiDiamondFurnaceT2(player.inventory,
+							(TileEntityDiamondFurnaceT2) entity);
 				}
 			case MoFurnacesMod.guiIDDiamondFurnaceT3:
-				if(entity instanceof TileEntityDiamondFurnaceT3) {
-					return new GuiDiamondFurnaceT3(player.inventory, (TileEntityDiamondFurnaceT3) entity);
+				if (entity instanceof TileEntityDiamondFurnaceT3) {
+					return new GuiDiamondFurnaceT3(player.inventory,
+							(TileEntityDiamondFurnaceT3) entity);
 				}
 			case MoFurnacesMod.guiIDAnvilFurnace:
-				if(entity instanceof TileEntityAnvilFurnace) {
-					return new GuiAnvilFurnace(player.inventory, (TileEntityAnvilFurnace) entity);
+				if (entity instanceof TileEntityAnvilFurnace) {
+					return new GuiAnvilFurnace(player.inventory,
+							(TileEntityAnvilFurnace) entity);
 				}
 			case MoFurnacesMod.guiIDIronFurnaceT2:
-				if(entity instanceof TileEntityIronFurnaceT2) {
-					return new GuiIronFurnaceT2(player.inventory, (TileEntityIronFurnaceT2) entity);
+				if (entity instanceof TileEntityIronFurnaceT2) {
+					return new GuiIronFurnaceT2(player.inventory,
+							(TileEntityIronFurnaceT2) entity);
 				}
 			case MoFurnacesMod.guiIDIronFurnaceT3:
-				if(entity instanceof TileEntityIronFurnaceT3) {
-					return new GuiIronFurnaceT3(player.inventory, (TileEntityIronFurnaceT3) entity);
+				if (entity instanceof TileEntityIronFurnaceT3) {
+					return new GuiIronFurnaceT3(player.inventory,
+							(TileEntityIronFurnaceT3) entity);
 				}
 			case MoFurnacesMod.guiIDBrickFurnaceT2:
-				if(entity instanceof TileEntityBrickFurnaceT2) {
-					return new GuiBrickFurnaceT2(player.inventory, (TileEntityBrickFurnaceT2) entity);
+				if (entity instanceof TileEntityBrickFurnaceT2) {
+					return new GuiBrickFurnaceT2(player.inventory,
+							(TileEntityBrickFurnaceT2) entity);
 				}
 			case MoFurnacesMod.guiIDBrickFurnaceT3:
-				if(entity instanceof TileEntityBrickFurnaceT3) {
-					return new GuiBrickFurnaceT3(player.inventory, (TileEntityBrickFurnaceT3) entity);
+				if (entity instanceof TileEntityBrickFurnaceT3) {
+					return new GuiBrickFurnaceT3(player.inventory,
+							(TileEntityBrickFurnaceT3) entity);
 				}
 			case MoFurnacesMod.guiIDQuartzFurnaceT2:
-				if(entity instanceof TileEntityQuartzFurnaceT2) {
-					return new GuiQuartzFurnaceT2(player.inventory, (TileEntityQuartzFurnaceT2) entity);
+				if (entity instanceof TileEntityQuartzFurnaceT2) {
+					return new GuiQuartzFurnaceT2(player.inventory,
+							(TileEntityQuartzFurnaceT2) entity);
 				}
 			case MoFurnacesMod.guiIDQuartzFurnaceT3:
-				if(entity instanceof TileEntityQuartzFurnaceT3) {
-					return new GuiQuartzFurnaceT3(player.inventory, (TileEntityQuartzFurnaceT3) entity);
+				if (entity instanceof TileEntityQuartzFurnaceT3) {
+					return new GuiQuartzFurnaceT3(player.inventory,
+							(TileEntityQuartzFurnaceT3) entity);
 				}
 			case MoFurnacesMod.guiIDCactusFurnace:
-				if(entity instanceof TileEntityCactusFurnace) {
-					return new GuiCactusFurnace(player.inventory, (TileEntityCactusFurnace) entity);
+				if (entity instanceof TileEntityCactusFurnace) {
+					return new GuiCactusFurnace(player.inventory,
+							(TileEntityCactusFurnace) entity);
 				}
 			case MoFurnacesMod.guiIDPumpkinFurnace:
-				if(entity instanceof TileEntityPumpkinFurnace) {
-					return new GuiPumpkinFurnace(player.inventory, (TileEntityPumpkinFurnace) entity);
+				if (entity instanceof TileEntityPumpkinFurnace) {
+					return new GuiPumpkinFurnace(player.inventory,
+							(TileEntityPumpkinFurnace) entity);
 				}
 				return null;
-				}			
 			}
+		}
 		return null;
 	}
 

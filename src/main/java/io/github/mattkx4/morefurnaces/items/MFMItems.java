@@ -10,24 +10,22 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class MFMItems {
 
 	/*
-	 * Add new items here
-	 * format:public static Item 'NewItemName';
+	 * Add new items here format:public static Item 'NewItemName';
 	 */
-	//Tier Core
+	// Tier Core
 	public static Item TierCore;
 	// Tier 2 Device
 	public static Item Tier2Device;
-	//Tier 3 Device
+	// Tier 3 Device
 	public static Item Tier3Device;
-	//Upgrades
+	// Upgrades
 	public static Item UpgradeBrightness; // Brightness upgrade
 	public static Item UpgradeNotification; // Notification upgrade
-	
-	
+
 	/**
 	 * Calls the registry methods for items
 	 */
-	public static void mainRegistry(){
+	public static void mainRegistry() {
 		initializeItem();
 		registerItem();
 	}
@@ -35,10 +33,10 @@ public class MFMItems {
 	/**
 	 * Calls the secondary registry for items
 	 */
-	public static void secondaryRegistry(){
+	public static void secondaryRegistry() {
 		registerItem2();
 	}
-	
+
 	/**
 	 * Initialize the items
 	 */
@@ -49,14 +47,14 @@ public class MFMItems {
 		Tier2Device = new Tier2Device();
 		// Initialize the Tier 3 Device
 		Tier3Device = new Tier3Device();
-		//Initialize the upgrades
-		UpgradeBrightness = new UpgradeBrightness();	// Brightness Upgrade
+		// Initialize the upgrades
+		UpgradeBrightness = new UpgradeBrightness(); // Brightness Upgrade
 		UpgradeNotification = new UpgradeNotification(); // Notification Upgrade
 	}
-	
+
 	/**
-	 * Register the items in the game registry
-	 * format: GameRegistry.registerItem(newitemname, "newitemname"); 
+	 * Register the items in the game registry format:
+	 * GameRegistry.registerItem(newitemname, "newitemname");
 	 */
 	public static void registerItem() {
 		// Register the Tier Core
@@ -66,8 +64,10 @@ public class MFMItems {
 		// Register the Tier 3 Device
 		GameRegistry.registerItem(Tier3Device, "Tier3Device");
 		// Register the upgrades
-		GameRegistry.registerItem(UpgradeBrightness, "UpgradeBrightness");	// Brightness Upgrade
-		GameRegistry.registerItem(UpgradeNotification, "UpgradeNotification"); // Notification Upgrade
+		GameRegistry.registerItem(UpgradeBrightness, "UpgradeBrightness"); // Brightness
+																			// Upgrade
+		GameRegistry.registerItem(UpgradeNotification, "UpgradeNotification"); // Notification
+																				// Upgrade
 	}
 
 	/**
@@ -75,12 +75,18 @@ public class MFMItems {
 	 */
 	public static void registerItem2() {
 		// Register Crafting Recipe for the Tier Core
-		GameRegistry.addRecipe(new ItemStack(TierCore), new Object[]{"zXz", "X X", "zXz", 'z', Items.diamond, 'X', Items.emerald});
-		GameRegistry.addRecipe(new ItemStack(TierCore), new Object[]{"yWy", "W W", "yWy", 'y', Items.emerald, 'W', Items.diamond});	
+		GameRegistry.addRecipe(new ItemStack(TierCore), new Object[] { "zXz",
+				"X X", "zXz", 'z', Items.diamond, 'X', Items.emerald });
+		GameRegistry.addRecipe(new ItemStack(TierCore), new Object[] { "yWy",
+				"W W", "yWy", 'y', Items.emerald, 'W', Items.diamond });
 		// Register Crafting Recipe for the Tier 2 Device
-		GameRegistry.addRecipe(new ItemStack(Tier2Device), new Object[]{"z z", "zXz", " y ", 'z', Items.iron_ingot, 'X', MFMItems.TierCore, 'y', Items.blaze_rod});
-		//Register Crafting Recipe for the Tier 3 Device
-		GameRegistry.addRecipe(new ItemStack(Tier3Device), new Object[]{"zXz", "zWz", " y ", 'z', Items.diamond, 'X', Items.ender_eye, 'W', MFMItems.TierCore, 'y', Items.blaze_rod});	
-		//Add recipes for the upgrades here	
+		GameRegistry.addRecipe(new ItemStack(Tier2Device), new Object[] {
+				"z z", "zXz", " y ", 'z', Items.iron_ingot, 'X',
+				MFMItems.TierCore, 'y', Items.blaze_rod });
+		// Register Crafting Recipe for the Tier 3 Device
+		GameRegistry.addRecipe(new ItemStack(Tier3Device), new Object[] {
+				"zXz", "zWz", " y ", 'z', Items.diamond, 'X', Items.ender_eye,
+				'W', MFMItems.TierCore, 'y', Items.blaze_rod });
+		// Add recipes for the upgrades here
 	}
 }

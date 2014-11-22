@@ -7,7 +7,7 @@ public class MFMHandler {
 	/**
 	 * Initialize and register items within the pre-initialization event
 	 */
-	public static void mainRegistry(){
+	public static void mainRegistry() {
 		initializeHandler();
 		registerHandler();
 	}
@@ -15,15 +15,15 @@ public class MFMHandler {
 	/**
 	 * initialize and register items within the initialization event
 	 */
-	public static void secondaryRegistry(){
+	public static void secondaryRegistry() {
 		registerhandler2();
 	}
-	
+
 	/**
 	 * No use ATM
 	 */
 	private static void initializeHandler() {
-		// TODO Auto-generated method stub		
+		// TODO Auto-generated method stub
 	}
 
 	/**
@@ -32,13 +32,13 @@ public class MFMHandler {
 	private static void registerHandler() {
 		// TODO Auto-generated method stub
 	}
-	
+
 	/**
 	 * Secondary Handler Registry
 	 */
 	private static void registerhandler2() {
 		// Registers the fuel handler for possible future fuels
-		GameRegistry.registerFuelHandler(new MFMFuelHandler());	
+		GameRegistry.registerFuelHandler(new MFMFuelHandler());
 	}
-	
+
 }

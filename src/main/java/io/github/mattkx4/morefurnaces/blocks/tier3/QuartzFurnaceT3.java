@@ -28,258 +28,304 @@ import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class QuartzFurnaceT3 extends BlockContainer{
+public class QuartzFurnaceT3 extends BlockContainer {
 	/*
 	 * Boolean to tell if the furnace is active
 	 */
 	private final boolean isActive;
-	
+
 	private Random rand = new Random();
-	
+
 	@SideOnly(Side.CLIENT)
 	private IIcon iconTop;
-	
+
 	@SideOnly(Side.CLIENT)
 	private IIcon iconFront;
-	
+
 	private static boolean keepInventory;
-	
+
 	public QuartzFurnaceT3(boolean isActive) {
 		super(Material.rock);
 		this.isActive = isActive;
 		this.setHarvestLevel("pickaxe", 2);
 	}
-	
+
 	/*
 	 * What item is dropped from the block
 	 */
-	public Item getItemDropped(int i, Random random, int j){
-		return Item.getItemFromBlock(MFMT3Blocks.QuartzFurnaceT3Idle);	
-	}	
-	
+	public Item getItemDropped(int i, Random random, int j) {
+		return Item.getItemFromBlock(MFMT3Blocks.QuartzFurnaceT3Idle);
+	}
+
 	/*
 	 * Called whenever the block is added to the world
 	 */
-	public void onBlockAdded (World world, int x, int y, int z){
+	public void onBlockAdded(World world, int x, int y, int z) {
 		super.onBlockAdded(world, x, y, z);
 		this.setDefaultDirection(world, x, y, z);
-	}	
+	}
 
 	/*
 	 * Set the default direction of the block in the world
 	 */
 	private void setDefaultDirection(World world, int x, int y, int z) {
-		if(!world.isRemote){
-			Block b1 = world.getBlock(x, y, z-1);
-			Block b2 = world.getBlock(x, y, z+1);
-			Block b3 = world.getBlock(x-1, y, z);
-			Block b4 = world.getBlock(x+1, y, z);
-			
+		if (!world.isRemote) {
+			Block b1 = world.getBlock(x, y, z - 1);
+			Block b2 = world.getBlock(x, y, z + 1);
+			Block b3 = world.getBlock(x - 1, y, z);
+			Block b4 = world.getBlock(x + 1, y, z);
+
 			byte b0 = 3;
-			
-			if(b1.func_149730_j() && !b2.func_149730_j()){
-				b0=3;				
+
+			if (b1.func_149730_j() && !b2.func_149730_j()) {
+				b0 = 3;
 			}
-			
-			if(b2.func_149730_j() && !b1.func_149730_j()){
-				b0=2;				
-			}	
-			
-			if(b3.func_149730_j() && !b4.func_149730_j()){
-				b0=5;
+
+			if (b2.func_149730_j() && !b1.func_149730_j()) {
+				b0 = 2;
 			}
-			
-			if(b4.func_149730_j() && !b3.func_149730_j()){
-				b0=4;				
+
+			if (b3.func_149730_j() && !b4.func_149730_j()) {
+				b0 = 5;
 			}
-			
+
+			if (b4.func_149730_j() && !b3.func_149730_j()) {
+				b0 = 4;
+			}
+
 			world.setBlockMetadataWithNotify(x, y, z, b0, 2);
 		}
 	}
-	
+
 	/*
 	 * Set different icon sides arguments:side, metadata
 	 */
 	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(int side, int metadata){
-		return metadata == 0 && side == 3 ? this.iconFront : side == 1 ? this.iconTop : (side == 0 ? this.iconTop : (side != metadata ? this.blockIcon : this.iconFront));
-	}	
-	
+	public IIcon getIcon(int side, int metadata) {
+		return metadata == 0 && side == 3 ? this.iconFront
+				: side == 1 ? this.iconTop : (side == 0 ? this.iconTop
+						: (side != metadata ? this.blockIcon : this.iconFront));
+	}
+
 	/*
 	 * Register item side textures to icons
 	 */
 	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister iconRegister){
-		this.blockIcon = iconRegister.registerIcon(Strings.MODID+":QuartzFurnace_side");
-		this.iconFront = iconRegister.registerIcon(Strings.MODID+":"+(this.isActive ? "QuartzFurnaceT3_front_active" : "QuartzFurnaceT3_front_idle"));
-		this.iconTop = iconRegister.registerIcon(Strings.MODID+":QuartzFurnace_top");
+	public void registerBlockIcons(IIconRegister iconRegister) {
+		this.blockIcon = iconRegister.registerIcon(Strings.MODID
+				+ ":QuartzFurnace_side");
+		this.iconFront = iconRegister.registerIcon(Strings.MODID
+				+ ":"
+				+ (this.isActive ? "QuartzFurnaceT3_front_active"
+						: "QuartzFurnaceT3_front_idle"));
+		this.iconTop = iconRegister.registerIcon(Strings.MODID
+				+ ":QuartzFurnace_top");
 	}
-	
+
 	/*
 	 * Called upon on block activation (right click) to open the GUI
 	 */
-	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitx, float hity, float hitz){
-		if(!world.isRemote) {
-			FMLNetworkHandler.openGui(player, MoFurnacesMod.instance, MoFurnacesMod.guiIDQuartzFurnaceT3, world, x, y, z);
+	public boolean onBlockActivated(World world, int x, int y, int z,
+			EntityPlayer player, int side, float hitx, float hity, float hitz) {
+		if (!world.isRemote) {
+			FMLNetworkHandler.openGui(player, MoFurnacesMod.instance,
+					MoFurnacesMod.guiIDQuartzFurnaceT3, world, x, y, z);
 		}
 		return true;
 	}
 
-	public static void updateQuartzFurnaceT3State(boolean active, World worldObj, int xCoord, int yCoord, int zCoord) {
+	public static void updateQuartzFurnaceT3State(boolean active,
+			World worldObj, int xCoord, int yCoord, int zCoord) {
 		int i = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
-		
+
 		TileEntity tileentity = worldObj.getTileEntity(xCoord, yCoord, zCoord);
 		keepInventory = true;
-		
-		if(active == true){
-			worldObj.setBlock(xCoord, yCoord, zCoord, MFMT3Blocks.QuartzFurnaceT3Active);
-		}else{
-			worldObj.setBlock(xCoord, yCoord, zCoord, MFMT3Blocks.QuartzFurnaceT3Idle);
+
+		if (active == true) {
+			worldObj.setBlock(xCoord, yCoord, zCoord,
+					MFMT3Blocks.QuartzFurnaceT3Active);
+		} else {
+			worldObj.setBlock(xCoord, yCoord, zCoord,
+					MFMT3Blocks.QuartzFurnaceT3Idle);
 		}
 		keepInventory = false;
-		
+
 		worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, i, 2);
-		
-		if(tileentity != null){
+
+		if (tileentity != null) {
 			tileentity.validate();
 			worldObj.setTileEntity(xCoord, yCoord, zCoord, tileentity);
 		}
 	}
-	
+
 	/*
 	 * Create the tile entity
 	 */
 	public TileEntity createNewTileEntity(World world, int i) {
 		return new TileEntityQuartzFurnaceT3();
 	}
-	
-	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entityplayer, ItemStack itemstack){
-		int l = MathHelper.floor_double((double)(entityplayer.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
-		
-		if(l == 0) {
+
+	public void onBlockPlacedBy(World world, int x, int y, int z,
+			EntityLivingBase entityplayer, ItemStack itemstack) {
+		int l = MathHelper
+				.floor_double((double) (entityplayer.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+
+		if (l == 0) {
 			world.setBlockMetadataWithNotify(x, y, z, 2, 2);
 		}
-		
-		if(l == 1) {
+
+		if (l == 1) {
 			world.setBlockMetadataWithNotify(x, y, z, 5, 2);
 		}
-		
-		if(l == 2) {
+
+		if (l == 2) {
 			world.setBlockMetadataWithNotify(x, y, z, 3, 2);
 		}
-		
-		if(l == 3) {
+
+		if (l == 3) {
 			world.setBlockMetadataWithNotify(x, y, z, 4, 2);
 		}
-		
-		if(itemstack.hasDisplayName()){
-			((TileEntityQuartzFurnaceT3)world.getTileEntity(x, y, z)).setGuiDisplayName(itemstack.getDisplayName());
+
+		if (itemstack.hasDisplayName()) {
+			((TileEntityQuartzFurnaceT3) world.getTileEntity(x, y, z))
+					.setGuiDisplayName(itemstack.getDisplayName());
 		}
 	}
 
 	/*
 	 * What to do to the block and it's contents when it is broken
 	 */
-	public void breakBlock(World world, int x, int y, int z, Block oldblock, int oldmetadata){
-        if (!keepInventory){
-            TileEntityQuartzFurnaceT3 tileentity = (TileEntityQuartzFurnaceT3)world.getTileEntity(x, y, z);
+	public void breakBlock(World world, int x, int y, int z, Block oldblock,
+			int oldmetadata) {
+		if (!keepInventory) {
+			TileEntityQuartzFurnaceT3 tileentity = (TileEntityQuartzFurnaceT3) world
+					.getTileEntity(x, y, z);
 
-            if (tileentity != null){
-                for (int i = 0; i < tileentity.getSizeInventory(); ++i){
-                    ItemStack itemstack = tileentity.getStackInSlot(i);
+			if (tileentity != null) {
+				for (int i = 0; i < tileentity.getSizeInventory(); ++i) {
+					ItemStack itemstack = tileentity.getStackInSlot(i);
 
-                    if (itemstack != null){
-                        float f = this.rand.nextFloat() * 0.8F + 0.1F;
-                        float f1 = this.rand.nextFloat() * 0.8F + 0.1F;
-                        float f2 = this.rand.nextFloat() * 0.8F + 0.1F;
+					if (itemstack != null) {
+						float f = this.rand.nextFloat() * 0.8F + 0.1F;
+						float f1 = this.rand.nextFloat() * 0.8F + 0.1F;
+						float f2 = this.rand.nextFloat() * 0.8F + 0.1F;
 
-                        while (itemstack.stackSize > 0){
-                            int j = this.rand.nextInt(21) + 10;
+						while (itemstack.stackSize > 0) {
+							int j = this.rand.nextInt(21) + 10;
 
-                            if (j > itemstack.stackSize){
-                                j = itemstack.stackSize;
-                            }
+							if (j > itemstack.stackSize) {
+								j = itemstack.stackSize;
+							}
 
-                            itemstack.stackSize -= j;
-                            EntityItem item = new EntityItem(world, (double)((float)x + f), (double)((float)y + f1), (double)((float)z + f2), new ItemStack(itemstack.getItem(), j, itemstack.getItemDamage()));
+							itemstack.stackSize -= j;
+							EntityItem item = new EntityItem(world,
+									(double) ((float) x + f),
+									(double) ((float) y + f1),
+									(double) ((float) z + f2), new ItemStack(
+											itemstack.getItem(), j,
+											itemstack.getItemDamage()));
 
-                            if (itemstack.hasTagCompound()){
-                                item.getEntityItem().setTagCompound((NBTTagCompound)itemstack.getTagCompound().copy());
-                            }
-                            //omit following
-                            /**
-                            float f3 = 0.05F;
-                            item.motionX = (double)((float)this.rand.nextGaussian() * f3);
-                            item.motionY = (double)((float)this.rand.nextGaussian() * f3 + 0.2F);
-                            item.motionZ = (double)((float)this.rand.nextGaussian() * f3);
-                            */
-                            world.spawnEntityInWorld(item);
-                        }
-                    }
-                }
+							if (itemstack.hasTagCompound()) {
+								item.getEntityItem().setTagCompound(
+										(NBTTagCompound) itemstack
+												.getTagCompound().copy());
+							}
+							// omit following
+							/**
+							 * float f3 = 0.05F; item.motionX =
+							 * (double)((float)this.rand.nextGaussian() * f3);
+							 * item.motionY =
+							 * (double)((float)this.rand.nextGaussian() * f3 +
+							 * 0.2F); item.motionZ =
+							 * (double)((float)this.rand.nextGaussian() * f3);
+							 */
+							world.spawnEntityInWorld(item);
+						}
+					}
+				}
 
-                world.func_147453_f(x, y, z, oldblock);
-            }
-        }
+				world.func_147453_f(x, y, z, oldblock);
+			}
+		}
 
-        super.breakBlock(world, x, y, z, oldblock, oldmetadata);
-    }
-	
+		super.breakBlock(world, x, y, z, oldblock, oldmetadata);
+	}
+
 	/*
-     * A randomly called display update to add particles or other items for display
-     * in this case it is adding smoke and flames.
-     */
+	 * A randomly called display update to add particles or other items for
+	 * display in this case it is adding smoke and flames.
+	 */
 	@SideOnly(Side.CLIENT)
-    public void randomDisplayTick(World world, int x, int y, int z, Random random){ 	
-    	
-        if (this.isActive){
-            int direction = world.getBlockMetadata(x, y, z);
-            float x1 = (float)x + 0.5F;
-            float y1 = (float)y + 0.0F + random.nextFloat() * 6.0F / 16.0F;
-            float z1 = (float)z + 0.5F;
-            float f = 0.52F;
-            float f1 = random.nextFloat() * 0.6F - 0.3F;
+	public void randomDisplayTick(World world, int x, int y, int z,
+			Random random) {
 
-            //spawn in the smoke and custom flame particle
-            if(direction == 4){
-            	world.spawnParticle("smoke", (double)(x1 - f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
-				Minecraft.getMinecraft().effectRenderer.addEffect(new EntityIronFlameFX(world, (double)(x1 - f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D));
+		if (this.isActive) {
+			int direction = world.getBlockMetadata(x, y, z);
+			float x1 = (float) x + 0.5F;
+			float y1 = (float) y + 0.0F + random.nextFloat() * 6.0F / 16.0F;
+			float z1 = (float) z + 0.5F;
+			float f = 0.52F;
+			float f1 = random.nextFloat() * 0.6F - 0.3F;
 
-            }else if (direction == 5){
-            	world.spawnParticle("smoke", (double)(x1 + f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D);
-            	Minecraft.getMinecraft().effectRenderer.addEffect(new EntityIronFlameFX(world, (double)(x1 + f), (double)y1, (double)(z1 + f1), 0.0D, 0.0D, 0.0D));
-        	}else if (direction == 2){
-            	world.spawnParticle("smoke", (double)(x1 + f1), (double)y1, (double)(z1 - f), 0.0D, 0.0D, 0.0D);
-            	Minecraft.getMinecraft().effectRenderer.addEffect(new EntityIronFlameFX(world, (double)(x1 + f1), (double)y1, (double)(z1 - f), 0.0D, 0.0D, 0.0D));  
-        	}else if (direction == 3){
-            	world.spawnParticle("smoke", (double)(x1 + f1), (double)y1, (double)(z1 + f), 0.0D, 0.0D, 0.0D);
-            	Minecraft.getMinecraft().effectRenderer.addEffect(new EntityIronFlameFX(world, (double)(x1 + f1), (double)y1, (double)(z1 + f), 0.0D, 0.0D, 0.0D));       
-        	}
-        }
-    }
+			// spawn in the smoke and custom flame particle
+			if (direction == 4) {
+				world.spawnParticle("smoke", (double) (x1 - f), (double) y1,
+						(double) (z1 + f1), 0.0D, 0.0D, 0.0D);
+				Minecraft.getMinecraft().effectRenderer
+						.addEffect(new EntityIronFlameFX(world,
+								(double) (x1 - f), (double) y1,
+								(double) (z1 + f1), 0.0D, 0.0D, 0.0D));
 
-    /*
-     * If this returns true, then comparators facing away from this block will use the value from
-     * getComparatorInputOverride instead of the actual redstone signal strength.
-     */
-    public boolean hasComparatorInputOverride(){
-        return true;
-    }
+			} else if (direction == 5) {
+				world.spawnParticle("smoke", (double) (x1 + f), (double) y1,
+						(double) (z1 + f1), 0.0D, 0.0D, 0.0D);
+				Minecraft.getMinecraft().effectRenderer
+						.addEffect(new EntityIronFlameFX(world,
+								(double) (x1 + f), (double) y1,
+								(double) (z1 + f1), 0.0D, 0.0D, 0.0D));
+			} else if (direction == 2) {
+				world.spawnParticle("smoke", (double) (x1 + f1), (double) y1,
+						(double) (z1 - f), 0.0D, 0.0D, 0.0D);
+				Minecraft.getMinecraft().effectRenderer
+						.addEffect(new EntityIronFlameFX(world,
+								(double) (x1 + f1), (double) y1,
+								(double) (z1 - f), 0.0D, 0.0D, 0.0D));
+			} else if (direction == 3) {
+				world.spawnParticle("smoke", (double) (x1 + f1), (double) y1,
+						(double) (z1 + f), 0.0D, 0.0D, 0.0D);
+				Minecraft.getMinecraft().effectRenderer
+						.addEffect(new EntityIronFlameFX(world,
+								(double) (x1 + f1), (double) y1,
+								(double) (z1 + f), 0.0D, 0.0D, 0.0D));
+			}
+		}
+	}
 
-    /*
-     * If hasComparatorInputOverride returns true, the return value from this is used instead of the redstone signal
-     * strength when this block inputs to a comparator.
-     */
-    public int getComparatorInputOverride(World world, int x, int y, int z, int k){
-        return Container.calcRedstoneFromInventory((IInventory)world.getTileEntity(x, y, z));
-    }
+	/*
+	 * If this returns true, then comparators facing away from this block will
+	 * use the value from getComparatorInputOverride instead of the actual
+	 * redstone signal strength.
+	 */
+	public boolean hasComparatorInputOverride() {
+		return true;
+	}
 
-    /*
-     * Gets an item for the block being called on. Args: world, x, y, z
-     */
-    @SideOnly(Side.CLIENT)
-    public Item getItem(World world, int x, int y, int z){
-        return Item.getItemFromBlock(MFMT3Blocks.QuartzFurnaceT3Idle);
-    }
+	/*
+	 * If hasComparatorInputOverride returns true, the return value from this is
+	 * used instead of the redstone signal strength when this block inputs to a
+	 * comparator.
+	 */
+	public int getComparatorInputOverride(World world, int x, int y, int z,
+			int k) {
+		return Container.calcRedstoneFromInventory((IInventory) world
+				.getTileEntity(x, y, z));
+	}
+
+	/*
+	 * Gets an item for the block being called on. Args: world, x, y, z
+	 */
+	@SideOnly(Side.CLIENT)
+	public Item getItem(World world, int x, int y, int z) {
+		return Item.getItemFromBlock(MFMT3Blocks.QuartzFurnaceT3Idle);
+	}
 }
-

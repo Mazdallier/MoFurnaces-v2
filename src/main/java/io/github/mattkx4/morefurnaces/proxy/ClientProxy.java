@@ -14,20 +14,26 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
 
-public class ClientProxy extends ServerProxy{
-	
-	public void registerRenderThings(){
-		//rendering anvil furnace // follow this layout for blocks
+public class ClientProxy extends ServerProxy {
+
+	public void registerRenderThings() {
+		// rendering anvil furnace // follow this layout for blocks
 		TileEntitySpecialRenderer renderAF = new RenderAnvilFurnace();
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAnvilFurnace.class, renderAF);
-		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(MFMBlocks.AnvilFurnaceIdle), new ItemRenderAnvilFurnace(renderAF, new TileEntityAnvilFurnace()));
-		
-		//rendering CK
-		RenderingRegistry.registerEntityRenderingHandler(EntityCobaltKatana.class, new RenderEntityCobaltKatana(new ModelCobaltKatana(), 0.3F));
+		ClientRegistry.bindTileEntitySpecialRenderer(
+				TileEntityAnvilFurnace.class, renderAF);
+		MinecraftForgeClient.registerItemRenderer(Item
+				.getItemFromBlock(MFMBlocks.AnvilFurnaceIdle),
+				new ItemRenderAnvilFurnace(renderAF,
+						new TileEntityAnvilFurnace()));
+
+		// rendering CK
+		RenderingRegistry.registerEntityRenderingHandler(
+				EntityCobaltKatana.class, new RenderEntityCobaltKatana(
+						new ModelCobaltKatana(), 0.3F));
 	}
-	
-	public void registerTileEntitySpecialRenderer(){
-		
+
+	public void registerTileEntitySpecialRenderer() {
+
 	}
-	
+
 }
