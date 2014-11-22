@@ -65,9 +65,10 @@ V2.2.2 -> V2.3.0{
                 - Block: added custom code that can determine what to do from any upgrade(needs populating)
                 Added the beginning of the brightness upgrade, will gather a list of enemy mobs within a certain radius AND BURN THEM
     
-    14 NOV - Mattkx4{
+    21 NOV - Mattkx4{
+        - Formatting Everything
     }
-    }
+}
     
     TODO{
         - Block/Item Name Config Files
