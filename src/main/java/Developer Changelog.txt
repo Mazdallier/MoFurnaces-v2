@@ -71,7 +71,11 @@ V2.2.2 -> V2.3.0{
 }
     
     TODO{
-        - Block/Item Name Config Files
+        - Insert Netherrack Sounds in the MFMT2BLOCK class
+        - Steel Furnace
+            - Craft Iron Ore with Coal to make Steel Ore.
+            - Smelt Steel Ore to get Steel Ingot.
+            - Use Steel Ingots to create the Steel Furnace.
         - CK Mob Config File
         - Tiered Furnace, only available in Creative Mode
             - Tier 2/3 Redstone Furnace
@@ -92,7 +96,6 @@ V2.2.2 -> V2.3.0{
             - Chance to output 1 bonemeal along with item to be smelted.
         - Cactus Furnace grows Cacti on top of it.
         X Nerf the Tiered Furnaces Speed - No need, random glitch not a repeatable bug
-        - Use Texture maps for the block and item textures
     }
 }
 * * *
