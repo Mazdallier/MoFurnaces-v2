@@ -1,0 +1,95 @@
+tile.BrickFurnaceIdle.name=Brick Furnace
+tile.MFMIronFurnaceIdle.name=Iron Furnace
+tile.GoldFurnaceIdle.name=Gold Furnace
+tile.QuartzFurnaceIdle.name=Quartz Furnace
+tile.DiamondFurnaceIdle.name=Diamond Furnace
+tile.ObsidianFurnaceIdle.name=Obsidian Furnace
+tile.BoneFurnaceIdle.name=Bone Furnace
+tile.RedstoneFurnaceIdle.name=Redstone Furnace
+tile.AnvilFurnaceIdle.name=Anvil Furnace
+tile.CactusFurnaceIdle.name=Cactus Furnace
+tile.PumpkinFurnaceIdle.name=Pumpkin Furnace
+
+tile.BrickFurnaceT2Idle.name=Tier 2 Brick Furnace
+tile.IronFurnaceT2Idle.name=Tier 2 Iron Furnace
+tile.QuartzFurnaceT2Idle.name=Tier 2 Quartz Furnace
+tile.DiamondFurnaceT2Idle.name=Tier 2 Diamond Furnace
+tile.ObsidianFurnaceT2Idle.name=Tier 2 Obsidian Furnace
+
+tile.BrickFurnaceT3Idle.name=Tier 3 Brick Furnace
+tile.IronFurnaceT3Idle.name=Tier 3 Iron Furnace
+tile.QuartzFurnaceT3Idle.name=Tier 3 Quartz Furnace
+tile.DiamondFurnaceT3Idle.name=Tier 3 Diamond Furnace
+tile.ObsidianFurnaceT3Idle.name=Tier 3 Obsidian Furnace
+
+
+
+tile.BrickFurnaceActive.name=Brick Furnace
+tile.MFMIronFurnaceActive.name=Iron Furnace
+tile.GoldFurnaceActive.name=Gold Furnace
+tile.NetherrackFurnaceActive.name=Netherrack Furnace
+tile.QuartzFurnaceActive.name=Quartz Furnace
+tile.DiamondFurnaceActive.name=Diamond Furnace
+tile.ObsidianFurnaceActive.name=Obsidian Furnace
+tile.BoneFurnaceActive.name=Bone Furnace
+tile.RedstoneFurnaceActive.name=Redstone Furnace
+tile.AnvilFurnaceActive.name=Anvil Furnace
+tile.CactusFurnaceActive.name=Cactus Furnace
+tile.PumpkinFurnaceActive.name=Pumpkin Furnace
+
+tile.BrickFurnaceT2Active.name=Tier 2 Brick Furnace
+tile.IronFurnaceT2Active.name=Tier 2 Iron Furnace
+tile.QuartzFurnaceT2Active.name=Tier 2 Quartz Furnace
+tile.DiamondFurnaceT2Active.name=Tier 2 Diamond Furnace
+tile.ObsidianFurnaceT2Active.name=Tier 2 Obsidian Furnace
+
+tile.BrickFurnaceT3Active.name=Tier 3 Brick Furnace
+tile.IronFurnaceT3Active.name=Tier 3 Iron Furnace
+tile.QuartzFurnaceT2Active.name=Tier 2 Quartz Furnace
+tile.DiamondFurnaceT3Active.name=Tier 3 Diamond Furnace
+tile.ObsidianFurnaceT3Active.name=Tier 3 Obsidian Furnace
+
+
+
+itemGroup.mfm=Mo' Furnaces Mod
+itemGroup.tieredmfm=Tiered Furnaces
+
+
+
+entity.Cobalt Katana.name=Cobalt Katana
+
+
+
+container.Inventory=Inventory
+
+container.brickFurnace=Brick Furnace
+container.ironFurnace=Iron Furnace
+container.goldFurnace=Gold Furnace
+container.netherrackFurnace=Netherrack Furnace
+container.quartzFurnace=Quartz Furnace
+container.diamondFurnace=Diamond Furnace
+container.obsidianFurnace=Obsidian Furnace
+container.boneFurnace=Bone Furnace
+container.redstoneFurnace=Redstone Furnace
+container.anvilFurnace=Anvil Furnace
+container.cactusFurnace=Cactus Furnace
+container.pumpkinFurnace=Pumpkin Furnace
+
+container.brickFurnaceT2=Tier 2 Brick Furnace
+container.ironFurnaceT2=Tier 2 Iron Furnace
+container.quartzFurnaceT2=Tier 2 Quartz Furnace
+container.diamondFurnaceT2=Tier 2 Diamond Furnace
+container.obsidianFurnaceT2=Tier 2 Obsidian Furnace
+
+container.brickFurnaceT3=Tier 3 Brick Furnace
+container.ironFurnaceT3=Tier 3 Iron Furnace
+container.quartzFurnaceT3=Tier 3 Quartz Furnace
+container.diamondFurnaceT3=Tier 3 Diamond Furnace
+container.obsidianFurnaceT3=Tier 3 Obsidian Furnace
+
+
+
+item.Tier2Device.name=Tier 2 Device
+item.Tier3Device.name=Tier 3 Device
+item.TierCore.name=Tier Core
+item.UpgradeBrightness.name=Brightness Upgrade

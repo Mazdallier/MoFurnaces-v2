@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Minecraft/src/main/resources/assets/mfm/textures/blocks/DiamonFurnaceT3_front_idle.png&apos; to &apos;DiamondFurnaceT3_front_idle.png&apos;" description="Rename resource &apos;DiamonFurnaceT3_front_idle.png&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/main/resources/assets/mfm/textures/blocks/DiamonFurnaceT3_front_idle.png" name="DiamondFurnaceT3_front_idle.png" stamp="1413291068797" updateReferences="true"/>
+</session>
