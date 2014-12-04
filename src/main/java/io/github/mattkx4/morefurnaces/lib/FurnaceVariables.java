@@ -6,7 +6,7 @@ public class FurnaceVariables {
 	 */
 	// SPEEDS
 	public static final int BRICK_FURNACE_SPEED = 133; // 1.5x Faster or 150% Faster
-	public static final int IRON_FURNACE_SPEED = 100; // 2x Faster or 200% Faster
+	public static final int STEEL_FURNACE_SPEED = 100; // 2x Faster or 200% Faster
 	public static final int GOLD_FURNACE_SPEED = 50; // 4x Faster or 400% Faster
 	public static final int NETHERRACK_FURNACE_SPEED = 450; // 0.44X As Fast or 56% Slower
 	public static final int QUARTZ_FURNACE_SPEED = 200; // Same Speed
@@ -34,7 +34,7 @@ public class FurnaceVariables {
 	 * So to get the actual efficiency of the furnace, follow the above equation
 	 */
 	public static final double BRICK_FURNACE_EFFICIENCY = 1.0D; // 1.5x More Efficient or 150% Regular Efficiency
-	public static final double IRON_FURNACE_EFFICIENCY = 2.0D; // Same efficiency as the regular furnace
+	public static final double STEEL_FURNACE_EFFICIENCY = 2.0D; // Same efficiency as the regular furnace
 	public static final double GOLD_FURNACE_EFFICIENCY = 8.0D; // 0.5 Times as efficient as the regular furnace or 50% less efficient
 	public static final double NETHERRACK_FURNACE_EFFICIENCY = 0.0D; // one infinite times more efficient, or two infinities if you want to be picky
 	public static final double QUARTZ_FURNACE_EFFICIENCY = 0.5D; // 2x More Efficient or 200% As Efficient
@@ -54,14 +54,14 @@ public class FurnaceVariables {
 	 */
 	// SPEEDS
 	public static final int BRICK_FURNACE_T2_SPEED = 133;
-	public static final int IRON_FURNACE_T2_SPEED = 100;
+	public static final int STEEL_FURNACE_T2_SPEED = 100;
 	public static final int QUARTZ_FURNACE_T2_SPEED = 200;
 	public static final int DIAMOND_FURNACE_T2_SPEED = 66;
 	public static final int OBSIDIAN_FURNACE_T2_SPEED = 50;
 	
 	// EFFICIENCIES
 	public static final double BRICK_FURNACE_T2_EFFICIENCY = 1.0D;
-	public static final double IRON_FURNACE_T2_EFFICIENCY = 2.0D;
+	public static final double STEEL_FURNACE_T2_EFFICIENCY = 2.0D;
 	public static final double QUARTZ_FURNACE_T2_EFFICIENCY = 0.5D;
 	public static final double DIAMOND_FURNACE_T2_EFFICIENCY = 3.0D;
 	public static final double OBSIDIAN_FURNACE_T2_EFFICIENCY = 8.0D;
@@ -71,14 +71,14 @@ public class FurnaceVariables {
 	 */
 	// SPEEDS
 	public static final int BRICK_FURNACE_T3_SPEED = 133;
-	public static final int IRON_FURNACE_T3_SPEED = 100;
+	public static final int STEEL_FURNACE_T3_SPEED = 100;
 	public static final int QUARTZ_FURNACE_T3_SPEED = 200;
 	public static final int DIAMOND_FURNACE_T3_SPEED = 66;
 	public static final int OBSIDIAN_FURNACE_T3_SPEED = 50;
 	
 	// EFFICIENCIES
 	public static final double BRICK_FURNACE_T3_EFFICIENCY = 1.0D;
-	public static final double IRON_FURNACE_T3_EFFICIENCY = 2.0D;
+	public static final double STEEL_FURNACE_T3_EFFICIENCY = 2.0D;
 	public static final double QUARTZ_FURNACE_T3_EFFICIENCY = 0.5D;
 	public static final double DIAMOND_FURNACE_T3_EFFICIENCY = 3.0D;
 	public static final double OBSIDIAN_FURNACE_T3_EFFICIENCY = 8.0D;

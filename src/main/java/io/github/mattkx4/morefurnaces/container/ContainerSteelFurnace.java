@@ -1,6 +1,6 @@
 package io.github.mattkx4.morefurnaces.container;
 
-import io.github.mattkx4.morefurnaces.tileentity.TileEntityIronFurnace;
+import io.github.mattkx4.morefurnaces.tileentity.TileEntitySteelFurnace;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -14,9 +14,9 @@ import net.minecraft.inventory.SlotFurnace;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 
-public class ContainerIronFurnace extends Container {
+public class ContainerSteelFurnace extends Container {
 
-	private TileEntityIronFurnace ironFurnace;
+	private TileEntitySteelFurnace steelFurnace;
 
 	public int lastBurnTime;
 	public int lastCurrentItemBurnTime;
@@ -25,9 +25,9 @@ public class ContainerIronFurnace extends Container {
 	/*
 	 * Class constructor that adds all the slots to the Furnace GUI
 	 */
-	public ContainerIronFurnace(InventoryPlayer inventory,
-			TileEntityIronFurnace tileentity) {
-		this.ironFurnace = tileentity;
+	public ContainerSteelFurnace(InventoryPlayer inventory,
+			TileEntitySteelFurnace tileentity) {
+		this.steelFurnace = tileentity;
 
 		this.addSlotToContainer(new Slot(tileentity, 0, 56, 17));
 		this.addSlotToContainer(new Slot(tileentity, 1, 56, 53));
@@ -51,10 +51,10 @@ public class ContainerIronFurnace extends Container {
 	 */
 	public void addCraftingToCrafters(ICrafting icrafting) {
 		super.addCraftingToCrafters(icrafting);
-		icrafting.sendProgressBarUpdate(this, 0, this.ironFurnace.cookTime);
-		icrafting.sendProgressBarUpdate(this, 1, this.ironFurnace.burnTime);
+		icrafting.sendProgressBarUpdate(this, 0, this.steelFurnace.cookTime);
+		icrafting.sendProgressBarUpdate(this, 1, this.steelFurnace.burnTime);
 		icrafting.sendProgressBarUpdate(this, 2,
-				this.ironFurnace.currentItemBurnTime);
+				this.steelFurnace.currentItemBurnTime);
 	}
 
 	/*
@@ -66,25 +66,25 @@ public class ContainerIronFurnace extends Container {
 		for (int i = 0; i < this.crafters.size(); i++) {
 			ICrafting icrafting = (ICrafting) this.crafters.get(i);
 
-			if (this.lastCookTime != this.ironFurnace.cookTime) {
+			if (this.lastCookTime != this.steelFurnace.cookTime) {
 				icrafting.sendProgressBarUpdate(this, 0,
-						this.ironFurnace.cookTime);
+						this.steelFurnace.cookTime);
 			}
 
-			if (this.lastBurnTime != this.ironFurnace.burnTime) {
+			if (this.lastBurnTime != this.steelFurnace.burnTime) {
 				icrafting.sendProgressBarUpdate(this, 1,
-						this.ironFurnace.burnTime);
+						this.steelFurnace.burnTime);
 			}
 
-			if (this.lastCurrentItemBurnTime != this.ironFurnace.currentItemBurnTime) {
+			if (this.lastCurrentItemBurnTime != this.steelFurnace.currentItemBurnTime) {
 				icrafting.sendProgressBarUpdate(this, 2,
-						this.ironFurnace.currentItemBurnTime);
+						this.steelFurnace.currentItemBurnTime);
 			}
 		}
 
-		this.lastCookTime = this.ironFurnace.cookTime;
-		this.lastBurnTime = this.ironFurnace.burnTime;
-		this.lastCurrentItemBurnTime = this.ironFurnace.currentItemBurnTime;
+		this.lastCookTime = this.steelFurnace.cookTime;
+		this.lastBurnTime = this.steelFurnace.burnTime;
+		this.lastCurrentItemBurnTime = this.steelFurnace.currentItemBurnTime;
 	}
 
 	/*
@@ -93,15 +93,15 @@ public class ContainerIronFurnace extends Container {
 	@SideOnly(Side.CLIENT)
 	public void updateProgressBar(int par1, int par2) {
 		if (par1 == 0) {
-			this.ironFurnace.cookTime = par2;
+			this.steelFurnace.cookTime = par2;
 		}
 
 		if (par1 == 1) {
-			this.ironFurnace.burnTime = par2;
+			this.steelFurnace.burnTime = par2;
 		}
 
 		if (par1 == 2) {
-			this.ironFurnace.currentItemBurnTime = par2;
+			this.steelFurnace.currentItemBurnTime = par2;
 		}
 	}
 
@@ -127,7 +127,7 @@ public class ContainerIronFurnace extends Container {
 					if (!this.mergeItemStack(itemstack1, 0, 1, false)) {
 						return null;
 					}
-				} else if (TileEntityIronFurnace.isItemFuel(itemstack1)) {
+				} else if (TileEntitySteelFurnace.isItemFuel(itemstack1)) {
 					if (!this.mergeItemStack(itemstack1, 1, 2, false)) {
 						return null;
 					}

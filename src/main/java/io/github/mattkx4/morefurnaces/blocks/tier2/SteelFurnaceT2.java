@@ -1,13 +1,13 @@
-package io.github.mattkx4.morefurnaces.blocks;
+package io.github.mattkx4.morefurnaces.blocks.tier2;
 
-import io.github.mattkx4.morefurnaces.blocks.tier2.IronFurnaceT2;
-import io.github.mattkx4.morefurnaces.blocks.tier2.MFMT2Blocks;
+import io.github.mattkx4.morefurnaces.blocks.tier3.SteelFurnaceT3;
+import io.github.mattkx4.morefurnaces.blocks.tier3.MFMT3Blocks;
 import io.github.mattkx4.morefurnaces.items.MFMItems;
 import io.github.mattkx4.morefurnaces.lib.Strings;
 import io.github.mattkx4.morefurnaces.main.MoFurnacesMod;
 import io.github.mattkx4.morefurnaces.particles.EntityIronFlameFX;
-import io.github.mattkx4.morefurnaces.tileentity.TileEntityIronFurnace;
-import io.github.mattkx4.morefurnaces.tileentity.tier2.TileEntityIronFurnaceT2;
+import io.github.mattkx4.morefurnaces.tileentity.tier2.TileEntitySteelFurnaceT2;
+import io.github.mattkx4.morefurnaces.tileentity.tier3.TileEntitySteelFurnaceT3;
 
 import java.util.Random;
 
@@ -15,7 +15,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -33,7 +32,7 @@ import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class MFMIronFurnace extends BlockContainer {
+public class SteelFurnaceT2 extends BlockContainer {
 
 	/*
 	 * Boolean to tell if the furnace is active
@@ -50,9 +49,7 @@ public class MFMIronFurnace extends BlockContainer {
 
 	private static boolean keepInventory;
 
-	private EffectRenderer effect_renderer;
-
-	public MFMIronFurnace(boolean isActive) {
+	public SteelFurnaceT2(boolean isActive) {
 		super(Material.rock);
 		this.isActive = isActive;
 		this.setHarvestLevel("pickaxe", 1);
@@ -62,7 +59,7 @@ public class MFMIronFurnace extends BlockContainer {
 	 * What item is dropped from the block
 	 */
 	public Item getItemDropped(int i, Random random, int j) {
-		return Item.getItemFromBlock(MFMBlocks.MFMIronFurnaceIdle);
+		return Item.getItemFromBlock(MFMT2Blocks.SteelFurnaceT2Idle);
 	}
 
 	/*
@@ -121,13 +118,13 @@ public class MFMIronFurnace extends BlockContainer {
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister iconRegister) {
 		this.blockIcon = iconRegister.registerIcon(Strings.MODID
-				+ ":IronFurnace_side");
+				+ ":SteelFurnace_side");
 		this.iconFront = iconRegister.registerIcon(Strings.MODID
 				+ ":"
-				+ (this.isActive ? "IronFurnace_front_active"
-						: "IronFurnace_front_idle"));
+				+ (this.isActive ? "SteelFurnaceT2_front_active"
+						: "SteelFurnaceT2_front_idle"));
 		this.iconTop = iconRegister.registerIcon(Strings.MODID
-				+ ":IronFurnace_top");
+				+ ":SteelFurnace_top");
 	}
 
 	/*
@@ -135,87 +132,123 @@ public class MFMIronFurnace extends BlockContainer {
 	 */
 	public boolean onBlockActivated(World world, int x, int y, int z,
 			EntityPlayer player, int side, float hitx, float hity, float hitz) {
-		// Tiers the Iron Furnace to Tier 2
+		// Tiers the Brick Furnace to Tier 3
 		if (player.getCurrentEquippedItem() != null) {
-			if (player.getCurrentEquippedItem().getItem() == MFMItems.Tier2Device) {
+			if (player.getCurrentEquippedItem().getItem() == MFMItems.Tier3Device) {
 				player.setCurrentItemOrArmor(0, null);
-				TileEntityIronFurnace tileentity = (TileEntityIronFurnace) world
+				TileEntitySteelFurnaceT2 tileentity = (TileEntitySteelFurnaceT2) world
 						.getTileEntity(x, y, z);
-				ItemStack input;
+				// create variable itemstack for the T2 furnace contents
+				ItemStack input1;
+				ItemStack input2;
 				ItemStack fuel;
-				ItemStack product;
-				// create variable for the fuel burn and item cook times
+				ItemStack product1;
+				ItemStack product2;// create variable for the fuel burn and item
+									// cook times
 				int burnTime = 0;
-				int cookTime = 0;
+				int cookTime1 = 0;
+				int cookTime2 = 0;
 				int currentItemBurnTime = 0;
+				// set the contents of the first input slot (if applicable)
 				if (tileentity.getStackInSlot(0) != null) {
-					input = tileentity.getStackInSlot(0).copy();
+					input1 = tileentity.getStackInSlot(0).copy();
 				} else {
-					input = null;
+					input1 = null;
 				}
+				// set the contents of the second input slot (if applicable)
 				if (tileentity.getStackInSlot(1) != null) {
-					fuel = tileentity.getStackInSlot(1).copy();
+					input2 = tileentity.getStackInSlot(1).copy();
+				} else {
+					input2 = null;
+				}
+				// set the contents of the fuel slot (if applicable)
+				if (tileentity.getStackInSlot(2) != null) {
+					fuel = tileentity.getStackInSlot(2).copy();
 				} else {
 					fuel = null;
 				}
-				if (tileentity.getStackInSlot(2) != null) {
-					product = tileentity.getStackInSlot(2).copy();
+				// set the contents of the first output slot (if applicable)
+				if (tileentity.getStackInSlot(3) != null) {
+					product1 = tileentity.getStackInSlot(3).copy();
 				} else {
-					product = null;
+					product1 = null;
 				}
+				// set the contents of the second output slot (if applicable)
+				if (tileentity.getStackInSlot(4) != null) {
+					product2 = tileentity.getStackInSlot(4).copy();
+				} else {
+					product2 = null;
+				}
+
 				// store fuel and cooking times if applicable
 				if (tileentity.burnTime > 0) {
 					burnTime = tileentity.burnTime;
 				}
-				if (tileentity.cookTime > 0) {
-					cookTime = tileentity.cookTime;
+				if (tileentity.cookTime1 > 0) {
+					cookTime1 = tileentity.cookTime1;
+				}
+				if (tileentity.cookTime2 > 0) {
+					cookTime2 = tileentity.cookTime2;
 				}
 				if (tileentity.currentItemBurnTime > 0) {
 					currentItemBurnTime = tileentity.currentItemBurnTime;
 				}
+				// set current slot contents to nothing
 				tileentity.setInventorySlotContents(0, null);
 				tileentity.setInventorySlotContents(1, null);
 				tileentity.setInventorySlotContents(2, null);
+				tileentity.setInventorySlotContents(3, null);
+				tileentity.setInventorySlotContents(4, null);
 
 				// fix to the block direction resetting problem
 				int i = world.getBlockMetadata(x, y, z);
-				world.setBlock(x, y, z, MFMT2Blocks.IronFurnaceT2Idle);
+				world.setBlock(x, y, z, MFMT3Blocks.SteelFurnaceT3Idle);
 				world.setBlockMetadataWithNotify(x, y, z, i, 2);
 				// sets whether or not the new furnace is active of inactive
-				IronFurnaceT2
-						.updateIronFurnaceT2State(isActive, world, x, y, z);
+				SteelFurnaceT3
+						.updateSteelFurnaceT3State(isActive, world, x, y, z);
 
-				TileEntityIronFurnaceT2 tileentityT2 = (TileEntityIronFurnaceT2) world
+				TileEntitySteelFurnaceT3 tileentityT3 = (TileEntitySteelFurnaceT3) world
 						.getTileEntity(x, y, z);
-				if (input != null) {
-					tileentityT2.setInventorySlotContents(0, input);
+				if (input1 != null) {
+					tileentityT3.setInventorySlotContents(0, input1);
+				}
+				if (input2 != null) {
+					tileentityT3.setInventorySlotContents(1, input2);
 				}
 				if (fuel != null) {
-					tileentityT2.setInventorySlotContents(2, fuel);
+					tileentityT3.setInventorySlotContents(3, fuel);
 				}
-				if (product != null) {
-					tileentityT2.setInventorySlotContents(3, product);
+				if (product1 != null) {
+					tileentityT3.setInventorySlotContents(4, product1);
+				}
+				if (product2 != null) {
+					tileentityT3.setInventorySlotContents(5, product2);
 				}
 				if (burnTime > 0) {
-					tileentityT2.burnTime = burnTime;
+					tileentityT3.burnTime = burnTime;
 				}
-				if (cookTime > 0) {
-					tileentityT2.cookTime1 = cookTime;
+				if (cookTime1 > 0) {
+					tileentityT3.cookTime1 = cookTime1;
+				}
+				if (cookTime2 > 0) {
+					tileentityT3.cookTime2 = cookTime2;
 				}
 				if (currentItemBurnTime > 0) {
-					tileentityT2.currentItemBurnTime = currentItemBurnTime;
+					tileentityT3.currentItemBurnTime = currentItemBurnTime;
 				}
 				return true;
 			}
 		}
+
 		if (!world.isRemote) {
 			FMLNetworkHandler.openGui(player, MoFurnacesMod.instance,
-					MoFurnacesMod.guiIDIronFurnace, world, x, y, z);
+					MoFurnacesMod.guiIDSteelFurnaceT2, world, x, y, z);
 		}
 		return true;
 	}
 
-	public static void updateIronFurnaceState(boolean active, World worldObj,
+	public static void updateSteelFurnaceT2State(boolean active, World worldObj,
 			int xCoord, int yCoord, int zCoord) {
 		int i = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
 
@@ -224,10 +257,10 @@ public class MFMIronFurnace extends BlockContainer {
 
 		if (active == true) {
 			worldObj.setBlock(xCoord, yCoord, zCoord,
-					MFMBlocks.MFMIronFurnaceActive);
+					MFMT2Blocks.SteelFurnaceT2Active);
 		} else {
 			worldObj.setBlock(xCoord, yCoord, zCoord,
-					MFMBlocks.MFMIronFurnaceIdle);
+					MFMT2Blocks.SteelFurnaceT2Idle);
 		}
 		keepInventory = false;
 
@@ -243,7 +276,7 @@ public class MFMIronFurnace extends BlockContainer {
 	 * Create the tile entity
 	 */
 	public TileEntity createNewTileEntity(World world, int i) {
-		return new TileEntityIronFurnace();
+		return new TileEntitySteelFurnaceT2();
 	}
 
 	public void onBlockPlacedBy(World world, int x, int y, int z,
@@ -268,10 +301,9 @@ public class MFMIronFurnace extends BlockContainer {
 		}
 
 		if (itemstack.hasDisplayName()) {
-			((TileEntityIronFurnace) world.getTileEntity(x, y, z))
+			((TileEntitySteelFurnaceT2) world.getTileEntity(x, y, z))
 					.setGuiDisplayName(itemstack.getDisplayName());
 		}
-
 	}
 
 	/*
@@ -280,7 +312,7 @@ public class MFMIronFurnace extends BlockContainer {
 	public void breakBlock(World world, int x, int y, int z, Block oldblock,
 			int oldmetadata) {
 		if (!keepInventory) {
-			TileEntityIronFurnace tileentity = (TileEntityIronFurnace) world
+			TileEntitySteelFurnaceT2 tileentity = (TileEntitySteelFurnaceT2) world
 					.getTileEntity(x, y, z);
 
 			if (tileentity != null) {
@@ -357,6 +389,7 @@ public class MFMIronFurnace extends BlockContainer {
 						.addEffect(new EntityIronFlameFX(world,
 								(double) (x1 - f), (double) y1,
 								(double) (z1 + f1), 0.0D, 0.0D, 0.0D));
+
 			} else if (direction == 5) {
 				world.spawnParticle("smoke", (double) (x1 + f), (double) y1,
 						(double) (z1 + f1), 0.0D, 0.0D, 0.0D);
@@ -371,7 +404,6 @@ public class MFMIronFurnace extends BlockContainer {
 						.addEffect(new EntityIronFlameFX(world,
 								(double) (x1 + f1), (double) y1,
 								(double) (z1 - f), 0.0D, 0.0D, 0.0D));
-
 			} else if (direction == 3) {
 				world.spawnParticle("smoke", (double) (x1 + f1), (double) y1,
 						(double) (z1 + f), 0.0D, 0.0D, 0.0D);
@@ -379,7 +411,6 @@ public class MFMIronFurnace extends BlockContainer {
 						.addEffect(new EntityIronFlameFX(world,
 								(double) (x1 + f1), (double) y1,
 								(double) (z1 + f), 0.0D, 0.0D, 0.0D));
-
 			}
 		}
 	}
@@ -409,6 +440,7 @@ public class MFMIronFurnace extends BlockContainer {
 	 */
 	@SideOnly(Side.CLIENT)
 	public Item getItem(World world, int x, int y, int z) {
-		return Item.getItemFromBlock(MFMBlocks.MFMIronFurnaceIdle);
+		return Item.getItemFromBlock(MFMT2Blocks.SteelFurnaceT2Idle);
 	}
+
 }

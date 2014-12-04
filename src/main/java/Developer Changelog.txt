@@ -68,6 +68,16 @@ V2.2.2 -> V2.3.0{
     21 NOV - Mattkx4{
         - Formatting Everything
     }
+    
+    4 DEC - Pr1Sh0ck{
+    	- Added in steel ingot
+    		- added into game and ore registry/dictionary
+    		- added smelting recipe
+		- Added in steel ore
+			- added into game and ore registry/dictionary
+			- added crafting recipe
+		- Changed all references of iron to steel
+    }
 }
     
     TODO{

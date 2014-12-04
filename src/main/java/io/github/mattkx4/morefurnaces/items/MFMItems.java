@@ -1,10 +1,12 @@
 package io.github.mattkx4.morefurnaces.items;
 
+import io.github.mattkx4.morefurnaces.blocks.MFMBlocks;
 import io.github.mattkx4.morefurnaces.items.upgrades.UpgradeBrightness;
 import io.github.mattkx4.morefurnaces.items.upgrades.UpgradeNotification;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class MFMItems {
@@ -21,6 +23,8 @@ public class MFMItems {
 	// Upgrades
 	public static Item UpgradeBrightness; // Brightness upgrade
 	public static Item UpgradeNotification; // Notification upgrade
+	// Ingots
+	public static Item ingotSteel;
 
 	/**
 	 * Calls the registry methods for items
@@ -50,6 +54,9 @@ public class MFMItems {
 		// Initialize the upgrades
 		UpgradeBrightness = new UpgradeBrightness(); // Brightness Upgrade
 		UpgradeNotification = new UpgradeNotification(); // Notification Upgrade
+		// Initialize the ingots
+		ingotSteel = new SteelIngot();
+		
 	}
 
 	/**
@@ -68,6 +75,9 @@ public class MFMItems {
 																			// Upgrade
 		GameRegistry.registerItem(UpgradeNotification, "UpgradeNotification"); // Notification
 																				// Upgrade
+		// Register the ingots with game and ore registry
+		GameRegistry.registerItem(ingotSteel, "Steel Ingot");
+		OreDictionary.registerOre("ingotSteel", ingotSteel);
 	}
 
 	/**
@@ -88,5 +98,6 @@ public class MFMItems {
 				"zXz", "zWz", " y ", 'z', Items.diamond, 'X', Items.ender_eye,
 				'W', MFMItems.TierCore, 'y', Items.blaze_rod });
 		// Add recipes for the upgrades here
+		GameRegistry.addSmelting(MFMBlocks.oreSteel, new ItemStack(ingotSteel), 0.5F);
 	}
 }

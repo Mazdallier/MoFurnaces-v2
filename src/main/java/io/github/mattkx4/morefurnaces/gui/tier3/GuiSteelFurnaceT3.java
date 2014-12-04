@@ -1,8 +1,8 @@
-package io.github.mattkx4.morefurnaces.gui.tier2;
+package io.github.mattkx4.morefurnaces.gui.tier3;
 
-import io.github.mattkx4.morefurnaces.container.tier2.ContainerIronFurnaceT2;
+import io.github.mattkx4.morefurnaces.container.tier3.ContainerSteelFurnaceT3;
 import io.github.mattkx4.morefurnaces.lib.Strings;
-import io.github.mattkx4.morefurnaces.tileentity.tier2.TileEntityIronFurnaceT2;
+import io.github.mattkx4.morefurnaces.tileentity.tier3.TileEntitySteelFurnaceT3;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
@@ -11,17 +11,17 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-public class GuiIronFurnaceT2 extends GuiContainer {
+public class GuiSteelFurnaceT3 extends GuiContainer {
 	public static final ResourceLocation bground = new ResourceLocation(
-			Strings.MODID + ":textures/gui/custom_furnace_tier2.png");
+			Strings.MODID + ":textures/gui/custom_furnace_tier3.png");
 
-	public TileEntityIronFurnaceT2 ironFurnaceT2;
+	public TileEntitySteelFurnaceT3 steelFurnaceT3;
 
-	public GuiIronFurnaceT2(InventoryPlayer inventoryPlayer,
-			TileEntityIronFurnaceT2 entity) {
-		super(new ContainerIronFurnaceT2(inventoryPlayer, entity));
+	public GuiSteelFurnaceT3(InventoryPlayer inventoryPlayer,
+			TileEntitySteelFurnaceT3 entity) {
+		super(new ContainerSteelFurnaceT3(inventoryPlayer, entity));
 
-		this.ironFurnaceT2 = entity;
+		this.steelFurnaceT3 = entity;
 
 		this.xSize = 176;
 		this.ySize = 166;
@@ -32,9 +32,9 @@ public class GuiIronFurnaceT2 extends GuiContainer {
 	 */
 	public void drawGuiContainerForegroundLayer(int i, int j) {
 		// Gets the name of the furnace and stores it String "name"
-		String name = this.ironFurnaceT2.hasCustomInventoryName() ? this.ironFurnaceT2
+		String name = this.steelFurnaceT3.hasCustomInventoryName() ? this.steelFurnaceT3
 				.getInventoryName() : I18n.format(
-				this.ironFurnaceT2.getInventoryName(), new Object[0]);
+				this.steelFurnaceT3.getInventoryName(), new Object[0]);
 		// Displays the name and GUI of the furnace on the GUI Foreground Layer
 		this.fontRendererObj.drawString(name, this.xSize / 2
 				- this.fontRendererObj.getStringWidth(name) / 2, 6, 4210752);
@@ -55,20 +55,24 @@ public class GuiIronFurnaceT2 extends GuiContainer {
 
 		// Checks if the furnace is burning. If yes, then displays the Burn Time
 		// Remaining (Fire)
-		if (this.ironFurnaceT2.isBurning()) {
-			int m = this.ironFurnaceT2.getBurnTimeRemainingScaled(14);
+		if (this.steelFurnaceT3.isBurning()) {
+			int m = this.steelFurnaceT3.getBurnTimeRemainingScaled(14);
 			int l = 14 - m;
 			drawTexturedModalRect(guiLeft + 38, guiTop + 36 + l, 176, 45 + l,
 					14, 14 - l);
 		}
 
 		// Draws the progress bar for the current item 1 being cooked (Arrow)
-		int n = this.ironFurnaceT2.getCookProgressScaled1(24);
-		drawTexturedModalRect(guiLeft + 79, guiTop + 22, 176, 0, n + 1, 17);
+		int n = this.steelFurnaceT3.getCookProgressScaled1(24);
+		drawTexturedModalRect(guiLeft + 84, guiTop + 17, 176, 0, n + 1, 17);
 
 		// Draws the progress bar for the current item 2 being cooked (Arrow)
-		int o = this.ironFurnaceT2.getCookProgressScaled2(24);
-		drawTexturedModalRect(guiLeft + 79, guiTop + 48, 176, 0, o + 1, 17);
+		int o = this.steelFurnaceT3.getCookProgressScaled2(24);
+		drawTexturedModalRect(guiLeft + 84, guiTop + 37, 176, 0, o + 1, 17);
+
+		// Draws the progress bar for the current item 2 being cooked (Arrow)
+		int x = this.steelFurnaceT3.getCookProgressScaled3(24);
+		drawTexturedModalRect(guiLeft + 84, guiTop + 57, 176, 0, x + 1, 17);
 
 	}
 }

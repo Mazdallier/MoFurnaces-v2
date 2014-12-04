@@ -1,7 +1,6 @@
-package io.github.mattkx4.morefurnaces.container.tier3;
+package io.github.mattkx4.morefurnaces.container.tier2;
 
-import io.github.mattkx4.morefurnaces.tileentity.tier3.TileEntityIronFurnaceT3;
-import io.github.mattkx4.morefurnaces.tileentity.tier3.TileEntityObsidianFurnaceT3;
+import io.github.mattkx4.morefurnaces.tileentity.tier2.TileEntitySteelFurnaceT2;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -13,41 +12,38 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ContainerIronFurnaceT3 extends Container {
-	private TileEntityIronFurnaceT3 ironFurnaceT3;
+public class ContainerSteelFurnaceT2 extends Container {
+
+	private TileEntitySteelFurnaceT2 steelFurnaceT2;
 
 	public int lastBurnTime;
 	public int lastCurrentItemBurnTime;
 	public int lastCookTime1;
 	public int lastCookTime2;
-	public int lastCookTime3;
 
 	/*
 	 * Class constructor that adds all the slots to the Furnace GUI
 	 */
-	public ContainerIronFurnaceT3(InventoryPlayer inventory,
-			TileEntityIronFurnaceT3 tileentity) {
-		this.ironFurnaceT3 = tileentity;
+	public ContainerSteelFurnaceT2(InventoryPlayer inventory,
+			TileEntitySteelFurnaceT2 tileentity) {
+		this.steelFurnaceT2 = tileentity;
 
 		/**
-		 * - Slot is a new input/output slot - slots 0, 1 and 2 are inputs for
-		 * items, - slot 3 is the fuel input - SlotFurnace is a new furnace
-		 * output slot - slots 4, 5 and 6 are outputs for cooked items - The
-		 * second last integer is the left most position of the slot where the
-		 * item will go - The last integer is the location of the top most
-		 * pixels of the slot - By slot I refer to the white square that is
-		 * rendered when mousing over an item position on the GUI
+		 * - Slot is a new input/output slot - slots 0 and 1 are inputs for
+		 * items, - slot 2 is the fuel input - SlotFurnace is a new furnace
+		 * output slot - slots 3 and 4 are outputs for cooked items - The second
+		 * last integer is the left most position of the slot where the item
+		 * will go - The last integer is the location of the top most pixels of
+		 * the slot - By slot I refer to the white square that is rendered when
+		 * mousing over an item position on the GUI
 		 */
-		this.addSlotToContainer(new Slot(tileentity, 0, 18, 17));
-		this.addSlotToContainer(new Slot(tileentity, 1, 38, 17));
-		this.addSlotToContainer(new Slot(tileentity, 2, 58, 17));
-		this.addSlotToContainer(new Slot(tileentity, 3, 38, 53));
+		this.addSlotToContainer(new Slot(tileentity, 0, 20, 17));
+		this.addSlotToContainer(new Slot(tileentity, 1, 56, 17));
+		this.addSlotToContainer(new Slot(tileentity, 2, 38, 53));
 		this.addSlotToContainer(new SlotFurnace(inventory.player, tileentity,
-				4, 117, 17));
+				3, 116, 22));
 		this.addSlotToContainer(new SlotFurnace(inventory.player, tileentity,
-				5, 117, 37));
-		this.addSlotToContainer(new SlotFurnace(inventory.player, tileentity,
-				6, 117, 57));
+				4, 116, 48));
 
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 9; j++) {
@@ -66,12 +62,11 @@ public class ContainerIronFurnaceT3 extends Container {
 	 */
 	public void addCraftingToCrafters(ICrafting icrafting) {
 		super.addCraftingToCrafters(icrafting);
-		icrafting.sendProgressBarUpdate(this, 0, this.ironFurnaceT3.cookTime1);
-		icrafting.sendProgressBarUpdate(this, 1, this.ironFurnaceT3.cookTime2);
-		icrafting.sendProgressBarUpdate(this, 2, this.ironFurnaceT3.cookTime3);
-		icrafting.sendProgressBarUpdate(this, 3, this.ironFurnaceT3.burnTime);
-		icrafting.sendProgressBarUpdate(this, 4,
-				this.ironFurnaceT3.currentItemBurnTime);
+		icrafting.sendProgressBarUpdate(this, 0, this.steelFurnaceT2.cookTime1);
+		icrafting.sendProgressBarUpdate(this, 3, this.steelFurnaceT2.cookTime2);
+		icrafting.sendProgressBarUpdate(this, 1, this.steelFurnaceT2.burnTime);
+		icrafting.sendProgressBarUpdate(this, 2,
+				this.steelFurnaceT2.currentItemBurnTime);
 	}
 
 	/*
@@ -83,37 +78,31 @@ public class ContainerIronFurnaceT3 extends Container {
 		for (int i = 0; i < this.crafters.size(); i++) {
 			ICrafting icrafting = (ICrafting) this.crafters.get(i);
 
-			if (this.lastCookTime1 != this.ironFurnaceT3.cookTime1) {
+			if (this.lastCookTime1 != this.steelFurnaceT2.cookTime1) {
 				icrafting.sendProgressBarUpdate(this, 0,
-						this.ironFurnaceT3.cookTime1);
+						this.steelFurnaceT2.cookTime1);
 			}
 
-			if (this.lastCookTime2 != this.ironFurnaceT3.cookTime2) {
-				icrafting.sendProgressBarUpdate(this, 1,
-						this.ironFurnaceT3.cookTime2);
-			}
-
-			if (this.lastCookTime3 != this.ironFurnaceT3.cookTime3) {
-				icrafting.sendProgressBarUpdate(this, 2,
-						this.ironFurnaceT3.cookTime3);
-			}
-
-			if (this.lastBurnTime != this.ironFurnaceT3.burnTime) {
+			if (this.lastCookTime2 != this.steelFurnaceT2.cookTime2) {
 				icrafting.sendProgressBarUpdate(this, 3,
-						this.ironFurnaceT3.burnTime);
+						this.steelFurnaceT2.cookTime2);
 			}
 
-			if (this.lastCurrentItemBurnTime != this.ironFurnaceT3.currentItemBurnTime) {
-				icrafting.sendProgressBarUpdate(this, 4,
-						this.ironFurnaceT3.currentItemBurnTime);
+			if (this.lastBurnTime != this.steelFurnaceT2.burnTime) {
+				icrafting.sendProgressBarUpdate(this, 1,
+						this.steelFurnaceT2.burnTime);
+			}
+
+			if (this.lastCurrentItemBurnTime != this.steelFurnaceT2.currentItemBurnTime) {
+				icrafting.sendProgressBarUpdate(this, 2,
+						this.steelFurnaceT2.currentItemBurnTime);
 			}
 		}
 
-		this.lastCookTime1 = this.ironFurnaceT3.cookTime1;
-		this.lastCookTime2 = this.ironFurnaceT3.cookTime2;
-		this.lastCookTime3 = this.ironFurnaceT3.cookTime3;
-		this.lastBurnTime = this.ironFurnaceT3.burnTime;
-		this.lastCurrentItemBurnTime = this.ironFurnaceT3.currentItemBurnTime;
+		this.lastCookTime1 = this.steelFurnaceT2.cookTime1;
+		this.lastCookTime2 = this.steelFurnaceT2.cookTime2;
+		this.lastBurnTime = this.steelFurnaceT2.burnTime;
+		this.lastCurrentItemBurnTime = this.steelFurnaceT2.currentItemBurnTime;
 	}
 
 	/*
@@ -122,32 +111,28 @@ public class ContainerIronFurnaceT3 extends Container {
 	@SideOnly(Side.CLIENT)
 	public void updateProgressBar(int par1, int par2) {
 		if (par1 == 0) {
-			this.ironFurnaceT3.cookTime1 = par2;
-		}
-
-		if (par1 == 1) {
-			this.ironFurnaceT3.cookTime2 = par2;
-		}
-
-		if (par1 == 2) {
-			this.ironFurnaceT3.cookTime3 = par2;
+			this.steelFurnaceT2.cookTime1 = par2;
 		}
 
 		if (par1 == 3) {
-			this.ironFurnaceT3.burnTime = par2;
+			this.steelFurnaceT2.cookTime2 = par2;
 		}
 
-		if (par1 == 4) {
-			this.ironFurnaceT3.currentItemBurnTime = par2;
+		if (par1 == 1) {
+			this.steelFurnaceT2.burnTime = par2;
+		}
+
+		if (par1 == 2) {
+			this.steelFurnaceT2.currentItemBurnTime = par2;
 		}
 	}
 
 	/**
 	 * Called when a player shift clicks a slot
 	 * 
-	 * - int slots is the slot ID created at the beginning of the class - 0 =
-	 * input 1, 1 = input 2, 2 = input 3, 3 = fuel input, 4 = output 1, 5 =
-	 * output 2, 6 = output 3 - 7-43 are the inventory slots
+	 * - int slots is the slot ID created at the begining of the class - 0 =
+	 * input 1, 1 = input 2, 2 = fuel input, 3 = output 1, 4 = output2 - 5-41
+	 * are the inventory slots
 	 */
 	public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer,
 			int slots) {
@@ -161,10 +146,10 @@ public class ContainerIronFurnaceT3 extends Container {
 			itemstack = itemstack1.copy();
 
 			// if the slots are output
-			if (slots == 4 || slots == 5 || slots == 6) {
+			if (slots == 3 || slots == 4) {
 				// if there is a similar itemstack in inventory then move the
 				// itemstack from output to the inventory
-				if (!this.mergeItemStack(itemstack1, 7, 43, true)) {
+				if (!this.mergeItemStack(itemstack1, 5, 41, true)) {
 					return null;
 				}
 				/*
@@ -172,7 +157,7 @@ public class ContainerIronFurnaceT3 extends Container {
 				 * doesn't make sense, it is essentially looking at all other
 				 * slots including the inventory slots)
 				 */
-			} else if ((slots != 0 && slots != 1 && slots != 2 && slots != 3)) {
+			} else if ((slots != 1 && slots != 0 && slots != 2)) {
 				// Find if the item has a furnace recipe and a corresponding
 				// output
 				if (FurnaceRecipes.smelting().getSmeltingResult(itemstack1) != null) {
@@ -189,24 +174,24 @@ public class ContainerIronFurnaceT3 extends Container {
 					 * upper value of two has been reached and thus stops
 					 * looking.
 					 */
-					if (!this.mergeItemStack(itemstack1, 0, 3, false)) {
+					if (!this.mergeItemStack(itemstack1, 0, 2, false)) {
 						return null;
 					}
 					// If the item is fuel then the code tries to put the item
 					// into the fuel slot (slot 2)
-				} else if (TileEntityObsidianFurnaceT3.isItemFuel(itemstack1)) {
-					if (!this.mergeItemStack(itemstack1, 3, 4, false)) {
+				} else if (TileEntitySteelFurnaceT2.isItemFuel(itemstack1)) {
+					if (!this.mergeItemStack(itemstack1, 2, 3, false)) {
 						return null;
 					}
-				} else if (slots >= 7 && slots < 34) {
-					if (!this.mergeItemStack(itemstack1, 34, 43, false)) {
+				} else if (slots >= 5 && slots < 32) {
+					if (!this.mergeItemStack(itemstack1, 32, 41, false)) {
 						return null;
 					}
-				} else if (slots >= 34 && slots < 43
-						&& !this.mergeItemStack(itemstack1, 7, 34, false)) {
+				} else if (slots >= 32 && slots < 41
+						&& !this.mergeItemStack(itemstack1, 5, 32, false)) {
 					return null;
 				}
-			} else if (!this.mergeItemStack(itemstack1, 7, 43, false)) {
+			} else if (!this.mergeItemStack(itemstack1, 5, 41, false)) {
 				return null;
 			}
 
@@ -232,4 +217,5 @@ public class ContainerIronFurnaceT3 extends Container {
 	public boolean canInteractWith(EntityPlayer var1) {
 		return true;
 	}
+
 }

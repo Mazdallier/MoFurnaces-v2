@@ -1,13 +1,9 @@
-package io.github.mattkx4.morefurnaces.blocks.tier2;
+package io.github.mattkx4.morefurnaces.blocks.tier3;
 
-import io.github.mattkx4.morefurnaces.blocks.tier3.IronFurnaceT3;
-import io.github.mattkx4.morefurnaces.blocks.tier3.MFMT3Blocks;
-import io.github.mattkx4.morefurnaces.items.MFMItems;
 import io.github.mattkx4.morefurnaces.lib.Strings;
 import io.github.mattkx4.morefurnaces.main.MoFurnacesMod;
 import io.github.mattkx4.morefurnaces.particles.EntityIronFlameFX;
-import io.github.mattkx4.morefurnaces.tileentity.tier2.TileEntityIronFurnaceT2;
-import io.github.mattkx4.morefurnaces.tileentity.tier3.TileEntityIronFurnaceT3;
+import io.github.mattkx4.morefurnaces.tileentity.tier3.TileEntitySteelFurnaceT3;
 
 import java.util.Random;
 
@@ -32,8 +28,7 @@ import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class IronFurnaceT2 extends BlockContainer {
-
+public class SteelFurnaceT3 extends BlockContainer {
 	/*
 	 * Boolean to tell if the furnace is active
 	 */
@@ -49,7 +44,7 @@ public class IronFurnaceT2 extends BlockContainer {
 
 	private static boolean keepInventory;
 
-	public IronFurnaceT2(boolean isActive) {
+	public SteelFurnaceT3(boolean isActive) {
 		super(Material.rock);
 		this.isActive = isActive;
 		this.setHarvestLevel("pickaxe", 1);
@@ -59,7 +54,7 @@ public class IronFurnaceT2 extends BlockContainer {
 	 * What item is dropped from the block
 	 */
 	public Item getItemDropped(int i, Random random, int j) {
-		return Item.getItemFromBlock(MFMT2Blocks.IronFurnaceT2Idle);
+		return Item.getItemFromBlock(MFMT3Blocks.SteelFurnaceT3Idle);
 	}
 
 	/*
@@ -118,13 +113,13 @@ public class IronFurnaceT2 extends BlockContainer {
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister iconRegister) {
 		this.blockIcon = iconRegister.registerIcon(Strings.MODID
-				+ ":IronFurnace_side");
+				+ ":SteelFurnace_side");
 		this.iconFront = iconRegister.registerIcon(Strings.MODID
 				+ ":"
-				+ (this.isActive ? "IronFurnaceT2_front_active"
-						: "IronFurnaceT2_front_idle"));
+				+ (this.isActive ? "SteelFurnaceT3_front_active"
+						: "SteelFurnaceT3_front_idle"));
 		this.iconTop = iconRegister.registerIcon(Strings.MODID
-				+ ":IronFurnace_top");
+				+ ":SteelFurnace_top");
 	}
 
 	/*
@@ -132,123 +127,14 @@ public class IronFurnaceT2 extends BlockContainer {
 	 */
 	public boolean onBlockActivated(World world, int x, int y, int z,
 			EntityPlayer player, int side, float hitx, float hity, float hitz) {
-		// Tiers the Brick Furnace to Tier 3
-		if (player.getCurrentEquippedItem() != null) {
-			if (player.getCurrentEquippedItem().getItem() == MFMItems.Tier3Device) {
-				player.setCurrentItemOrArmor(0, null);
-				TileEntityIronFurnaceT2 tileentity = (TileEntityIronFurnaceT2) world
-						.getTileEntity(x, y, z);
-				// create variable itemstack for the T2 furnace contents
-				ItemStack input1;
-				ItemStack input2;
-				ItemStack fuel;
-				ItemStack product1;
-				ItemStack product2;// create variable for the fuel burn and item
-									// cook times
-				int burnTime = 0;
-				int cookTime1 = 0;
-				int cookTime2 = 0;
-				int currentItemBurnTime = 0;
-				// set the contents of the first input slot (if applicable)
-				if (tileentity.getStackInSlot(0) != null) {
-					input1 = tileentity.getStackInSlot(0).copy();
-				} else {
-					input1 = null;
-				}
-				// set the contents of the second input slot (if applicable)
-				if (tileentity.getStackInSlot(1) != null) {
-					input2 = tileentity.getStackInSlot(1).copy();
-				} else {
-					input2 = null;
-				}
-				// set the contents of the fuel slot (if applicable)
-				if (tileentity.getStackInSlot(2) != null) {
-					fuel = tileentity.getStackInSlot(2).copy();
-				} else {
-					fuel = null;
-				}
-				// set the contents of the first output slot (if applicable)
-				if (tileentity.getStackInSlot(3) != null) {
-					product1 = tileentity.getStackInSlot(3).copy();
-				} else {
-					product1 = null;
-				}
-				// set the contents of the second output slot (if applicable)
-				if (tileentity.getStackInSlot(4) != null) {
-					product2 = tileentity.getStackInSlot(4).copy();
-				} else {
-					product2 = null;
-				}
-
-				// store fuel and cooking times if applicable
-				if (tileentity.burnTime > 0) {
-					burnTime = tileentity.burnTime;
-				}
-				if (tileentity.cookTime1 > 0) {
-					cookTime1 = tileentity.cookTime1;
-				}
-				if (tileentity.cookTime2 > 0) {
-					cookTime2 = tileentity.cookTime2;
-				}
-				if (tileentity.currentItemBurnTime > 0) {
-					currentItemBurnTime = tileentity.currentItemBurnTime;
-				}
-				// set current slot contents to nothing
-				tileentity.setInventorySlotContents(0, null);
-				tileentity.setInventorySlotContents(1, null);
-				tileentity.setInventorySlotContents(2, null);
-				tileentity.setInventorySlotContents(3, null);
-				tileentity.setInventorySlotContents(4, null);
-
-				// fix to the block direction resetting problem
-				int i = world.getBlockMetadata(x, y, z);
-				world.setBlock(x, y, z, MFMT3Blocks.IronFurnaceT3Idle);
-				world.setBlockMetadataWithNotify(x, y, z, i, 2);
-				// sets whether or not the new furnace is active of inactive
-				IronFurnaceT3
-						.updateIronFurnaceT3State(isActive, world, x, y, z);
-
-				TileEntityIronFurnaceT3 tileentityT3 = (TileEntityIronFurnaceT3) world
-						.getTileEntity(x, y, z);
-				if (input1 != null) {
-					tileentityT3.setInventorySlotContents(0, input1);
-				}
-				if (input2 != null) {
-					tileentityT3.setInventorySlotContents(1, input2);
-				}
-				if (fuel != null) {
-					tileentityT3.setInventorySlotContents(3, fuel);
-				}
-				if (product1 != null) {
-					tileentityT3.setInventorySlotContents(4, product1);
-				}
-				if (product2 != null) {
-					tileentityT3.setInventorySlotContents(5, product2);
-				}
-				if (burnTime > 0) {
-					tileentityT3.burnTime = burnTime;
-				}
-				if (cookTime1 > 0) {
-					tileentityT3.cookTime1 = cookTime1;
-				}
-				if (cookTime2 > 0) {
-					tileentityT3.cookTime2 = cookTime2;
-				}
-				if (currentItemBurnTime > 0) {
-					tileentityT3.currentItemBurnTime = currentItemBurnTime;
-				}
-				return true;
-			}
-		}
-
 		if (!world.isRemote) {
 			FMLNetworkHandler.openGui(player, MoFurnacesMod.instance,
-					MoFurnacesMod.guiIDIronFurnaceT2, world, x, y, z);
+					MoFurnacesMod.guiIDSteelFurnaceT3, world, x, y, z);
 		}
 		return true;
 	}
 
-	public static void updateIronFurnaceT2State(boolean active, World worldObj,
+	public static void updateSteelFurnaceT3State(boolean active, World worldObj,
 			int xCoord, int yCoord, int zCoord) {
 		int i = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
 
@@ -257,10 +143,10 @@ public class IronFurnaceT2 extends BlockContainer {
 
 		if (active == true) {
 			worldObj.setBlock(xCoord, yCoord, zCoord,
-					MFMT2Blocks.IronFurnaceT2Active);
+					MFMT3Blocks.SteelFurnaceT3Active);
 		} else {
 			worldObj.setBlock(xCoord, yCoord, zCoord,
-					MFMT2Blocks.IronFurnaceT2Idle);
+					MFMT3Blocks.SteelFurnaceT3Idle);
 		}
 		keepInventory = false;
 
@@ -276,7 +162,7 @@ public class IronFurnaceT2 extends BlockContainer {
 	 * Create the tile entity
 	 */
 	public TileEntity createNewTileEntity(World world, int i) {
-		return new TileEntityIronFurnaceT2();
+		return new TileEntitySteelFurnaceT3();
 	}
 
 	public void onBlockPlacedBy(World world, int x, int y, int z,
@@ -301,7 +187,7 @@ public class IronFurnaceT2 extends BlockContainer {
 		}
 
 		if (itemstack.hasDisplayName()) {
-			((TileEntityIronFurnaceT2) world.getTileEntity(x, y, z))
+			((TileEntitySteelFurnaceT3) world.getTileEntity(x, y, z))
 					.setGuiDisplayName(itemstack.getDisplayName());
 		}
 	}
@@ -312,7 +198,7 @@ public class IronFurnaceT2 extends BlockContainer {
 	public void breakBlock(World world, int x, int y, int z, Block oldblock,
 			int oldmetadata) {
 		if (!keepInventory) {
-			TileEntityIronFurnaceT2 tileentity = (TileEntityIronFurnaceT2) world
+			TileEntitySteelFurnaceT3 tileentity = (TileEntitySteelFurnaceT3) world
 					.getTileEntity(x, y, z);
 
 			if (tileentity != null) {
@@ -440,7 +326,6 @@ public class IronFurnaceT2 extends BlockContainer {
 	 */
 	@SideOnly(Side.CLIENT)
 	public Item getItem(World world, int x, int y, int z) {
-		return Item.getItemFromBlock(MFMT2Blocks.IronFurnaceT2Idle);
+		return Item.getItemFromBlock(MFMT3Blocks.SteelFurnaceT3Idle);
 	}
-
 }

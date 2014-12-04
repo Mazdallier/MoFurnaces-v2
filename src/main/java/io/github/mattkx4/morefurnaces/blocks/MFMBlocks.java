@@ -1,5 +1,6 @@
 package io.github.mattkx4.morefurnaces.blocks;
 
+import io.github.mattkx4.morefurnaces.items.MFMItems;
 import io.github.mattkx4.morefurnaces.main.MoFurnacesMod;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityAnvilFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityBoneFurnace;
@@ -7,17 +8,18 @@ import io.github.mattkx4.morefurnaces.tileentity.TileEntityBrickFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityCactusFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityDiamondFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityGoldFurnace;
-import io.github.mattkx4.morefurnaces.tileentity.TileEntityIronFurnace;
+import io.github.mattkx4.morefurnaces.tileentity.TileEntitySteelFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityNetherrackFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityObsidianFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityPumpkinFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityQuartzFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityRedstoneFurnace;
 import net.minecraft.block.Block;
-import net.minecraft.block.Block.SoundType;
+import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class MFMBlocks {
@@ -91,13 +93,16 @@ public class MFMBlocks {
 	/*
 	 * Add new blocks here format:public static Block 'NewBlockName';
 	 */
+	//  Steel ore block
+	public static Block oreSteel;
+	
 	// Brick Furnace Active and Idle blocks
 	public static Block BrickFurnaceIdle;
 	public static Block BrickFurnaceActive;
 
 	// Iron Furnace Active and Idle blocks
-	public static Block MFMIronFurnaceIdle;
-	public static Block MFMIronFurnaceActive;
+	public static Block SteelFurnaceIdle;
+	public static Block SteelFurnaceActive;
 
 	// Gold Furnace Active and Idle blocks
 	public static Block GoldFurnaceIdle;
@@ -142,6 +147,12 @@ public class MFMBlocks {
 	 * Initialize the active and idle blocks and set attributes
 	 */
 	public static void initializeBlock() {
+		// Initialize the ores
+		oreSteel = new oreSteel(Material.rock)
+				.setBlockName("oreSteel").setHardness(4.0F)
+				.setResistance(7.5F).setStepSound(soundTypeIron)
+				.setCreativeTab(MoFurnacesMod.MFM);
+		
 		// Initialize the Brick Furnace
 		BrickFurnaceIdle = new BrickFurnace(false)
 				.setBlockName("BrickFurnaceIdle").setHardness(2.0F)
@@ -153,12 +164,12 @@ public class MFMBlocks {
 				.setLightLevel(0.625F);
 
 		// Initialize the Iron Furnace
-		MFMIronFurnaceIdle = new MFMIronFurnace(false)
-				.setBlockName("MFMIronFurnaceIdle").setHardness(5.0F)
+		SteelFurnaceIdle = new SteelFurnace(false)
+				.setBlockName("SteelFurnaceIdle").setHardness(5.0F)
 				.setResistance(10.0F).setStepSound(soundTypeIron)
 				.setCreativeTab(MoFurnacesMod.MFM);
-		MFMIronFurnaceActive = new MFMIronFurnace(true)
-				.setBlockName("MFMIronFurnaceActive").setHardness(5.0F)
+		SteelFurnaceActive = new SteelFurnace(true)
+				.setBlockName("SteelFurnaceActive").setHardness(5.0F)
 				.setResistance(10.0F).setStepSound(soundTypeIron)
 				.setLightLevel(0.625F);
 
@@ -264,14 +275,18 @@ public class MFMBlocks {
 	 * GameRegistry.registerBlock(newblockname, "newblockname");
 	 */
 	public static void registerBlock() {
+		// Register ores with oreDictionary and game registry
+		GameRegistry.registerBlock(oreSteel, "oreSteel");
+		OreDictionary.registerOre("oreSteel", oreSteel);
+		
 		// Register Brick Furnace
 		GameRegistry.registerBlock(BrickFurnaceIdle, "BrickFurnaceIdle");
 		GameRegistry.registerBlock(BrickFurnaceActive, "BrickFurnaceActive");
 
 		// Register Iron Furnace
-		GameRegistry.registerBlock(MFMIronFurnaceIdle, "MFMIronFurnaceIdle");
+		GameRegistry.registerBlock(SteelFurnaceIdle, "SteelFurnaceIdle");
 		GameRegistry
-				.registerBlock(MFMIronFurnaceActive, "MFMIronFurnaceActive");
+				.registerBlock(SteelFurnaceActive, "SteelFurnaceActive");
 
 		// Register Gold Furnace
 		GameRegistry.registerBlock(GoldFurnaceIdle, "GoldFurnaceIdle");
@@ -322,6 +337,10 @@ public class MFMBlocks {
 	 * Register the tile entity and crafting recipe
 	 */
 	public static void registerBlock2() {
+		// Create a crafting recipe for the ore
+		GameRegistry.addShapelessRecipe(new ItemStack(oreSteel), new Object[]{
+				Blocks.iron_ore, Items.coal});
+		
 		// TileEntity and Crafting Recipe Registry for Brick Furnace
 		GameRegistry.registerTileEntity(TileEntityBrickFurnace.class,
 				"Brick Furnace");
@@ -330,10 +349,10 @@ public class MFMBlocks {
 				Blocks.furnace });
 
 		// TileEntity and Crafting Recipe Registry for Iron Furnace
-		GameRegistry.registerTileEntity(TileEntityIronFurnace.class,
-				"MFMIron Furnace");
-		GameRegistry.addRecipe(new ItemStack(MFMIronFurnaceIdle), new Object[] {
-				"iii", "iBi", "iii", 'i', Items.iron_ingot, 'B',
+		GameRegistry.registerTileEntity(TileEntitySteelFurnace.class,
+				"SteelFurnace");
+		GameRegistry.addRecipe(new ItemStack(SteelFurnaceIdle), new Object[] {
+				"iii", "iBi", "iii", 'i', MFMItems.ingotSteel, 'B',
 				BrickFurnaceIdle });
 
 		// TileEntity and Crafting Recipe Registry for Gold Furnace
@@ -348,7 +367,7 @@ public class MFMBlocks {
 				"Netherrack Furnace");
 		GameRegistry.addRecipe(new ItemStack(NetherrackFurnaceActive),
 				new Object[] { "nnn", "nIn", "nnn", 'n', Blocks.netherrack,
-						'I', MFMIronFurnaceIdle });
+						'I', SteelFurnaceIdle });
 		GameRegistry.addRecipe(new ItemStack(NetherrackFurnaceActive),
 				new Object[] { "nnn", "nGn", "nnn", 'n', Blocks.netherrack,
 						'G', GoldFurnaceIdle });
@@ -358,7 +377,7 @@ public class MFMBlocks {
 				"Quartz Furnace");
 		GameRegistry.addRecipe(new ItemStack(QuartzFurnaceIdle), new Object[] {
 				"qqq", "qIq", "qqq", 'q', Blocks.quartz_block, 'I',
-				MFMIronFurnaceIdle });
+				SteelFurnaceIdle });
 		GameRegistry.addRecipe(new ItemStack(QuartzFurnaceIdle), new Object[] {
 				"qqq", "qGq", "qqq", 'q', Blocks.quartz_block, 'G',
 				GoldFurnaceIdle });

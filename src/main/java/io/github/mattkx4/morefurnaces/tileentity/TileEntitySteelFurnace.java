@@ -1,6 +1,6 @@
 package io.github.mattkx4.morefurnaces.tileentity;
 
-import io.github.mattkx4.morefurnaces.blocks.MFMIronFurnace;
+import io.github.mattkx4.morefurnaces.blocks.SteelFurnace;
 import io.github.mattkx4.morefurnaces.lib.FurnaceVariables;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -22,7 +22,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class TileEntityIronFurnace extends TileEntity implements
+public class TileEntitySteelFurnace extends TileEntity implements
 		ISidedInventory {
 
 	private String localizedName;
@@ -102,7 +102,7 @@ public class TileEntityIronFurnace extends TileEntity implements
 	// Gets the custom inventory name
 	public String getInventoryName() {
 		return this.hasCustomInventoryName() ? this.localizedName
-				: "container.ironFurnace";
+				: "container.steelFurnace";
 	}
 
 	// Checks to see if inventory has custom name
@@ -170,7 +170,7 @@ public class TileEntityIronFurnace extends TileEntity implements
 	// Gets the cooking progress (Scaled)
 	@SideOnly(Side.CLIENT)
 	public int getCookProgressScaled(int i) {
-		return this.cookTime * i / FurnaceVariables.IRON_FURNACE_SPEED;
+		return this.cookTime * i / FurnaceVariables.STEEL_FURNACE_SPEED;
 	}
 
 	// Get the remaining burn time (Scaled)
@@ -178,7 +178,7 @@ public class TileEntityIronFurnace extends TileEntity implements
 	public int getBurnTimeRemainingScaled(int i) {
 
 		if (this.currentItemBurnTime == 0) {
-			this.currentItemBurnTime = FurnaceVariables.IRON_FURNACE_SPEED;
+			this.currentItemBurnTime = FurnaceVariables.STEEL_FURNACE_SPEED;
 		}
 
 		int result = this.burnTime * i / this.currentItemBurnTime;
@@ -210,7 +210,7 @@ public class TileEntityIronFurnace extends TileEntity implements
 				// set currentItemBurnTime and burnTime to the fuel item burn
 				// time || add a '+1' after fuel efficiency to create an ever
 				// lasting furnace
-				this.currentItemBurnTime = this.burnTime = (int) (((double) getItemBurnTime(this.slots[1]) / FurnaceVariables.IRON_FURNACE_EFFICIENCY));
+				this.currentItemBurnTime = this.burnTime = (int) (((double) getItemBurnTime(this.slots[1]) / FurnaceVariables.STEEL_FURNACE_EFFICIENCY));
 
 				if (this.isBurning()) {
 					flag1 = true;
@@ -228,7 +228,7 @@ public class TileEntityIronFurnace extends TileEntity implements
 			if (this.isBurning() && this.canSmelt()) {
 				++this.cookTime;
 
-				if (this.cookTime == FurnaceVariables.IRON_FURNACE_SPEED) {
+				if (this.cookTime == FurnaceVariables.STEEL_FURNACE_SPEED) {
 					this.cookTime = 0;
 					this.smeltItem();
 					flag1 = true;
@@ -239,7 +239,7 @@ public class TileEntityIronFurnace extends TileEntity implements
 
 			if (flag != this.isBurning()) {
 				flag1 = true;
-				MFMIronFurnace.updateIronFurnaceState(this.burnTime > 0,
+				SteelFurnace.updateSteelFurnaceState(this.burnTime > 0,
 						this.worldObj, this.xCoord, this.yCoord, this.zCoord);
 			}
 		}

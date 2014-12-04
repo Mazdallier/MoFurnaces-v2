@@ -4,7 +4,7 @@ import io.github.mattkx4.morefurnaces.blocks.MFMBlocks;
 import io.github.mattkx4.morefurnaces.main.MoFurnacesMod;
 import io.github.mattkx4.morefurnaces.tileentity.tier3.TileEntityBrickFurnaceT3;
 import io.github.mattkx4.morefurnaces.tileentity.tier3.TileEntityDiamondFurnaceT3;
-import io.github.mattkx4.morefurnaces.tileentity.tier3.TileEntityIronFurnaceT3;
+import io.github.mattkx4.morefurnaces.tileentity.tier3.TileEntitySteelFurnaceT3;
 import io.github.mattkx4.morefurnaces.tileentity.tier3.TileEntityQuartzFurnaceT3;
 import io.github.mattkx4.morefurnaces.tileentity.tier3.TileEntityObsidianFurnaceT3;
 import net.minecraft.block.Block;
@@ -34,8 +34,8 @@ public class MFMT3Blocks {
 	public static Block BrickFurnaceT3Active;
 
 	// Tier 3 Iron Furnace Active and Idle blocks
-	public static Block IronFurnaceT3Idle;
-	public static Block IronFurnaceT3Active;
+	public static Block SteelFurnaceT3Idle;
+	public static Block SteelFurnaceT3Active;
 
 	// Tier 3 Quartz Furnace Active and Idle blocks
 	public static Block QuartzFurnaceT3Idle;
@@ -64,12 +64,12 @@ public class MFMT3Blocks {
 				.setLightLevel(0.625F);
 
 		// Initialize the Tier 3 Iron Furnace
-		IronFurnaceT3Idle = new IronFurnaceT3(false)
-				.setBlockName("IronFurnaceT3Idle").setHardness(5.0F)
+		SteelFurnaceT3Idle = new SteelFurnaceT3(false)
+				.setBlockName("SteelFurnaceT3Idle").setHardness(5.0F)
 				.setResistance(10.0F).setStepSound(MFMBlocks.soundTypeIron)
 				.setCreativeTab(MoFurnacesMod.TieredMFM);
-		IronFurnaceT3Active = new IronFurnaceT3(true)
-				.setBlockName("IronFurnaceT3Active").setHardness(5.0F)
+		SteelFurnaceT3Active = new SteelFurnaceT3(true)
+				.setBlockName("SteelFurnaceT3Active").setHardness(5.0F)
 				.setResistance(10.0F).setStepSound(MFMBlocks.soundTypeIron)
 				.setLightLevel(0.625F);
 
@@ -117,8 +117,8 @@ public class MFMT3Blocks {
 				.registerBlock(BrickFurnaceT3Active, "BrickFurnaceT3Active");
 
 		// Register Tier 3 Iron Furnace
-		GameRegistry.registerBlock(IronFurnaceT3Idle, "IronFurnaceT3Idle");
-		GameRegistry.registerBlock(IronFurnaceT3Active, "IronFurnaceT3Active");
+		GameRegistry.registerBlock(SteelFurnaceT3Idle, "SteelFurnaceT3Idle");
+		GameRegistry.registerBlock(SteelFurnaceT3Active, "SteelFurnaceT3Active");
 
 		// Register Tier 3 Quartz Furnace
 		GameRegistry.registerBlock(QuartzFurnaceT3Idle, "QuartzFurnaceT3Idle");
@@ -147,8 +147,8 @@ public class MFMT3Blocks {
 				"Brick Furnace T3");
 
 		// TileEntity Registry for Tier 3 Iron Furnace
-		GameRegistry.registerTileEntity(TileEntityIronFurnaceT3.class,
-				"Iron Furnace T3");
+		GameRegistry.registerTileEntity(TileEntitySteelFurnaceT3.class,
+				"Steel Furnace T3");
 
 		// TileEntity Registry for Tier 3 Quartz Furnace
 		GameRegistry.registerTileEntity(TileEntityQuartzFurnaceT3.class,

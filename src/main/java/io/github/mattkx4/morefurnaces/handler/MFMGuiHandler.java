@@ -6,7 +6,7 @@ import io.github.mattkx4.morefurnaces.container.ContainerBrickFurnace;
 import io.github.mattkx4.morefurnaces.container.ContainerCactusFurnace;
 import io.github.mattkx4.morefurnaces.container.ContainerDiamondFurnace;
 import io.github.mattkx4.morefurnaces.container.ContainerGoldFurnace;
-import io.github.mattkx4.morefurnaces.container.ContainerIronFurnace;
+import io.github.mattkx4.morefurnaces.container.ContainerSteelFurnace;
 import io.github.mattkx4.morefurnaces.container.ContainerNetherrackFurnace;
 import io.github.mattkx4.morefurnaces.container.ContainerObsidianFurnace;
 import io.github.mattkx4.morefurnaces.container.ContainerPumpkinFurnace;
@@ -14,12 +14,12 @@ import io.github.mattkx4.morefurnaces.container.ContainerQuartzFurnace;
 import io.github.mattkx4.morefurnaces.container.ContainerRedstoneFurnace;
 import io.github.mattkx4.morefurnaces.container.tier2.ContainerBrickFurnaceT2;
 import io.github.mattkx4.morefurnaces.container.tier2.ContainerDiamondFurnaceT2;
-import io.github.mattkx4.morefurnaces.container.tier2.ContainerIronFurnaceT2;
+import io.github.mattkx4.morefurnaces.container.tier2.ContainerSteelFurnaceT2;
 import io.github.mattkx4.morefurnaces.container.tier2.ContainerObsidianFurnaceT2;
 import io.github.mattkx4.morefurnaces.container.tier2.ContainerQuartzFurnaceT2;
 import io.github.mattkx4.morefurnaces.container.tier3.ContainerBrickFurnaceT3;
 import io.github.mattkx4.morefurnaces.container.tier3.ContainerDiamondFurnaceT3;
-import io.github.mattkx4.morefurnaces.container.tier3.ContainerIronFurnaceT3;
+import io.github.mattkx4.morefurnaces.container.tier3.ContainerSteelFurnaceT3;
 import io.github.mattkx4.morefurnaces.container.tier3.ContainerObsidianFurnaceT3;
 import io.github.mattkx4.morefurnaces.container.tier3.ContainerQuartzFurnaceT3;
 import io.github.mattkx4.morefurnaces.gui.GuiAnvilFurnace;
@@ -28,7 +28,7 @@ import io.github.mattkx4.morefurnaces.gui.GuiBrickFurnace;
 import io.github.mattkx4.morefurnaces.gui.GuiCactusFurnace;
 import io.github.mattkx4.morefurnaces.gui.GuiDiamondFurnace;
 import io.github.mattkx4.morefurnaces.gui.GuiGoldFurnace;
-import io.github.mattkx4.morefurnaces.gui.GuiIronFurnace;
+import io.github.mattkx4.morefurnaces.gui.GuiSteelFurnace;
 import io.github.mattkx4.morefurnaces.gui.GuiNetherrackFurnace;
 import io.github.mattkx4.morefurnaces.gui.GuiObsidianFurnace;
 import io.github.mattkx4.morefurnaces.gui.GuiPumpkinFurnace;
@@ -36,12 +36,12 @@ import io.github.mattkx4.morefurnaces.gui.GuiQuartzFurnace;
 import io.github.mattkx4.morefurnaces.gui.GuiRedstoneFurnace;
 import io.github.mattkx4.morefurnaces.gui.tier2.GuiBrickFurnaceT2;
 import io.github.mattkx4.morefurnaces.gui.tier2.GuiDiamondFurnaceT2;
-import io.github.mattkx4.morefurnaces.gui.tier2.GuiIronFurnaceT2;
+import io.github.mattkx4.morefurnaces.gui.tier2.GuiSteelFurnaceT2;
 import io.github.mattkx4.morefurnaces.gui.tier2.GuiObsidianFurnaceT2;
 import io.github.mattkx4.morefurnaces.gui.tier2.GuiQuartzFurnaceT2;
 import io.github.mattkx4.morefurnaces.gui.tier3.GuiBrickFurnaceT3;
 import io.github.mattkx4.morefurnaces.gui.tier3.GuiDiamondFurnaceT3;
-import io.github.mattkx4.morefurnaces.gui.tier3.GuiIronFurnaceT3;
+import io.github.mattkx4.morefurnaces.gui.tier3.GuiSteelFurnaceT3;
 import io.github.mattkx4.morefurnaces.gui.tier3.GuiObsidianFurnaceT3;
 import io.github.mattkx4.morefurnaces.gui.tier3.GuiQuartzFurnaceT3;
 import io.github.mattkx4.morefurnaces.main.MoFurnacesMod;
@@ -51,7 +51,7 @@ import io.github.mattkx4.morefurnaces.tileentity.TileEntityBrickFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityCactusFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityDiamondFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityGoldFurnace;
-import io.github.mattkx4.morefurnaces.tileentity.TileEntityIronFurnace;
+import io.github.mattkx4.morefurnaces.tileentity.TileEntitySteelFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityNetherrackFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityObsidianFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityPumpkinFurnace;
@@ -59,12 +59,12 @@ import io.github.mattkx4.morefurnaces.tileentity.TileEntityQuartzFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.TileEntityRedstoneFurnace;
 import io.github.mattkx4.morefurnaces.tileentity.tier2.TileEntityBrickFurnaceT2;
 import io.github.mattkx4.morefurnaces.tileentity.tier2.TileEntityDiamondFurnaceT2;
-import io.github.mattkx4.morefurnaces.tileentity.tier2.TileEntityIronFurnaceT2;
+import io.github.mattkx4.morefurnaces.tileentity.tier2.TileEntitySteelFurnaceT2;
 import io.github.mattkx4.morefurnaces.tileentity.tier2.TileEntityObsidianFurnaceT2;
 import io.github.mattkx4.morefurnaces.tileentity.tier2.TileEntityQuartzFurnaceT2;
 import io.github.mattkx4.morefurnaces.tileentity.tier3.TileEntityBrickFurnaceT3;
 import io.github.mattkx4.morefurnaces.tileentity.tier3.TileEntityDiamondFurnaceT3;
-import io.github.mattkx4.morefurnaces.tileentity.tier3.TileEntityIronFurnaceT3;
+import io.github.mattkx4.morefurnaces.tileentity.tier3.TileEntitySteelFurnaceT3;
 import io.github.mattkx4.morefurnaces.tileentity.tier3.TileEntityObsidianFurnaceT3;
 import io.github.mattkx4.morefurnaces.tileentity.tier3.TileEntityQuartzFurnaceT3;
 import net.minecraft.entity.player.EntityPlayer;
@@ -90,10 +90,10 @@ public class MFMGuiHandler implements IGuiHandler {
 					return new ContainerDiamondFurnace(player.inventory,
 							(TileEntityDiamondFurnace) entity);
 				}
-			case MoFurnacesMod.guiIDIronFurnace:
-				if (entity instanceof TileEntityIronFurnace) {
-					return new ContainerIronFurnace(player.inventory,
-							(TileEntityIronFurnace) entity);
+			case MoFurnacesMod.guiIdSteelFurnace:
+				if (entity instanceof TileEntitySteelFurnace) {
+					return new ContainerSteelFurnace(player.inventory,
+							(TileEntitySteelFurnace) entity);
 				}
 			case MoFurnacesMod.guiIDGoldFurnace:
 				if (entity instanceof TileEntityGoldFurnace) {
@@ -150,15 +150,15 @@ public class MFMGuiHandler implements IGuiHandler {
 					return new ContainerAnvilFurnace(player.inventory,
 							(TileEntityAnvilFurnace) entity);
 				}
-			case MoFurnacesMod.guiIDIronFurnaceT2:
-				if (entity instanceof TileEntityIronFurnaceT2) {
-					return new ContainerIronFurnaceT2(player.inventory,
-							(TileEntityIronFurnaceT2) entity);
+			case MoFurnacesMod.guiIDSteelFurnaceT2:
+				if (entity instanceof TileEntitySteelFurnaceT2) {
+					return new ContainerSteelFurnaceT2(player.inventory,
+							(TileEntitySteelFurnaceT2) entity);
 				}
-			case MoFurnacesMod.guiIDIronFurnaceT3:
-				if (entity instanceof TileEntityIronFurnaceT3) {
-					return new ContainerIronFurnaceT3(player.inventory,
-							(TileEntityIronFurnaceT3) entity);
+			case MoFurnacesMod.guiIDSteelFurnaceT3:
+				if (entity instanceof TileEntitySteelFurnaceT3) {
+					return new ContainerSteelFurnaceT3(player.inventory,
+							(TileEntitySteelFurnaceT3) entity);
 				}
 			case MoFurnacesMod.guiIDBrickFurnaceT2:
 				if (entity instanceof TileEntityBrickFurnaceT2) {
@@ -212,10 +212,10 @@ public class MFMGuiHandler implements IGuiHandler {
 					return new GuiDiamondFurnace(player.inventory,
 							(TileEntityDiamondFurnace) entity);
 				}
-			case MoFurnacesMod.guiIDIronFurnace:
-				if (entity instanceof TileEntityIronFurnace) {
-					return new GuiIronFurnace(player.inventory,
-							(TileEntityIronFurnace) entity);
+			case MoFurnacesMod.guiIdSteelFurnace:
+				if (entity instanceof TileEntitySteelFurnace) {
+					return new GuiSteelFurnace(player.inventory,
+							(TileEntitySteelFurnace) entity);
 				}
 			case MoFurnacesMod.guiIDGoldFurnace:
 				if (entity instanceof TileEntityGoldFurnace) {
@@ -272,15 +272,15 @@ public class MFMGuiHandler implements IGuiHandler {
 					return new GuiAnvilFurnace(player.inventory,
 							(TileEntityAnvilFurnace) entity);
 				}
-			case MoFurnacesMod.guiIDIronFurnaceT2:
-				if (entity instanceof TileEntityIronFurnaceT2) {
-					return new GuiIronFurnaceT2(player.inventory,
-							(TileEntityIronFurnaceT2) entity);
+			case MoFurnacesMod.guiIDSteelFurnaceT2:
+				if (entity instanceof TileEntitySteelFurnaceT2) {
+					return new GuiSteelFurnaceT2(player.inventory,
+							(TileEntitySteelFurnaceT2) entity);
 				}
-			case MoFurnacesMod.guiIDIronFurnaceT3:
-				if (entity instanceof TileEntityIronFurnaceT3) {
-					return new GuiIronFurnaceT3(player.inventory,
-							(TileEntityIronFurnaceT3) entity);
+			case MoFurnacesMod.guiIDSteelFurnaceT3:
+				if (entity instanceof TileEntitySteelFurnaceT3) {
+					return new GuiSteelFurnaceT3(player.inventory,
+							(TileEntitySteelFurnaceT3) entity);
 				}
 			case MoFurnacesMod.guiIDBrickFurnaceT2:
 				if (entity instanceof TileEntityBrickFurnaceT2) {

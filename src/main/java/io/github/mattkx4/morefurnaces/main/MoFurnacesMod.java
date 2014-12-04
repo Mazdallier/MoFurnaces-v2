@@ -35,10 +35,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 @Mod(modid = Strings.MODID, name = Strings.name, version = Strings.version)
 public class MoFurnacesMod {
-
-	/**
-	 * This is a test to see if git hub and eclipse are behaving themselves
-	 */
 	
 	/*
 	 * New Creative Tabs for all New Physical Aspects of the Mod
@@ -60,7 +56,7 @@ public class MoFurnacesMod {
 	// Diamond furnace gui ID
 	public static final int guiIDDiamondFurnace = 1;
 	// Iron furnace gui ID
-	public static final int guiIDIronFurnace = 2;
+	public static final int guiIdSteelFurnace = 2;
 	// Gold furnace gui ID
 	public static final int guiIDGoldFurnace = 3;
 	// Brick Furnace gui ID
@@ -88,9 +84,9 @@ public class MoFurnacesMod {
 	// Tier 3 Diamond Furnace gui ID
 	public static final int guiIDDiamondFurnaceT3 = 31;
 	// Tier 2 Iron Furnace gui ID
-	public static final int guiIDIronFurnaceT2 = 22;
+	public static final int guiIDSteelFurnaceT2 = 22;
 	// Tier 3 Iron Furnace gui ID
-	public static final int guiIDIronFurnaceT3 = 32;
+	public static final int guiIDSteelFurnaceT3 = 32;
 	// Tier 2 Brick Furnace gui ID
 	public static final int guiIDBrickFurnaceT2 = 23;
 	// Tier 3 Brick Furnace gui ID

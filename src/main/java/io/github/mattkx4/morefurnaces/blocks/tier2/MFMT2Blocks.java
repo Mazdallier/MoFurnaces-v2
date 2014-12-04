@@ -4,7 +4,7 @@ import io.github.mattkx4.morefurnaces.blocks.MFMBlocks;
 import io.github.mattkx4.morefurnaces.main.MoFurnacesMod;
 import io.github.mattkx4.morefurnaces.tileentity.tier2.TileEntityBrickFurnaceT2;
 import io.github.mattkx4.morefurnaces.tileentity.tier2.TileEntityDiamondFurnaceT2;
-import io.github.mattkx4.morefurnaces.tileentity.tier2.TileEntityIronFurnaceT2;
+import io.github.mattkx4.morefurnaces.tileentity.tier2.TileEntitySteelFurnaceT2;
 import io.github.mattkx4.morefurnaces.tileentity.tier2.TileEntityQuartzFurnaceT2;
 import io.github.mattkx4.morefurnaces.tileentity.tier2.TileEntityObsidianFurnaceT2;
 import net.minecraft.block.Block;
@@ -34,8 +34,8 @@ public class MFMT2Blocks {
 	public static Block BrickFurnaceT2Active;
 
 	// Tier 2 Iron Furnace Active and Idle blocks
-	public static Block IronFurnaceT2Idle;
-	public static Block IronFurnaceT2Active;
+	public static Block SteelFurnaceT2Idle;
+	public static Block SteelFurnaceT2Active;
 
 	// Tier 2 Quartz Furnace Active and Idle blocks
 	public static Block QuartzFurnaceT2Idle;
@@ -64,12 +64,12 @@ public class MFMT2Blocks {
 				.setLightLevel(0.625F);
 
 		// Initialize the Tier 2 Iron Furnace
-		IronFurnaceT2Idle = new IronFurnaceT2(false)
-				.setBlockName("IronFurnaceT2Idle").setHardness(5.0F)
+		SteelFurnaceT2Idle = new SteelFurnaceT2(false)
+				.setBlockName("SteelFurnaceT2Idle").setHardness(5.0F)
 				.setResistance(10.0F).setStepSound(MFMBlocks.soundTypeIron)
 				.setCreativeTab(MoFurnacesMod.TieredMFM);
-		IronFurnaceT2Active = new IronFurnaceT2(true)
-				.setBlockName("IronFurnaceT2Active").setHardness(5.0F)
+		SteelFurnaceT2Active = new SteelFurnaceT2(true)
+				.setBlockName("SteelFurnaceT2Active").setHardness(5.0F)
 				.setResistance(10.0F).setStepSound(MFMBlocks.soundTypeIron)
 				.setLightLevel(0.625F);
 
@@ -117,8 +117,8 @@ public class MFMT2Blocks {
 				.registerBlock(BrickFurnaceT2Active, "BrickFurnaceT2Active");
 
 		// Register Tier 2 Iron Furnace
-		GameRegistry.registerBlock(IronFurnaceT2Idle, "IronFurnaceT2Idle");
-		GameRegistry.registerBlock(IronFurnaceT2Active, "IronFurnaceT2Active");
+		GameRegistry.registerBlock(SteelFurnaceT2Idle, "SteelFurnaceT2Idle");
+		GameRegistry.registerBlock(SteelFurnaceT2Active, "SteelFurnaceT2Active");
 
 		// Register Tier 2 Quartz Furnace
 		GameRegistry.registerBlock(QuartzFurnaceT2Idle, "QuartzFurnaceT2Idle");
@@ -147,8 +147,8 @@ public class MFMT2Blocks {
 				"Brick Furnace T2");
 
 		// TileEntity Registry for Tier 2 Iron Furnace
-		GameRegistry.registerTileEntity(TileEntityIronFurnaceT2.class,
-				"Iron Furnace T2");
+		GameRegistry.registerTileEntity(TileEntitySteelFurnaceT2.class,
+				"Steel Furnace T2");
 
 		// TileEntity Registry for Tier 2 Quartz Furnace
 		GameRegistry.registerTileEntity(TileEntityQuartzFurnaceT2.class,

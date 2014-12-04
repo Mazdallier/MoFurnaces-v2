@@ -141,7 +141,7 @@ public class CactusFurnace extends BlockContainer implements IPlantable {
 			EntityPlayer player, int side, float hitx, float hity, float hitz) {
 		if (!world.isRemote) {
 			FMLNetworkHandler.openGui(player, MoFurnacesMod.instance,
-					MoFurnacesMod.guiIDIronFurnace, world, x, y, z);
+					MoFurnacesMod.guiIdSteelFurnace, world, x, y, z);
 		}
 		return true;
 	}
