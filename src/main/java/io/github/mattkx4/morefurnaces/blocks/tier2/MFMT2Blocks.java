@@ -49,10 +49,6 @@ public class MFMT2Blocks {
 	public static Block ObsidianFurnaceT2Idle;
 	public static Block ObsidianFurnaceT2Active;
 
-	// Tier 2 Netherrack Furnace Active and Idle blocks
-	public static Block NetherrackFurnaceT2Idle;
-	public static Block NetherrackFurnaceT2Active;
-
 	/**
 	 * Initialize the active and idle blocks and set attributes
 	 */
@@ -108,8 +104,6 @@ public class MFMT2Blocks {
 				.setResistance(2000.0F)
 				.setStepSound(MFMBlocks.soundTypeObsidian)
 				.setLightLevel(0.625F);
-
-		// INSERT NETHERRACK SOUNDS HERE
 	}
 
 	/**
@@ -142,12 +136,6 @@ public class MFMT2Blocks {
 				"ObsidianFurnaceT2Idle");
 		GameRegistry.registerBlock(ObsidianFurnaceT2Active,
 				"ObsidianFurnaceT2Active");
-
-		// Register Tier 2 Netherrack Furnace
-		GameRegistry.registerBlock(NetherrackFurnaceT2Idle,
-				"NetherrackFurnaceT2Idle");
-		GameRegistry.registerBlock(NetherrackFurnaceT2Active,
-				"NetherrackFurnaceT2Active");
 	}
 
 	/**
@@ -173,9 +161,5 @@ public class MFMT2Blocks {
 		// TileEntity Registry for Tier 2 Obsidian Furnace
 		GameRegistry.registerTileEntity(TileEntityObsidianFurnaceT2.class,
 				"Obsidian Furnace T2");
-
-		// TileEntity Registry for Tier 2 Netherrack Furnace
-		GameRegistry.registerTileEntity(TileEntityNetherrackFurnaceT2.class,
-				"Netherrack Furnace T2");
 	}
 }

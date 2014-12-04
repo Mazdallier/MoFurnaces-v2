@@ -1,5 +1,7 @@
 package io.github.mattkx4.morefurnaces.blocks;
 
+import io.github.mattkx4.morefurnaces.blocks.tier2.MFMT2Blocks;
+import io.github.mattkx4.morefurnaces.items.MFMItems;
 import io.github.mattkx4.morefurnaces.lib.Strings;
 import io.github.mattkx4.morefurnaces.main.MoFurnacesMod;
 import io.github.mattkx4.morefurnaces.particles.EntityRedstoneFlameFX;

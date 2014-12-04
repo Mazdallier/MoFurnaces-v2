@@ -71,7 +71,6 @@ V2.2.2 -> V2.3.0{
 }
     
     TODO{
-        - Insert Netherrack Sounds in the MFMT2BLOCK class
         - Steel Furnace
             - Craft Iron Ore with Coal to make Steel Ore.
             - Smelt Steel Ore to get Steel Ingot.
@@ -79,7 +78,7 @@ V2.2.2 -> V2.3.0{
         - CK Mob Config File
         - Tiered Furnace, only available in Creative Mode
             - Tier 2/3 Redstone Furnace
-            - Tier 2 Netherrack Furnace
+            - Tier 2 Netherrack Furnace (I'm gonna tackle this another day... I don't wanna have to mess with slots again :( lol)
         - Glowstone Furnace
         - Uncrafting Furnace
         - Furnace Addons
