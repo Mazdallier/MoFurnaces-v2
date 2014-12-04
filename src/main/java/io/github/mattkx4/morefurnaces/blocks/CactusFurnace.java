@@ -8,6 +8,7 @@ import io.github.mattkx4.morefurnaces.tileentity.TileEntityCactusFurnace;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockCactus;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
@@ -45,7 +46,7 @@ public class CactusFurnace extends BlockContainer implements IPlantable {
 	private final boolean isActive;
 
 	private Random rand = new Random();
-
+	
 	@SideOnly(Side.CLIENT)
 	private IIcon iconTop;
 
@@ -170,53 +171,28 @@ public class CactusFurnace extends BlockContainer implements IPlantable {
 		}
 
 		// get the block metadata (direction)
-		int l = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
+		//int l = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
 		// set a new variable to the grow counter
-		int variable = TileEntityCactusFurnace.growCounter;
-		// if the grow counter is larger than 2
+		int growCounter = TileEntityCactusFurnace.growCounter;
+		// if the grow counter is larger than 64
 		ItemStack itemStack = new ItemStack(Blocks.cactus);
 		itemStack.stackSize = 1;
-		if (variable > 63) {
-			// depending on the metadata spawn a cactus block in front of it
-			if (l == 5) {
-				EntityItem item = new EntityItem(worldObj, xCoord + 1, yCoord,
-						zCoord + 1, new ItemStack(itemStack.getItem(), 1,
-								itemStack.getItemDamage()));
-				if (itemStack.hasTagCompound()) {
-					item.getEntityItem().setTagCompound(
-							(NBTTagCompound) itemStack.getTagCompound().copy());
+		System.out.println("grow counter = "+growCounter);
+		if (growCounter > 63) {
+				// Check that the block above is available 
+			if (worldObj.getBlock(xCoord, yCoord+1, zCoord) != Block.getBlockFromName("air")){
+				// Do nothing and return 
+			} else {
+				// Check that there are no blocks in the cardinal directions at that elevation
+				if (worldObj.getBlock(xCoord-1, yCoord+1, zCoord) != Block.getBlockFromName("air")
+						|| worldObj.getBlock(xCoord+1, yCoord+1, zCoord) != Block.getBlockFromName("air")
+						|| worldObj.getBlock(xCoord, yCoord+1, zCoord-1) != Block.getBlockFromName("air")
+						|| worldObj.getBlock(xCoord, yCoord+1, zCoord+1) != Block.getBlockFromName("air")){
+					// Do nothing and return;
+				} else{
+					// Plant a cactus at that elevation
+					worldObj.setBlock(xCoord, yCoord + 1, zCoord, Block.getBlockFromName("cactus"));
 				}
-				worldObj.spawnEntityInWorld(item);
-			}
-			if (l == 4) {
-				EntityItem item = new EntityItem(worldObj, xCoord - 1, yCoord,
-						zCoord + 1, new ItemStack(itemStack.getItem(), 1,
-								itemStack.getItemDamage()));
-				if (itemStack.hasTagCompound()) {
-					item.getEntityItem().setTagCompound(
-							(NBTTagCompound) itemStack.getTagCompound().copy());
-				}
-				worldObj.spawnEntityInWorld(item);
-			}
-			if (l == 2) {
-				EntityItem item = new EntityItem(worldObj, xCoord + 1, yCoord,
-						zCoord - 1, new ItemStack(itemStack.getItem(), 1,
-								itemStack.getItemDamage()));
-				if (itemStack.hasTagCompound()) {
-					item.getEntityItem().setTagCompound(
-							(NBTTagCompound) itemStack.getTagCompound().copy());
-				}
-				worldObj.spawnEntityInWorld(item);
-			}
-			if (l == 3) {
-				EntityItem item = new EntityItem(worldObj, xCoord + 1, yCoord,
-						zCoord + 1, new ItemStack(itemStack.getItem(), 1,
-								itemStack.getItemDamage()));
-				if (itemStack.hasTagCompound()) {
-					item.getEntityItem().setTagCompound(
-							(NBTTagCompound) itemStack.getTagCompound().copy());
-				}
-				worldObj.spawnEntityInWorld(item);
 			}
 			// set grow counter to zero
 			TileEntityCactusFurnace.growCounter = 0;

@@ -64,12 +64,13 @@ V2.2.2 -> V2.3.0{
                 Added code to pass to the block class to tell it what to do
                 - Block: added custom code that can determine what to do from any upgrade(needs populating)
                 Added the beginning of the brightness upgrade, will gather a list of enemy mobs within a certain radius AND BURN THEM
+	}
     
     21 NOV - Mattkx4{
         - Formatting Everything
     }
     
-    4 DEC - Pr1Sh0ck{
+    4 DEC - Pr1meSh0ck{
     	- Added in steel ingot
     		- added into game and ore registry/dictionary
     		- added smelting recipe
@@ -78,6 +79,10 @@ V2.2.2 -> V2.3.0{
 			- added crafting recipe
 		- Changed all references of iron to steel
 		- Found and fixed the speed issue with tiering furnaces, where tiering a furnace would increase the smelting speed
+		- Altered the cactus furnace to spawn a single cactus on top with every 64 blocks smelted.
+			- Will only spawn the cactus at the block on top. This has the effect of destroying the old cactus and spawning a new one
+			- Cactus spawning follows regular cactus rules, cannot have a block right beside the cactus, and the block where the cactus
+			is to spawn needs to be air.
     }
 }
     
@@ -105,7 +110,7 @@ V2.2.2 -> V2.3.0{
         - Bone Furnace Tweaks
             - Chance to auto-grow crops in a certain radius with smelting.
             - Chance to output 1 bonemeal along with item to be smelted.
-        - Cactus Furnace grows Cacti on top of it.
+        X Cactus Furnace grows Cacti on top of it.
         X Nerf the Tiered Furnaces Speed - No need, random glitch not a repeatable bug - UPDATE: found and fixed bug
     }
 }
