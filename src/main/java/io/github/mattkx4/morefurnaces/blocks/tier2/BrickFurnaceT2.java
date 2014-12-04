@@ -206,10 +206,6 @@ public class BrickFurnaceT2 extends BlockContainer {
 				int i = world.getBlockMetadata(x, y, z);
 				world.setBlock(x, y, z, MFMT3Blocks.BrickFurnaceT3Idle);
 				world.setBlockMetadataWithNotify(x, y, z, i, 2);
-				// sets whether or not the new furnace is active of inactive
-				BrickFurnaceT3.updateBrickFurnaceT3State(isActive, world, x, y,
-						z);
-
 				// set the tile entity itemstacks and variable times
 				TileEntityBrickFurnaceT3 tileentityT3 = (TileEntityBrickFurnaceT3) world
 						.getTileEntity(x, y, z);

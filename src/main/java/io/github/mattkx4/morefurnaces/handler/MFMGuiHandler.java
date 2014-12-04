@@ -90,7 +90,7 @@ public class MFMGuiHandler implements IGuiHandler {
 					return new ContainerDiamondFurnace(player.inventory,
 							(TileEntityDiamondFurnace) entity);
 				}
-			case MoFurnacesMod.guiIdSteelFurnace:
+			case MoFurnacesMod.guiIDSteelFurnace:
 				if (entity instanceof TileEntitySteelFurnace) {
 					return new ContainerSteelFurnace(player.inventory,
 							(TileEntitySteelFurnace) entity);
@@ -212,7 +212,7 @@ public class MFMGuiHandler implements IGuiHandler {
 					return new GuiDiamondFurnace(player.inventory,
 							(TileEntityDiamondFurnace) entity);
 				}
-			case MoFurnacesMod.guiIdSteelFurnace:
+			case MoFurnacesMod.guiIDSteelFurnace:
 				if (entity instanceof TileEntitySteelFurnace) {
 					return new GuiSteelFurnace(player.inventory,
 							(TileEntitySteelFurnace) entity);

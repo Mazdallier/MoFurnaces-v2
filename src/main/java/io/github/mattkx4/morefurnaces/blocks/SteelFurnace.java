@@ -181,10 +181,6 @@ public class SteelFurnace extends BlockContainer {
 				int i = world.getBlockMetadata(x, y, z);
 				world.setBlock(x, y, z, MFMT2Blocks.SteelFurnaceT2Idle);
 				world.setBlockMetadataWithNotify(x, y, z, i, 2);
-				// sets whether or not the new furnace is active of inactive
-				SteelFurnaceT2
-						.updateSteelFurnaceT2State(isActive, world, x, y, z);
-
 				TileEntitySteelFurnaceT2 tileentityT2 = (TileEntitySteelFurnaceT2) world
 						.getTileEntity(x, y, z);
 				if (input != null) {
@@ -210,7 +206,7 @@ public class SteelFurnace extends BlockContainer {
 		}
 		if (!world.isRemote) {
 			FMLNetworkHandler.openGui(player, MoFurnacesMod.instance,
-					MoFurnacesMod.guiIdSteelFurnace, world, x, y, z);
+					MoFurnacesMod.guiIDSteelFurnace, world, x, y, z);
 		}
 		return true;
 	}

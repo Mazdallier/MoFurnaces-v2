@@ -179,9 +179,6 @@ public class DiamondFurnace extends BlockContainer {
 				int i = world.getBlockMetadata(x, y, z);
 				world.setBlock(x, y, z, MFMT2Blocks.DiamondFurnaceT2Idle);
 				world.setBlockMetadataWithNotify(x, y, z, i, 2);
-				// sets whether or not the new furnace is active of inactive
-				DiamondFurnaceT2.updateDiamondFurnaceT2State(isActive, world,
-						x, y, z);
 
 				TileEntityDiamondFurnaceT2 tileentityT2 = (TileEntityDiamondFurnaceT2) world
 						.getTileEntity(x, y, z);

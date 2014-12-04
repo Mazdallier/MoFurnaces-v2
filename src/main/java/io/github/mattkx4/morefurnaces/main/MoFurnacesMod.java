@@ -56,7 +56,7 @@ public class MoFurnacesMod {
 	// Diamond furnace gui ID
 	public static final int guiIDDiamondFurnace = 1;
 	// Iron furnace gui ID
-	public static final int guiIdSteelFurnace = 2;
+	public static final int guiIDSteelFurnace = 2;
 	// Gold furnace gui ID
 	public static final int guiIDGoldFurnace = 3;
 	// Brick Furnace gui ID

@@ -179,10 +179,6 @@ public class QuartzFurnace extends BlockContainer {
 				int i = world.getBlockMetadata(x, y, z);
 				world.setBlock(x, y, z, MFMT2Blocks.QuartzFurnaceT2Idle);
 				world.setBlockMetadataWithNotify(x, y, z, i, 2);
-				// sets whether or not the new furnace is active of inactive
-				QuartzFurnaceT2.updateQuartzFurnaceT2State(isActive, world, x,
-						y, z);
-
 				TileEntityQuartzFurnaceT2 tileentityT2 = (TileEntityQuartzFurnaceT2) world
 						.getTileEntity(x, y, z);
 				if (input != null) {

@@ -179,10 +179,6 @@ public class ObsidianFurnace extends BlockContainer {
 				int i = world.getBlockMetadata(x, y, z);
 				world.setBlock(x, y, z, MFMT2Blocks.ObsidianFurnaceT2Idle);
 				world.setBlockMetadataWithNotify(x, y, z, i, 2);
-				// sets whether or not the new furnace is active of inactive
-				ObsidianFurnaceT2.updateObsidianFurnaceT2State(isActive, world,
-						x, y, z);
-
 				TileEntityObsidianFurnaceT2 tileentityT2 = (TileEntityObsidianFurnaceT2) world
 						.getTileEntity(x, y, z);
 				if (input != null) {
