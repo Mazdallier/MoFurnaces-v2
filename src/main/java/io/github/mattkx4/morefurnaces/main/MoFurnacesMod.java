@@ -36,6 +36,10 @@ import cpw.mods.fml.relauncher.SideOnly;
 @Mod(modid = Strings.MODID, name = Strings.name, version = Strings.version)
 public class MoFurnacesMod {
 
+	/**
+	 * This is a test to see if git hub and eclipse are behaving themselves
+	 */
+	
 	/*
 	 * New Creative Tabs for all New Physical Aspects of the Mod
 	 */
