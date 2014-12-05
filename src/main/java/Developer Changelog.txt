@@ -87,7 +87,7 @@ V2.2.2 -> V2.3.0{
 }
     
     TODO{
-    	- Add in an ingame wiki in the form of a custom book
+    	- Add in an in-game wiki in the form of a custom book
         X Steel Furnace
             X Craft Iron Ore with Coal to make Steel Ore.
             X Smelt Steel Ore to get Steel Ingot.

@@ -54,7 +54,7 @@ public class GuiBoneFurnace extends GuiContainer {
 			this.drawTexturedModalRect(k + 56, l + 36 + 12 - i1, 176, 12 - i1,
 					14, i1 + 1);
 			i1 = this.boneFurnace.getCookProgressScaled(24);
-			this.drawTexturedModalRect(k + 79, l + 34, 176, 14, i1 + 1, 16);
+			this.drawTexturedModalRect(k + 80, l + 18, 176, 14, i1 + 1, 16);
 		}
 	}
 }

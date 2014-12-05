@@ -43,7 +43,5 @@ public class MFMEntityHandler {
 				MoFurnacesMod.instance, 64, 1, true);
 		EntityList.entityEggs.put(Integer.valueOf(entityID),
 				new EntityList.EntityEggInfo(entityID, mainColour, subColour));
-
 	}
-
 }
