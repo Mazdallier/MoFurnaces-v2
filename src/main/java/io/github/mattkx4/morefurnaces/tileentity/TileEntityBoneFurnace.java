@@ -29,9 +29,9 @@ public class TileEntityBoneFurnace extends TileEntity implements
 
 	private static final int[] slots_top = new int[] { 0 };
 	private static final int[] slots_bottom = new int[] { 2, 1 };
-	private static final int[] slots_side = new int[] { 1 };
+	private static final int[] slots_side = new int[] { 1, 3 };
 
-	private ItemStack[] slots = new ItemStack[3];
+	private ItemStack[] slots = new ItemStack[4];
 
 	// Number of ticks the furnace will burn for
 	public int burnTime;

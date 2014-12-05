@@ -84,6 +84,14 @@ V2.2.2 -> V2.3.0{
 			- Cactus spawning follows regular cactus rules, cannot have a block right beside the cactus, and the block where the cactus
 			is to spawn needs to be air.
     }
+    
+    4 DEC - Mattkx4 {
+        - Working on the Bone Furnace
+            - Completely changed the GUI.
+                - The Top Right slot is the Output
+                - The Bottom Left slot is the place for a furnace side-smelt.
+            - I'll probably be able to finish it up tomorrow.
+    }
 }
     
     TODO{

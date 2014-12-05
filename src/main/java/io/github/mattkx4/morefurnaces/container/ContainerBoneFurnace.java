@@ -30,7 +30,8 @@ public class ContainerBoneFurnace extends Container {
 		this.addSlotToContainer(new Slot(tileentity, 0, 56, 17));
 		this.addSlotToContainer(new Slot(tileentity, 1, 56, 53));
 		this.addSlotToContainer(new SlotFurnace(inventory.player, tileentity,
-				2, 116, 35));
+				2, 116, 15));
+		this.addSlotToContainer(new Slot(tileentity, 3, 116, 54));
 
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 9; j++) {
