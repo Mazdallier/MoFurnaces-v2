@@ -1,6 +1,7 @@
 package io.github.mattkx4.morefurnaces.tileentity;
 
 import io.github.mattkx4.morefurnaces.blocks.BoneFurnace;
+import io.github.mattkx4.morefurnaces.items.MFMItems;
 import io.github.mattkx4.morefurnaces.lib.FurnaceVariables;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -286,6 +287,14 @@ public class TileEntityBoneFurnace extends TileEntity implements
 
 			if (this.slots[0].stackSize <= 0) {
 				this.slots[0] = null;
+			}
+
+			if (this.slots[3] == null) {
+				this.slots[3] = new ItemStack(MFMItems.boneFragment);
+			} else {
+				if (this.slots[3].stackSize <= 64) {
+					this.slots[3].stackSize++;
+				}
 			}
 		}
 	}

@@ -4,11 +4,11 @@ import io.github.mattkx4.morefurnaces.lib.Strings;
 import io.github.mattkx4.morefurnaces.main.MoFurnacesMod;
 import net.minecraft.item.Item;
 
-public class SteelIngot extends Item{
-	public SteelIngot() {
+public class BoneFragment extends Item {
+	public BoneFragment() {
 		maxStackSize = 64;
 		setCreativeTab(MoFurnacesMod.MFM);
-		setUnlocalizedName("SteelIngot");
-		setTextureName(Strings.MODID + ":ingotSteel");
+		setUnlocalizedName("BoneFragment");
+		setTextureName(Strings.MODID + ":BoneFragment");
 	}
 }

@@ -166,9 +166,9 @@ public class BoneFurnace extends BlockContainer {
 	}
 
 	public void onBlockPlacedBy(World world, int x, int y, int z,
-			EntityLivingBase entityplayer, ItemStack itemstack) {
+			EntityLivingBase entityPlayer, ItemStack itemstack) {
 		int l = MathHelper
-				.floor_double((double) (entityplayer.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+				.floor_double((double) (entityPlayer.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
 
 		if (l == 0) {
 			world.setBlockMetadataWithNotify(x, y, z, 2, 2);
@@ -190,6 +190,15 @@ public class BoneFurnace extends BlockContainer {
 			((TileEntityBoneFurnace) world.getTileEntity(x, y, z))
 					.setGuiDisplayName(itemstack.getDisplayName());
 		}
+		
+		int radius = 10;
+		int xPlus = x + radius;
+		int xMinus = x - radius;
+		int yPlus = x + radius;
+		int yMinus = y - radius;
+		int zPlus = z + radius;
+		int zMinus = z - radius;
+		
 	}
 
 	/*

@@ -49,7 +49,10 @@ tile.QuartzFurnaceT2Active.name=Tier 2 Quartz Furnace
 tile.DiamondFurnaceT3Active.name=Tier 3 Diamond Furnace
 tile.ObsidianFurnaceT3Active.name=Tier 3 Obsidian Furnace
 
+
+
 tile.oreSteel.name=Steel Ore
+
 
 
 itemGroup.mfm=Mo' Furnaces Mod
@@ -94,4 +97,6 @@ item.Tier2Device.name=Tier 2 Device
 item.Tier3Device.name=Tier 3 Device
 item.TierCore.name=Tier Core
 item.UpgradeBrightness.name=Brightness Upgrade
-item.ingotSteel.name=Steel Ingot
+item.SteelIngot.name=Steel Ingot
+item.BoneFragment.name=Bone Fragment
+item.UpgradeNotification.name=Notification Upgrade

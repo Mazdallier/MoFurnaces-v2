@@ -25,6 +25,8 @@ public class MFMItems {
 	public static Item UpgradeNotification; // Notification upgrade
 	// Ingots
 	public static Item ingotSteel;
+	// Bone Fragment
+	public static Item boneFragment;
 
 	/**
 	 * Calls the registry methods for items
@@ -56,7 +58,8 @@ public class MFMItems {
 		UpgradeNotification = new UpgradeNotification(); // Notification Upgrade
 		// Initialize the ingots
 		ingotSteel = new SteelIngot();
-		
+		// Initialize the bone fragment
+		boneFragment = new BoneFragment();
 	}
 
 	/**
@@ -76,8 +79,11 @@ public class MFMItems {
 		GameRegistry.registerItem(UpgradeNotification, "UpgradeNotification"); // Notification
 																				// Upgrade
 		// Register the ingots with game and ore registry
-		GameRegistry.registerItem(ingotSteel, "Steel Ingot");
+		GameRegistry.registerItem(ingotSteel, "SteelIngot");
 		OreDictionary.registerOre("ingotSteel", ingotSteel);
+
+		// Register the bone fragment
+		GameRegistry.registerItem(boneFragment, "BoneFragment");
 	}
 
 	/**
@@ -98,6 +104,10 @@ public class MFMItems {
 				"zXz", "zWz", " y ", 'z', Items.diamond, 'X', Items.ender_eye,
 				'W', MFMItems.TierCore, 'y', Items.blaze_rod });
 		// Add recipes for the upgrades here
-		GameRegistry.addSmelting(MFMBlocks.oreSteel, new ItemStack(ingotSteel), 0.5F);
+		GameRegistry.addSmelting(MFMBlocks.oreSteel, new ItemStack(ingotSteel),
+				0.5F);
+		// Register Crafting Recipe for the new Bone Recipe
+		GameRegistry.addRecipe(new ItemStack(Items.bone), new Object[] { "BBB",
+				"BBB", "BBB", 'B', boneFragment });
 	}
 }

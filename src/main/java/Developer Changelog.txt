@@ -92,6 +92,16 @@ V2.2.2 -> V2.3.0{
                 - The Bottom Left slot is the place for a furnace side-smelt.
             - I'll probably be able to finish it up tomorrow.
     }
+    
+    5 DEC - Mattkx4 {
+        - Created the Bone Fragment
+            - 9 of these can be crafted into a bone.
+        - Worked more on the Bone Furnace.
+            - I got the side-product working (bone fragments).
+            - I started on the radius stuff. I'm putting it temporarily in the onBlockPlaced() method until I find a better place.
+            - I used the onBlockPlaced() method because it included the x, y, z coords of the block. I'll figure something else out later.
+            - Tomorrow I'll work on the block iteration for the Bone Furnace. I'm determined to get it on my own.
+    }
 }
     
     TODO{
