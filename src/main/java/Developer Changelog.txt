@@ -102,6 +102,13 @@ V2.2.2 -> V2.3.0{
             - I used the onBlockPlaced() method because it included the x, y, z coords of the block. I'll figure something else out later.
             - Tomorrow I'll work on the block iteration for the Bone Furnace. I'm determined to get it on my own.
     }
+    
+    10 DEC - Pr1meSh0ck {
+        - Added the double output upgrade
+            - adds a 33 % chance that the item being smelted will be doubled on output
+        - Fixed the issue that caused a crash on startup
+            - Incorrect referencing to server and client proxy classes within the main mod class
+    }
 }
     
     TODO{

@@ -1,5 +1,7 @@
 package com.weebly.mattkx4.morefurnaces.tileentity;
 
+import java.util.Random;
+
 import com.weebly.mattkx4.morefurnaces.blocks.BrickFurnace;
 import com.weebly.mattkx4.morefurnaces.items.MFMItems;
 import com.weebly.mattkx4.morefurnaces.lib.FurnaceVariables;
@@ -301,7 +303,12 @@ public class TileEntityBrickFurnace extends TileEntity implements
 		int outputMultiplier = 1;
 		// If the double output boolean is true then set arbitrary integer to double the output
 		if (doubleOutput == true) {
-			outputMultiplier = 2;
+			// Get the pseudo random chance that this will actually double the output
+			if (randInt(0, 100) < 34){
+				outputMultiplier = 2;
+			} else if (randInt(0, 100) > 33) {
+				outputMultiplier = 1;
+			}
 		} else if (doubleOutput == false) {
 			outputMultiplier = 1;
 		}
@@ -419,5 +426,30 @@ public class TileEntityBrickFurnace extends TileEntity implements
 	public boolean canExtractItem(int i, ItemStack itemstack, int j) {
 		// yes as long as its not from slot 0, slot 1 or the item is a bucket
 		return j != 0 || i != 1 || itemstack.getItem() == Items.bucket;
+	}
+	
+	/**
+	 * Returns a pseudo-random number between min and max, inclusive. The
+	 * difference between min and max can be at most
+	 * <code>Integer.MAX_VALUE - 1</code>.
+	 *
+	 * @param min
+	 *            Minimum value
+	 * @param max
+	 *            Maximum value. Must be greater than min.
+	 * @return Integer between min and max, inclusive.
+	 * @see java.util.Random#nextInt(int)
+	 */
+	public static int randInt(int min, int max) {
+
+		// NOTE: Usually this should be a field rather than a method
+		// variable so that it is not re-seeded every call.
+		Random rand = new Random();
+
+		// nextInt is normally exclusive of the top value,
+		// so add 1 to make it inclusive
+		int randomNum = rand.nextInt((max - min) + 1) + min;
+
+		return randomNum;
 	}
 }
