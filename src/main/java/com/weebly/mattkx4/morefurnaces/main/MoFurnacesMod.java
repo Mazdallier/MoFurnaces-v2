@@ -100,7 +100,7 @@ public class MoFurnacesMod {
 	@Instance(Strings.MODID)
 	public static MoFurnacesMod instance;
 
-	@SidedProxy(clientSide = "io.github.mattkx4.morefurnaces.proxy.ClientProxy", serverSide = "io.github.mattkx4.morefurnaces.proxy.ServerProxy")
+	@SidedProxy(clientSide = "com.weebly.mattkx4.morefurnaces.proxy.ClientProxy", serverSide = "com.weebly.mattkx4.morefurnaces.proxy.ServerProxy")
 	public static ServerProxy proxy;
 
 	static MFMUpdateNotifier updateNotifier = new MFMUpdateNotifier();

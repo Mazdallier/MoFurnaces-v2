@@ -35,6 +35,8 @@ public class TileEntityBrickFurnace extends TileEntity implements
 
 	// changed the number of slots to 4 (3 for cooking plus 1 for upgrade)
 	private ItemStack[] slots = new ItemStack[4];
+	
+	private boolean doubleOutput = false;
 
 	// Number of ticks the furnace will burn for
 	public int burnTime;
@@ -214,6 +216,9 @@ public class TileEntityBrickFurnace extends TileEntity implements
 						BrickFurnace.upgradeActive(worldObj, this.xCoord,
 								this.yCoord, this.zCoord, "brightness",
 								this.isBurning());
+					} else if (slots[3].getItem() == MFMItems.UpgradeDoubleOutput) {
+						// Set the double output boolean to true
+						doubleOutput = true;
 					}
 				}
 			} catch (Exception e) {
@@ -279,6 +284,9 @@ public class TileEntityBrickFurnace extends TileEntity implements
 				return true;
 			if (!this.slots[2].isItemEqual(itemstack))
 				return false;
+			if (doubleOutput == true && this.slots[2].isItemEqual(itemstack) && !(this.slots[2].stackSize < 63)){
+				return false;
+			}
 
 			int result = slots[2].stackSize + itemstack.stackSize;
 
@@ -289,13 +297,35 @@ public class TileEntityBrickFurnace extends TileEntity implements
 
 	// Smelt the input item and put the result in the output slot
 	public void smeltItem() {
+		// Arbitrary integer for multiplying the output
+		int outputMultiplier = 1;
+		// If the double output boolean is true then set arbitrary integer to double the output
+		if (doubleOutput == true) {
+			outputMultiplier = 2;
+		} else if (doubleOutput == false) {
+			outputMultiplier = 1;
+		}
+		// If there is an item to smelt
 		if (this.canSmelt()) {
+			// Get the result of the action of smelting said item
 			ItemStack itemstack = FurnaceRecipes.smelting().getSmeltingResult(
 					this.slots[0]);
+			itemstack.stackSize = 1 * outputMultiplier;
+			// If the output slot is empty
 			if (this.slots[2] == null) {
+				// Copy over a single item of the smelting result multiplied by the output multiplier
 				this.slots[2] = itemstack.copy();
+			// Otherwise if the two items are equal
 			} else if (this.slots[2].getItem() == itemstack.getItem()) {
-				this.slots[2].stackSize += itemstack.stackSize;
+				// Check on the state of the doubleOutput
+				if (doubleOutput == false){
+					this.slots[2].stackSize += itemstack.stackSize;
+				} else if (doubleOutput == true) {
+					//make sure that the stack size of the output stack is less than 63 to accommodate the double output
+					if (this.slots[2].stackSize < 63){
+						this.slots[2].stackSize += itemstack.stackSize;
+					}
+				}
 			}
 
 			--this.slots[0].stackSize;

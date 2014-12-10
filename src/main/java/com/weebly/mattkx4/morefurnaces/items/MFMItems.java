@@ -3,6 +3,7 @@ package com.weebly.mattkx4.morefurnaces.items;
 import com.weebly.mattkx4.morefurnaces.blocks.MFMBlocks;
 import com.weebly.mattkx4.morefurnaces.items.upgrades.UpgradeBrightness;
 import com.weebly.mattkx4.morefurnaces.items.upgrades.UpgradeNotification;
+import com.weebly.mattkx4.morefurnaces.items.upgrades.UpgradeDoubleOutput;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -24,6 +25,7 @@ public class MFMItems {
 	// Upgrades
 	public static Item UpgradeBrightness; // Brightness upgrade
 	public static Item UpgradeNotification; // Notification upgrade
+	public static Item UpgradeDoubleOutput; // Double Output upgrade
 	// Ingots
 	public static Item ingotSteel;
 	// Bone Fragment
@@ -57,6 +59,7 @@ public class MFMItems {
 		// Initialize the upgrades
 		UpgradeBrightness = new UpgradeBrightness(); // Brightness Upgrade
 		UpgradeNotification = new UpgradeNotification(); // Notification Upgrade
+		UpgradeDoubleOutput = new UpgradeDoubleOutput(); // Double Output Upgrade
 		// Initialize the ingots
 		ingotSteel = new SteelIngot();
 		// Initialize the bone fragment
@@ -79,6 +82,7 @@ public class MFMItems {
 																			// Upgrade
 		GameRegistry.registerItem(UpgradeNotification, "UpgradeNotification"); // Notification
 																				// Upgrade
+		GameRegistry.registerItem(UpgradeDoubleOutput, "UpgradeDoubleOutput"); // Double Output Upgrade
 		// Register the ingots with game and ore registry
 		GameRegistry.registerItem(ingotSteel, "SteelIngot");
 		OreDictionary.registerOre("ingotSteel", ingotSteel);
