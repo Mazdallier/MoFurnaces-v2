@@ -20,18 +20,15 @@ public class GuiFurnaceBook extends GuiScreen {
 	
 	// TODO this needs to change to the proper gui
 	public static final ResourceLocation bground = new ResourceLocation(
-			Strings.MODID + ":textures/gui/custom_furnace.png");
+			Strings.MODID + ":textures/gui/furnace_book.png");
 	private int xSize;
 	private int ySize;
 	
 	
 	public GuiFurnaceBook(EntityPlayer entityPlayer) {
-		this.xSize = 176;
-		this.ySize = 166;
+		this.xSize = 200;
+		this.ySize = 200;
 	}
-	
-	
-	
 	
 	/**
      * Draws the screen and all the components in it.
@@ -50,7 +47,21 @@ public class GuiFurnaceBook extends GuiScreen {
 		int posY = (this.height - ySize) / 2;
 
 		
+		
+		// Draw the main GUI background
 		drawTexturedModalRect(posX, posY, 0, 0, xSize, ySize);
+		
+		// Draw the internals for the Gui
+		drawTexturedModalRect(posX+11,posY+41,201,0,32,32);
+		drawTexturedModalRect(posX+110,posY+41,201,0,32,32);
+		
+		String title = "The Crafter's Guide to Mo Furnaces";
+		
+		this.fontRendererObj.drawString(title, this.xSize / 2
+				- this.fontRendererObj.getStringWidth(title) / 2, 6, 4210752);
+		
+		
+
 		
 		super.drawScreen(x,  y,  f);
     }

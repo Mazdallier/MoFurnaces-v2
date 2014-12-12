@@ -41,7 +41,7 @@ Wishlist{
         - Spanish
         - German
         - Dutch
-    * BUG: tier 2 and 3 furnaces cook twice as fast as their regular counterparts.
+    X BUG: tier 2 and 3 furnaces cook twice as fast as their regular counterparts. (FIXED)
 }
 * * *
 * * *
@@ -117,10 +117,18 @@ V2.2.2 -> V2.3.0{
                 - Output slot is full
                 - Done smelting items
     }
+    
+    12 DEC - Pr1meSh0ck {
+        - Added in the basics for the furnace guide
+            - The item, GUI, container, and an entry into the GUI Handler to allow the GUI to be opened by the book
+        - Made the outline for the basic gui, it is not even close to final version, right now I am messing around with it.
+    }
 }
     
     TODO{
     	- Add in an in-game wiki in the form of a custom book
+            - Customize GUI to be book like
+            - Add in content
         X Steel Furnace
             X Craft Iron Ore with Coal to make Steel Ore.
             X Smelt Steel Ore to get Steel Ingot.
