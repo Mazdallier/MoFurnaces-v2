@@ -10,6 +10,6 @@ public class BoneFragment extends Item {
 		maxStackSize = 64;
 		setCreativeTab(MoFurnacesMod.MFM);
 		setUnlocalizedName("BoneFragment");
-		setTextureName(Strings.MODID + ":BoneFragment");
+		setTextureName(Strings.MODID + ":Bone_Fragment");
 	}
 }

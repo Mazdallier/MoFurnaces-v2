@@ -32,7 +32,7 @@ public class FurnaceBook extends Item {
 		maxStackSize = 1;
 		setCreativeTab(MoFurnacesMod.MFM);
 		setUnlocalizedName("FurnaceBook");
-		setTextureName(Strings.MODID + ":furnaceBook");	
+		setTextureName(Strings.MODID + ":Furnace_Book");	
 	}
 	
 	

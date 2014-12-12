@@ -10,6 +10,6 @@ public class SteelIngot extends Item{
 		maxStackSize = 64;
 		setCreativeTab(MoFurnacesMod.MFM);
 		setUnlocalizedName("SteelIngot");
-		setTextureName(Strings.MODID + ":ingotSteel");
+		setTextureName(Strings.MODID + ":Steel_Ingot");
 	}
 }
