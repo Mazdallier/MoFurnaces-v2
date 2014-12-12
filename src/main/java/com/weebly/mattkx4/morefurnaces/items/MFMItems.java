@@ -4,10 +4,14 @@ import com.weebly.mattkx4.morefurnaces.blocks.MFMBlocks;
 import com.weebly.mattkx4.morefurnaces.items.upgrades.UpgradeBrightness;
 import com.weebly.mattkx4.morefurnaces.items.upgrades.UpgradeNotification;
 import com.weebly.mattkx4.morefurnaces.items.upgrades.UpgradeDoubleOutput;
+import com.weebly.mattkx4.morefurnaces.main.MoFurnacesMod;
 
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -30,7 +34,9 @@ public class MFMItems {
 	public static Item ingotSteel;
 	// Bone Fragment
 	public static Item boneFragment;
-
+	// Information Book
+	public static Item furnaceBook;
+	
 	/**
 	 * Calls the registry methods for items
 	 */
@@ -64,6 +70,9 @@ public class MFMItems {
 		ingotSteel = new SteelIngot();
 		// Initialize the bone fragment
 		boneFragment = new BoneFragment();
+		// Initialize the furnace book
+		furnaceBook = new FurnaceBook();
+		
 	}
 
 	/**
@@ -89,6 +98,9 @@ public class MFMItems {
 
 		// Register the bone fragment
 		GameRegistry.registerItem(boneFragment, "BoneFragment");
+		
+		// Register the furnace book
+		GameRegistry.registerItem(furnaceBook, "FurnaceBook");
 	}
 
 	/**
@@ -114,5 +126,9 @@ public class MFMItems {
 		// Register Crafting Recipe for the new Bone Recipe
 		GameRegistry.addRecipe(new ItemStack(Items.bone), new Object[] { "BBB",
 				"BBB", "BBB", 'B', boneFragment });
+		// Register crafting recipe for the furnace book
+		GameRegistry.addShapelessRecipe(new ItemStack(furnaceBook),  new Object[] {
+			Items.book, Blocks.furnace
+		});
 	}
 }

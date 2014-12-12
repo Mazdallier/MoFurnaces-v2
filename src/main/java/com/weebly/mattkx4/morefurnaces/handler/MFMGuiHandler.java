@@ -5,6 +5,7 @@ import com.weebly.mattkx4.morefurnaces.container.ContainerBoneFurnace;
 import com.weebly.mattkx4.morefurnaces.container.ContainerBrickFurnace;
 import com.weebly.mattkx4.morefurnaces.container.ContainerCactusFurnace;
 import com.weebly.mattkx4.morefurnaces.container.ContainerDiamondFurnace;
+import com.weebly.mattkx4.morefurnaces.container.ContainerFurnaceBook;
 import com.weebly.mattkx4.morefurnaces.container.ContainerGoldFurnace;
 import com.weebly.mattkx4.morefurnaces.container.ContainerNetherrackFurnace;
 import com.weebly.mattkx4.morefurnaces.container.ContainerObsidianFurnace;
@@ -27,6 +28,7 @@ import com.weebly.mattkx4.morefurnaces.gui.GuiBoneFurnace;
 import com.weebly.mattkx4.morefurnaces.gui.GuiBrickFurnace;
 import com.weebly.mattkx4.morefurnaces.gui.GuiCactusFurnace;
 import com.weebly.mattkx4.morefurnaces.gui.GuiDiamondFurnace;
+import com.weebly.mattkx4.morefurnaces.gui.GuiFurnaceBook;
 import com.weebly.mattkx4.morefurnaces.gui.GuiGoldFurnace;
 import com.weebly.mattkx4.morefurnaces.gui.GuiNetherrackFurnace;
 import com.weebly.mattkx4.morefurnaces.gui.GuiObsidianFurnace;
@@ -79,7 +81,9 @@ public class MFMGuiHandler implements IGuiHandler {
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world,
 			int x, int y, int z) {
 		TileEntity entity = world.getTileEntity(x, y, z);
-		if (entity != null) {
+		if(ID == MoFurnacesMod.guiIDFurnaceBook) {
+			return new ContainerFurnaceBook(player);
+		} else if (entity != null) {
 			switch (ID) {
 			case MoFurnacesMod.guiIDObsidianFurnace:
 				if (entity instanceof TileEntityObsidianFurnace) {
@@ -191,7 +195,6 @@ public class MFMGuiHandler implements IGuiHandler {
 					return new ContainerPumpkinFurnace(player.inventory,
 							(TileEntityPumpkinFurnace) entity);
 				}
-				return null;
 			}
 		}
 		return null;
@@ -201,7 +204,9 @@ public class MFMGuiHandler implements IGuiHandler {
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world,
 			int x, int y, int z) {
 		TileEntity entity = world.getTileEntity(x, y, z);
-		if (entity != null) {
+		if(ID == MoFurnacesMod.guiIDFurnaceBook) {
+			return new GuiFurnaceBook(player);
+		} else if (entity != null) {
 			switch (ID) {
 			case MoFurnacesMod.guiIDObsidianFurnace:
 				if (entity instanceof TileEntityObsidianFurnace) {
@@ -313,7 +318,6 @@ public class MFMGuiHandler implements IGuiHandler {
 					return new GuiPumpkinFurnace(player.inventory,
 							(TileEntityPumpkinFurnace) entity);
 				}
-				return null;
 			}
 		}
 		return null;
