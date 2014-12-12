@@ -2,12 +2,9 @@ package com.weebly.mattkx4.morefurnaces.tileentity;
 
 import java.util.Random;
 
-import com.weebly.mattkx4.morefurnaces.blocks.BrickFurnace;
-import com.weebly.mattkx4.morefurnaces.items.MFMItems;
-import com.weebly.mattkx4.morefurnaces.lib.FurnaceVariables;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -22,6 +19,13 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.EnumChatFormatting;
+
+import com.weebly.mattkx4.morefurnaces.blocks.BrickFurnace;
+import com.weebly.mattkx4.morefurnaces.items.MFMItems;
+import com.weebly.mattkx4.morefurnaces.lib.FurnaceVariables;
+
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -37,8 +41,10 @@ public class TileEntityBrickFurnace extends TileEntity implements
 
 	// changed the number of slots to 4 (3 for cooking plus 1 for upgrade)
 	private ItemStack[] slots = new ItemStack[4];
-	
+
 	private boolean doubleOutput = false;
+
+	private boolean notification = false;
 
 	// Number of ticks the furnace will burn for
 	public int burnTime;
@@ -210,6 +216,31 @@ public class TileEntityBrickFurnace extends TileEntity implements
 
 		if (this.burnTime > 0) {
 			--this.burnTime;
+			if (this.burnTime == 0 && notification && this.slots[0] != null) {
+				if (this.slots[1] == null && this.slots[0] != null) {
+					String message = " is out of fuel! Please give the furnace more fuel to continue smelting!";
+					Minecraft.getMinecraft().ingameGUI.getChatGUI()
+							.printChatMessage(
+									new ChatComponentText("["
+											+ EnumChatFormatting.BLUE
+											+ "MoFurnacesMod"
+											+ EnumChatFormatting.RESET + "] "
+											+ EnumChatFormatting.GOLD
+											+ "Brick Furnace "
+											+ EnumChatFormatting.RESET
+											+ "(at x="
+											+ EnumChatFormatting.AQUA
+											+ this.xCoord
+											+ EnumChatFormatting.RESET + ", y="
+											+ EnumChatFormatting.AQUA
+											+ this.yCoord
+											+ EnumChatFormatting.RESET + ", z="
+											+ EnumChatFormatting.AQUA
+											+ this.zCoord
+											+ EnumChatFormatting.RESET + ") "
+											+ message));
+				}
+			}
 		}
 		if (!this.worldObj.isRemote) {
 			try {
@@ -221,6 +252,8 @@ public class TileEntityBrickFurnace extends TileEntity implements
 					} else if (slots[3].getItem() == MFMItems.UpgradeDoubleOutput) {
 						// Set the double output boolean to true
 						doubleOutput = true;
+					} else if (slots[3].getItem() == MFMItems.UpgradeNotification) {
+						notification = true;
 					}
 				}
 			} catch (Exception e) {
@@ -286,7 +319,8 @@ public class TileEntityBrickFurnace extends TileEntity implements
 				return true;
 			if (!this.slots[2].isItemEqual(itemstack))
 				return false;
-			if (doubleOutput == true && this.slots[2].isItemEqual(itemstack) && !(this.slots[2].stackSize < 63)){
+			if (doubleOutput == true && this.slots[2].isItemEqual(itemstack)
+					&& !(this.slots[2].stackSize < 63)) {
 				return false;
 			}
 
@@ -299,12 +333,16 @@ public class TileEntityBrickFurnace extends TileEntity implements
 
 	// Smelt the input item and put the result in the output slot
 	public void smeltItem() {
+		// Get the current stack count in the input slot
+		int oldInputItemCount = this.slots[0].stackSize;
 		// Arbitrary integer for multiplying the output
 		int outputMultiplier = 1;
-		// If the double output boolean is true then set arbitrary integer to double the output
+		// If the double output boolean is true then set arbitrary integer to
+		// double the output
 		if (doubleOutput == true) {
-			// Get the pseudo random chance that this will actually double the output
-			if (randInt(0, 100) < 34){
+			// Get the pseudo random chance that this will actually double the
+			// output
+			if (randInt(0, 100) < 34) {
 				outputMultiplier = 2;
 			} else if (randInt(0, 100) > 33) {
 				outputMultiplier = 1;
@@ -320,25 +358,74 @@ public class TileEntityBrickFurnace extends TileEntity implements
 			itemstack.stackSize = 1 * outputMultiplier;
 			// If the output slot is empty
 			if (this.slots[2] == null) {
-				// Copy over a single item of the smelting result multiplied by the output multiplier
+				// Copy over a single item of the smelting result multiplied by
+				// the output multiplier
 				this.slots[2] = itemstack.copy();
-			// Otherwise if the two items are equal
+				// Otherwise if the two items are equal
 			} else if (this.slots[2].getItem() == itemstack.getItem()) {
 				// Check on the state of the doubleOutput
-				if (doubleOutput == false){
+				if (doubleOutput == false) {
 					this.slots[2].stackSize += itemstack.stackSize;
 				} else if (doubleOutput == true) {
-					//make sure that the stack size of the output stack is less than 63 to accommodate the double output
-					if (this.slots[2].stackSize < 63){
+					// make sure that the stack size of the output stack is less
+					// than 63 to accommodate the double output
+					if (this.slots[2].stackSize < 63) {
 						this.slots[2].stackSize += itemstack.stackSize;
 					}
 				}
 			}
 
 			--this.slots[0].stackSize;
-
 			if (this.slots[0].stackSize <= 0) {
 				this.slots[0] = null;
+			}
+		}
+		if (notification) {
+			// Check if the input stacks are completely done smelting.
+			if (oldInputItemCount != 0 && this.slots[0] == null) {
+				String message = " is done smelting! Go check out your new items!";
+				Minecraft.getMinecraft().ingameGUI.getChatGUI()
+						.printChatMessage(
+								new ChatComponentText("["
+										+ EnumChatFormatting.BLUE
+										+ "MoFurnacesMod"
+										+ EnumChatFormatting.RESET + "] "
+										+ EnumChatFormatting.GOLD
+										+ "Brick Furnace "
+										+ EnumChatFormatting.RESET + "(at x="
+										+ EnumChatFormatting.AQUA + this.xCoord
+										+ EnumChatFormatting.RESET + ", y="
+										+ EnumChatFormatting.AQUA + this.yCoord
+										+ EnumChatFormatting.RESET + ", z="
+										+ EnumChatFormatting.AQUA + this.zCoord
+										+ EnumChatFormatting.RESET + ") "
+										+ message));
+
+				// Check if the output slot is full.
+				if (this.slots[2].stackSize == 64
+						&& this.slots[0].stackSize != 0) {
+					String message2 = " has a full output slot! Please go clear the output slot to continue smelting!";
+					Minecraft.getMinecraft().ingameGUI.getChatGUI()
+							.printChatMessage(
+									new ChatComponentText("["
+											+ EnumChatFormatting.BLUE
+											+ "MoFurnacesMod"
+											+ EnumChatFormatting.RESET + "] "
+											+ EnumChatFormatting.GOLD
+											+ "Brick Furnace "
+											+ EnumChatFormatting.RESET
+											+ "(at x="
+											+ EnumChatFormatting.AQUA
+											+ this.xCoord
+											+ EnumChatFormatting.RESET + ", y="
+											+ EnumChatFormatting.AQUA
+											+ this.yCoord
+											+ EnumChatFormatting.RESET + ", z="
+											+ EnumChatFormatting.AQUA
+											+ this.zCoord
+											+ EnumChatFormatting.RESET + ") "
+											+ message2));
+				}
 			}
 		}
 	}
@@ -427,7 +514,7 @@ public class TileEntityBrickFurnace extends TileEntity implements
 		// yes as long as its not from slot 0, slot 1 or the item is a bucket
 		return j != 0 || i != 1 || itemstack.getItem() == Items.bucket;
 	}
-	
+
 	/**
 	 * Returns a pseudo-random number between min and max, inclusive. The
 	 * difference between min and max can be at most

@@ -3,15 +3,6 @@ package com.weebly.mattkx4.morefurnaces.blocks;
 import java.util.List;
 import java.util.Random;
 
-import com.weebly.mattkx4.morefurnaces.blocks.tier2.BrickFurnaceT2;
-import com.weebly.mattkx4.morefurnaces.blocks.tier2.MFMT2Blocks;
-import com.weebly.mattkx4.morefurnaces.items.MFMItems;
-import com.weebly.mattkx4.morefurnaces.lib.Strings;
-import com.weebly.mattkx4.morefurnaces.main.MoFurnacesMod;
-import com.weebly.mattkx4.morefurnaces.particles.EntityBrickFlameFX;
-import com.weebly.mattkx4.morefurnaces.tileentity.TileEntityBrickFurnace;
-import com.weebly.mattkx4.morefurnaces.tileentity.tier2.TileEntityBrickFurnaceT2;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -23,7 +14,6 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -32,6 +22,15 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+
+import com.weebly.mattkx4.morefurnaces.blocks.tier2.MFMT2Blocks;
+import com.weebly.mattkx4.morefurnaces.items.MFMItems;
+import com.weebly.mattkx4.morefurnaces.lib.Strings;
+import com.weebly.mattkx4.morefurnaces.main.MoFurnacesMod;
+import com.weebly.mattkx4.morefurnaces.particles.EntityBrickFlameFX;
+import com.weebly.mattkx4.morefurnaces.tileentity.TileEntityBrickFurnace;
+import com.weebly.mattkx4.morefurnaces.tileentity.tier2.TileEntityBrickFurnaceT2;
+
 import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -429,11 +428,8 @@ public class BrickFurnace extends BlockContainer {
 				}
 			}
 			break;
-		case "notification":
-			break;
 		default:
 			break;
 		}
 	}
-
 }

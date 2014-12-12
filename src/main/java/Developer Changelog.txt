@@ -109,6 +109,14 @@ V2.2.2 -> V2.3.0{
         - Fixed the issue that caused a crash on startup
             - Incorrect referencing to server and client proxy classes within the main mod class
     }
+    
+    11 DEC - Mattkx4 {
+        - Added the Notification Upgrade
+            - Notifies you when the:
+                - Fuel runs out
+                - Output slot is full
+                - Done smelting items
+    }
 }
     
     TODO{
@@ -124,17 +132,17 @@ V2.2.2 -> V2.3.0{
         - Glowstone Furnace
         - Uncrafting Furnace
         - Furnace Addons
-            - Double Output
+            X Double Output
             X Brightness
             - Fuel Timer
             - Input Timer
-            - Notification
+            X Notification
             - Block Compressor
             - Fuel Saver
         - CK Passive Healing
         - Bone Furnace Tweaks
             - Chance to auto-grow crops in a certain radius with smelting.
-            - Chance to output 1 bonemeal along with item to be smelted.
+            X Chance to output 1 bonemeal along with item to be smelted.
         X Cactus Furnace grows Cacti on top of it.
         X Nerf the Tiered Furnaces Speed - No need, random glitch not a repeatable bug - UPDATE: found and fixed bug
     }
