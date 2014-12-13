@@ -102,3 +102,5 @@ item.BoneFragment.name=Bone Fragment
 item.UpgradeNotification.name=Notification Upgrade
 item.UpgradeDoubleOutput.name=Double Output Upgrade
 item.FurnaceBook.name=Mo' Furnaces Guide Book
+item.UpgradeFuelSaver.name=Fuel Saver Upgrade
+item.UpgradeInputTimer.name=Input Timer Upgrade

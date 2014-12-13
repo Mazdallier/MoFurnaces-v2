@@ -47,6 +47,10 @@ public class TileEntityBrickFurnace extends TileEntity implements
 
 	private boolean notification = false;
 
+	private boolean fuelSaver = false;
+	
+	private boolean inputTimer = false;
+
 	// Number of ticks the furnace will burn for
 	public int burnTime;
 
@@ -248,19 +252,29 @@ public class TileEntityBrickFurnace extends TileEntity implements
 				if (slots[3].getItem() != null) {
 					if (slots[3].getItem() == MFMItems.UpgradeBrightness) {
 						// Attempt to simplify upgrade system
-						UpgradeBrightness.Active(worldObj, this.xCoord, this.yCoord, this.zCoord, this.isBurning());
-					} else if (slots[3].getItem() != MFMItems.UpgradeBrightness){
+						UpgradeBrightness.Active(worldObj, this.xCoord,
+								this.yCoord, this.zCoord, this.isBurning());
+					} else if (slots[3].getItem() != MFMItems.UpgradeBrightness) {
 						// Cancel out the effect of the Brightness Upgrade
-						UpgradeBrightness.Inactive(worldObj, this.xCoord, this.yCoord, this.zCoord);
+						UpgradeBrightness.Inactive(worldObj, this.xCoord,
+								this.yCoord, this.zCoord);
 					}
-					
+
 					if (slots[3].getItem() == MFMItems.UpgradeDoubleOutput) {
 						// Set the double output boolean to true
 						doubleOutput = true;
 					}
-					
+
 					if (slots[3].getItem() == MFMItems.UpgradeNotification) {
 						notification = true;
+					}
+
+					if (slots[3].getItem() == MFMItems.UpgradeFuelSaver) {
+						fuelSaver = true;
+					}
+					
+					if (slots[3].getItem() == MFMItems.UpgradeInputTimer) {
+						inputTimer = true;
 					}
 				}
 			} catch (Exception e) {
@@ -273,8 +287,11 @@ public class TileEntityBrickFurnace extends TileEntity implements
 				// set currentItemBurnTime and burnTime to the fuel item burn
 				// time || add a '+1' after fuel efficiency to create an ever
 				// lasting furnace
-				this.currentItemBurnTime = this.burnTime = (int) (((double) getItemBurnTime(this.slots[1]) / FurnaceVariables.BRICK_FURNACE_EFFICIENCY) - 0.4D);
-
+				if (!fuelSaver) {
+					this.currentItemBurnTime = this.burnTime = (int) (((double) getItemBurnTime(this.slots[1]) / FurnaceVariables.BRICK_FURNACE_EFFICIENCY) - 0.4D);
+				} else {
+					this.currentItemBurnTime = this.burnTime = (int) (((double) getItemBurnTime(this.slots[1]) / (FurnaceVariables.BRICK_FURNACE_EFFICIENCY - (FurnaceVariables.BRICK_FURNACE_EFFICIENCY * 0.33))) - 0.4D);
+				}
 				if (this.isBurning()) {
 					flag1 = true;
 

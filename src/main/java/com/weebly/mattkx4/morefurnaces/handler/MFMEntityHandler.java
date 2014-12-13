@@ -34,11 +34,12 @@ public class MFMEntityHandler {
 		int subColour = random.nextInt() * 16777215;
 
 		EntityRegistry.registerGlobalEntityID(entityClass, name, entityID);
-		// spawn C into the world
-		EntityRegistry.addSpawn(entityClass, 1, 1, 1,
-				EnumCreatureType.creature, BiomeGenBase.desert,
-				BiomeGenBase.extremeHills, BiomeGenBase.roofedForest);
-
+		// spawn CK into the world
+		if (MoFurnacesMod.spawnCK) {
+			EntityRegistry.addSpawn(entityClass, 1, 1, 1,
+					EnumCreatureType.creature, BiomeGenBase.desert,
+					BiomeGenBase.extremeHills, BiomeGenBase.roofedForest);
+		}
 		EntityRegistry.registerModEntity(entityClass, name, entityID,
 				MoFurnacesMod.instance, 64, 1, true);
 		EntityList.entityEggs.put(Integer.valueOf(entityID),

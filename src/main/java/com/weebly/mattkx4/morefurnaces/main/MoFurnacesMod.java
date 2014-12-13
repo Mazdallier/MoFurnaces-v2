@@ -1,13 +1,9 @@
 package com.weebly.mattkx4.morefurnaces.main;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.common.MinecraftForge;
-
-import org.apache.logging.log4j.Logger;
+import net.minecraftforge.common.config.Configuration;
 
 import com.weebly.mattkx4.morefurnaces.achievements.MFMAchievements;
 import com.weebly.mattkx4.morefurnaces.blocks.MFMBlocks;
@@ -29,7 +25,6 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.gameevent.TickEvent.ClientTickEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -48,6 +43,9 @@ public class MoFurnacesMod {
 	// for the halloween changes to come into effect, if false regular operation
 	// resume,s
 	public static boolean isHalloween;
+	
+	// public static boolean value that tells the game whether to spawn CK or not.
+	public static boolean spawnCK;
 
 	/*
 	 * Create constants for the individual furnace GUI ID's
@@ -114,7 +112,13 @@ public class MoFurnacesMod {
 	 */
 	@EventHandler
 	public static void preload(FMLPreInitializationEvent preEvent) {
+		Configuration config = new Configuration(preEvent.getSuggestedConfigurationFile());
+		config.load();
 
+		spawnCK = config.get(Configuration.CATEGORY_GENERAL, "SpawnCK", true).getBoolean();
+		
+		config.save();
+		
 		FMLCommonHandler.instance().bus().register(updateNotifier);
 		FMLCommonHandler.instance().bus().register(halloweenUpdateNotifier);
 		MinecraftForge.EVENT_BUS.register(updateNotifier);

@@ -123,6 +123,14 @@ V2.2.2 -> V2.3.0{
             - The item, GUI, container, and an entry into the GUI Handler to allow the GUI to be opened by the book
         - Made the outline for the basic gui, it is not even close to final version, right now I am messing around with it.
     }
+    
+    13 DEC - Mattkx4 {
+        - Added the Fuel Saver Upgrade.
+            - The Fuel Saver upgrade makes the furnace 33% more efficient.
+            - If a piece of fuel is already burning when you apply the upgrade, the upgrade will not take affect until after the next piece of fuel is used.
+        - Added a config file for the game.
+            - Created a boolean value in the config file that allows you to disable CK from spawning.
+    }
 }
     
     TODO{
@@ -133,10 +141,10 @@ V2.2.2 -> V2.3.0{
             X Craft Iron Ore with Coal to make Steel Ore.
             X Smelt Steel Ore to get Steel Ingot.
             X Use Steel Ingots to create the Steel Furnace.
-        - CK Mob Config File
-        - Tiered Furnace, only available in Creative Mode
-            - Tier 2/3 Redstone Furnace
-            - Tier 2 Netherrack Furnace (I'm gonna tackle this another day... I don't wanna have to mess with slots again :( lol)
+        X CK Mob Config File
+        X Tiered Furnace, only available in Creative Mode
+            X Tier 2/3 Redstone Furnace (SCRAPPED)
+            X Tier 2 Netherrack Furnace (I'm gonna tackle this another day... I don't wanna have to mess with slots again :( lol) (SCRAPPED we may do this in a future udpate)
         - Glowstone Furnace
         - Uncrafting Furnace
         - Furnace Addons
@@ -146,10 +154,10 @@ V2.2.2 -> V2.3.0{
             - Input Timer
             X Notification
             X Block Compressor
-            - Fuel Saver
+            X Fuel Saver
         - CK Passive Healing
-        - Bone Furnace Tweaks
-            - Chance to auto-grow crops in a certain radius with smelting.
+        X Bone Furnace Tweaks
+            X Chance to auto-grow crops in a certain radius with smelting.
             X Chance to output 1 bonemeal along with item to be smelted.
         X Cactus Furnace grows Cacti on top of it.
         X Nerf the Tiered Furnaces Speed - No need, random glitch not a repeatable bug - UPDATE: found and fixed bug
