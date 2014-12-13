@@ -1,18 +1,17 @@
 package com.weebly.mattkx4.morefurnaces.items;
 
-import com.weebly.mattkx4.morefurnaces.blocks.MFMBlocks;
-import com.weebly.mattkx4.morefurnaces.items.upgrades.UpgradeBrightness;
-import com.weebly.mattkx4.morefurnaces.items.upgrades.UpgradeNotification;
-import com.weebly.mattkx4.morefurnaces.items.upgrades.UpgradeDoubleOutput;
-import com.weebly.mattkx4.morefurnaces.main.MoFurnacesMod;
-
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.oredict.OreDictionary;
+
+import com.weebly.mattkx4.morefurnaces.blocks.MFMBlocks;
+import com.weebly.mattkx4.morefurnaces.items.upgrades.UpgradeBrightness;
+import com.weebly.mattkx4.morefurnaces.items.upgrades.UpgradeDoubleOutput;
+import com.weebly.mattkx4.morefurnaces.items.upgrades.UpgradeFuelSaver;
+import com.weebly.mattkx4.morefurnaces.items.upgrades.UpgradeNotification;
+
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class MFMItems {
@@ -30,13 +29,14 @@ public class MFMItems {
 	public static Item UpgradeBrightness; // Brightness upgrade
 	public static Item UpgradeNotification; // Notification upgrade
 	public static Item UpgradeDoubleOutput; // Double Output upgrade
+	public static Item UpgradeFuelSaver; // Fuel Saver upgrade
 	// Ingots
 	public static Item ingotSteel;
 	// Bone Fragment
 	public static Item boneFragment;
 	// Information Book
 	public static Item furnaceBook;
-	
+
 	/**
 	 * Calls the registry methods for items
 	 */
@@ -65,14 +65,16 @@ public class MFMItems {
 		// Initialize the upgrades
 		UpgradeBrightness = new UpgradeBrightness(); // Brightness Upgrade
 		UpgradeNotification = new UpgradeNotification(); // Notification Upgrade
-		UpgradeDoubleOutput = new UpgradeDoubleOutput(); // Double Output Upgrade
+		UpgradeDoubleOutput = new UpgradeDoubleOutput(); // Double Output
+															// Upgrade
+		UpgradeFuelSaver = new UpgradeFuelSaver(); // Fuel Saver Upgrade
 		// Initialize the ingots
 		ingotSteel = new SteelIngot();
 		// Initialize the bone fragment
 		boneFragment = new BoneFragment();
 		// Initialize the furnace book
 		furnaceBook = new FurnaceBook();
-		
+
 	}
 
 	/**
@@ -91,14 +93,19 @@ public class MFMItems {
 																			// Upgrade
 		GameRegistry.registerItem(UpgradeNotification, "UpgradeNotification"); // Notification
 																				// Upgrade
-		GameRegistry.registerItem(UpgradeDoubleOutput, "UpgradeDoubleOutput"); // Double Output Upgrade
+		GameRegistry.registerItem(UpgradeDoubleOutput, "UpgradeDoubleOutput"); // Double
+																				// Output
+																				// Upgrade
+		GameRegistry.registerItem(UpgradeFuelSaver, "UpgradeFuelSaver"); // Fuel
+																			// Saver
+																			// Upgrade
 		// Register the ingots with game and ore registry
 		GameRegistry.registerItem(ingotSteel, "SteelIngot");
 		OreDictionary.registerOre("ingotSteel", ingotSteel);
 
 		// Register the bone fragment
 		GameRegistry.registerItem(boneFragment, "BoneFragment");
-		
+
 		// Register the furnace book
 		GameRegistry.registerItem(furnaceBook, "FurnaceBook");
 	}
@@ -121,14 +128,16 @@ public class MFMItems {
 				"zXz", "zWz", " y ", 'z', Items.diamond, 'X', Items.ender_eye,
 				'W', MFMItems.TierCore, 'y', Items.blaze_rod });
 		// Add recipes for the upgrades here
+		// Brightness Upgrade Recipe
+		// Notification Upgrade Recipe
+		// Fuel Saver Upgrade Recipe
 		GameRegistry.addSmelting(MFMBlocks.oreSteel, new ItemStack(ingotSteel),
 				0.5F);
 		// Register Crafting Recipe for the new Bone Recipe
 		GameRegistry.addRecipe(new ItemStack(Items.bone), new Object[] { "BBB",
 				"BBB", "BBB", 'B', boneFragment });
 		// Register crafting recipe for the furnace book
-		GameRegistry.addShapelessRecipe(new ItemStack(furnaceBook),  new Object[] {
-			Items.book, Blocks.furnace
-		});
+		GameRegistry.addShapelessRecipe(new ItemStack(furnaceBook),
+				new Object[] { Items.book, Blocks.furnace });
 	}
 }
