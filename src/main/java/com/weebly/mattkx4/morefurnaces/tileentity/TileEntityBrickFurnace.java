@@ -24,6 +24,7 @@ import net.minecraft.util.EnumChatFormatting;
 
 import com.weebly.mattkx4.morefurnaces.blocks.BrickFurnace;
 import com.weebly.mattkx4.morefurnaces.items.MFMItems;
+import com.weebly.mattkx4.morefurnaces.items.upgrades.UpgradeBrightness;
 import com.weebly.mattkx4.morefurnaces.lib.FurnaceVariables;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -246,13 +247,19 @@ public class TileEntityBrickFurnace extends TileEntity implements
 			try {
 				if (slots[3].getItem() != null) {
 					if (slots[3].getItem() == MFMItems.UpgradeBrightness) {
-						BrickFurnace.upgradeActive(worldObj, this.xCoord,
-								this.yCoord, this.zCoord, "brightness",
-								this.isBurning());
-					} else if (slots[3].getItem() == MFMItems.UpgradeDoubleOutput) {
+						// Attempt to simplify upgrade system
+						UpgradeBrightness.Active(worldObj, this.xCoord, this.yCoord, this.zCoord, this.isBurning());
+					} else if (slots[3].getItem() != MFMItems.UpgradeBrightness){
+						// Cancel out the effect of the Brightness Upgrade
+						UpgradeBrightness.Inactive(worldObj, this.xCoord, this.yCoord, this.zCoord);
+					}
+					
+					if (slots[3].getItem() == MFMItems.UpgradeDoubleOutput) {
 						// Set the double output boolean to true
 						doubleOutput = true;
-					} else if (slots[3].getItem() == MFMItems.UpgradeNotification) {
+					}
+					
+					if (slots[3].getItem() == MFMItems.UpgradeNotification) {
 						notification = true;
 					}
 				}
