@@ -5,6 +5,7 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -25,6 +26,7 @@ import net.minecraft.util.EnumChatFormatting;
 import com.weebly.mattkx4.morefurnaces.blocks.BrickFurnace;
 import com.weebly.mattkx4.morefurnaces.items.MFMItems;
 import com.weebly.mattkx4.morefurnaces.items.upgrades.UpgradeBrightness;
+import com.weebly.mattkx4.morefurnaces.items.upgrades.UpgradeNotification;
 import com.weebly.mattkx4.morefurnaces.lib.FurnaceVariables;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -223,27 +225,8 @@ public class TileEntityBrickFurnace extends TileEntity implements
 			--this.burnTime;
 			if (this.burnTime == 0 && notification && this.slots[0] != null) {
 				if (this.slots[1] == null && this.slots[0] != null) {
-					String message = " is out of fuel! Please give the furnace more fuel to continue smelting!";
-					Minecraft.getMinecraft().ingameGUI.getChatGUI()
-							.printChatMessage(
-									new ChatComponentText("["
-											+ EnumChatFormatting.BLUE
-											+ "MoFurnacesMod"
-											+ EnumChatFormatting.RESET + "] "
-											+ EnumChatFormatting.GOLD
-											+ "Brick Furnace "
-											+ EnumChatFormatting.RESET
-											+ "(at x="
-											+ EnumChatFormatting.AQUA
-											+ this.xCoord
-											+ EnumChatFormatting.RESET + ", y="
-											+ EnumChatFormatting.AQUA
-											+ this.yCoord
-											+ EnumChatFormatting.RESET + ", z="
-											+ EnumChatFormatting.AQUA
-											+ this.zCoord
-											+ EnumChatFormatting.RESET + ") "
-											+ message));
+					// Attempt to move to a simpler format		
+					UpgradeNotification.notify(this.xCoord, this.yCoord, this.zCoord, 1, this.getInventoryName());
 				}
 			}
 		}
@@ -251,13 +234,13 @@ public class TileEntityBrickFurnace extends TileEntity implements
 			try {
 				if (slots[3].getItem() != null) {
 					if (slots[3].getItem() == MFMItems.UpgradeBrightness) {
-						// Attempt to simplify upgrade system
+						// Activate the effect of the brightness upgrade
 						UpgradeBrightness.Active(worldObj, this.xCoord,
 								this.yCoord, this.zCoord, this.isBurning());
 					} else if (slots[3].getItem() != MFMItems.UpgradeBrightness) {
 						// Cancel out the effect of the Brightness Upgrade
 						UpgradeBrightness.Inactive(worldObj, this.xCoord,
-								this.yCoord, this.zCoord);
+								this.yCoord, this.zCoord, this.isBurning());
 					}
 
 					if (slots[3].getItem() == MFMItems.UpgradeDoubleOutput) {
@@ -407,48 +390,11 @@ public class TileEntityBrickFurnace extends TileEntity implements
 		if (notification) {
 			// Check if the input stacks are completely done smelting.
 			if (oldInputItemCount != 0 && this.slots[0] == null) {
-				String message = " is done smelting! Go check out your new items!";
-				Minecraft.getMinecraft().ingameGUI.getChatGUI()
-						.printChatMessage(
-								new ChatComponentText("["
-										+ EnumChatFormatting.BLUE
-										+ "MoFurnacesMod"
-										+ EnumChatFormatting.RESET + "] "
-										+ EnumChatFormatting.GOLD
-										+ "Brick Furnace "
-										+ EnumChatFormatting.RESET + "(at x="
-										+ EnumChatFormatting.AQUA + this.xCoord
-										+ EnumChatFormatting.RESET + ", y="
-										+ EnumChatFormatting.AQUA + this.yCoord
-										+ EnumChatFormatting.RESET + ", z="
-										+ EnumChatFormatting.AQUA + this.zCoord
-										+ EnumChatFormatting.RESET + ") "
-										+ message));
-
+				UpgradeNotification.notify(this.xCoord, this.yCoord, this.zCoord, 2, this.getInventoryName());
 				// Check if the output slot is full.
-				if (this.slots[2].stackSize == 64
+				if (this.slots[2].stackSize > 63
 						&& this.slots[0].stackSize != 0) {
-					String message2 = " has a full output slot! Please go clear the output slot to continue smelting!";
-					Minecraft.getMinecraft().ingameGUI.getChatGUI()
-							.printChatMessage(
-									new ChatComponentText("["
-											+ EnumChatFormatting.BLUE
-											+ "MoFurnacesMod"
-											+ EnumChatFormatting.RESET + "] "
-											+ EnumChatFormatting.GOLD
-											+ "Brick Furnace "
-											+ EnumChatFormatting.RESET
-											+ "(at x="
-											+ EnumChatFormatting.AQUA
-											+ this.xCoord
-											+ EnumChatFormatting.RESET + ", y="
-											+ EnumChatFormatting.AQUA
-											+ this.yCoord
-											+ EnumChatFormatting.RESET + ", z="
-											+ EnumChatFormatting.AQUA
-											+ this.zCoord
-											+ EnumChatFormatting.RESET + ") "
-											+ message2));
+					UpgradeNotification.notify(this.xCoord, this.yCoord, this.zCoord, 3, this.getInventoryName());
 				}
 			}
 		}

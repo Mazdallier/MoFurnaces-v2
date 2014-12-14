@@ -5,7 +5,9 @@ import java.util.List;
 import com.weebly.mattkx4.morefurnaces.lib.Strings;
 import com.weebly.mattkx4.morefurnaces.main.MoFurnacesMod;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.EnumSkyBlock;
@@ -15,6 +17,7 @@ public class UpgradeBrightness extends Item {
 	
 	// The number of blocks in any direction that the effect will occur in
 	static double burnRadius = 8;
+	static int lightRadius = 4; 
 	
 	public UpgradeBrightness() {
 		maxStackSize = 16;
@@ -36,9 +39,7 @@ public class UpgradeBrightness extends Item {
 	 */
 	public static void Active(World worldObj, int xCoord, int yCoord,
 			int zCoord, boolean burning) {
-		// Set the light level of the block to maximum
-		worldObj.getBlock(xCoord, yCoord, zCoord).setLightLevel(1);
-		
+
 		// Create the boundary for the effect
 		AxisAlignedBB boundary = AxisAlignedBB.getBoundingBox(xCoord - burnRadius,
 		yCoord - burnRadius, zCoord - burnRadius, xCoord + burnRadius, yCoord + burnRadius, zCoord + 8);
@@ -49,6 +50,9 @@ public class UpgradeBrightness extends Item {
 		
 		// Check to see if the furnace is still burning
 		if(burning == true) {
+			// Set the light level of the block to maximum
+			worldObj.getBlock(xCoord, yCoord, zCoord).setLightLevel(1);
+			
 			// Cycle through all of the mobs within the entityList
 			for (int i = 0; i < entityList.size(); i++) {
 				// Assign each mob
@@ -66,8 +70,21 @@ public class UpgradeBrightness extends Item {
 	 * @param xCoord : The x position of the tile entity
 	 * @param yCoord : The y position of the tile entity
 	 * @param zCoord : the z position of the tile entity
+	 * @param burning 
 	 */
 	public static void Inactive(World worldObj, int xCoord, int yCoord,
-			int zCoord) {
+			int zCoord, boolean burning) {
+		// Get the block at the tile entity
+		Block furnace = worldObj.getBlock(xCoord, yCoord, zCoord);
+
+		// Check if the furnace is burning or not
+		if (burning == true) {
+			furnace.setLightLevel(0.625F);	// Set the light level to default
+
+		} else if (burning == false) {
+			furnace.setLightLevel(0);	// Set light level to zero
+		}
+		
+		
 	}
 }
