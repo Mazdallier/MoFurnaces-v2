@@ -1,5 +1,8 @@
 package com.weebly.mattkx4.morefurnaces.gui;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.lwjgl.opengl.GL11;
 
 import com.weebly.mattkx4.morefurnaces.container.ContainerPumpkinFurnace;
@@ -23,6 +26,8 @@ public class GuiFurnaceBook extends GuiScreen {
 			Strings.MODID + ":textures/gui/furnace_book.png");
 	private int xSize;
 	private int ySize;
+	/** A list of all the buttons in this container. */
+    protected List buttonList = new ArrayList();
 	
 	
 	public GuiFurnaceBook(EntityPlayer entityPlayer) {
@@ -57,8 +62,8 @@ public class GuiFurnaceBook extends GuiScreen {
 		
 		String title = "The Crafter's Guide to Mo Furnaces";
 		
-		this.fontRendererObj.drawString(title, this.xSize / 2
-				- this.fontRendererObj.getStringWidth(title) / 2, 6, 4210752);
+		this.fontRendererObj.drawString(title, posX + this.xSize / 2
+				- this.fontRendererObj.getStringWidth(title) / 2, posY + 2, 4210752);
 		
 		
 

@@ -45,12 +45,12 @@ public class UpgradeNotification extends Item {
 		.printChatMessage(
 				new ChatComponentText("["
 						+ EnumChatFormatting.BLUE
-						+ Strings.name
+						+ Strings.MODID
 						+ EnumChatFormatting.RESET + "] "
 						+ EnumChatFormatting.GOLD
 						+ inventoryName
 						+ EnumChatFormatting.RESET
-						+ " at ("
+						+ " @ ("
 						+ EnumChatFormatting.AQUA
 						+ xCoord
 						+ EnumChatFormatting.RESET + ", "

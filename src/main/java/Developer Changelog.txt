@@ -131,6 +131,18 @@ V2.2.2 -> V2.3.0{
         - Added a config file for the game.
             - Created a boolean value in the config file that allows you to disable CK from spawning.
     }
+    
+    14 DEC - Pr1meSh0ck {
+        - Moved the methods of the notification upgrade to the notification item. 
+            - This will allow for universal access
+        - Fixed small bug with identifying the upgrade within the tile entity
+            - Bug did not allow for the upgrade booleans to be turned to false
+        - Improved upon the Brightness upgrade to include an increased level of brightness emitted by the furnace
+            - Active furnaces will hold their light level for a small while after the upgrade is removed.
+            - The light level for the block is changed for all instances of the furnaces.
+        - Removed null checking if statement around the upgrade slots, 
+            - This removes a bug that would have prevented the upgrades from being deactivated upon removal of the upgrades 
+    }
 }
     
     TODO{

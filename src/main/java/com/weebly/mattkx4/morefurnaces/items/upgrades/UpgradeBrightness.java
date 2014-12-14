@@ -51,7 +51,12 @@ public class UpgradeBrightness extends Item {
 		// Check to see if the furnace is still burning
 		if(burning == true) {
 			// Set the light level of the block to maximum
-			worldObj.getBlock(xCoord, yCoord, zCoord).setLightLevel(1);
+			Block furnace = worldObj.getBlock(xCoord, yCoord, zCoord);
+			// If the block is an instance of an active block then
+			if (furnace.getUnlocalizedName().contains("Active")) {
+				// Set the light level to maximum
+				furnace.setLightLevel(1);
+			}
 			
 			// Cycle through all of the mobs within the entityList
 			for (int i = 0; i < entityList.size(); i++) {
@@ -76,13 +81,10 @@ public class UpgradeBrightness extends Item {
 			int zCoord, boolean burning) {
 		// Get the block at the tile entity
 		Block furnace = worldObj.getBlock(xCoord, yCoord, zCoord);
-
-		// Check if the furnace is burning or not
-		if (burning == true) {
-			furnace.setLightLevel(0.625F);	// Set the light level to default
-
-		} else if (burning == false) {
-			furnace.setLightLevel(0);	// Set light level to zero
+		// If the block is an instance of an active block then
+		if (furnace.getUnlocalizedName().contains("Active")) {
+			// Set the light level to default
+			furnace.setLightLevel(0.625F);
 		}
 		
 		

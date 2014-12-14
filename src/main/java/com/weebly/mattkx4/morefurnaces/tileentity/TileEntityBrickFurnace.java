@@ -231,35 +231,60 @@ public class TileEntityBrickFurnace extends TileEntity implements
 			}
 		}
 		if (!this.worldObj.isRemote) {
+			// Assess which, if any, upgrade is being used
 			try {
-				if (slots[3].getItem() != null) {
-					if (slots[3].getItem() == MFMItems.UpgradeBrightness) {
-						// Activate the effect of the brightness upgrade
-						UpgradeBrightness.Active(worldObj, this.xCoord,
-								this.yCoord, this.zCoord, this.isBurning());
-					} else if (slots[3].getItem() != MFMItems.UpgradeBrightness) {
-						// Cancel out the effect of the Brightness Upgrade
-						UpgradeBrightness.Inactive(worldObj, this.xCoord,
-								this.yCoord, this.zCoord, this.isBurning());
-					}
-
-					if (slots[3].getItem() == MFMItems.UpgradeDoubleOutput) {
-						// Set the double output boolean to true
-						doubleOutput = true;
-					}
-
-					if (slots[3].getItem() == MFMItems.UpgradeNotification) {
-						notification = true;
-					}
-
-					if (slots[3].getItem() == MFMItems.UpgradeFuelSaver) {
-						fuelSaver = true;
-					}
-					
-					if (slots[3].getItem() == MFMItems.UpgradeInputTimer) {
-						inputTimer = true;
-					}
+				if (slots[3].getItem() == null) {
+					UpgradeBrightness.Inactive(worldObj, this.xCoord,
+							this.yCoord, this.zCoord, this.isBurning());
+					// Set the double output boolean to false
+					doubleOutput = false;
+					// Set the notification boolean to false
+					notification = false;
+					// Set the fuel saver boolean to false
+					fuelSaver = false;
+					// Set the input timer boolean to false
+					inputTimer = false;
 				}
+				
+				if (slots[3].getItem() == MFMItems.UpgradeBrightness) {
+					// Activate the effect of the brightness upgrade
+					UpgradeBrightness.Active(worldObj, this.xCoord,
+							this.yCoord, this.zCoord, this.isBurning());
+				} else if (slots[3].getItem() != MFMItems.UpgradeBrightness || slots[3].getItem() == null) {
+					// Cancel out the effect of the Brightness Upgrade
+					UpgradeBrightness.Inactive(worldObj, this.xCoord,
+							this.yCoord, this.zCoord, this.isBurning());
+				}
+
+				if (slots[3].getItem() == MFMItems.UpgradeDoubleOutput) {
+					// Set the double output boolean to true
+					doubleOutput = true;
+				} else if (slots[3].getItem() != MFMItems.UpgradeDoubleOutput || slots[3].getItem() == null) {
+					// Set the double output boolean to false
+					doubleOutput = false;
+				}
+
+				if (slots[3].getItem() == MFMItems.UpgradeNotification) {
+					notification = true;
+				}  else if (slots[3].getItem() != MFMItems.UpgradeNotification || slots[3].getItem() == null) {
+					// Set the notification boolean to false
+					notification = false;
+				}
+
+				if (slots[3].getItem() == MFMItems.UpgradeFuelSaver) {
+					fuelSaver = true;
+				}  else if (slots[3].getItem() != MFMItems.UpgradeFuelSaver || slots[3].getItem() == null) {
+					// Set the fuel saver boolean to false
+					fuelSaver = false;
+				}
+				
+				if (slots[3].getItem() == MFMItems.UpgradeInputTimer) {
+					inputTimer = true;
+				}  else if (slots[3].getItem() != MFMItems.UpgradeInputTimer || slots[3].getItem() == null) {
+					// Set the input timer boolean to false
+					inputTimer = false;
+				}
+			
 			} catch (Exception e) {
 
 			}
@@ -391,11 +416,11 @@ public class TileEntityBrickFurnace extends TileEntity implements
 			// Check if the input stacks are completely done smelting.
 			if (oldInputItemCount != 0 && this.slots[0] == null) {
 				UpgradeNotification.notify(this.xCoord, this.yCoord, this.zCoord, 2, this.getInventoryName());
-				// Check if the output slot is full.
-				if (this.slots[2].stackSize > 63
-						&& this.slots[0].stackSize != 0) {
-					UpgradeNotification.notify(this.xCoord, this.yCoord, this.zCoord, 3, this.getInventoryName());
-				}
+			}
+			// Check if the output slot is full.
+			if (this.slots[2].stackSize > 63
+					&& this.slots[0].stackSize > 0) {
+				UpgradeNotification.notify(this.xCoord, this.yCoord, this.zCoord, 3, this.getInventoryName());
 			}
 		}
 	}
