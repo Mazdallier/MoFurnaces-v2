@@ -149,6 +149,12 @@ V2.2.2 -> V2.3.0{
             - Close button will successfully close the gui
             - The other buttons are there to test programatically changing the content of the gui, then they will be placed in permanent positions
     }
+    
+    17 DEC - Pr1meSh0ck {
+        - Added methods to programatically add and remove button menus from the guide.
+            - The Items main menu button now loads the items sub menu button list
+            - Clicking any other button will unload the items sub button list
+    }
 }
     
     TODO{
