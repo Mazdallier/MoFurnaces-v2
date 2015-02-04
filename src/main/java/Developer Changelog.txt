@@ -155,6 +155,11 @@ V2.2.2 -> V2.3.0{
             - The Items main menu button now loads the items sub menu button list
             - Clicking any other button will unload the items sub button list
     }
+    
+    ===== 2015 :D =====
+    
+    4 FEB - Mattkx4 {
+        - Added basic framework for the Input Timer Upgrade
 }
     
     TODO{
@@ -168,7 +173,7 @@ V2.2.2 -> V2.3.0{
         X CK Mob Config File
         X Tiered Furnace, only available in Creative Mode
             X Tier 2/3 Redstone Furnace (SCRAPPED)
-            X Tier 2 Netherrack Furnace (I'm gonna tackle this another day... I don't wanna have to mess with slots again :( lol) (SCRAPPED we may do this in a future udpate)
+            X Tier 2 Netherrack Furnace (I'm gonna tackle this another day... I don't wanna have to mess with slots again :( lol) (SCRAPPED we may do this in a future update)
         - Glowstone Furnace
         - Uncrafting Furnace
         - Furnace Addons
@@ -181,7 +186,7 @@ V2.2.2 -> V2.3.0{
             X Fuel Saver
         - CK Passive Healing
         X Bone Furnace Tweaks
-            X Chance to auto-grow crops in a certain radius with smelting.
+            X Chance to auto-grow crops in a certain radius with smelting. (scrapped)
             X Chance to output 1 bonemeal along with item to be smelted.
         X Cactus Furnace grows Cacti on top of it.
         X Nerf the Tiered Furnaces Speed - No need, random glitch not a repeatable bug - UPDATE: found and fixed bug

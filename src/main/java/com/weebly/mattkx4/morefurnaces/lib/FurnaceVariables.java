@@ -6,6 +6,7 @@ public class FurnaceVariables {
 	 */
 	// SPEEDS
 	public static final int BRICK_FURNACE_SPEED = 133; // 1.5x Faster or 150% Faster
+	public static final int BRICK_FURNACE_SPEED_SECONDS = 7;
 	public static final int STEEL_FURNACE_SPEED = 100; // 2x Faster or 200% Faster
 	public static final int GOLD_FURNACE_SPEED = 50; // 4x Faster or 400% Faster
 	public static final int NETHERRACK_FURNACE_SPEED = 450; // 0.44X As Fast or 56% Slower
