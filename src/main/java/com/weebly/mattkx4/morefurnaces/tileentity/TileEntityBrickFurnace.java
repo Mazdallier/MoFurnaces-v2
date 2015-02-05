@@ -24,6 +24,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 
 import com.weebly.mattkx4.morefurnaces.blocks.BrickFurnace;
+import com.weebly.mattkx4.morefurnaces.gui.GuiBrickFurnace;
 import com.weebly.mattkx4.morefurnaces.items.MFMItems;
 import com.weebly.mattkx4.morefurnaces.items.upgrades.UpgradeBrightness;
 import com.weebly.mattkx4.morefurnaces.items.upgrades.UpgradeNotification;
@@ -346,14 +347,15 @@ public class TileEntityBrickFurnace extends TileEntity implements
 		if (inputTimer) {
 			if (!canSmelt()) {
 				System.out.println("0:00");
-			} else if(canSmelt()) {
+			} else if (canSmelt()) {
 				int numOfItems = this.slots[0].stackSize;
-				int numOfSeconds = numOfItems * FurnaceVariables.BRICK_FURNACE_SPEED_SECONDS;
+				int numOfSeconds = numOfItems
+						* FurnaceVariables.BRICK_FURNACE_SPEED_SECONDS;
 				if (numOfSeconds > 59) {
-					numOfSeconds = numOfSeconds % (60*60);
-					int numOfMinutes = numOfSeconds/60;
+					numOfSeconds = numOfSeconds % (60 * 60);
+					int numOfMinutes = numOfSeconds / 60;
 					numOfSeconds = numOfSeconds % 60;
-					
+
 					if (numOfSeconds < 10) {
 						System.out.println(numOfMinutes + ":0" + numOfSeconds);
 					} else {
