@@ -218,7 +218,6 @@ public class TileEntityBrickFurnace extends TileEntity implements
 
 	// Update the Furnace
 	public void updateEntity() {
-
 		boolean flag = isBurning();
 		boolean flag1 = false;
 
@@ -284,16 +283,10 @@ public class TileEntityBrickFurnace extends TileEntity implements
 					fuelSaver = false;
 				}
 
-				if (slots[3].getItem() == MFMItems.UpgradeInputTimer) {
-					inputTimer = true;
-				} else if (slots[3].getItem() != MFMItems.UpgradeInputTimer
-						|| slots[3].getItem() == null) {
-					// Set the input timer boolean to false
-					inputTimer = false;
-				}
-
 			} catch (Exception e) {
-
+				doubleOutput = false;
+				notification = false;
+				fuelSaver = false;
 			}
 
 			// if the burnTime has reached zero and there is an item that can be
@@ -341,34 +334,6 @@ public class TileEntityBrickFurnace extends TileEntity implements
 
 		if (flag1) {
 			this.markDirty();
-		}
-
-		// Input Timer Stuff
-		if (inputTimer) {
-			if (!canSmelt()) {
-				System.out.println("0:00");
-			} else if (canSmelt()) {
-				int numOfItems = this.slots[0].stackSize;
-				int numOfSeconds = numOfItems
-						* FurnaceVariables.BRICK_FURNACE_SPEED_SECONDS;
-				if (numOfSeconds > 59) {
-					numOfSeconds = numOfSeconds % (60 * 60);
-					int numOfMinutes = numOfSeconds / 60;
-					numOfSeconds = numOfSeconds % 60;
-
-					if (numOfSeconds < 10) {
-						System.out.println(numOfMinutes + ":0" + numOfSeconds);
-					} else {
-						System.out.println(numOfMinutes + ":" + numOfSeconds);
-					}
-				} else {
-					if (numOfSeconds < 10) {
-						System.out.println("0:0" + numOfSeconds);
-					} else {
-						System.out.println("0:" + numOfSeconds);
-					}
-				}
-			}
 		}
 	}
 

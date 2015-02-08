@@ -9,6 +9,8 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 import com.weebly.mattkx4.morefurnaces.container.ContainerBrickFurnace;
+import com.weebly.mattkx4.morefurnaces.items.MFMItems;
+import com.weebly.mattkx4.morefurnaces.lib.FurnaceVariables;
 import com.weebly.mattkx4.morefurnaces.lib.Strings;
 import com.weebly.mattkx4.morefurnaces.tileentity.TileEntityBrickFurnace;
 
@@ -17,6 +19,8 @@ public class GuiBrickFurnace extends GuiContainer {
 			Strings.MODID + ":textures/gui/custom_furnace.png");
 
 	public TileEntityBrickFurnace brickFurnace;
+
+	private boolean inputTimer = false;
 
 	public GuiBrickFurnace(InventoryPlayer inventoryPlayer,
 			TileEntityBrickFurnace entity) {
@@ -42,6 +46,34 @@ public class GuiBrickFurnace extends GuiContainer {
 		this.fontRendererObj.drawString(
 				I18n.format("container.Inventory", new Object[0]), 8,
 				this.ySize - 96 + 2, 4210752);
+
+		if (this.brickFurnace.getStackInSlot(3) != null
+				&& this.brickFurnace.getStackInSlot(3).getItem() == MFMItems.UpgradeInputTimer) {
+			if (!this.brickFurnace.canSmelt()) {
+				this.fontRendererObj.drawString("0:00", 18, 39, 4210752);
+			} else if (this.brickFurnace.canSmelt()) {
+				int numOfItems = this.brickFurnace.getStackInSlot(0).stackSize;
+				int numOfSeconds = numOfItems
+						* FurnaceVariables.BRICK_FURNACE_SPEED_SECONDS;
+				if (numOfSeconds > 59) {
+					numOfSeconds = numOfSeconds % (60 * 60);
+					int numOfMinutes = numOfSeconds / 60;
+					numOfSeconds = numOfSeconds % 60;
+
+					if (numOfSeconds < 10) {
+						this.fontRendererObj.drawString(numOfMinutes + ":0" + numOfSeconds, 18, 39, 4210752);
+					} else {
+						this.fontRendererObj.drawString(numOfMinutes + ":" + numOfSeconds, 18, 39, 4210752);
+					}
+				} else {
+					if (numOfSeconds < 10) {
+						this.fontRendererObj.drawString("0:0" + numOfSeconds, 18, 39, 4210752);
+					} else {
+						this.fontRendererObj.drawString("0:" + numOfSeconds, 18, 39, 4210752);
+					}
+				}
+			}
+		}
 	}
 
 	/*
@@ -66,6 +98,5 @@ public class GuiBrickFurnace extends GuiContainer {
 		// Draws the progress bar for the current item being cooked (Arrow)
 		int m = this.brickFurnace.getCookProgressScaled(24);
 		drawTexturedModalRect(guiLeft + 79, guiTop + 34, 176, 0, m + 1, 17);
-
 	}
 }
