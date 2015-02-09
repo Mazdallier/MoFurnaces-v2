@@ -4,6 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
@@ -47,6 +48,7 @@ public class GuiBrickFurnace extends GuiContainer {
 				I18n.format("container.Inventory", new Object[0]), 8,
 				this.ySize - 96 + 2, 4210752);
 
+		// Input Timer Code
 		if (this.brickFurnace.getStackInSlot(3) != null
 				&& this.brickFurnace.getStackInSlot(3).getItem() == MFMItems.UpgradeInputTimer) {
 			if (!this.brickFurnace.canSmelt()) {
@@ -61,17 +63,29 @@ public class GuiBrickFurnace extends GuiContainer {
 					numOfSeconds = numOfSeconds % 60;
 
 					if (numOfSeconds < 10) {
-						this.fontRendererObj.drawString(numOfMinutes + ":0" + numOfSeconds, 18, 39, 4210752);
+						this.fontRendererObj.drawString(numOfMinutes + ":0"
+								+ numOfSeconds, 18, 39, 4210752);
 					} else {
-						this.fontRendererObj.drawString(numOfMinutes + ":" + numOfSeconds, 18, 39, 4210752);
+						this.fontRendererObj.drawString(numOfMinutes + ":"
+								+ numOfSeconds, 18, 39, 4210752);
 					}
 				} else {
 					if (numOfSeconds < 10) {
-						this.fontRendererObj.drawString("0:0" + numOfSeconds, 18, 39, 4210752);
+						this.fontRendererObj.drawString("0:0" + numOfSeconds,
+								18, 39, 4210752);
 					} else {
-						this.fontRendererObj.drawString("0:" + numOfSeconds, 18, 39, 4210752);
+						this.fontRendererObj.drawString("0:" + numOfSeconds,
+								18, 39, 4210752);
 					}
 				}
+			}
+		}
+
+		// Fuel Timer Code
+		if (this.brickFurnace.getStackInSlot(3) != null
+				&& this.brickFurnace.getStackInSlot(3).getItem() == MFMItems.UpgradeFuelTimer) {
+			if (this.brickFurnace.getStackInSlot(2).getItem() == null) {
+				this.fontRendererObj.drawString("0:00", 18, 39, 4210752);
 			}
 		}
 	}

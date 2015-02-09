@@ -10,6 +10,7 @@ import com.weebly.mattkx4.morefurnaces.blocks.MFMBlocks;
 import com.weebly.mattkx4.morefurnaces.items.upgrades.UpgradeBrightness;
 import com.weebly.mattkx4.morefurnaces.items.upgrades.UpgradeDoubleOutput;
 import com.weebly.mattkx4.morefurnaces.items.upgrades.UpgradeFuelSaver;
+import com.weebly.mattkx4.morefurnaces.items.upgrades.UpgradeFuelTimer;
 import com.weebly.mattkx4.morefurnaces.items.upgrades.UpgradeInputTimer;
 import com.weebly.mattkx4.morefurnaces.items.upgrades.UpgradeNotification;
 
@@ -32,6 +33,7 @@ public class MFMItems {
 	public static Item UpgradeDoubleOutput; // Double Output upgrade
 	public static Item UpgradeFuelSaver; // Fuel Saver upgrade
 	public static Item UpgradeInputTimer; // Input Timer upgrade
+	public static Item UpgradeFuelTimer; // Fuel Timer upgrade
 	// Ingots
 	public static Item ingotSteel;
 	// Bone Fragment
@@ -71,6 +73,7 @@ public class MFMItems {
 															// Upgrade
 		UpgradeFuelSaver = new UpgradeFuelSaver(); // Fuel Saver Upgrade
 		UpgradeInputTimer = new UpgradeInputTimer(); // Input Timer Upgrade
+		UpgradeFuelTimer = new UpgradeFuelTimer();
 		// Initialize the ingots
 		ingotSteel = new SteelIngot();
 		// Initialize the bone fragment
@@ -105,6 +108,7 @@ public class MFMItems {
 		GameRegistry.registerItem(UpgradeInputTimer, "UpgradeInputTimer"); // Input
 																			// Timer
 																			// Upgrade
+		GameRegistry.registerItem(UpgradeFuelTimer, "UpgradeFuelTimer");
 		// Register the ingots with game and ore registry
 		GameRegistry.registerItem(ingotSteel, "SteelIngot");
 		OreDictionary.registerOre("ingotSteel", ingotSteel);
@@ -138,6 +142,7 @@ public class MFMItems {
 		// Notification Upgrade Recipe
 		// Fuel Saver Upgrade Recipe
 		// Input Timer Upgrade Recipe
+		// Fuel Timer Upgrade Recipe
 		GameRegistry.addSmelting(MFMBlocks.oreSteel, new ItemStack(ingotSteel),
 				0.5F);
 		// Register Crafting Recipe for the new Bone Recipe

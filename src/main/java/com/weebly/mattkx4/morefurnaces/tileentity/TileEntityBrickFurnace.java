@@ -52,8 +52,6 @@ public class TileEntityBrickFurnace extends TileEntity implements
 
 	private boolean fuelSaver = false;
 
-	private boolean inputTimer = false;
-
 	// Number of ticks the furnace will burn for
 	public int burnTime;
 
@@ -243,8 +241,6 @@ public class TileEntityBrickFurnace extends TileEntity implements
 					notification = false;
 					// Set the fuel saver boolean to false
 					fuelSaver = false;
-					// Set the input timer boolean to false
-					inputTimer = false;
 				}
 
 				if (slots[3].getItem() == MFMItems.UpgradeBrightness) {

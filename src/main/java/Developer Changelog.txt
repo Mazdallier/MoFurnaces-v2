@@ -160,7 +160,13 @@ V2.2.2 -> V2.3.0{
     
     4 FEB - Mattkx4 {
         - Added basic framework for the Input Timer Upgrade
-}
+    }
+    
+    8 FEB - Mattkx4 {
+        - Started the Fuel Timer Upgrade
+        - Deleted the archived texture
+            - They honestly didn't have a purpose anymore :P They were just taking up space.
+    }
     
     TODO{
     	- Add in an in-game wiki in the form of a custom book
@@ -180,7 +186,7 @@ V2.2.2 -> V2.3.0{
             X Double Output
             X Brightness
             - Fuel Timer
-            - Input Timer
+            X Input Timer
             X Notification
             X Block Compressor
             X Fuel Saver
