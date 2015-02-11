@@ -168,6 +168,11 @@ V2.2.2 -> V2.3.0{
             - They honestly didn't have a purpose anymore :P They were just taking up space.
     }
     
+    10 FEB - Mattkx4 {
+        - Got much more done on the Fuel Timer Upgrade
+        - Have to work out one last bug. Once, the final piece of fuel of has been used, it sets the timer to 00:00:00 even when it may have an additional 5+ seconds remaining.
+    }
+    
     TODO{
     	- Add in an in-game wiki in the form of a custom book
             - Customize GUI to be book like

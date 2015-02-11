@@ -5,6 +5,8 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
@@ -81,11 +83,127 @@ public class GuiBrickFurnace extends GuiContainer {
 			}
 		}
 
+		Item lastItem;
+		if (this.brickFurnace.getStackInSlot(1) != null) {
+			lastItem = this.brickFurnace.getStackInSlot(1).getItem();
+		} else {
+			lastItem = Items.apple;
+		}
+
 		// Fuel Timer Code
 		if (this.brickFurnace.getStackInSlot(3) != null
 				&& this.brickFurnace.getStackInSlot(3).getItem() == MFMItems.UpgradeFuelTimer) {
-			if (this.brickFurnace.getStackInSlot(2).getItem() == null) {
-				this.fontRendererObj.drawString("0:00", 18, 39, 4210752);
+			if (this.brickFurnace.getStackInSlot(1) != null) {
+				lastItem = this.brickFurnace.getStackInSlot(1).getItem();
+				Item fuel = this.brickFurnace.getStackInSlot(1).getItem();
+				int numOfFuel = this.brickFurnace.getStackInSlot(1).stackSize;
+				int ticks;
+				if (this.brickFurnace.isBurning()) {
+					ticks = (numOfFuel * this.brickFurnace
+							.getItemBurnTime(new ItemStack(fuel))) * 2;
+				} else {
+					ticks = numOfFuel
+							* this.brickFurnace.getItemBurnTime(new ItemStack(
+									fuel));
+				}
+				int seconds = ticks / 20;
+
+				int hours = seconds / (60 * 60);
+				seconds = seconds % (60 * 60);
+
+				int minutes = seconds / 60;
+				seconds = seconds % 60;
+
+				if (hours < 10) {
+					if (minutes < 10) {
+						if (seconds < 10) {
+							this.fontRendererObj.drawString("0" + hours + ":0"
+									+ minutes + ":0" + seconds, 8, 39, 4210752);
+						} else {
+							this.fontRendererObj.drawString("0" + hours + ":0"
+									+ minutes + ":" + seconds, 8, 39, 4210752);
+						}
+					} else {
+						if (seconds < 10) {
+							this.fontRendererObj.drawString("0" + hours + ":"
+									+ minutes + ":0" + seconds, 8, 39, 4210752);
+						} else {
+							this.fontRendererObj.drawString("0" + hours + ":"
+									+ minutes + ":" + seconds, 8, 39, 4210752);
+						}
+					}
+				} else {
+					if (minutes < 10) {
+						if (seconds < 10) {
+							this.fontRendererObj.drawString(hours + ":0"
+									+ minutes + ":0" + seconds, 8, 39, 4210752);
+						} else {
+							this.fontRendererObj.drawString(hours + ":0"
+									+ minutes + ":" + seconds, 8, 39, 4210752);
+						}
+					} else {
+						if (seconds < 10) {
+							this.fontRendererObj.drawString(hours + ":"
+									+ minutes + ":0" + seconds, 8, 39, 4210752);
+						} else {
+							this.fontRendererObj.drawString(hours + ":"
+									+ minutes + ":" + seconds, 8, 39, 4210752);
+						}
+					}
+				}
+			} else if (this.brickFurnace.getStackInSlot(1) == null
+					&& this.brickFurnace.isBurning()) {
+				System.out.println(lastItem.getUnlocalizedName());
+				int ticks;
+				ticks = 1 * this.brickFurnace.getItemBurnTime(new ItemStack(
+						lastItem)); // Fix this
+				int seconds = ticks / 20;
+
+				int hours = seconds / (60 * 60);
+				seconds = seconds % (60 * 60);
+
+				int minutes = seconds / 60;
+				seconds = seconds % 60;
+
+				if (hours < 10) {
+					if (minutes < 10) {
+						if (seconds < 10) {
+							this.fontRendererObj.drawString("0" + hours + ":0"
+									+ minutes + ":0" + seconds, 8, 39, 4210752);
+						} else {
+							this.fontRendererObj.drawString("0" + hours + ":0"
+									+ minutes + ":" + seconds, 8, 39, 4210752);
+						}
+					} else {
+						if (seconds < 10) {
+							this.fontRendererObj.drawString("0" + hours + ":"
+									+ minutes + ":0" + seconds, 8, 39, 4210752);
+						} else {
+							this.fontRendererObj.drawString("0" + hours + ":"
+									+ minutes + ":" + seconds, 8, 39, 4210752);
+						}
+					}
+				} else {
+					if (minutes < 10) {
+						if (seconds < 10) {
+							this.fontRendererObj.drawString(hours + ":0"
+									+ minutes + ":0" + seconds, 8, 39, 4210752);
+						} else {
+							this.fontRendererObj.drawString(hours + ":0"
+									+ minutes + ":" + seconds, 8, 39, 4210752);
+						}
+					} else {
+						if (seconds < 10) {
+							this.fontRendererObj.drawString(hours + ":"
+									+ minutes + ":0" + seconds, 8, 39, 4210752);
+						} else {
+							this.fontRendererObj.drawString(hours + ":"
+									+ minutes + ":" + seconds, 8, 39, 4210752);
+						}
+					}
+				}
+			} else {
+				this.fontRendererObj.drawString("00:00:00", 8, 39, 4210752);
 			}
 		}
 	}
